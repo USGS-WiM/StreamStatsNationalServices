@@ -48,7 +48,7 @@ class CharacteristicsWrapper(object):
         WiMResults = None
         try:
             parser = argparse.ArgumentParser()
-            parser.add_argument("-workspaceID", help="specifies the split catchment workspace", type=str, default="FH20170130141235512000")           
+            parser.add_argument("-workspaceID", help="specifies the split catchment workspace", type=str, default="FH20170207152821796000") #Change default           
             parser.add_argument("-parameters", help="specifies the ';' separated list of parameters to be computed", type=str, 
                                       default = "DRNAREA;KSATSSUR;I24H10Y;CCM;TAU_ANN;STREAM_VAR;PRECIP;HYSEP;RSD")                 
             args = parser.parse_args()

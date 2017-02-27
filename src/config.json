@@ -1,7 +1,7 @@
 {
   "NLDIServiceOff": "https://cida-test.er.usgs.gov/nldi/",
-  "NLDIService": "D:/ss_apps/gages_iii",
-  "workingdirectory": "D:/gistemp/ClientData",
+  "NLDIService": "C:/gis/usgs/ss/ss_apps/gages_iii",
+  "workingdirectory": "C:/gis/usgs/ss/ss_apps/gistemp/clientdata",
   "outputFile": "gages3.txt",
   "catchment": {
     "upstream": "upstreamcatchment",
@@ -14,7 +14,7 @@
       "Name": "fdr",
       "Description": "Flow Direction Raster",
       "isTiled": true,
-      "path": "D:/ss_apps/HUCs",
+      "path": "C:/gis/usgs/ss/ss_apps/HUCs",
       "DatasetType": "ESRI_RASTER",
       "queryFeaturePath": "extent.gdb/Layers/hucpoly",
       "queryField": "RPUID"
@@ -25,7 +25,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "National Inventory of Dams ",
       "isTiled": false,
-      "path": "D:/ss_apps/National",
+      "path": "C:/gis/usgs/ss/ss_apps/National",
       "DatasetType": "ESRI_POINT",
       "queryField": "NORM_STORA"
     },
@@ -34,7 +34,7 @@
       "Name": "mirad250_02v3",
       "Description": "2002 Moderate resolution Irrigated Agriculture Dataset",
       "isTiled": false,
-      "path": "D:/ss_apps/National",
+      "path": "C:/gis/usgs/ss/ss_apps/National",
       "DatasetType": "ESRI_RASTER"
     },
     "nlcd": {
@@ -42,7 +42,7 @@
       "Name": "nlcd_2011_impervious_2011_edition_2014_10_10",
       "Description": "National Land Cover Database",
       "isTiled": false,
-      "path": "D:/ss_apps/National",
+      "path": "C:/gis/usgs/ss/ss_apps/National",
       "DatasetType": "IMAGE_RASTER"
     },
     "npdes": {
@@ -51,7 +51,7 @@
       "Name": "point",
       "Description": "National Pollutant Discharge Elimination Systems",
       "isTiled": false,
-      "path": "D:/ss_apps/National",
+      "path": "C:/gis/usgs/ss/ss_apps/National",
       "DatasetType": "ESRI_POINT",
       "queryField": "FLOW_RATE"
     },
@@ -60,7 +60,7 @@
       "Name": "lu2012_050815",
       "Description": "wall-to-wall anthropogenic land use trends",
       "isTiled": false,
-      "path": "D:/ss_apps/National",
+      "path": "C:/gis/usgs/ss/ss_apps/National",
       "DatasetType": "ESRI_RASTER"
     },
     "freshWithdraw": {
@@ -68,7 +68,7 @@
       "Name": "withdr_sqkm",
       "Description": "Water withdrawals -- would be a new dataset from James Falcone.",
       "isTiled": false,
-      "path": "D:/ss_apps/National",
+      "path": "C:/gis/usgs/ss/ss_apps/National",
       "DatasetType": "ESRI_RASTER"
     }
   }

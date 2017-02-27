@@ -71,7 +71,7 @@ class AnthOps(SpatialOps):
             #set mask
             mask = os.path.join(os.path.join(self._WorkspaceDirectory, self.WorkspaceID +'.gdb', "Layers"), Config()["catchment"]["downstream"] )
             if not arcpy.Exists(mask): raise Exception("Mask does not exist: "+mask)
-
+#Changed for each basin characteristic
             totArea = self.getAreaSqMeter(mask)* Shared.CF_SQMETERS2SQKILOMETER
             #spatial overlay
             #cursor and sum
