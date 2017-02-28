@@ -8,6 +8,32 @@
     "downstream": "downstreamcatchment",
     "global": "global"
   },
+  "characteristics": {
+    "MeanChemicalToxicity": {
+      "ID": 0000,
+      "Class": "ChemOps",
+      "Method": "Mean", 
+      "MapLayers": [0,1],
+      "UnitID": "ppm"
+    },
+  "CAT_NID_STORAGE_1980": {
+      "Class": "getRasterStatisticHO",
+      "Method": "Mean",
+      "MapLayers": ["nid"],
+      "UnitID": "Ac-Ft"
+    },
+    "Area_Per_Unit": {
+      "Class": "getStoragePerUnitArea",
+      "ConversionFactor": "CF_SQMETERS2SQKILOMETER",
+      "MapLayers": ["nid"],
+      "UnitID": "Ac-Ft"
+    },
+    "NLCD_MIRAD_THIS_MIGHT_NEED_TO_BE_CHANGED": {
+      "Class": "getPercentOfWhole",
+      "MapLayers": ["nid"],
+      "UnitID": "Percent"
+    },
+  },
   "maplayers": {
     "fdr": {
       "ID": 1001,
@@ -17,7 +43,8 @@
       "path": "C:/gis/usgs/ss/ss_apps/HUCs",
       "DatasetType": "ESRI_RASTER",
       "queryFeaturePath": "extent.gdb/Layers/hucpoly",
-      "queryField": "RPUID"
+      "queryField": "RPUID",
+      "UnitID": "sq-m"
     },
     "nid": {
       "ID": 2001,

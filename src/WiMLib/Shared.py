@@ -26,3 +26,13 @@ def try_parse(string, fail=None):
         return float(string)
     except Exception:
         return fail;
+
+'''
+def convert unit(in unit, out unit)
+    if this
+    then this unit
+
+    if this
+    then out this unit
+    switch(in_unit,out_unit) #LOOK THIS UP
+'''
