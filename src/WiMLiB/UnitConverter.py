@@ -10,62 +10,42 @@
 #
 #      dates:  28 FEB 2017 - Created
 #
-#   mod work:   Pull from HydroOps - Tutorial with Jeremy (DONE)
-#               AnthOps (DONE)
-#               GeogOps (N/A)
-#               PhysOps (N/A)
-#
-# add. notes:  Initially developed from code by Jeremy
+# add. notes:  Initially developed from code by Jeremy K. Newson
 #
 #------------------------------------------------------------------------------
 
-#Library of conversions
-#Length
-#   Meters to...
-CF_M2FT = 3.28083
-CF_M2IN = 39.37007874                       # 1 meter = 39.37007874 inch
-CF_M2MI = 0.0006213712                      # 1 meter = 0.0006213712 miles
-CF_M2MM = 1000                              # 1 meter = 1000 millimeter
-CF_SQKM2SQM = 1000000                       # 1 square kilometer = 1 000 000 square meter
 
-#   Centimers to...
-CF_CM2FT = 0.0328083                        # 1 centimeter = 0.0328083 foot
-cf_CM2IN = 0.3937007874                     # 1 centimeter = 0.3937007874 inch
-CF_CM2MM = 10                               # 1 centimeter = 10 millimeter
-CF_CM2M = 0.01                              # 1 centimeter = 0.01 meters
 
-#   Feet to...
-CF_FT2IN = 12.0                             # 1 foot to inches @ 12 in/ft
-CF_FT2CM = 30.48                            # 1 foot = 30.48 centimeters 
-CF_FT2M = 0.3048                            # 1 foot = 0.3048 meters
-CF_FT2MM = 304.8                            # 1 feet = 304.8 millimeter
-CF_IN2MM = 25.4                             # 1 inch = 25.4 millimeter
-CF_IN2M = 0.0254                            # 1 inch = 0.0254 meter
+#Length Dictionary
+linear = {
+    'KMtoM': 1000, 'KMtoCM': 100000, 'KMtoMM': 1000000, 'KMtoMI': 0.621371, 'KMtoFT': 3280.84, 'KMtoIN': 39370.1,
+    'MtoKM': 0.001, 'MtoCM': 100, 'MtoMM': 1000, 'MtoMI': 0.0006213712, 'MtoFT': 0.3048, 'MtoIN': 39.37007874,
+    'CMtoKM': 0.00001, 'CMtoM': 0.1, 'CMtoMM': 10, 'CMtoMI': 0.0000621371, 'CMtoFT': 0.0328084, 'CMtoIN': 0.393701,
+    'MMtoKM': 0.000006, 'MMtoM': 0.001, 'MMtoCM': 0.1, 'MMtoMI': 0.00000062137, 'MMtoFT': 0.00328084, 'MMtoIN': 0.0393701,
+    'MItoKM': 1.60934, 'MItoM': 1609.34, 'MItoCM': 160934, 'MItoMM': 1609000, 'MItoFT': 5280, 'MItoIN': 63360,
+    'FTtoKM': 0.0003048, 'FTtoM': 3.28083, 'FTtoCM': 30.48, 'FTtoMM': 304.8, 'FTtoMI': 0.000189394, 'FTtoIN': 12,
+    'INtoKM': 0.0000245, 'INtoM': 0.0254, 'INtoCM': 2.54, 'INtoMM': 25.4, 'INtoMI': 0.0000157828, 'INtoFT': 0.0833333,
+}
 
-#Area
-#   Acres to...
-CF_ACR2SQKILOMETER = 0.00404685642          # 1 acres = 0.00404685642 square kilometers
+#Rudimentary module
+def Convert(value, inUnits, outUnits, dimentionality):
+    if inUnits == outUnits:
+        print "No Conversion Needed"
+    else:
+        print "In units do not match output units. A conversion will be made."
+        #Create a string for the conversion look up rule
+        conversionRule = '%s to %s' % (inUnits, outUnits) #Build conversion rule
+        conversionRule.replace(" ", "")                   #Convert to look-up key
 
-#   Square Kilometers to...
-CF_SQKILOMETER2SQMM = 1000000000000         # 1 square kilometer = 1,000,000,000,000 square millimeters
-CF_SQKILOMETER2SQFOOT = 10763910.4          # 1 square kilometer = 10 763 910.4 square feet
-
-#   Square Meters to...
-CFR_SQMETER2SQMI = 0.00000259000259000259   # 1 / (1000000 * 0.3861) reciprocal multiplier avoids division
-
-#   Square Feet to...
-CF_SQFOOT2SQKILOMETER = 0.00000009290304    # 1 square foot = 9.290304 × 10-8 square kilometers
-CF_SQMETERS2SQKILOMETER = 0.000001          # 1 square meter = 1.0 × 10-6 square kilometers
-
-#Volume
-#   Acre-feet to...
-CF_ACFT2CUBICM = 1233.0                     # 1 acre/ft to cubic meters
-    
-#   Cubic Feet to...
-CF_CUBICFT2CUBICM = 0.0283168466            # 1 cubic foot = 0.0283168466 cubic meters
-    
-#   Cubic Meters to...
-CF_CUBICM2CUBICFT = 35.31467                # cubic meters to cubic feet
-
-class UnitConverter(WiMLib):
-    def 
+        #Choose dictionary based on being a line, area, or volume
+        if dimentionality == 1:
+            outValue = value * linear[conversionRule]
+            return outValue
+        elif dimentionality == 2:
+            outValue = value * area[conversionRule] #Needs to be added later
+            return outValue
+        elif dimentionality == 3:
+            outValue = value * volume[conversionRule] #Needs to be added later
+            return outValue
+        else:
+            print "Dimentionality was undefined."

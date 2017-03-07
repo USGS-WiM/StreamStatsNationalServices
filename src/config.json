@@ -33,6 +33,11 @@
       "MapLayers": ["nid"],
       "UnitID": "Percent"
     },
+    "POINT_FEATURE_DENSITY": {
+      "Class": "getPointFeatureDensity",
+      "MapLayers": ["nid"],
+      "UnitID": "n-per-area"
+    },
   },
   "maplayers": {
     "fdr": {
