@@ -37,4 +37,3 @@ class Config:
     def getElement(self, elementName):
         items = self.instance.Items
         return items[elementName]
-

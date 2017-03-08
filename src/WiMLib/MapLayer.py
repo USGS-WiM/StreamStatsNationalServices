@@ -132,5 +132,6 @@ class MapLayerDef(object):
         self.QueryField = maplayerObj["queryField"] if ("queryField" in maplayerObj) else None
         self.DataSetName = maplayerObj["DataSetName"] if ("DataSetName" in maplayerObj) else ""
         self.DatasetType =  maplayerObj["DatasetType"]    
+        self.UnitID = maplayerObj["UnitID"]
 
     #endregion
