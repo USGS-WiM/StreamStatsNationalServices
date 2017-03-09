@@ -64,66 +64,53 @@ from WiMLib.MapLayer import *
 class StreamStatsNationalOps(SpatialOps):
 #Region Contructor and Dispose
     def __init__(self, workspacePath):     
-        SpatialOps.__init__(self, workspacePath) 
+        super(StreamStatsNationalOps,self).__init__(workspacePath) 
         self.WorkspaceID = os.path.basename(os.path.normpath(workspacePath))
         self.mask = os.path.join(os.path.join(self._WorkspaceDirectory, self.WorkspaceID +'.gdb', "Layers"), Config()["catchment"]["downstream"])
         if not arcpy.Exists(self.mask): raise Exception("Mask does not exist: "+self.mask)
-        self._sm("initialized hydroops")
-
+        self._sm("initialized StreamStatsNationalOps")
     def __enter__(self):
         return self
-
     def __exit__(self, exc_type, exc_value, traceback):
-        SpatialOps.__exit__(self, exc_type, exc_value, traceback) 
+          super(StreamStatsNationalOps,self).__exit__(exc_type, exc_value, traceback) 
 #End region
-
-#Region HydroOps Origin Functions
-    def getRasterStatisticHO(self, CharacteristicDef):
+    def getRasterStatistic(self, Characteristic):
         '''
         Calculates the raster statistics using various passed methods
             such as Mean, Median, Mode, Max, and Min.
-        HO only notes that it's from HydroOps and keeps it from seeming
-            like it is calling itself.
         '''
         ML = None
-        result = {CharacteristicDef.Name:None}
+        result = {Characteristic.Name:None}
         try:
-            self._sm("Computing " + CharacteristicDef.Name)
-            ML = MapLayer(MapLayerDef(MapLayers[0]))
-
-            arcpy.env.workspace = self._TempLocation
+            self._sm("Computing " + Characteristic.Name)
+            ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))            
             if not ML.Activated:
                 raise Exception("Map Layer could not be activated.")
 
-            result[CharacteristicDef.Name] = self.getRasterStatistic(ML.Dataset, self.mask, CharacteristicDef.Method)
+            result[Characteristic.Name] = super(StreamStatsNationalOps,self).getRasterStatistic(ML.Dataset, self.mask, Characteristic.Method)
 
         except:
             tb = traceback.format_exc()
             self._sm(arcpy.GetMessages(), 'GP')
-            self._sm("Anthops ReservoirStorage" +tb, "ERROR", 71)
-            result[CharacteristicDef.Name] = None
+            self._sm("getRasterStatistic error" +tb +" "+Characteristic.Name, "ERROR", 71)
+            result[Characteristic.Name] = None
 
         finally:
             #Cleans up workspace
-            for fs in arcpy.ListFeatureClasses():
-                arcpy.Delete_management(fs)
-            for rs in arcpy.ListRasters():
-                arcpy.Delete_management(rs)
+            ML = None
 
         return result
-#End Region
-
-#Region AnthOps Origin Functions
-    def getStoragePerUnitArea(self, CharacteristicDef):
+#Region Methods
+    def getStoragePerUnitArea(self, Characteristic):
         '''
         Calculates the Storage per unit area. Is used for computing things
             such as computing the Reservoir storage from National Inventory of Dams (NID)
         '''
         ML = None
-        result = {CharacteristicDef.Name:0}
+        result = {Characteristic.Name:0}
         try:
-            self._sm("Computing " + CharacteristicDef.Name)
-            ML = MapLayer(MapLayerDef(CharacteristicDef.MapLayers[0]))
+            self._sm("Computing " + Characteristic.Name)
+            ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))
 
             arcpy.env.workspace = self._TempLocation
             if not ML.Activated:
@@ -131,93 +118,106 @@ class StreamStatsNationalOps(SpatialOps):
 
             #This calculation should probably be changed depending on what is needed.
             #   I'm guessing this should be a function in Shared.py
-            totArea = self.getAreaSqMeter(mask)*Shared.CF_SQMETERS2SQKILOMETER #Put ConversionFactor here?
+            totArea = self.getAreaSqMeter(self.mask)*Shared.CF_SQMETERS2SQKILOMETER #Put ConversionFactor here?
             #spatial overlay
             #cursor and sum
-            with arcpy.da.SearchCursor(self.spatialOverlay(ML.Dataset, mask), ML.QueryField, spatial_reference=ML.spatialreference) as source_curs:
+            with arcpy.da.SearchCursor(self.spatialOverlay(ML.Dataset, self.mask), Characteristic.QueryField, spatial_reference=ML.spatialreference) as source_curs:
                 for row in source_curs:
                     val = WiMLib.Shared.try_parse(row[0], None)
-                    result[CharacteristicDef.Name] += float(val)*Shared.CF_ACR2SQKILOMETER/totArea #Put ConversionFactor here?
+                    result[Characteristic.Name] += float(val)*Shared.CF_ACR2SQKILOMETER/totArea #Put ConversionFactor here?
                 #next
             #end with
         except:
             tb = traceback.format_exc()
             self._sm(arcpy.GetMessages(), 'GP')
-            self._sm("Anthops ReservoirStorage" +tb, "ERROR", 71)
-            result[CharacteristicDef.Name] = float('nan')
+            self._sm("ReservoirStorage" +tb, "ERROR", 71)
+            result[Characteristic.Name] = float('nan')
 
         finally:
             #Cleans up workspace
-            for fs in arcpy.ListFeatureClasses():
-                arcpy.Delete_management(fs)
-            for rs in arcpy.ListRasters():
-                arcpy.Delete_management(rs)
+            ML = None
 
         return result
-    def getPercentOfWhole(self, CharacteristicDef): #GREAT EXAMPLE TO REVIEW AND CLEAN UP OTHER SECTIONS!!!
+    def getRasterPercent(self, Characteristic):
         '''
         Computes the percent of a whole. Useful for calculating percent impervious from the NLCD data,
             percent irrigated agriculture using MIRAD data, and NWALT data.
         '''
         ML = None
-        result = {CharacteristicDef.Name:None}
+        result = {Characteristic.Name:None}
         try:
-            self._sm("Computing " + CharacteristicDef.Name)
-            ML = MapLayer(MapLayerDef(CharacteristicDef.MapLayer[0]))
-
-            arcpy.env.workspace = self._TempLocation
+            self._sm("Computing " + Characteristic.Name)
+            ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))
             if not ML.Activated: 
                 raise Exception("Map Layer could not be activated.")
 
-            result[CharacteristicDef.Name] = self.getRasterPercent(ML.Dataset, mask, CharacteristicDef.ClassCodes)
+            result[Characteristic.Name] = super(StreamStatsNationalOps,self).getRasterPercent(ML.Dataset, self.mask, Characteristic.ClassCodes)
 
         except:
             tb = traceback.format_exc()
             self._sm(arcpy.GetMessages(), 'GP')
             self._sm("Anthops percentImpervious" +tb, "ERROR", 71)
-            result[CharacteristicDef.Name] = None
+            result[Characteristic.Name] = None
 
         finally:
             #Cleans up workspace
-            for fs in arcpy.ListFeatureClasses():
-                arcpy.Delete_management(fs)
-            for rs in arcpy.ListRasters():
-                arcpy.Delete_management(rs)
+            ML = None
 
         return result
-    def getPointFeatureDensity(self, CharacteristicDef):
+    def getRasterStatistic(self, Characteristic):
         '''
-        Computes Major site density. Used when calculating from NPDES.
-            Seems like it should be density based on point data, but it is unclear.
-        STILL NEEDS WORK - JEREMEY
+        Computes the percent of a whole. Useful for calculating percent impervious from the NLCD data,
+            percent irrigated agriculture using MIRAD data, and NWALT data.
         '''
         ML = None
-        result = {CharacteristicDef.Name:0}
+        result = {Characteristic.Name:None}
         try:
-            self._sm("Computing " + CharacteristicDef.Name)
-            ML = MapLayer(MapLayerDef(CharacteristicDef.MapLayers[0]))
-
-            arcpy.env.workspace = self._TempLocation
-            if not ML.Activated:
+            self._sm("Computing " + Characteristic.Name)
+            ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))
+            if not ML.Activated: 
                 raise Exception("Map Layer could not be activated.")
 
-            #We could pass "COUNT" at the CharacteristicDef level or here.
-            #   As this function is written. Doing something different would
-            #   probably result in needing to rename the function.
-            tot = self.getFeatureStatistic(ML.Dataset, mask, "COUNT", ML.QueryField)
+            result[Characteristic.Name] = super(StreamStatsNationalOps,self).getRasterStatistic(ML.Dataset, self.mask, Characteristic.Method)
 
         except:
             tb = traceback.format_exc()
             self._sm(arcpy.GetMessages(), 'GP')
-            self._sm("Anthops ReservoirStorage" +tb, "ERROR", 71)
-            result[CharacteristicDef.Name] = float('nan')
+            self._sm("Error getRasterStatistic " + Characteristic.Name+ " " +tb, "ERROR", 71)
+            result[Characteristic.Name] = None
 
         finally:
             #Cleans up workspace
-            for fs in arcpy.ListFeatureClasses():
-                arcpy.Delete_management(fs)
-            for rs in arcpy.ListRasters():
-                arcpy.Delete_management(rs)
+            ML = None
+
+        return result
+    def getPointFeatureDensity(self, Characteristic):
+        '''
+        Computes feature count per unit area.
+        '''
+        ML = None
+        result = {Characteristic.Name:0}
+        try:
+            self._sm("Computing " + Characteristic.Name)
+            ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))
+
+            if not ML.Activated:
+                raise Exception("Map Layer could not be activated.")
+
+            totArea = self.getAreaSqMeter(self.mask)*Shared.CF_SQMETERS2SQKILOMETER
+
+            tot = self.getFeatureStatistic(ML.Dataset, self.mask, "COUNT", Characteristic.QueryField)
+
+            result[Characteristic.Name] = tot[Characteristic.QueryField]["COUNT"]/totArea
+
+        except:
+            tb = traceback.format_exc()
+            self._sm(arcpy.GetMessages(), 'GP')
+            self._sm("getPointFeatureDensity "+ Characteristic.Name+" " +tb, "ERROR", 71)
+            result[Characteristic.Name] = float('nan')
+
+        finally:
+            #Cleans up workspace
+            ML = None
 
         return result
 #End Region

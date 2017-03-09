@@ -92,6 +92,7 @@ class DelineationWrapper(object):
                 g = gage.gage(station[idindex],station[comIDindex],station[latindex],station[longindex],sr,station[nmindex])
                 workspaceID = self._delineate(g,workingDir)
                 results = self._computeCharacteristics(g,workingDir,workspaceID)
+
                 #write results to file
                 if isFirst:
                     self._appendLineToFile(os.path.join(workingDir,config["outputFile"]),",".join(["header1","header2","header3"]))
@@ -137,21 +138,36 @@ class DelineationWrapper(object):
             ssdel.MergeCatchment(basin)
 
             return ssdel.WorkspaceID
-    def _computeCharacteristics(self,workspace,workspaceID):
-        WiMResults = Result.Result("Characteristics computed for "+workspaceID)
-        workingDir = os.path.join(workspace,workspaceID)
-        with AnthOps(workingDir) as aOps: 
-                WiMResults.Values.update(aOps.getMajorSiteDensity())
-                WiMResults.Values.update(aOps.getReservoirStorage())
-                WiMResults.Values.update(aOps.getPercentMining())               
-                WiMResults.Values.update(aOps.getPercentIrrigatedAgriculture())                
-                WiMResults.Values.update(aOps.getPercentImpervious())
-                
-        with HydroOps(workingDir) as hyOps:
-                WiMResults.Values.update(hyOps.getFreshWaterWithdrawals())
+    def _computeCharacteristics(self,gage,workspace,workspaceID):
+        method = None
+        try:
+            WiMResults = Result.Result("Characteristics computed for "+workspaceID)
+            workingDir = os.path.join(workspace,workspaceID)
+            startTime = time.time()
+            with StreamStatsNationalOps(self.workingDir) as sOps: 
+                for p in self.params:
+                    method = None
+                    parameter = Characteristic.Characteristic(p)
+                    if(not parameter): 
+                        self._sm(p +"Not available to compute")
+                        continue
 
-        return WiMResults
+                    method = getattr(sOps, parameter.Procedure) 
+                    if (method): 
+                        WiMResults.Values.update(method(parameter))  
+                        #todo:merge with request from NLDI
+                    else:
+                        self._sm(p.Proceedure +" Does not exist","Error")
+                        continue   
+                            
+                #next p
+            #end with       
+            print 'Finished.  Total time elapsed:', str(round((time.time()- startTime)/60, 2)), 'minutes'
 
+            return WiMResults
+        except:
+             tb = traceback.format_exc()
+             
     def _readCSVFile(self, file):
         f = None
         try:

@@ -27,13 +27,11 @@ import os
 import argparse
 import arcpy
 from arcpy import env
-from Ops.GeogOps import *
-from Ops.AnthOps import *
-from Ops.PhysOps import *
-from Ops.HydroOps import *
+from Ops.StreamStatsNationalOps import *
 from WiMLib.SpatialOps import *
 from WiMLib import WiMLogging
-from WiMLib.Resources import  Result
+from Resources import Characteristic
+from WiMLib.Resources import Result
 import json
 
 #endregion
@@ -48,36 +46,55 @@ class CharacteristicsWrapper(object):
         WiMResults = None
         try:
             parser = argparse.ArgumentParser()
-            parser.add_argument("-workspaceID", help="specifies the split catchment workspace", type=str, default="FH20170207152821796000") #Change default           
+            parser.add_argument("-workspaceID", help="specifies the split catchment workspace", type=str, default="FH20170130143638923000") #Change default           
             parser.add_argument("-parameters", help="specifies the ';' separated list of parameters to be computed", type=str, 
-                                      default = "DRNAREA;KSATSSUR;I24H10Y;CCM;TAU_ANN;STREAM_VAR;PRECIP;HYSEP;RSD")                 
+                                      default = "CAT_FRESHWATER_WD")                 
             args = parser.parse_args()
 
             config = Config(json.load(open(os.path.join(os.path.dirname(__file__), 'config.json'))))  
-            workspaceID = args.workspaceID
-            workingDir = os.path.join(Config().getElement("workingdirectory"),workspaceID)   
+            self.workspaceID = args.workspaceID
+            self.workingDir = os.path.join(Config().getElement("workingdirectory"),self.workspaceID)   
 
-            if not os.path.exists(workingDir):
+            if not os.path.exists(self.workingDir):
                 raise Exception('workspaceID is invalid') 
-                 
-            WiMLogging.init(os.path.join(workingDir,"Temp"),"mergeCatchment.log")
-            WiMResults = Result.Result("Characteristics computed for "+workspaceID)
+            if(args.parameters): self.params =  args.parameters.split(";") 
+            #get all characteristics from config
+            else: self.params =  config["characteristics"].keys() 
+          
+            
+            WiMLogging.init(os.path.join(self.workingDir,"Temp"),"mergeCatchment.log")
+            
+        except:
+             tb = traceback.format_exc()
+             self._sm(tb + "Failed to initialize","Error")
+             return None             
+    def Execute(self):
+        method = None
+        try:
+            WiMResults = Result.Result("Characteristics computed for "+self.workspaceID)
 
             startTime = time.time()
-            with AnthOps(workingDir) as aOps: 
-                WiMResults.Values.update(aOps.getMajorSiteDensity())
-                WiMResults.Values.update(aOps.getReservoirStorage())
-                WiMResults.Values.update(aOps.getPercentMining())               
-                WiMResults.Values.update(aOps.getPercentIrrigatedAgriculture())                
-                WiMResults.Values.update(aOps.getPercentImpervious())
-                
-            with HydroOps(workingDir) as hyOps:
-                WiMResults.Values.update(hyOps.getFreshWaterWithdrawals())
+            with StreamStatsNationalOps(self.workingDir) as sOps: 
+                for p in self.params:
+                    method = None
+                    parameter = Characteristic.Characteristic(p)
+                    if(not parameter): 
+                        self._sm(p +"Not available to compute")
+                        continue
+
+                    method = getattr(sOps, parameter.Procedure) 
+                    if (method): WiMResults.Values.update(method(parameter))  
+                    else:
+                        self._sm(p.Proceedure +" Does not exist","Error")
+                        continue   
+                            
+                #next p
+            #end with
 
             print 'Finished.  Total time elapsed:', str(round((time.time()- startTime)/60, 2)), 'minutes'
             
             Results = {
-                       "Workspace": aOps.WorkspaceID,
+                       "Workspace": self.workspaceID,
                        "Message": ';'.join(WiMLogging.LogMessages).replace('\n',' '),
                        "Results": WiMResults
                       }
@@ -89,7 +106,10 @@ class CharacteristicsWrapper(object):
         finally:
             print "Results="+json.dumps(Results,default=lambda o: o.__dict__) 
             print "Done"
-    
+
+    def _sm(self,msg,type="INFO", errorID=0):        
+        WiMLogging.sm(msg,type="INFO", errorID=0)
 if __name__ == '__main__':
-    CharacteristicsWrapper()
+    cw = CharacteristicsWrapper()
+    cw.Execute()
 

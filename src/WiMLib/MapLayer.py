@@ -41,7 +41,7 @@ class MapLayer(object):
         self.Description =  mlayerDef.Description
         self.Name =  mlayerDef.Name
         self.IsTiled = mlayerDef.IsTiled
-        self.Path =  mlayerDef.Path
+        self.Path =  os.path.join(Config()["parentdirectory"], mlayerDef.Path)
         self.QueryFeaturePath = mlayerDef.QueryFeaturePath
         self.QueryField = mlayerDef.QueryField
         self.TileID = tileID
@@ -61,7 +61,7 @@ class MapLayer(object):
         datasetPath =""
         try:
             if self.Activated: return
-
+            
             if not os.path.isdir(self.Path): 
                 self.canActivate = False    
                 raise Exception(self.Name +" path doesn't exist")
@@ -132,6 +132,6 @@ class MapLayerDef(object):
         self.QueryField = maplayerObj["queryField"] if ("queryField" in maplayerObj) else None
         self.DataSetName = maplayerObj["DataSetName"] if ("DataSetName" in maplayerObj) else ""
         self.DatasetType =  maplayerObj["DatasetType"]    
-        self.UnitID = maplayerObj["UnitID"]
+        self.UnitID = maplayerObj["UnitID"]if ("UnitID" in maplayerObj) else None
 
     #endregion
