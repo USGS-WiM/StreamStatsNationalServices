@@ -63,9 +63,9 @@ from WiMLib.MapLayer import *
 
 class StreamStatsNationalOps(SpatialOps):
 #Region Contructor and Dispose
-    def __init__(self, workspacePath):     
+    def __init__(self, workspacePath, workspaceID):     
         super(StreamStatsNationalOps,self).__init__(workspacePath) 
-        self.WorkspaceID = os.path.basename(os.path.normpath(workspacePath))
+        self.WorkspaceID = workspaceID
         self.mask = os.path.join(os.path.join(self._WorkspaceDirectory, self.WorkspaceID +'.gdb', "Layers"), Config()["catchment"]["downstream"])
         if not arcpy.Exists(self.mask): raise Exception("Mask does not exist: "+self.mask)
         self._sm("initialized StreamStatsNationalOps")

@@ -37,7 +37,10 @@ class ServiceAgentBase(object):
     #region Constructor
     def __init__(self,baseurl):
         self.BaseUrl = baseurl
-
+    def __enter__(self):
+        return self
+    def __exit__(self, exc_type, exc_value, traceback):
+        self.BaseUrl = None
     #endregion
 
     #region Methods

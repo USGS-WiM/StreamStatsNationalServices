@@ -36,9 +36,9 @@ from WiMLib.Config import Config
 
 class HydroOps(SpatialOps):
     #region Constructor and Dispose
-    def __init__(self, workspacePath):     
+    def __init__(self, workspacePath, id):     
         SpatialOps.__init__(self, workspacePath) 
-        self.WorkspaceID = os.path.basename(os.path.normpath(workspacePath))
+        self.WorkspaceID = id
 
         self._sm("initialized hydroops")
 

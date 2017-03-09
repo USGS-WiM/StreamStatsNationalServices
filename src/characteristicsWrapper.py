@@ -74,7 +74,7 @@ class CharacteristicsWrapper(object):
             WiMResults = Result.Result("Characteristics computed for "+self.workspaceID)
 
             startTime = time.time()
-            with StreamStatsNationalOps(self.workingDir) as sOps: 
+            with StreamStatsNationalOps(self.workingDir,self.workspaceID) as sOps: 
                 for p in self.params:
                     method = None
                     parameter = Characteristic.Characteristic(p)

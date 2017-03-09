@@ -44,14 +44,10 @@ class SpatialOps(object):
         
         #protected properties
         self._WorkspaceDirectory = workspacePath
-        #self._TempLocation = os.path.join(self._WorkspaceDirectory,"Temp")
-        #if not os.path.exists(self._TempLocation):
-        #    os.makedirs(self._TempLocation)
-
         self._TempLocation = tempfile.mkdtemp(dir=os.path.join(self._WorkspaceDirectory,"Temp"))  
         
         arcpy.env.workspace = self._TempLocation 
-
+        arcpy.env.overwriteOutput = True
         self._sm("initialized spatialOps")
     def __exit__(self, exc_type, exc_value, traceback):
         try:
@@ -64,7 +60,6 @@ class SpatialOps(object):
     #region Feature methods 
     def Select(self, inFeature, intersectfeature, fields):
         arcpy.Intersect_analysis([inFeature,intersectfeature], "intersectOutput")
- 
     def ProjectFeature(self, inFeature, sr):
         #http://joshwerts.com/blog/2015/09/10/arcpy-dot-project-in-memory-featureclass/
         inSR = None
@@ -108,7 +103,6 @@ class SpatialOps(object):
             if source_curs != None: del source_curs
             if ins_curs != None: del ins_curs
             if row != None: del row
-
     def PersistFeature(self,inFeature, path, name):
         arcpy.FeatureClassToFeatureClass_conversion(inFeature,path,name)
     def getAreaSqMeter(self, inFeature):
@@ -359,8 +353,7 @@ class SpatialOps(object):
             outExtractByMask = None           
             mask = None
             if sr != None: del sr; sr = None
-            self._LicenseManager("Spatial",False)
-            
+            self._LicenseManager("Spatial",False)            
     def getRasterPercentAreas(self,inRaster, maskFeature, uniqueRasterIDfield='VALUE',rasterValueField='COUNT'):
         '''
         computes the statistic 

@@ -69,7 +69,8 @@ class DelineationWrapper(object):
                 raise Exception('Input Study Area required')
             
             config = Config(json.load(open(os.path.join(os.path.dirname(__file__), 'config.json'))))  
-            workingDir = Shared.GetWorkspaceDirectory(config["workingdirectory"],args.projectID)        
+            workingDir = Shared.GetWorkspaceDirectory(config["workingdirectory"],args.projectID) 
+            workspaceID = os.path.basename(os.path.normpath(workspacePath))       
             WiMLogging.init(os.path.join(workingDir,"Temp"),"Delineation.log")
             WiMLogging.sm("Started Delineation routine")
             
@@ -101,7 +102,7 @@ class DelineationWrapper(object):
                 else:
                     GeoJsonHandler.read_feature_collection(basinjson,basin,sr)         
                     
-            hOps = HydroOps(workingDir)
+            hOps = HydroOps(workingDir,workspaceID)
             hOps.Delineate(ppoint, mask)
             hOps.MergeCatchment(basin)
             
