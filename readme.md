@@ -42,5 +42,12 @@
 # Commander
 * Download and install cmdr (Commander) from [here](http://cmder.net/).
 
-#NodeJS
+# NodeJS
 * Download and install Nodejs from [here](https://nodejs.org/en/).
+
+# Getting Familiar with Git
+* This section assumes you are working with _StreamStatsNationalServices_
+* Once you have cloned _StreamStatsNationalServices_, navigate to within it
+* Verify that you are up-to-date using `git checkout staging`
+* If you are behind by a commit, issue a pull command with `git pull origin staging`
+* After you have made some changes to your code, issue a submit command by 

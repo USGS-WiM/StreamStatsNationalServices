@@ -138,42 +138,6 @@ class HydroOps(SpatialOps):
                 arcpy.Delete_management(fs)
             for rs in arcpy.ListRasters():
                 arcpy.Delete_management(rs)
-    def getFreshWaterWithdrawals(self):
-        '''
-        Computes FreshWaterWithdrawals (per unit area)
-        '''
-        fwithdrML = None
-        result = {"FreshWaterWithdrawal":None}
-        try:
-            self._sm("Computing NID reservoir storage")
-            fwithdrML = MapLayer(MapLayerDef("freshWithdraw"))
-
-            arcpy.env.workspace = self._TempLocation
-            if not fwithdrML.Activated:
-                raise Exception("maplayer could not be activated.")
-
-            #set mask
-            mask = os.path.join(os.path.join(self._WorkspaceDirectory, self.WorkspaceID +'.gdb', "Layers"),Config()["catchment"]["downstream"])
-            if not arcpy.Exists(mask): raise Exception("Mask does not exist: "+mask)
-
-            result["FreshWaterWithdrawal"] = self.getRasterStatistic(fwithdrML.Dataset, mask, "MEAN")
-
-        except:
-            tb = traceback.format_exc()
-            self._sm(arcpy.GetMessages(), 'AHMSG')
-            self._sm("Anthops ReservoirStorage" +tb, "ERROR", 71)
-            result["ReservoirStorageSum"] = None
-
-        finally:
-            #cleanup
-            for fs in arcpy.ListFeatureClasses():
-                arcpy.Delete_management(fs)
-            for rs in arcpy.ListRasters():
-                arcpy.Delete_management(rs)
-
-        return result
-
-
     #endregion
 
     #region Helper Methods
