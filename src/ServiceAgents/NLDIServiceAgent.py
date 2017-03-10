@@ -61,19 +61,28 @@ class NLDIServiceAgent(ServiceAgentBase.ServiceAgentBase):
             tb = traceback.format_exc()
             self._sm("NLDIService getBasin Error "+tb, "ERROR")
     def getBasinCharacteristics(self,comID):
+        results={}
         try:
             #resource = "comid/{0}/navigate/UT/basin?distance={1}".format(comID,distance)
             resource = "gagesIII_mw_characteristics_{0}.csv".format("tot")
             #Temp solution until they get the services up and running
-            results = Shared.readCSVFile(os.path.join(self.BaseUrl,resource))
+            file = Shared.readCSVFile(os.path.join(self.BaseUrl,resource))
             headers = file[0]
             file.pop(0)
-            find gageindexID, then search down to comID in file to retrieve row of interest.
-            
-            return results
+            comIDindex = headers.index('COMID')           
+            for row in file:
+                if(len(row) < comIDindex): continue
+                if comID == row[comIDindex]:
+                    for h in headers:
+                       results[h] = row[headers.index(h)]
+                    #next h
+                    return results
+               #endif
+            #next row
+            return None
         except:
             tb = traceback.format_exc()
-            self._sm("NLDIService getBasin Error "+tb, "ERROR")
+            self._sm("NLDIService getBasinCharacteristics Error "+tb, "ERROR")
 
     #endregion
     #region Helper Methods

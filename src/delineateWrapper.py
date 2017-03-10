@@ -70,7 +70,7 @@ class DelineationWrapper(object):
             
             config = Config(json.load(open(os.path.join(os.path.dirname(__file__), 'config.json'))))  
             workingDir = Shared.GetWorkspaceDirectory(config["workingdirectory"],args.projectID) 
-            workspaceID = os.path.basename(os.path.normpath(workspacePath))       
+            workspaceID = os.path.basename(os.path.normpath(workingDir))       
             WiMLogging.init(os.path.join(workingDir,"Temp"),"Delineation.log")
             WiMLogging.sm("Started Delineation routine")
             

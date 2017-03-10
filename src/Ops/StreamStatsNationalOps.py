@@ -101,6 +101,34 @@ class StreamStatsNationalOps(SpatialOps):
 
         return result
 #Region Methods
+    def getFeatureStatistic(self, Characteristic):
+        '''
+        Computes feature stat.
+        '''
+        ML = None
+        result = {Characteristic.Name:0}
+        try:
+            self._sm("Computing " + Characteristic.Name)
+            ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))
+
+            if not ML.Activated:
+                raise Exception("Map Layer could not be activated.")
+
+            tot = super(StreamStatsNationalOps,self).getFeatureStatistic(ML.Dataset, self.mask, Characteristic.Method, Characteristic.QueryField)
+
+            result[Characteristic.Name] = tot[Characteristic.QueryField][Characteristic.Method]
+
+        except:
+            tb = traceback.format_exc()
+            self._sm(arcpy.GetMessages(), 'GP')
+            self._sm("getPointFeatureDensity "+ Characteristic.Name+" " +tb, "ERROR", 71)
+            result[Characteristic.Name] = float('nan')
+
+        finally:
+            #Cleans up workspace
+            ML = None
+
+        return result
     def getStoragePerUnitArea(self, Characteristic):
         '''
         Calculates the Storage per unit area. Is used for computing things
@@ -204,10 +232,9 @@ class StreamStatsNationalOps(SpatialOps):
                 raise Exception("Map Layer could not be activated.")
 
             totArea = self.getAreaSqMeter(self.mask)*Shared.CF_SQMETERS2SQKILOMETER
+            count = super(StreamStatsNationalOps,self).getFeatureCount(ML.Dataset, self.mask)
 
-            tot = self.getFeatureStatistic(ML.Dataset, self.mask, "COUNT", Characteristic.QueryField)
-
-            result[Characteristic.Name] = tot[Characteristic.QueryField]["COUNT"]/totArea
+            result[Characteristic.Name] = count/totArea
 
         except:
             tb = traceback.format_exc()

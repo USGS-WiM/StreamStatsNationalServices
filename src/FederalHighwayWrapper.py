@@ -82,7 +82,7 @@ class DelineationWrapper(object):
             header.append("Execute Date: " + str(datetime.date.today()))
             header.append("-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
                  
-            WiMLogging.init(os.path.join(self.workingDir,"Temp"),"Delineation.log")
+            WiMLogging.init(os.path.join(self.workingDir,"Temp"),"gage3.log")
             WiMLogging.sm("Starting routine")
             sr = arcpy.SpatialReference(args.outwkid)             
 
@@ -100,14 +100,19 @@ class DelineationWrapper(object):
             isFirst = True
             for station in file:
                 g = gage.gage(station[idindex],station[comIDindex],station[latindex],station[longindex],sr,station[nmindex])
+
+                WiMLogging.sm(g.comid +'-+-+-+-+-+-+-+-+-+ '+ g.comid +' -+-+-+-+-+-+-+-+-+')
+                WiMLogging.sm(g.comid +' Elapse time:', round((time.time()- startTime)/60, 2), 'minutes')
+                WiMLogging.sm(g.comid +'-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+')
+
                 workspaceID = self._delineate(g,self.workingDir)
                 results = self._computeCharacteristics(g,self.workingDir,workspaceID)
 
                 #write results to file
                 if isFirst:
-                    Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(["header1","header2","header3"]))
+                    Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(['COMID','WorkspaceID','Description','LAT','LONG']+results.Values.keys()))
                     isFirst = False
-                Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(["result1","result2","result3"]))
+                Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(str(v) for v in [g.comid,workspaceID,results.Description,g.lat,g.long]+results.Values.values()))             
             #next station           
             
             print 'Finished.  Total time elapsed:', round((time.time()- startTime)/60, 2), 'minutes'
@@ -151,7 +156,7 @@ class DelineationWrapper(object):
     def _computeCharacteristics(self,gage,workspace,workspaceID):
         method = None
         try:
-            WiMResults = Result.Result("Characteristics computed for "+workspaceID)
+            WiMResults = Result.Result(gage.comid,"Characteristics computed for "+gage.name)
             with NLDIServiceAgent() as sa:
                 globalValue = sa.getBasinCharacteristics(gage.comid)
             #end with
@@ -168,12 +173,14 @@ class DelineationWrapper(object):
                     if (method): 
                         result = method(parameter) 
                         #todo:merge with request from NLDI
-                        
+                        if(parameter.Name in globalValue): 
+                            result[parameter.Name] = float(globalValue[parameter.Name])-result[parameter.Name]
 
                         WiMResults.Values.update(result)
                     else:
                         self._sm(p.Proceedure +" Does not exist","Error")
                         continue 
+
                 #next p
             #end with       
             print 'Finished.  Total time elapsed:', str(round((time.time()- startTime)/60, 2)), 'minutes'

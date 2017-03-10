@@ -4,52 +4,49 @@
   "NLDIService": "D:/ss_apps/gages_iii",
   "workingdirectory": "D:/gistemp/ClientData",
   "parentdirectory": "D:/ss_apps",
-  "outputFile": "gages3.txt",
+  "outputFile": "splitCatchment.csv",
   "catchment": {
     "upstream": "upstreamcatchment",
     "downstream": "downstreamcatchment",
     "global": "global"
   },
   "characteristics": {
-    "CAT_NID_STORAGE_1980": {
-      "Procedure": "getStoragePerUnitArea",
+    "TOT_NID_STORAGE_1980": {
+      "Procedure": "getFeatureStatistic",
       "Description": "Reservoir storage",
-      "Method": "Mean",
+      "Method": "SUM",
       "MapLayers": [ "nid1980" ],
       "QueryField": "NORM_STORA",
-      "UnitID": "Ac-Ft",
-      "Discussion": "How does this work, seeing its over an area? shouldn't the units be acr-ft per unit area?"
+      "UnitID": "Ac-Ft"
     },
-    "CAT_NPDES_MAJ_DENS": {
+    "TOT_NPDES_MAJ_DENS": {
       "Procedure": "getPointFeatureDensity",
-      "Description": "NPDES Major site density",
-      "Method": "Count",
+      "Description": "NPDES Major site density, count/totalArea",
       "MapLayers": [ "npdes" ],
-      "QueryField": "FLOW_RATE",
-      "Discussion": "Not sure if this needs to be per area or not?"
+      "UnitID": "cnt/sqkm"
     },
-    "CAT_NWALT12_41": {
+    "TOT_NWALT12_41": {
       "Procedure": "getRasterPercent",
       "Description": "Mining/Extraction - Barren areas due to probable surface mining/mineral extraction. Includes mining, quarries, sand and gravel operations, and energy operations.",
       "MapLayers": [ "nwalt2012" ],
       "ClassCodes": "41",
       "UnitID": "percent"
     },
-    "CAT_MIRAD_2002": {
+    "TOT_MIRAD_2002": {
       "Procedure": "getRasterPercent",
       "Description": "Percent of watershed in irrigated agriculture, from USGS 2002 250-m MODIS data",
       "MapLayers": [ "mirad2002" ],
       "ClassCodes": "1",
       "UnitID": "percent"
     },
-    "CAT_IMPV11": {
+    "TOT_IMPV11": {
       "Procedure": "getRasterStatistic",
       "Description": "Impervious surface from NLCD 2011",
       "Method": "Mean",
       "MapLayers": [ "nlcd2011" ],
       "UnitID": "percent"
     },
-    "CAT_FRESHWATER_WD": {
+    "TOT_FRESHWATER_WD": {
       "Procedure": "getRasterStatistic",
       "Description": "Freshwater withdrawal megaliters (1000 cubic meters) per year per sqkm, from 1995-2000 county-level estimates",
       "Method": "Mean",
