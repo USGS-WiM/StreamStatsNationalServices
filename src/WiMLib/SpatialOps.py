@@ -44,14 +44,10 @@ class SpatialOps(object):
         
         #protected properties
         self._WorkspaceDirectory = workspacePath
-        #self._TempLocation = os.path.join(self._WorkspaceDirectory,"Temp")
-        #if not os.path.exists(self._TempLocation):
-        #    os.makedirs(self._TempLocation)
-
         self._TempLocation = tempfile.mkdtemp(dir=os.path.join(self._WorkspaceDirectory,"Temp"))  
         
         arcpy.env.workspace = self._TempLocation 
-
+        arcpy.env.overwriteOutput = True
         self._sm("initialized spatialOps")
     def __exit__(self, exc_type, exc_value, traceback):
         try:
@@ -64,7 +60,6 @@ class SpatialOps(object):
     #region Feature methods 
     def Select(self, inFeature, intersectfeature, fields):
         arcpy.Intersect_analysis([inFeature,intersectfeature], "intersectOutput")
- 
     def ProjectFeature(self, inFeature, sr):
         #http://joshwerts.com/blog/2015/09/10/arcpy-dot-project-in-memory-featureclass/
         inSR = None
@@ -108,7 +103,6 @@ class SpatialOps(object):
             if source_curs != None: del source_curs
             if ins_curs != None: del ins_curs
             if row != None: del row
-
     def PersistFeature(self,inFeature, path, name):
         arcpy.FeatureClassToFeatureClass_conversion(inFeature,path,name)
     def getAreaSqMeter(self, inFeature):
@@ -169,7 +163,7 @@ class SpatialOps(object):
             out_projected_fc = os.path.join(self._TempLocation, "ovrlytmpso")
 
             self._sm("performing spatial join ...")
-            return arcpy.SpatialJoin_analysis(maskfeature, inFeature, out_projected_fc,'', '', None,"COMPLETELY_CONTAINS")
+            return arcpy.SpatialJoin_analysis(maskfeature, inFeature, out_projected_fc,'JOIN_ONE_TO_MANY', 'KEEP_COMMON', None,"COMPLETELY_CONTAINS")
 
         except:
              tb = traceback.format_exc()
@@ -198,8 +192,10 @@ class SpatialOps(object):
         '''
         map = []
         values = {}
+        cursor = None
+        tblevalue=None
+        spOverlay = None
         try:            
-            spOverlay = self.spatialOverlay(inFeature,maskFeature)
             methods = [x.strip() for x in statisticRules.split(';')]
             Fields = [x.strip() for x in fieldStr.split(';')]
             #sm(Fields.count + " Fields & " + methods.count + " Methods")
@@ -208,6 +204,12 @@ class SpatialOps(object):
                     map.append([field,method])
                 #next method
             #next Field
+
+            spOverlay = self.spatialOverlay(inFeature,maskFeature)
+            if(int(arcpy.GetCount_management(spOverlay).getOutput(0)) < 1):
+                for m in map: values[m[0]]={m[1]: float(0)}
+                return values
+            #endif
 
             tblevalue = arcpy.Statistics_analysis(spOverlay,os.path.join(self._TempLocation, "ftmp"),map)
             mappedFeilds = [x[1]+"_"+x[0] for x in map]
@@ -226,7 +228,22 @@ class SpatialOps(object):
             #local cleanup
             if cursor != None: del cursor; cursor = None            
             if tblevalue != None: del tblevalue; tblevalue = None
-            if spOverlay != None: del spOverlay; spOverlay = None                   
+            if spOverlay != None: del spOverlay; spOverlay = None
+    def getFeatureCount(self,inFeature, maskFeature):
+        '''
+        Finds the number of features
+        '''
+        try:            
+            spOverlay = self.spatialOverlay(inFeature,maskFeature)
+            val = int(arcpy.GetCount_management(spOverlay).getOutput(0)) 
+            
+            return val
+        except:
+            tb = traceback.format_exc()
+            self._sm("Failed to get raster statistic " +tb,"ERROR",229)
+        finally:
+            #local cleanup
+            if spOverlay != None: del spOverlay; spOverlay = None                     
     #endregion
 
     #region Raster methods
@@ -359,8 +376,7 @@ class SpatialOps(object):
             outExtractByMask = None           
             mask = None
             if sr != None: del sr; sr = None
-            self._LicenseManager("Spatial",False)
-            
+            self._LicenseManager("Spatial",False)            
     def getRasterPercentAreas(self,inRaster, maskFeature, uniqueRasterIDfield='VALUE',rasterValueField='COUNT'):
         '''
         computes the statistic 

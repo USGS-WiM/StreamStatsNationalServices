@@ -35,11 +35,14 @@ from arcpy.sa import *
 from Ops.HydroOps import  HydroOps
 from WiMLib import WiMLogging
 from Resources import gage
+from Resources import Characteristic
+from WiMLib.Resources import Result
 from WiMLib import Shared
 from WiMLib import GeoJsonHandler
 from WiMLib.Config import Config
 from ServiceAgents.NLDIServiceAgent import NLDIServiceAgent
 import ServiceAgents.NLDIServiceAgent
+from Ops.StreamStatsNationalOps import *
 import json
 
 #endregion
@@ -58,6 +61,8 @@ class DelineationWrapper(object):
                                 default = 'D:\\ss_apps\\gages_iii\\Unique_CONUS_Gages (2).csv')
             parser.add_argument("-outwkid", help="specifies the esri well known id of pourpoint ", type=int, 
                                 default = '4326')
+            parser.add_argument("-parameters", help="specifies the ';' separated list of parameters to be computed", type=str, 
+                                      default = "")  
                            
             args = parser.parse_args()
             startTime = time.time()
@@ -65,18 +70,23 @@ class DelineationWrapper(object):
             if projectID == '#' or not projectID:
                 raise Exception('Input Study Area required')
 
-            config = Config(json.load(open('./config.json')))  
-            workingDir = Shared.GetWorkspaceDirectory(config["workingdirectory"],args.projectID)   
+            config = Config(json.load(open(os.path.join(os.path.dirname(__file__), 'config.json')))) 
+                                    
+            if(args.parameters): self.params =  args.parameters.split(";") 
+            #get all characteristics from config
+            else: self.params =  config["characteristics"].keys() 
+
+            self.workingDir = Shared.GetWorkspaceDirectory(config["workingdirectory"],args.projectID)   
             header =[]
             header.append("-+-+-+-+-+-+-+-+-+ NEW RUN -+-+-+-+-+-+-+-+-+")
             header.append("Execute Date: " + str(datetime.date.today()))
             header.append("-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
                  
-            WiMLogging.init(os.path.join(workingDir,"Temp"),"Delineation.log")
+            WiMLogging.init(os.path.join(self.workingDir,"Temp"),"gage3.log")
             WiMLogging.sm("Starting routine")
             sr = arcpy.SpatialReference(args.outwkid)             
 
-            file = self._readCSVFile(args.file)
+            file = Shared.readCSVFile(args.file)
             headers = file[0]
             if "gage_no_1" in headers: idindex = headers.index("gage_no_1")
             if "gage_name" in headers: nmindex = headers.index("gage_name")
@@ -86,18 +96,23 @@ class DelineationWrapper(object):
 
             #remove header
             file.pop(0)
-            self._writeToFile(os.path.join(workingDir,config["outputFile"]),header)
+            Shared.writeToFile(os.path.join(self.workingDir,config["outputFile"]),header)
             isFirst = True
             for station in file:
                 g = gage.gage(station[idindex],station[comIDindex],station[latindex],station[longindex],sr,station[nmindex])
-                workspaceID = self._delineate(g,workingDir)
-                results = self._computeCharacteristics(g,workingDir,workspaceID)
+
+                WiMLogging.sm(g.comid +'-+-+-+-+-+-+-+-+-+ '+ g.comid +' -+-+-+-+-+-+-+-+-+')
+                WiMLogging.sm(g.comid +' Elapse time:', round((time.time()- startTime)/60, 2), 'minutes')
+                WiMLogging.sm(g.comid +'-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+')
+
+                workspaceID = self._delineate(g,self.workingDir)
+                results = self._computeCharacteristics(g,self.workingDir,workspaceID)
 
                 #write results to file
                 if isFirst:
-                    self._appendLineToFile(os.path.join(workingDir,config["outputFile"]),",".join(["header1","header2","header3"]))
+                    Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(['COMID','WorkspaceID','Description','LAT','LONG']+results.Values.keys()))
                     isFirst = False
-                self._appendLineToFile(os.path.join(workingDir,config["outputFile"]),",".join(["result1","result2","result3"]))
+                Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(str(v) for v in [g.comid,workspaceID,results.Description,g.lat,g.long]+results.Values.values()))             
             #next station           
             
             print 'Finished.  Total time elapsed:', round((time.time()- startTime)/60, 2), 'minutes'
@@ -107,7 +122,7 @@ class DelineationWrapper(object):
              WiMLogging.sm("error running "+tb)
 
     def _delineate(self, gage, workspace):
-            ppoint = arcpy.CreateFeatureclass_management("in_memory", "ppointFC", "POINT", spatial_reference=gage.sr)
+            ppoint = arcpy.CreateFeatureclass_management("in_memory", "ppFC"+gage.comid, "POINT", spatial_reference=gage.sr)
             pnt = {"type":"Feature","geometry":{"type":"Point","coordinates":[gage.lat,gage.long]}} 
             if (pnt["type"].lower() =="feature"):
                 GeoJsonHandler.read_feature(pnt,ppoint,gage.sr)
@@ -118,7 +133,7 @@ class DelineationWrapper(object):
             maskjson = sa.getBasin(gage.comid,True)
 
             if(maskjson):
-                mask = arcpy.CreateFeatureclass_management("in_memory", "maskFC", "POLYGON", spatial_reference=gage.sr) 
+                mask = arcpy.CreateFeatureclass_management("in_memory", "maskFC"+gage.comid, "POLYGON", spatial_reference=gage.sr) 
                 if (maskjson["type"].lower() =="feature"):
                     GeoJsonHandler.read_feature(maskjson,mask,gage.sr)
                 else:
@@ -127,13 +142,13 @@ class DelineationWrapper(object):
             basinjson = sa.getBasin(gage.comid,False)
 
             if(basinjson):
-                basin = arcpy.CreateFeatureclass_management("in_memory", "globalBasin"+gage.comid, "POLYGON", spatial_reference=sr) 
+                basin = arcpy.CreateFeatureclass_management("in_memory", "globalBasin"+gage.comid, "POLYGON", spatial_reference=gage.sr) 
                 if (basinjson["type"].lower() =="feature"):
-                    GeoJsonHandler.read_feature(basinjson,basin,sr)
+                    GeoJsonHandler.read_feature(basinjson,basin,gage.sr)
                 else:
-                    GeoJsonHandler.read_feature_collection(basinjson,basin,sr)         
+                    GeoJsonHandler.read_feature_collection(basinjson,basin,gage.sr)         
                     
-            ssdel = HydroOps(workspace)
+            ssdel = HydroOps(workspace,gage.comid)
             ssdel.Delineate(ppoint, mask)
             ssdel.MergeCatchment(basin)
 
@@ -141,10 +156,12 @@ class DelineationWrapper(object):
     def _computeCharacteristics(self,gage,workspace,workspaceID):
         method = None
         try:
-            WiMResults = Result.Result("Characteristics computed for "+workspaceID)
-            workingDir = os.path.join(workspace,workspaceID)
+            WiMResults = Result.Result(gage.comid,"Characteristics computed for "+gage.name)
+            with NLDIServiceAgent() as sa:
+                globalValue = sa.getBasinCharacteristics(gage.comid)
+            #end with
             startTime = time.time()
-            with StreamStatsNationalOps(self.workingDir) as sOps: 
+            with StreamStatsNationalOps(workspace, workspaceID) as sOps: 
                 for p in self.params:
                     method = None
                     parameter = Characteristic.Characteristic(p)
@@ -154,12 +171,16 @@ class DelineationWrapper(object):
 
                     method = getattr(sOps, parameter.Procedure) 
                     if (method): 
-                        WiMResults.Values.update(method(parameter))  
+                        result = method(parameter) 
                         #todo:merge with request from NLDI
+                        if(parameter.Name in globalValue): 
+                            result[parameter.Name] = float(globalValue[parameter.Name])-result[parameter.Name]
+
+                        WiMResults.Values.update(result)
                     else:
                         self._sm(p.Proceedure +" Does not exist","Error")
-                        continue   
-                            
+                        continue 
+
                 #next p
             #end with       
             print 'Finished.  Total time elapsed:', str(round((time.time()- startTime)/60, 2)), 'minutes'
@@ -167,45 +188,7 @@ class DelineationWrapper(object):
             return WiMResults
         except:
              tb = traceback.format_exc()
-             
-    def _readCSVFile(self, file):
-        f = None
-        try:
-            if (not os.path.isfile(file)):
-                self.__sm__(file +" does not exist. If this is an error, check path.", 0.178)
-                return []
-            f = open(file, 'r')
-            return map(lambda s: s.strip().split(","), f.readlines())
-        except:
-            tb = traceback.format_exc()
-            WiMLogging.sm("Error reading csv file "+tb)
-        finally:
-            if not f == None:
-                if not f.closed :
-                    f.close();
-    def _appendLineToFile(self, file, content):
-        f = None
-        try:
-            f = open(file, "a")            
-            f.write(string.lower(content + '\n'))
-        except:
-            tb = traceback.format_exc()
-            WiMLogging.sm("Error appending line to file "+tb)
-
-        finally:
-            if not f == None or not f.closed :
-                f.close();
-    def _writeToFile(self, file, content):
-        f = None
-        try:
-            f = open(file, "w")
-            f.writelines(map(lambda x:x+'\n', content))
-        except:
-            tb = traceback.format_exc()
-            WiMLogging.sm("Error writing to file "+tb)
-        finally:
-            if not f == None or not f.closed :
-                f.close();
+             WiMLogging.sm("Error writing computing Characteristics "+tb)
     
 if __name__ == '__main__':
     DelineationWrapper()
