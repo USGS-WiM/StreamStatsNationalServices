@@ -60,10 +60,10 @@
       "Name": "fdr",
       "Description": "Flow Direction Raster",
       "isTiled": true,
-      "path": "HUCs",
+      "path": "Tiled/NHDPlus_v2",
       "DatasetType": "ESRI_RASTER",
-      "queryFeaturePath": "extent.gdb/Layers/hucpoly",
-      "queryField": "RPUID",
+      "queryFeaturePath": "RPU.shp",
+      "queryField": "Path",
       "UnitID": "sq-m"
     },
     "nid1980": {

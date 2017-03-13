@@ -53,15 +53,15 @@ class ServiceAgentBase(object):
             return response.text
         except requests.exceptions as e:
              if hasattr(e, 'reason'):
-                self.__sm("Error:, failed to reach a server " + e.reason.strerror, 1.54, 'ERROR')
+                self._sm("Error:, failed to reach a server " + e.reason.strerror, 1.54, 'ERROR')
                 return ""
 
              elif hasattr(e, 'code'):
-                self.__sm("Error: server couldn't fullfill request " + e.code, 1.58, 'ERROR')
+                self._sm("Error: server couldn't fullfill request " + e.code, 1.58, 'ERROR')
                 return ''
         except:
             tb = traceback.format_exc()            
-            self.__sm("url exception failed " + resource + ' ' + tb, 1.60, 'ERROR')
+            self._sm("url exception failed " + resource + ' ' + tb, 1.60, 'ERROR')
             return ""    
     
     def indexMatching(self, seq, condition):
