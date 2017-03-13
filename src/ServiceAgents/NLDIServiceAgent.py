@@ -75,6 +75,7 @@ class NLDIServiceAgent(ServiceAgentBase.ServiceAgentBase):
                 if comID == row[comIDindex]:
                     for h in headers:
                        results[h] = row[headers.index(h)]
+                       break
                     #next h
                     return results
                #endif

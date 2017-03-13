@@ -8,7 +8,7 @@
 
 # copyright:   2016 WiM - USGS
 
-#   authors:  Jeremy K. Newson USGS Wisconsin Internet Mapping
+#   authors:  Jeremy K. Newson USGS Web Informatics and Mapping (WiM)
 #
 #   purpose:   Data holder
 #

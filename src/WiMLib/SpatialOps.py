@@ -448,7 +448,7 @@ class SpatialOps(object):
             self._LicenseManager("Spatial")
             #creates a constant of the enviroment
             const1 = arcpy.sa.CreateConstantRaster(1)
-            const1.save("const1.img")
+            const1.save(os.path.join(self._TempLocation,"const1.img"))
             constfield = arcpy.da.TableToNumPyArray(os.path.join(self._TempLocation,"const1.img"), rasterValueField, skip_nulls=True)
 
             totalCount = float(constfield[rasterValueField].sum())
@@ -460,7 +460,7 @@ class SpatialOps(object):
             #ensure spatial analyst is checked out
             attExtract = arcpy.sa.ExtractByAttributes(inRaster, SQLClause)  
             #must save raster 
-            attExtract.save("attExtract.img")                
+            attExtract.save(os.path.join(self._TempLocation,"attExtract.img"))                
             if self.isRasterALLNoData(attExtract): return float(0)
             #Does not respect the workspace dir, so need to set it explicitly
             attField = arcpy.da.TableToNumPyArray(os.path.join(self._TempLocation,"attExtract.img"), rasterValueField, skip_nulls=True)            

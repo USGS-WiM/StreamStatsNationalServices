@@ -3,6 +3,7 @@ import datetime
 import WiMLib.WiMLogging
 import traceback
 import string
+import csv
 
 CF_ACR2SQKILOMETER = 0.00404685642              # 1 acres = 0.00404685642 square kilometers
 CF_SQMETERS2SQKILOMETER = 0.000001              # 1 square meter = 1.0 x 10-6 square kilometers
@@ -30,12 +31,13 @@ def try_parse(string, fail=None):
     except Exception:
         return fail;
 def readCSVFile( file):
+    #https://docs.python.org/2/library/csv.html
     f = None
     try:
         if (not os.path.isfile(file)):
             return []
         f = open(file, 'r')
-        return map(lambda s: s.strip().split(","), f.readlines())
+        return map(lambda s: s, csv.reader(f))
     except:
         tb = traceback.format_exc()
         WiMLogging.sm("Error reading csv file "+tb)
