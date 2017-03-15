@@ -44,7 +44,8 @@ from ServiceAgents.NLDIServiceAgent import NLDIServiceAgent
 import ServiceAgents.NLDIServiceAgent
 from Ops.StreamStatsNationalOps import *
 import json
-
+#INFO 0 -+-+-+-+-+-+-+-+-+ 4287975 -+-+-+-+-+-+-+-+-+
+#INFO 0 -+-+-+-+-+-+-+-+-+ -68.58527778,47.2833333 -+-+-+-+-+-+-+-+-+
 #endregion
 
 ##-------1---------2---------3---------4---------5---------6---------7---------8
@@ -58,7 +59,7 @@ class DelineationWrapper(object):
             parser = argparse.ArgumentParser()
             parser.add_argument("-projectID", help="specifies the projectID", type=str, default="FH")
             parser.add_argument("-file", help="specifies csv file location including gage lat/long and comid's to estimate", type=str, 
-                                default = 'D:\\ss_apps\\gages_iii\\Unique_CONUS_Gages (2).csv')
+                                default = 'D:\\ss_apps\\gages_iii\\gagesiii_lat_lon.csv')
             parser.add_argument("-outwkid", help="specifies the esri well known id of pourpoint ", type=int, 
                                 default = '4326')
             parser.add_argument("-parameters", help="specifies the ';' separated list of parameters to be computed", type=str, 
@@ -101,11 +102,15 @@ class DelineationWrapper(object):
             for station in file:
                 g = gage.gage(station[idindex],station[comIDindex],station[latindex],station[longindex],sr,station[nmindex])
 
-                WiMLogging.sm(g.comid +'-+-+-+-+-+-+-+-+-+ '+ g.comid +' -+-+-+-+-+-+-+-+-+')
-                WiMLogging.sm(g.comid +' Elapse time:', round((time.time()- startTime)/60, 2), 'minutes')
-                WiMLogging.sm(g.comid +'-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+')
+                WiMLogging.sm('-+-+-+-+-+-+-+-+-+ '+ g.comid +' -+-+-+-+-+-+-+-+-+')
+                WiMLogging.sm('-+-+-+-+-+-+-+-+-+ '+ g.lat +','+ g.long+' -+-+-+-+-+-+-+-+-+')
+                WiMLogging.sm(' Elapse time:'+ str(round((time.time()- startTime)/60, 2))+ 'minutes')
+                WiMLogging.sm('-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+')
 
                 workspaceID = self._delineate(g,self.workingDir)
+                if(workspaceID == None): 
+                    WiMLogging.sm("Delineation didn't occur for gage "+ g.comid)
+                    continue
                 results = self._computeCharacteristics(g,self.workingDir,workspaceID)
 
                 #write results to file
@@ -122,6 +127,7 @@ class DelineationWrapper(object):
              WiMLogging.sm("error running "+tb)
 
     def _delineate(self, gage, workspace):
+        try:
             ppoint = arcpy.CreateFeatureclass_management("in_memory", "ppFC"+gage.comid, "POINT", spatial_reference=gage.sr)
             pnt = {"type":"Feature","geometry":{"type":"Point","coordinates":[gage.lat,gage.long]}} 
             if (pnt["type"].lower() =="feature"):
@@ -132,27 +138,33 @@ class DelineationWrapper(object):
             sa = NLDIServiceAgent()
             maskjson = sa.getBasin(gage.comid,True)
 
-            if(maskjson):
-                mask = arcpy.CreateFeatureclass_management("in_memory", "maskFC"+gage.comid, "POLYGON", spatial_reference=gage.sr) 
-                if (maskjson["type"].lower() =="feature"):
-                    GeoJsonHandler.read_feature(maskjson,mask,gage.sr)
-                else:
-                    GeoJsonHandler.read_feature_collection(maskjson,mask,gage.sr) 
+            if(not maskjson): return None
+
+            mask = arcpy.CreateFeatureclass_management("in_memory", "maskFC"+gage.comid, "POLYGON", spatial_reference=gage.sr) 
+            if (maskjson["type"].lower() =="feature"):
+                GeoJsonHandler.read_feature(maskjson,mask,gage.sr)
+            else:
+                GeoJsonHandler.read_feature_collection(maskjson,mask,gage.sr) 
             
             basinjson = sa.getBasin(gage.comid,False)
 
-            if(basinjson):
-                basin = arcpy.CreateFeatureclass_management("in_memory", "globalBasin"+gage.comid, "POLYGON", spatial_reference=gage.sr) 
-                if (basinjson["type"].lower() =="feature"):
-                    GeoJsonHandler.read_feature(basinjson,basin,gage.sr)
-                else:
-                    GeoJsonHandler.read_feature_collection(basinjson,basin,gage.sr)         
+            if(not basinjson): return None
+
+            basin = arcpy.CreateFeatureclass_management("in_memory", "globalBasin"+gage.comid, "POLYGON", spatial_reference=gage.sr) 
+            if (basinjson["type"].lower() =="feature"):
+                GeoJsonHandler.read_feature(basinjson,basin,gage.sr)
+            else:
+                GeoJsonHandler.read_feature_collection(basinjson,basin,gage.sr)         
                     
             ssdel = HydroOps(workspace,gage.comid)
             ssdel.Delineate(ppoint, mask)
             ssdel.MergeCatchment(basin)
 
             return ssdel.WorkspaceID
+        except:
+            tb = traceback.format_exc()
+            WiMLogging.sm("Error writing computing Characteristics "+tb)
+            return None
     def _computeCharacteristics(self,gage,workspace,workspaceID):
         method = None
         try:

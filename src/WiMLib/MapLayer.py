@@ -82,6 +82,7 @@ class MapLayer(object):
             self.Activated = True;
         except:
             tb = traceback.format_exc()
+            WiMLogging.sm(tb,type="Error", errorID=0)
             self.Activated = False
     
     #endregion   
@@ -108,6 +109,7 @@ class MapLayer(object):
 
         except:
             tb = traceback.format_exc()
+            WiMLogging.sm(tb,type="Error", errorID=0)
             return ""
             msg = tb 
         finally:
