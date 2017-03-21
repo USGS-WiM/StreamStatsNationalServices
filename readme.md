@@ -52,16 +52,16 @@
 * If you are behind by a commit, issue a pull command with `git pull origin staging`
 * After you have made some changes to your code, issue a submit command by 
 
-#netCDF
--For Windows
-*Download and install HD5 1.8.18 from [here]
+# netCDF
+* For Windows
+* Download and install HD5 1.8.18 from [here]
 (https://support.hdfgroup.org/HDF5/).
-*Make an environamental variable HDF5_DIR that's value is the installation directory of HDF5.
-*Download and install netCDF 4.4.1.1 from [here]
+* Make an environmental variable HDF5_DIR that's value is the installation directory of HDF5.
+* Download and install netCDF 4.4.1.1 from [here]
 (https://www.unidata.ucar.edu/downloads/netcdf/index.jsp
-*Make an environamental variable NETCDF4_DIR that's value is the installation directory of netCDF4.
-*Download and pip install the appropriate netCDF4 wheel file from [here] (http://www.lfd.uci.edu/~gohlke/pythonlibs/)
+* Make an environmental variable NETCDF4_DIR that's value is the installation directory of netCDF4.
+* Download and pip install the appropriate netCDF4 wheel file from [here] (http://www.lfd.uci.edu/~gohlke/pythonlibs/)
 
--For Linux
-*Use the distirbutions's respective package manager to install hdf5 and netCDF.  Then use pip to install netCDF4 for Python.
+* For Linux
+* Use the distribution's respective package manager to install HDF5 and netCDF4.  Then use pip to install netCDF4 for Python.
 
