@@ -1,6 +1,7 @@
 import os
+import sys
 import datetime
-import WiMLib.WiMLogging
+import WiMLib.WiMLogging as WiMLogging
 import traceback
 import string
 import csv
@@ -30,13 +31,15 @@ def try_parse(string, fail=None):
         return float(string)
     except Exception:
         return fail;
-def readCSVFile( file):
+def readCSVFile(csv_file):
     #https://docs.python.org/2/library/csv.html
+    WiMLogging.sm("csv file "+ csv_file)
     f = None
     try:
-        if (not os.path.isfile(file)):
+        if (not os.path.isfile(csv_file)):
             return []
-        f = open(file, 'r')
+        f = open(csv_file, 'r')
+        csv.field_size_limit(sys.maxsize)
         return map(lambda s: s, csv.reader(f))
     except:
         tb = traceback.format_exc()

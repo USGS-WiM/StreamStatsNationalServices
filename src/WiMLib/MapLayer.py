@@ -30,7 +30,7 @@ import arcpy
 from arcpy import env
 from arcpy.sa import *
 import json
-import WiMLib.WiMLogging
+import WiMLib.WiMLogging as WiMLogging
 from WiMLib.Config import Config
 #endregion
 
@@ -70,7 +70,8 @@ class MapLayer(object):
                 self.__setTiledDatasetPath()
             
             if self.DatasetType.lower() == "esri_shape": self.Name += ".shp"      
-            if self.DatasetType.lower() == "image_raster": self.Name += ".img"  
+            if self.DatasetType.lower() == "image_raster": self.Name += ".img"
+            if self.DatasetType.lower() == "tif_raster": self.Name += ".tif"  
             
             datasetPath = os.path.join(self.Path,self.DatasetName,self.Name)   
             #check if dataset exists

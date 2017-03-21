@@ -247,4 +247,33 @@ class StreamStatsNationalOps(SpatialOps):
             ML = None
 
         return result
+    
+    def getPrismStatistic(self, Characteristic):
+        '''
+        Computes statistic for prism data
+        '''
+        
+        result = {Characteristic.Name:None}
+        try:
+            self._sm("Computing " + Characteristic.Name)
+            ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))
+            
+            if not ML.Activated:
+                raise Exception("Map Layer could not be activated.")
+           
+            result[Characteristic.Name] = super(StreamStatsNationalOps,self).getPrismStatistic(ML.Dataset,self.mask, Characteristic.Method, Characteristic.Data)
+
+        except:
+            tb = traceback.format_exc()
+            self._sm(arcpy.GetMessages(), 'GP')
+            self._sm("getPrismStatistic error" +tb +" "+Characteristic.Name, "ERROR", 71)
+            result[Characteristic.Name] = None
+
+        finally:
+            #Cleans up workspace
+            ML = None
+
+        return result
+        
+        
 #End Region
