@@ -59,11 +59,11 @@ class DelineationWrapper(object):
             parser = argparse.ArgumentParser()
             parser.add_argument("-projectID", help="specifies the projectID", type=str, default="FH")
             parser.add_argument("-file", help="specifies csv file location including gage lat/long and comid's to estimate", type=str, 
-                                default = 'D:\\ss_apps\\gages_iii\\gagesiii_lat_lon.csv')
+                                default = 'D:\\ss_apps\\ss_apps\\gages_iii\\gagesiii_lat_lon.csv')
             parser.add_argument("-outwkid", help="specifies the esri well known id of pourpoint ", type=int, 
                                 default = '4326')
             parser.add_argument("-parameters", help="specifies the ';' separated list of parameters to be computed", type=str, 
-                                      default = "")  
+                                      default = "TOT_PPT7100_FEB")  
                            
             args = parser.parse_args()
             startTime = time.time()
@@ -93,7 +93,7 @@ class DelineationWrapper(object):
             if "gage_name" in headers: nmindex = headers.index("gage_name")
             if "COMID" in headers: comIDindex = headers.index("COMID")
             if "lat" in headers: latindex = headers.index("lat")
-            if "long" in headers: longindex = headers.index("long")
+            if "lon" in headers: longindex = headers.index("lon")
 
             #remove header
             file.pop(0)
@@ -117,14 +117,18 @@ class DelineationWrapper(object):
                 if isFirst:
                     Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(['COMID','WorkspaceID','Description','LAT','LONG']+results.Values.keys()))
                     isFirst = False
-                Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(str(v) for v in [g.comid,workspaceID,results.Description,g.lat,g.long]+results.Values.values()))             
+                
+                if results is None:
+                    Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(str(v) for v in [g.comid,workspaceID,'error',g.lat,g.long])) 
+                else:
+                    Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(str(v) for v in [g.comid,workspaceID,results.Description,g.lat,g.long]+results.Values.values()))             
             #next station           
             
             print 'Finished.  Total time elapsed:', round((time.time()- startTime)/60, 2), 'minutes'
 
         except:
-             tb = traceback.format_exc()
-             WiMLogging.sm("error running "+tb)
+            tb = traceback.format_exc()
+            WiMLogging.sm("error running "+tb)
 
     def _delineate(self, gage, workspace):
         try:

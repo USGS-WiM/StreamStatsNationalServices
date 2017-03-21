@@ -1,9 +1,10 @@
 {
   "characteristiclist": "https://docs.google.com/spreadsheets/d/1_5vxn94GqsQwv3zH3YDO-HaIDGpk_q3ou0jJSWPUZJo/edit#gid=733442906",
   "NLDIServiceOff": "https://cida-test.er.usgs.gov/nldi/",
-  "NLDIService": "D:/ss_apps/gages_iii",
+  "NLDIService": "D:/ss_apps/ss_apps/gages_iii",
   "workingdirectory": "D:/gistemp/ClientData",
-  "parentdirectory": "D:/ss_apps",
+  "parentdirectory": "D:/ss_apps/ss_apps",
+  "netCDFdirectory": "D:/ss_apps/ss_apps/netCDF",
   "outputFile": "splitCatchment.csv",
   "catchment": {
     "upstream": "upstreamcatchment",
@@ -52,6 +53,14 @@
       "Method": "Mean",
       "MapLayers": [ "freshWithdraw" ],
       "UnitID": "megaliters/km2"
+    },
+    "TOT_PPT7100_FEB": {
+      "Procedure": "getPrismStatistic",
+      "Description": "Gets precipitation from Dave Wollock data",
+      "Method": "Mean",
+      "MapLayers": [ "prismGrid" ],
+      "UnitID": "megaliters/km2",
+      "Data": "pptint.nc"
     }
   },
   "maplayers": {
@@ -60,10 +69,10 @@
       "Name": "fdr",
       "Description": "Flow Direction Raster",
       "isTiled": true,
-      "path": "Tiled/NHDPlus_v2",
+      "path": "D:/ss_apps/ss_apps/HUCs",
       "DatasetType": "ESRI_RASTER",
-      "queryFeaturePath": "RPU.shp",
-      "queryField": "Path",
+      "queryFeaturePath": "extent.gdb/Layers/hucpoly",
+      "queryField": "RPUID",
       "UnitID": "sq-m"
     },
     "nid1980": {
@@ -116,6 +125,14 @@
       "isTiled": false,
       "path": "National",
       "DatasetType": "ESRI_RASTER"
+    },
+    "prismGrid": {
+      "ID": 7001,
+      "Name": "prismgrid_Resample1",
+      "Description": "Prism indices for stored netCDF values",
+      "isTiled": false,
+      "path": "National",
+      "DatasetType": "TIF_RASTER"
     }
   }
 }

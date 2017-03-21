@@ -32,6 +32,7 @@ import traceback
 import json
 from  WiMLib import WiMLogging
 from contextlib import contextmanager
+import PrismOps
 #endregion
 
 ##-------1---------2---------3---------4---------5---------6---------7---------8
@@ -376,7 +377,85 @@ class SpatialOps(object):
             outExtractByMask = None           
             mask = None
             if sr != None: del sr; sr = None
-            self._LicenseManager("Spatial",False)            
+            self._LicenseManager("Spatial",False)       
+            
+    def getPrismStatistic(self,inRaster, maskFeature, statisticRule, dataPath):
+        '''
+        computes the statistic 
+        Statistic rules:    MINIMUM —Smallest value of all cells in the input raster.
+                            MAXIMUM —Largest value of all cells in the input raster.
+                            MEAN —Average of all cells in the input raster.
+                            STD —Standard deviation of all cells in the input raster.
+                            UNIQUEVALUECOUNT —Number of unique values in the input raster.
+                            TOP —Top or YMax value of the extent.
+                            LEFT —Left or XMin value of the extent.
+                            RIGHT —Right or XMax value of the extent.
+                            BOTTOM —Bottom or YMin value of the extent.
+                            CELLSIZEX —Cell size in the x-direction.
+                            CELLSIZEY —Cell size in the y-direction.
+                            VALUETYPE —Type of the cell value in the input raster:
+                                        0 = 1-bit
+                                        1 = 2-bit
+                                        2 = 4-bit
+                                        3 = 8-bit unsigned integer
+                                        4 = 8-bit signed integer
+                                        5 = 16-bit unsigned integer
+                                        6 = 16-bit signed integer
+                                        7 = 32-bit unsigned integer
+                                        8 = 32-bit signed integer
+                                        9 = 32-bit floating point
+                                        10 = 64-bit double precision
+                                        11 = 8-bit complex
+                                        12 = 16-bit complex
+                                        13 = 32-bit complex
+                                        14 = 64-bit complex
+                            COLUMNCOUNT —Number of columns in the input raster.
+                            ROWCOUNT —Number of rows in the input raster.
+                            BANDCOUNT —Number of bands in the input raster.
+                            ANYNODATA —Returns whether there is NoData in the raster.
+                            ALLNODATA —Returns whether all the pixels are NoData. This is the same as ISNULL.
+                        Perhaps not relevant in this case
+                        #                             SENSORNAME —Name of the sensor.
+                        #                             PRODUCTNAME —Product name related to the sensor.
+                        #                             ACQUISITIONDATE —Date that the data was captured.
+                        #                             SOURCETYPE —Source type.
+                        #                             CLOUDCOVER —Amount of cloud cover as a percentage.
+                        #                             SUNAZIMUTH —Sun azimuth, in degrees.
+                        #                             SUNELEVATION —Sun elevation, in degrees.
+                        #                             SENSORAZIMUTH —Sensor azimuth, in degrees.
+                        #                             SENSORELEVATION —Sensor elevation, in degrees.
+                        #                             OFFNADIR —Off-nadir angle, in degrees.
+                        #                             WAVELENGTH —Wavelength range of the band, in nanometers.
+        '''
+        
+        try:
+            arcpy.env.cellSize = "MINOF"
+            sr = arcpy.Describe(inRaster).spatialReference
+            mask = self.ProjectFeature(maskFeature,sr) 
+            self._LicenseManager("Spatial")
+            
+            outExtractByMask = arcpy.sa.ExtractByMask(inRaster, mask)
+            
+            if statisticRule.upper() in ['MINIMUM', 'MAXIMUM','MEAN','STD','UNIQUEVALUECOUNT']:
+                rasterCellIdx = arcpy.RasterToNumPyArray(outExtractByMask, nodata_to_value = -9999.00)
+                return float(PrismOps.get_statistic(rasterCellIdx, dataPath, statisticRule.upper()))
+            else:
+                value = arcpy.GetRasterProperties_management(outExtractByMask, statisticRule)
+                return float(value.getOutput(0))
+          
+        except:
+            tb = traceback.format_exc()
+            self._sm("Failed to get raster statistic " +tb,"ERROR",229)
+            cellsize = float(arcpy.GetRasterProperties_management(inRaster, 'CELLSIZEX').getOutput(0))**2
+            self._sm("Raster cell size: " + str(cellsize) , "ERROR")
+            # try getting centroid
+            return self.getValueAtCentroid(maskFeature,inRaster)
+        finally:
+            outExtractByMask = None           
+            mask = None
+            if sr != None: del sr; sr = None
+            self._LicenseManager("Spatial",False)
+                        
     def getRasterPercentAreas(self,inRaster, maskFeature, uniqueRasterIDfield='VALUE',rasterValueField='COUNT'):
         '''
         computes the statistic 
@@ -416,6 +495,7 @@ class SpatialOps(object):
             self._sm("Error computing Raster Percent Area " +tb,"ERROR",289)
                     
         return results
+    
     def getRasterPercent(self,inRaster, maskFeature, ClassificationCodes=None, uniqueRasterIDfield='VALUE',rasterValueField='COUNT'):
         '''
         computes the raster % statistic 
