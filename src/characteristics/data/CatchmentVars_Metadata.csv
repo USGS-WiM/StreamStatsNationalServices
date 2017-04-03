@@ -1,0 +1,705 @@
+﻿ID,Procedure,Description,MapLayers,UnitID
+TOT_WTDEP,TO BE DETERMINED,Average value of depth to seasonally high water table ,TO BE DETERMINED,feet
+TOT_WILDFIRE_2012,TO BE DETERMINED,Percent area of wildfire in 2012,TO BE DETERMINED,percent
+TOT_WILDFIRE_2011,TO BE DETERMINED,Percent area of wildfire in 2011,TO BE DETERMINED,percent
+TOT_WILDFIRE_2010,TO BE DETERMINED,Percent area of wildfire in 2010,TO BE DETERMINED,percent
+TOT_WDANN,TO BE DETERMINED,50 year mean annual runoff (mm) from McCabe and Wolock's Runoff Model 1951-2000,TO BE DETERMINED,millimeters
+TOT_WD6190_SEP,TO BE DETERMINED,30 year (1971 - 2000) mean September number of days of measurable precipitation (days) from 800 m PRISM data,TO BE DETERMINED,days
+TOT_WD6190_OCT,TO BE DETERMINED,30 year (1971 - 2000) mean October number of days of measurable precipitation (days) from 800 m PRISM data,TO BE DETERMINED,days
+TOT_WD6190_NOV,TO BE DETERMINED,30 year (1971 - 2000) mean November number of days of measurable precipitation (days) from 800 m PRISM data,TO BE DETERMINED,days
+TOT_WD6190_MAY,TO BE DETERMINED,30 year (1971 - 2000) mean May number of days of measurable precipitation (days) from 800 m PRISM data,TO BE DETERMINED,days
+TOT_WD6190_MAR,TO BE DETERMINED,30 year (1971 - 2000) mean March number of days of measurable precipitation (days) from 800 m PRISM data,TO BE DETERMINED,days
+TOT_WD6190_JUN,TO BE DETERMINED,30 year (1971 - 2000) mean June number of days of measurable precipitation (days) from 800 m PRISM data,TO BE DETERMINED,days
+TOT_WD6190_JUL,TO BE DETERMINED,30 year (1971 - 2000) mean July number of days of measurable precipitation (days) from 800 m PRISM data,TO BE DETERMINED,days
+TOT_WD6190_JAN,TO BE DETERMINED,30 year (1971 - 2000) mean January number of days of measurable precipitation (days) from 2.3km PRISM data,TO BE DETERMINED,days
+TOT_WD6190_FEB,TO BE DETERMINED,30 year (1971 - 2000) mean February number of days of measurable precipitation (days) from 800 m PRISM data,TO BE DETERMINED,days
+TOT_WD6190_DEC,TO BE DETERMINED,30 year (1971 - 2000) mean December number of days of measurable precipitation (days) from 800 m PRISM data,TO BE DETERMINED,days
+TOT_WD6190_AUG,TO BE DETERMINED,30 year (1971 - 2000) mean August number of days of measurable precipitation (days) from 800 m PRISM data,TO BE DETERMINED,days
+TOT_WD6190_APR,TO BE DETERMINED,30 year (1971 - 2000) mean April number of days of measurable precipitation (days) from 800 m PRISM data,TO BE DETERMINED,days
+TOT_WBM_TAV_2012,TO BE DETERMINED,Average value of temperature (TAV) from the water balance model for 2000-2014,TO BE DETERMINED,degrees Celsius
+TOT_WBM_STO_2012,TO BE DETERMINED,Average value of soil moisture storage (STO) from the water balance model for 2000-2014,TO BE DETERMINED,millimeters
+TOT_WBM_SNW_2012,TO BE DETERMINED,Average value of snowfall (SNW) from the water balance model for 2000-2014,TO BE DETERMINED,millimeters
+TOT_WBM_RUN_2012,TO BE DETERMINED,Average value of runoff (RUN) from the water balance model for 2000-2014,TO BE DETERMINED,millimeters
+TOT_WBM_PPT_2012,TO BE DETERMINED,Average value of Precipitation (PPT) from the water balance model for 2000-2014,TO BE DETERMINED,millimeters
+TOT_WBM_PET_2012,TO BE DETERMINED,Average value of potential evapotranspiration (PET) from the water balance model for 2000-2014,TO BE DETERMINED,millimeters
+TOT_WBM_DT_TAV_2012,TO BE DETERMINED,Average value of temperature (TAV) from the water balance model for 2000-2014 detrended to 2012. ,TO BE DETERMINED,degrees Celsius
+TOT_WBM_DT_STO_2012,TO BE DETERMINED,Average value of soil moisture storage (STO) from the water balance model for 2000-2014 detrended to 2012.,TO BE DETERMINED,millimeters
+TOT_WBM_DT_SNW_2012,TO BE DETERMINED,Average value of snowfall (SNW) from the water balance model for 2000-2014 detrended to 2012. ,TO BE DETERMINED,millimeters
+TOT_WBM_DT_RUN_2012,TO BE DETERMINED,Average value of runoff (RUN) from the water balance model for 2000-2014 detrended to 2012. ,TO BE DETERMINED,millimeters
+TOT_WBM_DT_PPT_2012,TO BE DETERMINED,Average value of Precipitation (PPT) from the water balance model for 2000-2014 detrended to 2012. ,TO BE DETERMINED,millimeters
+TOT_WBM_DT_PET_2012,TO BE DETERMINED,Average value of potential evapotranspiration (PET) from the water balance model for 2000-2014 detrended to 2012. ,TO BE DETERMINED,millimeters
+TOT_WBM_DT_AET_2012,TO BE DETERMINED,Average value of actual evapotranspiration (AET) from the water balance model for 2000-2014 detrended to 2012. ,TO BE DETERMINED,millimeters
+TOT_WBM_AET_2012,TO BE DETERMINED,Average value of actual evapotranspiration (AET) from the water balance model for 2000-2014,TO BE DETERMINED,millimeters
+TOT_WB5100_SEP,TO BE DETERMINED,50 year (1951-2000) average runoff (mm) from McCabe and Wolock's Runoff Model for,TO BE DETERMINED,millimeters
+TOT_WB5100_OCT,TO BE DETERMINED,50 year (1951-2000) average runoff (mm) from McCabe and Wolock's Runoff Model for,TO BE DETERMINED,millimeters
+TOT_WB5100_NOV,TO BE DETERMINED,50 year (1951-2000) average runoff (mm) from McCabe and Wolock's Runoff Model for,TO BE DETERMINED,millimeters
+TOT_WB5100_MAY,TO BE DETERMINED,50 year (1951-2000) average runoff (mm) from McCabe and Wolock's Runoff Model for,TO BE DETERMINED,millimeters
+TOT_WB5100_MAR,TO BE DETERMINED,50 year (1951-2000) average runoff (mm) from McCabe and Wolock's Runoff Model for,TO BE DETERMINED,millimeters
+TOT_WB5100_JUN,TO BE DETERMINED,50 year (1951-2000) average runoff (mm) from McCabe and Wolock's Runoff Model for,TO BE DETERMINED,millimeters
+TOT_WB5100_JUL,TO BE DETERMINED,50 year (1951-2000) average runoff (mm) from McCabe and Wolock's Runoff Model for,TO BE DETERMINED,millimeters
+TOT_WB5100_JAN,TO BE DETERMINED,50 year (1951-2000) average runoff (mm) from McCabe and Wolock's Runoff Model for January,TO BE DETERMINED,millimeters
+TOT_WB5100_FEB,TO BE DETERMINED,50 year (1951-2000) average runoff (mm) from McCabe and Wolock's Runoff Model for,TO BE DETERMINED,millimeters
+TOT_WB5100_DEC,TO BE DETERMINED,50 year (1951-2000) average runoff (mm) from McCabe and Wolock's Runoff Model for,TO BE DETERMINED,millimeters
+TOT_WB5100_AUG,TO BE DETERMINED,50 year (1951-2000) average runoff (mm) from McCabe and Wolock's Runoff Model for,TO BE DETERMINED,millimeters
+TOT_WB5100_APR,TO BE DETERMINED,50 year (1951-2000) average runoff (mm) from McCabe and Wolock's Runoff Model for,TO BE DETERMINED,millimeters
+TOT_WB5100_ANN,TO BE DETERMINED,50 year (1951-2000) average annual runoff (mm) from McCabe and Wolock's Runoff Model,TO BE DETERMINED,millimeters
+TOT_WATER,TO BE DETERMINED,NA,TO BE DETERMINED,NA
+TOT_VOLC_QTZ,TO BE DETERMINED,NA,TO BE DETERMINED,NA
+TOT_VOLC_OTH,TO BE DETERMINED,NA,TO BE DETERMINED,NA
+TOT_TWI,TO BE DETERMINED,"Topographic wetness index, ln(a/S); where ""ln"" is the natural log, ""a"" is the upslope area per unit contour length and ""S"" is the slope at that point",TO BE DETERMINED,ln(m)
+TOT_TOTAL_ROAD_DENS,TO BE DETERMINED,NA,TO BE DETERMINED,NA
+TOT_TMIN7100,TO BE DETERMINED,30 year (1971 - 2000) minimum mean annual temperature (Celsius)  from 800m PRISM data,TO BE DETERMINED,degrees Celsius
+TOT_TMAX7100,TO BE DETERMINED,30 year (1971 - 2000) minimum mean annual temperature (Celsius)  from 800m PRISM data,TO BE DETERMINED,degrees Celsius
+TOT_TILES92,TO BE DETERMINED,Percent of watershed subjected to tile drains for the year 1992,TO BE DETERMINED,percent
+TOT_TAV7100_SEP,TO BE DETERMINED,30 year (1971 - 2000) mean September temperature (deg C) from 800 m PRISM data,TO BE DETERMINED,degrees Celsius
+TOT_TAV7100_OCT,TO BE DETERMINED,30 year (1971 - 2000) mean October temperature (deg C) from 800 m PRISM data,TO BE DETERMINED,degrees Celsius
+TOT_TAV7100_NOV,TO BE DETERMINED,30 year (1971 - 2000) mean November temperature (deg C) from 800 m PRISM data,TO BE DETERMINED,degrees Celsius
+TOT_TAV7100_MAY,TO BE DETERMINED,30 year (1971 - 2000) mean May temperature (deg C) from 800 m PRISM data,TO BE DETERMINED,degrees Celsius
+TOT_TAV7100_MAR,TO BE DETERMINED,30 year (1971 - 2000) mean March temperature (deg C) from 800 m PRISM data,TO BE DETERMINED,degrees Celsius
+TOT_TAV7100_JUN,TO BE DETERMINED,30 year (1971 - 2000) mean June temperature (deg C) from 800 m PRISM data,TO BE DETERMINED,degrees Celsius
+TOT_TAV7100_JUL,TO BE DETERMINED,30 year (1971 - 2000) mean July temperature (deg C) from 800 m PRISM data,TO BE DETERMINED,degrees Celsius
+TOT_TAV7100_JAN,TO BE DETERMINED,30 year (1971 - 2000) mean January temperature (deg C) from 800m PRISM data,TO BE DETERMINED,degrees Celsius
+TOT_TAV7100_FEB,TO BE DETERMINED,30 year (1971 - 2000) mean February temperature (deg C) from 800 m PRISM data,TO BE DETERMINED,degrees Celsius
+TOT_TAV7100_DEC,TO BE DETERMINED,30 year (1971 - 2000) mean December temperature (deg C) from 800 m PRISM data,TO BE DETERMINED,degrees Celsius
+TOT_TAV7100_AUG,TO BE DETERMINED,30 year (1971 - 2000) mean August temperature (deg C) from 800 m PRISM data,TO BE DETERMINED,degrees Celsius
+TOT_TAV7100_APR,TO BE DETERMINED,30 year (1971 - 2000) mean April temperature (deg C) from 800 m PRISM data,TO BE DETERMINED,degrees Celsius
+TOT_TAV7100_ANN,TO BE DETERMINED,Mean annual air temperature (degrees Celsius) from 800m PRISM data. 30 year period of record 1971-2000.,TO BE DETERMINED,degrees Celsius
+TOT_SWAMPMARSH,TO BE DETERMINED,Swamp or Marsh,TO BE DETERMINED,percent
+TOT_STRM_DENS,TO BE DETERMINED,NA,TO BE DETERMINED,NA
+TOT_STREAM_SLOPE,TO BE DETERMINED,NA,TO BE DETERMINED,NA
+TOT_SRL55AG,TO BE DETERMINED,Estimated percent of Soil Restrictive layer at the 55 cm depth,TO BE DETERMINED,percent
+TOT_SRL45AG,TO BE DETERMINED,Estimated percent of Soil Restrictive layer at the 45 cm depth,TO BE DETERMINED,percent
+TOT_SRL35AG,TO BE DETERMINED,Estimated percent of Soil Restrictive layer at the 35 cm depth,TO BE DETERMINED,percent
+TOT_SRL25AG,TO BE DETERMINED,Estimated percent of Soil Restrictive layer at the 25 cm depth,TO BE DETERMINED,percent
+TOT_sinuosity,TO BE DETERMINED,NA,TO BE DETERMINED,NA
+TOT_SILTAVE,TO BE DETERMINED,Average value of silt ave,TO BE DETERMINED,percent
+TOT_SENAY_AET,TO BE DETERMINED,Mean annual actual evapotranspiration (AET) (mm/yr) from 1 kilometer based on values from Gabriel Senay's work for the Water Census for 2012,TO BE DETERMINED,millimeters
+TOT_SATOF,TO BE DETERMINED,Percentage of Dunne overland flow as a percent,TO BE DETERMINED,percent of total stream flow
+TOT_SANDAVE,TO BE DETERMINED,Average value of sand content,TO BE DETERMINED,percent
+TOT_SALINAVE,TO BE DETERMINED,Salinty measured as average millimhos per centimeter,TO BE DETERMINED,millimhos/centimeter
+TOT_S1830,TO BE DETERMINED,Bridle Path,TO BE DETERMINED,kilometer roads/sq kilometer
+TOT_S1820,TO BE DETERMINED,Bike Path or Trail,TO BE DETERMINED,kilometer roads/sq kilometer
+TOT_S1780,TO BE DETERMINED,Parking Lot Road,TO BE DETERMINED,kilometer roads/sq kilometer
+TOT_S1750,TO BE DETERMINED,Internal U.S. Census Bureau use,TO BE DETERMINED,kilometer roads/sq kilometer
+TOT_S1740,TO BE DETERMINED,"Private Road for service vehicles (logging, oil fields, ranches, etc.)",TO BE DETERMINED,kilometer roads/sq kilometer
+TOT_S1730,TO BE DETERMINED,Alley,TO BE DETERMINED,kilometer roads/sq kilometer
+TOT_S1720,TO BE DETERMINED,Stairway,TO BE DETERMINED,kilometer roads/sq kilometer
+TOT_S1710,TO BE DETERMINED,Walkway/Pedestrian Trail,TO BE DETERMINED,kilometer roads/sq kilometer
+TOT_S1640,TO BE DETERMINED,Service Drive usually along a limited access highway,TO BE DETERMINED,kilometer roads/sq kilometer
+TOT_S1630,TO BE DETERMINED,Ramp,TO BE DETERMINED,kilometer roads/sq kilometer
+TOT_S1500,TO BE DETERMINED,Vehicular Trail (4WD),TO BE DETERMINED,kilometer roads/sq kilometer
+TOT_S1400,TO BE DETERMINED,"Local Neighborhood Road, Rural Road, City Street",TO BE DETERMINED,kilometer roads/sq kilometer
+TOT_S1200,TO BE DETERMINED,Secondary Road,TO BE DETERMINED,kilometer roads/sq kilometer
+TOT_S1100,TO BE DETERMINED,Primary Road,TO BE DETERMINED,kilometer roads/sq kilometer
+TOT_RUN7100,TO BE DETERMINED,30 year (1971-2000) average runoff (streamflow per unit area) from Brakebill et al. representing the combined effects of human and natural factors,TO BE DETERMINED,millimeters
+TOT_ROCKDEP,TO BE DETERMINED,Average value of total soil thickness examined,TO BE DETERMINED,inches
+TOT_RH,TO BE DETERMINED,"Watershed average relative humidity (percent), from 2 km PRISM, derived from 30 years of record (1961-1990).",TO BE DETERMINED,percent
+TOT_RFACT,TO BE DETERMINED,"Rainfall and Runoff factor (""R factor"" of Universal Soil Loss Equation); average annual value for period 1971-2000",TO BE DETERMINED,100s ft-tonf in/h/ac/yr
+TOT_RESERVOIR,TO BE DETERMINED,Reservoir,TO BE DETERMINED,percent
+TOT_RECHG,TO BE DETERMINED,Mean annual natural ground-water recharge in millimeters per year,TO BE DETERMINED,meters
+TOT_RDX,TO BE DETERMINED,Number of Road and Stream crossings based on 2013 Tiger road files,TO BE DETERMINED,number of road and stream crossings
+TOT_PRSNOW,TO BE DETERMINED,"Snow percent of total precipitation estimate, mean for period 1901-2000. From McCabe and Wolock (submitted, 2008), 1 km grid.",TO BE DETERMINED,percent
+TOT_PPT7100_SEP,TO BE DETERMINED,30 year (1971 - 2000) mean September precipitation(mm) from 800 m PRISM data,TO BE DETERMINED,millimeters
+TOT_PPT7100_OCT,TO BE DETERMINED,30 year (1971 - 2000) mean October precipitation(mm) from 800 m PRISM data,TO BE DETERMINED,millimeters
+TOT_PPT7100_NOV,TO BE DETERMINED,30 year (1971 - 2000) mean November precipitation(mm) from 800 m PRISM data,TO BE DETERMINED,millimeters
+TOT_PPT7100_MAY,TO BE DETERMINED,30 year (1971 - 2000) mean May precipitation(mm) from 800 m PRISM data,TO BE DETERMINED,millimeters
+TOT_PPT7100_MAR,TO BE DETERMINED,30 year (1971 - 2000) mean March precipitation(mm) from 800 m PRISM data,TO BE DETERMINED,millimeters
+TOT_PPT7100_JUN,TO BE DETERMINED,30 year (1971 - 2000) mean June precipitation(mm) from 800 m PRISM data,TO BE DETERMINED,millimeters
+TOT_PPT7100_JUL,TO BE DETERMINED,30 year (1971 - 2000) mean July precipitation(mm) from 800 m PRISM data,TO BE DETERMINED,millimeters
+TOT_PPT7100_JAN,TO BE DETERMINED,30 year (1971 - 2000) mean January precipitation (mm) from 800m PRISM data,TO BE DETERMINED,millimeters
+TOT_PPT7100_FEB,TO BE DETERMINED,30 year (1971 - 2000) mean February precipitation (mm) from 800 m PRISM data,TO BE DETERMINED,millimeters
+TOT_PPT7100_DEC,TO BE DETERMINED,30 year (1971 - 2000) mean December precipitation(mm) from 800 m PRISM data,TO BE DETERMINED,millimeters
+TOT_PPT7100_AUG,TO BE DETERMINED,30 year (1971 - 2000) mean August precipitation(mm) from 800 m PRISM data,TO BE DETERMINED,millimeters
+TOT_PPT7100_APR,TO BE DETERMINED,30 year (1971 - 2000) mean April precipitation(mm) from 800 m PRISM data,TO BE DETERMINED,millimeters
+TOT_PPT7100_ANN,TO BE DETERMINED,Mean annual precipitation (mm) from 800m PRISM data. 30 year period of record 1971-2000.,TO BE DETERMINED,millimeters
+TOT_POPDENS90,TO BE DETERMINED,"Population density in the watershed, persons per sq km, from 1990 Census block data regridded to 100m.",TO BE DETERMINED,persons per square kilometer
+TOT_POPDENS10,TO BE DETERMINED,"Population density in the watershed, persons per sq km, from 2010 Census block data regridded to 100m.",TO BE DETERMINED,persons per square kilometer
+TOT_POPDENS00,TO BE DETERMINED,"Population density in the watershed, persons per sq km, from 2000 Census block data regridded to 100m.",TO BE DETERMINED,persons per square kilometer
+TOT_PLUT_QTZ,TO BE DETERMINED,NA,TO BE DETERMINED,NA
+TOT_PLUT_OTH,TO BE DETERMINED,NA,TO BE DETERMINED,NA
+TOT_PLAYA,TO BE DETERMINED,Playa,TO BE DETERMINED,percent
+TOT_PHYSIO_AREA,TO BE DETERMINED,NA,TO BE DETERMINED,NA
+TOT_PHYSIO_9,TO BE DETERMINED,New England,TO BE DETERMINED,percent
+TOT_PHYSIO_8,TO BE DETERMINED,Appalachian Plateaus,TO BE DETERMINED,percent
+TOT_PHYSIO_7,TO BE DETERMINED,St. Lawrence Valley,TO BE DETERMINED,percent
+TOT_PHYSIO_6,TO BE DETERMINED,Valley And Ridge,TO BE DETERMINED,percent
+TOT_PHYSIO_5,TO BE DETERMINED,Blue Ridge,TO BE DETERMINED,percent
+TOT_PHYSIO_4,TO BE DETERMINED,Piedmont,TO BE DETERMINED,percent
+TOT_PHYSIO_3,TO BE DETERMINED,Coastal Plain,TO BE DETERMINED,percent
+TOT_PHYSIO_25,TO BE DETERMINED,Lower Californian,TO BE DETERMINED,percent
+TOT_PHYSIO_24,TO BE DETERMINED,Pacific Border,TO BE DETERMINED,percent
+TOT_PHYSIO_23,TO BE DETERMINED,Cascade-Sierra Mountains,TO BE DETERMINED,percent
+TOT_PHYSIO_22,TO BE DETERMINED,Basin And Range,TO BE DETERMINED,percent
+TOT_PHYSIO_21,TO BE DETERMINED,Colorado Plateaus,TO BE DETERMINED,percent
+TOT_PHYSIO_20,TO BE DETERMINED,Columbia Plateau,TO BE DETERMINED,percent
+TOT_PHYSIO_19,TO BE DETERMINED,Northern Rocky Mountains,TO BE DETERMINED,percent
+TOT_PHYSIO_18,TO BE DETERMINED,Middle Rocky Mountains,TO BE DETERMINED,percent
+TOT_PHYSIO_17,TO BE DETERMINED,Wyoming Basin,TO BE DETERMINED,percent
+TOT_PHYSIO_16,TO BE DETERMINED,Southern Rocky Mountains,TO BE DETERMINED,percent
+TOT_PHYSIO_15,TO BE DETERMINED,Ouachita,TO BE DETERMINED,percent
+TOT_PHYSIO_14,TO BE DETERMINED,Ozark Plateaus,TO BE DETERMINED,percent
+TOT_PHYSIO_13,TO BE DETERMINED,Great Plains,TO BE DETERMINED,percent
+TOT_PHYSIO_12,TO BE DETERMINED,Central Lowland,TO BE DETERMINED,percent
+TOT_PHYSIO_11,TO BE DETERMINED,Interior Low Plateaus,TO BE DETERMINED,percent
+TOT_PHYSIO_10,TO BE DETERMINED,Adirondack,TO BE DETERMINED,percent
+TOT_PHYSIO_1,TO BE DETERMINED,Superior Upland,TO BE DETERMINED,percent
+TOT_PHYSIO_0,TO BE DETERMINED,NA,TO BE DETERMINED,NA
+TOT_PEST219,TO BE DETERMINED,"Estimate of agricultural pesticide application (219 types), kg/sq km, from Census of Ag 1997, based on county-wide sales and percent agricultural land cover in watershed",TO BE DETERMINED,kg/sq km
+TOT_PERMAVE,TO BE DETERMINED,Average permeability,TO BE DETERMINED,inches/hour
+TOT_P97,TO BE DETERMINED,"Estimate of phosphorous from fertilizer and manure, from Census of Ag 1997 and AAPFCO",TO BE DETERMINED,kg/km2
+TOT_OM,TO BE DETERMINED,Average value of organic matter content (percent by weight),TO BE DETERMINED,percent
+TOT_OLSON_UCS,TO BE DETERMINED,Rock Uniaxial Compressive Strength Based on Olson Geology Types,TO BE DETERMINED,percent
+TOT_OLSON_SI,TO BE DETERMINED,Rock silicon dioxide concentration as a percent. ,TO BE DETERMINED,percent
+TOT_OLSON_S,TO BE DETERMINED,Rock sulfur concentration as a percent. ,TO BE DETERMINED,percent
+TOT_OLSON_PERM,TO BE DETERMINED,Rock hydraulic conductivity (10^-6 m/s). ,TO BE DETERMINED,10^-6 m/s
+TOT_OLSON_P,TO BE DETERMINED,Rock phosphorus concentration as a percent. ,TO BE DETERMINED,percent
+TOT_OLSON_MGO,TO BE DETERMINED,Rock magnesium oxide concentration as a percent. ,TO BE DETERMINED,percent
+TOT_OLSON_K,TO BE DETERMINED,Rock potassium oxide concentration as a percent.,TO BE DETERMINED,percent
+TOT_OLSON_FE,TO BE DETERMINED,Rock iron oxide concentration as a percent. ,TO BE DETERMINED,percent
+TOT_OLSON_CAO,TO BE DETERMINED,Rock calcium oxide concentration as a percent. ,TO BE DETERMINED,percent
+TOT_NWALT92_60,TO BE DETERMINED,"Very Low Use, Conservation - Areas in GAP status 1 in Protected Areas Database Conservation Biology Institute Edition V2 (for example, National Wild- life Refuges, National Parks, Wilderness Areas, and National Preserves). Does not include lands in the USDA Conservation Reserve Program. Very low human usage.",TO BE DETERMINED,percent
+TOT_NWALT92_50,TO BE DETERMINED,"Low Use - No obvious indication of anthropogenic influence, and not in active GAP status 1 conservation (class 60). May have a lower protection status (GAP class 2-3).",TO BE DETERMINED,percent
+TOT_NWALT92_45,TO BE DETERMINED,"Grazing Potential - Areas of good grazing potential beyond what is indicated by the NLCD. Information suggests the land could and has been used at least on a seasonal or occasional basis for animal grazing, including woodland pasture. Based on physical parameters and agreement from other land cover datasets:  Pixel is within 1 km of water body or within 500 m of a streamline; slope <30 percent; was in a pasture/hay class in both the NLCDe 1992 and the Crop Data Layer 2009; hden <124; is not on a military base, protected national park, or similar unlikely grazing area; and would other- wise be in class 50.",TO BE DETERMINED,percent
+TOT_NWALT92_44,TO BE DETERMINED,"Pasture/Hay - Areas of grasses, legumes, or grass-legume mixtures planted for live- stock grazing or the production of seed or hay crops, typically on a perennial cycle. Identical definition to NLCD 2011 class 81.",TO BE DETERMINED,percent
+TOT_NWALT92_43,TO BE DETERMINED,"Crops - Areas used for the production of crops, such as corn, soybeans, wheat, vegetables, or  cotton, as well as perennial woody crops such as orchards and vineyards. Includes cultivated crops, row crops, small grains, and fallow fields. Identical definition to NLCD 2011 class 82.",TO BE DETERMINED,percent
+TOT_NWALT92_41,TO BE DETERMINED,"Mining/Extraction - Barren areas due to probable surface mining/mineral extraction. Includes mining, quarries, sand and gravel operations, and energy operations.",TO BE DETERMINED,percent
+TOT_NWALT92_33,TO BE DETERMINED,"Anthropogenic Other - Miscellaneous non-residential urban uses not captured by the NLCD as Developed and likely to have a persistent presence throughout every year of this dataset (see text). Primarily barren or low-vegetation areas associated with industrial, transportation, or recreation uses (for example, landfills or beaches). Probable low-medium anthropogenic influence related to non-residential activities.",TO BE DETERMINED,percent
+TOT_NWALT92_32,TO BE DETERMINED,"Urban Interface Low Medium - Land not in a Developed or Production land use, but in a near-urban (suburban, ex-urban) area (hden 16-500 units/km2). Probable low- medium anthropogenic influence.",TO BE DETERMINED,percent
+TOT_NWALT92_31,TO BE DETERMINED,"Urban Interface High - Land not in a Developed or Production land use, but in an urban area (hden >500 or in or near an urban core area). Probable medium- high anthropogenic influence.",TO BE DETERMINED,percent
+TOT_NWALT92_27,TO BE DETERMINED,"Developed, Other - Low-density developed areas (hden <16) and not classifiable in any other class. Primarily low-density residential, rural roads, or vacant land.",TO BE DETERMINED,percent
+TOT_NWALT92_26,TO BE DETERMINED,"Residential, Low-Medium Density - Primarily residential development, with hden 16-500 units/km2.",TO BE DETERMINED,percent
+TOT_NWALT92_25,TO BE DETERMINED,"Residential, High Density - Recreational areas, golf courses, cemeteries, and parks. Includes spectator recreation venues where identifiable: Sports arenas, racetracks, amusement parks, zoos, and so on.",TO BE DETERMINED,percent
+TOT_NWALT92_24,TO BE DETERMINED,"Recreation - Recreational areas, golf courses, cemeteries, and parks. Includes spectator recreation venues where identifiable: Sports arenas, racetracks, amusement parks, zoos, and so on.",TO BE DETERMINED,percent
+TOT_NWALT92_23,TO BE DETERMINED,"Industrial/Military - Industrial and military. Includes heavy and light industry, seaports/ harbors, manufacturing, mills/factories, utilities, waste/recycling/ landfills, energy production, warehousing/distribution, water- management features, major communication facilities, and military bases.",TO BE DETERMINED,percent
+TOT_NWALT92_22,TO BE DETERMINED,"Commercial/Services - Commercial and services. Includes retail stores, shopping centers, office buildings, commercial zones, professional services and organizations, universities, schools, hospitals, churches, prisons, police and fire stations, and so on. May include areas of extensive commercial use where identifiable, such as nurseries or vehicle yards.",TO BE DETERMINED,percent
+TOT_NWALT92_21,TO BE DETERMINED,"Major Transportation - Major roads, rail, and airports, along with their associated facilities. Major roads are those equivalent to Department of Transportation function classes 1-3. At the spatial resolution of this dataset, road pixels usually incorporate some adjacent development, and in urban areas, they typically include commercial uses. Minor roads are considered an integral part of other land uses; for example, res- idential neighborhood roads are a part of the Residential classes.",TO BE DETERMINED,percent
+TOT_NWALT92_12,TO BE DETERMINED,"Wetlands - Core wetlands class that does not change between years and is based on agreement of wetlands from three sources/periods: The NLCD 1992, NLCD 2001, and NLCD 2011.",TO BE DETERMINED,percent
+TOT_NWALT92_11,TO BE DETERMINED,"Water - Streams, rivers, lakes, ponds, bays, and estuaries.",TO BE DETERMINED,percent
+TOT_NWALT82_60,TO BE DETERMINED,"Very Low Use, Conservation - Areas in GAP status 1 in Protected Areas Database Conservation Biology Institute Edition V2 (for example, National Wild- life Refuges, National Parks, Wilderness Areas, and National Preserves). Does not include lands in the USDA Conservation Reserve Program. Very low human usage.",TO BE DETERMINED,percent
+TOT_NWALT82_50,TO BE DETERMINED,"Low Use - No obvious indication of anthropogenic influence, and not in active GAP status 1 conservation (class 60). May have a lower protection status (GAP class 2-3).",TO BE DETERMINED,percent
+TOT_NWALT82_45,TO BE DETERMINED,"Grazing Potential - Areas of good grazing potential beyond what is indicated by the NLCD. Information suggests the land could and has been used at least on a seasonal or occasional basis for animal grazing, including woodland pasture. Based on physical parameters and agreement from other land cover datasets:  Pixel is within 1 km of water body or within 500 m of a streamline; slope <30 percent; was in a pasture/hay class in both the NLCDe 1992 and the Crop Data Layer 2009; hden <124; is not on a military base, protected national park, or similar unlikely grazing area; and would other- wise be in class 50.",TO BE DETERMINED,percent
+TOT_NWALT82_44,TO BE DETERMINED,"Pasture/Hay - Areas of grasses, legumes, or grass-legume mixtures planted for live- stock grazing or the production of seed or hay crops, typically on a perennial cycle. Identical definition to NLCD 2011 class 81.",TO BE DETERMINED,percent
+TOT_NWALT82_43,TO BE DETERMINED,"Crops - Areas used for the production of crops, such as corn, soybeans, wheat, vegetables, or  cotton, as well as perennial woody crops such as orchards and vineyards. Includes cultivated crops, row crops, small grains, and fallow fields. Identical definition to NLCD 2011 class 82.",TO BE DETERMINED,percent
+TOT_NWALT82_41,TO BE DETERMINED,"Mining/Extraction - Barren areas due to probable surface mining/mineral extraction. Includes mining, quarries, sand and gravel operations, and energy operations.",TO BE DETERMINED,percent
+TOT_NWALT82_33,TO BE DETERMINED,"Anthropogenic Other - Miscellaneous non-residential urban uses not captured by the NLCD as Developed and likely to have a persistent presence throughout every year of this dataset (see text). Primarily barren or low-vegetation areas associated with industrial, transportation, or recreation uses (for example, landfills or beaches). Probable low-medium anthropogenic influence related to non-residential activities.",TO BE DETERMINED,percent
+TOT_NWALT82_32,TO BE DETERMINED,"Urban Interface Low Medium - Land not in a Developed or Production land use, but in a near-urban (suburban, ex-urban) area (hden 16-500 units/km2). Probable low- medium anthropogenic influence.",TO BE DETERMINED,percent
+TOT_NWALT82_31,TO BE DETERMINED,"Urban Interface High - Land not in a Developed or Production land use, but in an urban area (hden >500 or in or near an urban core area). Probable medium- high anthropogenic influence.",TO BE DETERMINED,percent
+TOT_NWALT82_27,TO BE DETERMINED,"Developed, Other - Low-density developed areas (hden <16) and not classifiable in any other class. Primarily low-density residential, rural roads, or vacant land.",TO BE DETERMINED,percent
+TOT_NWALT82_26,TO BE DETERMINED,"Residential, Low-Medium Density - Primarily residential development, with hden 16-500 units/km2.",TO BE DETERMINED,percent
+TOT_NWALT82_25,TO BE DETERMINED,"Residential, High Density - Recreational areas, golf courses, cemeteries, and parks. Includes spectator recreation venues where identifiable: Sports arenas, racetracks, amusement parks, zoos, and so on.",TO BE DETERMINED,percent
+TOT_NWALT82_24,TO BE DETERMINED,"Recreation - Recreational areas, golf courses, cemeteries, and parks. Includes spectator recreation venues where identifiable: Sports arenas, racetracks, amusement parks, zoos, and so on.",TO BE DETERMINED,percent
+TOT_NWALT82_23,TO BE DETERMINED,"Industrial/Military - Industrial and military. Includes heavy and light industry, seaports/ harbors, manufacturing, mills/factories, utilities, waste/recycling/ landfills, energy production, warehousing/distribution, water- management features, major communication facilities, and military bases.",TO BE DETERMINED,percent
+TOT_NWALT82_22,TO BE DETERMINED,"Commercial/Services - Commercial and services. Includes retail stores, shopping centers, office buildings, commercial zones, professional services and organizations, universities, schools, hospitals, churches, prisons, police and fire stations, and so on. May include areas of extensive commercial use where identifiable, such as nurseries or vehicle yards.",TO BE DETERMINED,percent
+TOT_NWALT82_21,TO BE DETERMINED,"Major Transportation - Major roads, rail, and airports, along with their associated facilities. Major roads are those equivalent to Department of Transportation function classes 1-3. At the spatial resolution of this dataset, road pixels usually incorporate some adjacent development, and in urban areas, they typically include commercial uses. Minor roads are considered an integral part of other land uses; for example, res- idential neighborhood roads are a part of the Residential classes.",TO BE DETERMINED,percent
+TOT_NWALT82_12,TO BE DETERMINED,"Wetlands - Core wetlands class that does not change between years and is based on agreement of wetlands from three sources/periods: The NLCD 1992, NLCD 2001, and NLCD 2011.",TO BE DETERMINED,percent
+TOT_NWALT82_11,TO BE DETERMINED,"Water - Streams, rivers, lakes, ponds, bays, and estuaries.",TO BE DETERMINED,percent
+TOT_NWALT74_60,TO BE DETERMINED,"Very Low Use, Conservation - Areas in GAP status 1 in Protected Areas Database Conservation Biology Institute Edition V2 (for example, National Wild- life Refuges, National Parks, Wilderness Areas, and National Preserves). Does not include lands in the USDA Conservation Reserve Program. Very low human usage.",TO BE DETERMINED,percent
+TOT_NWALT74_50,TO BE DETERMINED,"Low Use - No obvious indication of anthropogenic influence, and not in active GAP status 1 conservation (class 60). May have a lower protection status (GAP class 2-3).",TO BE DETERMINED,percent
+TOT_NWALT74_45,TO BE DETERMINED,"Grazing Potential - Areas of good grazing potential beyond what is indicated by the NLCD. Information suggests the land could and has been used at least on a seasonal or occasional basis for animal grazing, including woodland pasture. Based on physical parameters and agreement from other land cover datasets:  Pixel is within 1 km of water body or within 500 m of a streamline; slope <30 percent; was in a pasture/hay class in both the NLCDe 1992 and the Crop Data Layer 2009; hden <124; is not on a military base, protected national park, or similar unlikely grazing area; and would other- wise be in class 50.",TO BE DETERMINED,percent
+TOT_NWALT74_44,TO BE DETERMINED,"Pasture/Hay - Areas of grasses, legumes, or grass-legume mixtures planted for live- stock grazing or the production of seed or hay crops, typically on a perennial cycle. Identical definition to NLCD 2011 class 81.",TO BE DETERMINED,percent
+TOT_NWALT74_43,TO BE DETERMINED,"Crops - Areas used for the production of crops, such as corn, soybeans, wheat, vegetables, or  cotton, as well as perennial woody crops such as orchards and vineyards. Includes cultivated crops, row crops, small grains, and fallow fields. Identical definition to NLCD 2011 class 82.",TO BE DETERMINED,percent
+TOT_NWALT74_41,TO BE DETERMINED,"Mining/Extraction - Barren areas due to probable surface mining/mineral extraction. Includes mining, quarries, sand and gravel operations, and energy operations.",TO BE DETERMINED,percent
+TOT_NWALT74_33,TO BE DETERMINED,"Anthropogenic Other - Miscellaneous non-residential urban uses not captured by the NLCD as Developed and likely to have a persistent presence throughout every year of this dataset (see text). Primarily barren or low-vegetation areas associated with industrial, transportation, or recreation uses (for example, landfills or beaches). Probable low-medium anthropogenic influence related to non-residential activities.",TO BE DETERMINED,percent
+TOT_NWALT74_32,TO BE DETERMINED,"Urban Interface Low Medium - Land not in a Developed or Production land use, but in a near-urban (suburban, ex-urban) area (hden 16-500 units/km2). Probable low- medium anthropogenic influence.",TO BE DETERMINED,percent
+TOT_NWALT74_31,TO BE DETERMINED,"Urban Interface High - Land not in a Developed or Production land use, but in an urban area (hden >500 or in or near an urban core area). Probable medium- high anthropogenic influence.",TO BE DETERMINED,percent
+TOT_NWALT74_27,TO BE DETERMINED,"Developed, Other - Low-density developed areas (hden <16) and not classifiable in any other class. Primarily low-density residential, rural roads, or vacant land.",TO BE DETERMINED,percent
+TOT_NWALT74_26,TO BE DETERMINED,"Residential, Low-Medium Density - Primarily residential development, with hden 16-500 units/km2.",TO BE DETERMINED,percent
+TOT_NWALT74_25,TO BE DETERMINED,"Residential, High Density - Recreational areas, golf courses, cemeteries, and parks. Includes spectator recreation venues where identifiable: Sports arenas, racetracks, amusement parks, zoos, and so on.",TO BE DETERMINED,percent
+TOT_NWALT74_24,TO BE DETERMINED,"Recreation - Recreational areas, golf courses, cemeteries, and parks. Includes spectator recreation venues where identifiable: Sports arenas, racetracks, amusement parks, zoos, and so on.",TO BE DETERMINED,percent
+TOT_NWALT74_23,TO BE DETERMINED,"Industrial/Military - Industrial and military. Includes heavy and light industry, seaports/ harbors, manufacturing, mills/factories, utilities, waste/recycling/ landfills, energy production, warehousing/distribution, water- management features, major communication facilities, and military bases.",TO BE DETERMINED,percent
+TOT_NWALT74_22,TO BE DETERMINED,"Commercial/Services - Commercial and services. Includes retail stores, shopping centers, office buildings, commercial zones, professional services and organizations, universities, schools, hospitals, churches, prisons, police and fire stations, and so on. May include areas of extensive commercial use where identifiable, such as nurseries or vehicle yards.",TO BE DETERMINED,percent
+TOT_NWALT74_21,TO BE DETERMINED,"Major Transportation - Major roads, rail, and airports, along with their associated facilities. Major roads are those equivalent to Department of Transportation function classes 1-3. At the spatial resolution of this dataset, road pixels usually incorporate some adjacent development, and in urban areas, they typically include commercial uses. Minor roads are considered an integral part of other land uses; for example, res- idential neighborhood roads are a part of the Residential classes.",TO BE DETERMINED,percent
+TOT_NWALT74_12,TO BE DETERMINED,"Wetlands - Core wetlands class that does not change between years and is based on agreement of wetlands from three sources/periods: The NLCD 1992, NLCD 2001, and NLCD 2011.",TO BE DETERMINED,percent
+TOT_NWALT74_11,TO BE DETERMINED,"Water - Streams, rivers, lakes, ponds, bays, and estuaries.",TO BE DETERMINED,percent
+TOT_NWALT12_60,TO BE DETERMINED,"Very Low Use, Conservation - Areas in GAP status 1 in Protected Areas Database Conservation Biology Institute Edition V2 (for example, National Wild- life Refuges, National Parks, Wilderness Areas, and National Preserves). Does not include lands in the USDA Conservation Reserve Program. Very low human usage.",TO BE DETERMINED,percent
+TOT_NWALT12_50,TO BE DETERMINED,"Low Use - No obvious indication of anthropogenic influence, and not in active GAP status 1 conservation (class 60). May have a lower protection status (GAP class 2-3).",TO BE DETERMINED,percent
+TOT_NWALT12_45,TO BE DETERMINED,"Grazing Potential - Areas of good grazing potential beyond what is indicated by the NLCD. Information suggests the land could and has been used at least on a seasonal or occasional basis for animal grazing, including woodland pasture. Based on physical parameters and agreement from other land cover datasets:  Pixel is within 1 km of water body or within 500 m of a streamline; slope <30 percent; was in a pasture/hay class in both the NLCDe 1992 and the Crop Data Layer 2009; hden <124; is not on a military base, protected national park, or similar unlikely grazing area; and would other- wise be in class 50.",TO BE DETERMINED,percent
+TOT_NWALT12_44,TO BE DETERMINED,"Pasture/Hay - Areas of grasses, legumes, or grass-legume mixtures planted for live- stock grazing or the production of seed or hay crops, typically on a perennial cycle. Identical definition to NLCD 2011 class 81.",TO BE DETERMINED,percent
+TOT_NWALT12_43,TO BE DETERMINED,"Crops - Areas used for the production of crops, such as corn, soybeans, wheat, vegetables, or  cotton, as well as perennial woody crops such as orchards and vineyards. Includes cultivated crops, row crops, small grains, and fallow fields. Identical definition to NLCD 2011 class 82.",TO BE DETERMINED,percent
+TOT_NWALT12_41,TO BE DETERMINED,"Mining/Extraction - Barren areas due to probable surface mining/mineral extraction. Includes mining, quarries, sand and gravel operations, and energy operations.",TO BE DETERMINED,percent
+TOT_NWALT12_33,TO BE DETERMINED,"Anthropogenic Other - Miscellaneous non-residential urban uses not captured by the NLCD as Developed and likely to have a persistent presence throughout every year of this dataset (see text). Primarily barren or low-vegetation areas associated with industrial, transportation, or recreation uses (for example, landfills or beaches). Probable low-medium anthropogenic influence related to non-residential activities.",TO BE DETERMINED,percent
+TOT_NWALT12_32,TO BE DETERMINED,"Urban Interface Low Medium - Land not in a Developed or Production land use, but in a near-urban (suburban, ex-urban) area (hden 16-500 units/km2). Probable low- medium anthropogenic influence.",TO BE DETERMINED,percent
+TOT_NWALT12_31,TO BE DETERMINED,"Urban Interface High - Land not in a Developed or Production land use, but in an urban area (hden >500 or in or near an urban core area). Probable medium- high anthropogenic influence.",TO BE DETERMINED,percent
+TOT_NWALT12_27,TO BE DETERMINED,"Developed, Other - Low-density developed areas (hden <16) and not classifiable in any other class. Primarily low-density residential, rural roads, or vacant land.",TO BE DETERMINED,percent
+TOT_NWALT12_26,TO BE DETERMINED,"Residential, Low-Medium Density - Primarily residential development, with hden 16-500 units/km2.",TO BE DETERMINED,percent
+TOT_NWALT12_25,TO BE DETERMINED,"Residential, High Density - Recreational areas, golf courses, cemeteries, and parks. Includes spectator recreation venues where identifiable: Sports arenas, racetracks, amusement parks, zoos, and so on.",TO BE DETERMINED,percent
+TOT_NWALT12_24,TO BE DETERMINED,"Recreation - Recreational areas, golf courses, cemeteries, and parks. Includes spectator recreation venues where identifiable: Sports arenas, racetracks, amusement parks, zoos, and so on.",TO BE DETERMINED,percent
+TOT_NWALT12_23,TO BE DETERMINED,"Industrial/Military - Industrial and military. Includes heavy and light industry, seaports/ harbors, manufacturing, mills/factories, utilities, waste/recycling/ landfills, energy production, warehousing/distribution, water- management features, major communication facilities, and military bases.",TO BE DETERMINED,percent
+TOT_NWALT12_22,TO BE DETERMINED,"Commercial/Services - Commercial and services. Includes retail stores, shopping centers, office buildings, commercial zones, professional services and organizations, universities, schools, hospitals, churches, prisons, police and fire stations, and so on. May include areas of extensive commercial use where identifiable, such as nurseries or vehicle yards.",TO BE DETERMINED,percent
+TOT_NWALT12_21,TO BE DETERMINED,"Major Transportation - Major roads, rail, and airports, along with their associated facilities. Major roads are those equivalent to Department of Transportation function classes 1-3. At the spatial resolution of this dataset, road pixels usually incorporate some adjacent development, and in urban areas, they typically include commercial uses. Minor roads are considered an integral part of other land uses; for example, res- idential neighborhood roads are a part of the Residential classes.",TO BE DETERMINED,percent
+TOT_NWALT12_12,TO BE DETERMINED,"Wetlands - Core wetlands class that does not change between years and is based on agreement of wetlands from three sources/periods: The NLCD 1992, NLCD 2001, and NLCD 2011.",TO BE DETERMINED,percent
+TOT_NWALT12_11,TO BE DETERMINED,"Water - Streams, rivers, lakes, ponds, bays, and estuaries.",TO BE DETERMINED,percent
+TOT_NWALT02_60,TO BE DETERMINED,"Very Low Use, Conservation - Areas in GAP status 1 in Protected Areas Database Conservation Biology Institute Edition V2 (for example, National Wild- life Refuges, National Parks, Wilderness Areas, and National Preserves). Does not include lands in the USDA Conservation Reserve Program. Very low human usage.",TO BE DETERMINED,percent
+TOT_NWALT02_50,TO BE DETERMINED,"Low Use - No obvious indication of anthropogenic influence, and not in active GAP status 1 conservation (class 60). May have a lower protection status (GAP class 2-3).",TO BE DETERMINED,percent
+TOT_NWALT02_45,TO BE DETERMINED,"Grazing Potential - Areas of good grazing potential beyond what is indicated by the NLCD. Information suggests the land could and has been used at least on a seasonal or occasional basis for animal grazing, including woodland pasture. Based on physical parameters and agreement from other land cover datasets:  Pixel is within 1 km of water body or within 500 m of a streamline; slope <30 percent; was in a pasture/hay class in both the NLCDe 1992 and the Crop Data Layer 2009; hden <124; is not on a military base, protected national park, or similar unlikely grazing area; and would other- wise be in class 50.",TO BE DETERMINED,percent
+TOT_NWALT02_44,TO BE DETERMINED,"Pasture/Hay - Areas of grasses, legumes, or grass-legume mixtures planted for live- stock grazing or the production of seed or hay crops, typically on a perennial cycle. Identical definition to NLCD 2011 class 81.",TO BE DETERMINED,percent
+TOT_NWALT02_43,TO BE DETERMINED,"Crops - Areas used for the production of crops, such as corn, soybeans, wheat, vegetables, or  cotton, as well as perennial woody crops such as orchards and vineyards. Includes cultivated crops, row crops, small grains, and fallow fields. Identical definition to NLCD 2011 class 82.",TO BE DETERMINED,percent
+TOT_NWALT02_41,TO BE DETERMINED,"Mining/Extraction - Barren areas due to probable surface mining/mineral extraction. Includes mining, quarries, sand and gravel operations, and energy operations.",TO BE DETERMINED,percent
+TOT_NWALT02_33,TO BE DETERMINED,"Anthropogenic Other - Miscellaneous non-residential urban uses not captured by the NLCD as Developed and likely to have a persistent presence throughout every year of this dataset (see text). Primarily barren or low-vegetation areas associated with industrial, transportation, or recreation uses (for example, landfills or beaches). Probable low-medium anthropogenic influence related to non-residential activities.",TO BE DETERMINED,percent
+TOT_NWALT02_32,TO BE DETERMINED,"Urban Interface Low Medium - Land not in a Developed or Production land use, but in a near-urban (suburban, ex-urban) area (hden 16-500 units/km2). Probable low- medium anthropogenic influence.",TO BE DETERMINED,percent
+TOT_NWALT02_31,TO BE DETERMINED,"Urban Interface High - Land not in a Developed or Production land use, but in an urban area (hden >500 or in or near an urban core area). Probable medium- high anthropogenic influence.",TO BE DETERMINED,percent
+TOT_NWALT02_27,TO BE DETERMINED,"Developed, Other - Low-density developed areas (hden <16) and not classifiable in any other class. Primarily low-density residential, rural roads, or vacant land.",TO BE DETERMINED,percent
+TOT_NWALT02_26,TO BE DETERMINED,"Residential, Low-Medium Density - Primarily residential development, with hden 16-500 units/km2.",TO BE DETERMINED,percent
+TOT_NWALT02_25,TO BE DETERMINED,"Residential, High Density - Recreational areas, golf courses, cemeteries, and parks. Includes spectator recreation venues where identifiable: Sports arenas, racetracks, amusement parks, zoos, and so on.",TO BE DETERMINED,percent
+TOT_NWALT02_24,TO BE DETERMINED,"Recreation  - Recreational areas, golf courses, cemeteries, and parks. Includes spectator recreation venues where identifiable: Sports arenas, racetracks, amusement parks, zoos, and so on.",TO BE DETERMINED,percent
+TOT_NWALT02_23,TO BE DETERMINED,"Industrial/Military - Industrial and military. Includes heavy and light industry, seaports/ harbors, manufacturing, mills/factories, utilities, waste/recycling/ landfills, energy production, warehousing/distribution, water- management features, major communication facilities, and military bases.",TO BE DETERMINED,percent
+TOT_NWALT02_22,TO BE DETERMINED,"Commercial/Services - Commercial and services. Includes retail stores, shopping centers, office buildings, commercial zones, professional services and organizations, universities, schools, hospitals, churches, prisons, police and fire stations, and so on. May include areas of extensive commercial use where identifiable, such as nurseries or vehicle yards.",TO BE DETERMINED,percent
+TOT_NWALT02_21,TO BE DETERMINED,"Major Transportation - Major roads, rail, and airports, along with their associated facilities. Major roads are those equivalent to Department of Transportation function classes 1-3. At the spatial resolution of this dataset, road pixels usually incorporate some adjacent development, and in urban areas, they typically include commercial uses. Minor roads are considered an integral part of other land uses; for example, res- idential neighborhood roads are a part of the Residential classes.",TO BE DETERMINED,percent
+TOT_NWALT02_12,TO BE DETERMINED,"Wetlands - Core wetlands class that does not change between years and is based on agreement of wetlands from three sources/periods: The NLCD 1992, NLCD 2001, and NLCD 2011.",TO BE DETERMINED,percent
+TOT_NWALT02_11,TO BE DETERMINED,"Water - Streams, rivers, lakes, ponds, bays, and estuaries.",TO BE DETERMINED,percent
+TOT_NPDES_MAJ_DENS,TO BE DETERMINED,NA,TO BE DETERMINED,NA
+TOT_NORM_STORAGE_2013,TO BE DETERMINED,"The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",TO BE DETERMINED,acre feet
+TOT_NORM_STORAGE_2010,TO BE DETERMINED,"The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",TO BE DETERMINED,acre feet
+TOT_NORM_STORAGE_2000,TO BE DETERMINED,"The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",TO BE DETERMINED,acre feet
+TOT_NORM_STORAGE_1990,TO BE DETERMINED,"The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",TO BE DETERMINED,acre feet
+TOT_NORM_STORAGE_1980,TO BE DETERMINED,"The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",TO BE DETERMINED,acre feet
+TOT_NORM_STORAGE_1970,TO BE DETERMINED,"The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",TO BE DETERMINED,acre feet
+TOT_NORM_STORAGE_1960,TO BE DETERMINED,"The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",TO BE DETERMINED,acre feet
+TOT_NORM_STORAGE_1950,TO BE DETERMINED,"The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",TO BE DETERMINED,acre feet
+TOT_NORM_STORAGE_1940,TO BE DETERMINED,"The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",TO BE DETERMINED,acre feet
+TOT_NORM_STORAGE_1930,TO BE DETERMINED,"The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",TO BE DETERMINED,acre feet
+TOT_NONE,TO BE DETERMINED,NA,TO BE DETERMINED,NA
+TOT_NO4AVE,TO BE DETERMINED,Average value of percent by weight of soil material less than 3 inches in size and passing a No. 4 sieve (5 mm),TO BE DETERMINED,percent
+TOT_NO200AVE,TO BE DETERMINED,Average value of percent by weight of soil material less than 3 inches in size and passing a No. 200 sieve (.074 mm),TO BE DETERMINED,percent
+TOT_NO10AVE,TO BE DETERMINED,Average value of percent by weight of soil material less than 3 inches in size and passing a No. 10 sieve (2 mm),TO BE DETERMINED,percent
+TOT_NLCD11_95_RIP50,TO BE DETERMINED,Emergent Herbaceous Wetlands - areas where perennial herbaceous vegetation accounts for greater than 80% of vegetative cover and the soil or substrate is periodically saturated with or covered with water.,TO BE DETERMINED,percent
+TOT_NLCD11_95,TO BE DETERMINED,Emergent Herbaceous Wetlands - areas where perennial herbaceous vegetation accounts for greater than 80% of vegetative cover and the soil or substrate is periodically saturated with or covered with water.,TO BE DETERMINED,percent
+TOT_NLCD11_90_RIP50,TO BE DETERMINED,Woody Wetlands - areas where forest or shrubland vegetation accounts for greater than 20% of vegetative cover and the soil or substrate is periodically saturated with or covered with water.,TO BE DETERMINED,percent
+TOT_NLCD11_90,TO BE DETERMINED,Woody Wetlands - areas where forest or shrubland vegetation accounts for greater than 20% of vegetative cover and the soil or substrate is periodically saturated with or covered with water.,TO BE DETERMINED,percent
+TOT_NLCD11_82_RIP50,TO BE DETERMINED,"Cultivated Crops - areas used for the production of annual crops, such as corn, soybeans, vegetables, tobacco, and cotton, and also perennial woody crops such as orchards and vineyards. Crop vegetation accounts for greater than 20% of total vegetation. This class also includes all land being actively tilled.",TO BE DETERMINED,percent
+TOT_NLCD11_82,TO BE DETERMINED,"Cultivated Crops - areas used for the production of annual crops, such as corn, soybeans, vegetables, tobacco, and cotton, and also perennial woody crops such as orchards and vineyards. Crop vegetation accounts for greater than 20% of total vegetation. This class also includes all land being actively tilled.",TO BE DETERMINED,percent
+TOT_NLCD11_81_RIP50,TO BE DETERMINED,"Pasture/Hay - areas of grasses, legumes, or grass-legume mixtures planted for livestock grazing or the production of seed or hay crops, typically on a perennial cycle. Pasture/hay vegetation accounts for greater than 20% of total vegetation.",TO BE DETERMINED,percent
+TOT_NLCD11_81,TO BE DETERMINED,"Pasture/Hay - areas of grasses, legumes, or grass-legume mixtures planted for livestock grazing or the production of seed or hay crops, typically on a perennial cycle. Pasture/hay vegetation accounts for greater than 20% of total vegetation.",TO BE DETERMINED,percent
+TOT_NLCD11_71_RIP50,TO BE DETERMINED,"Grassland/Herbaceous - areas dominated by gramanoid or herbaceous vegetation, generally greater than 80% of total vegetation. These areas are not subject to intensive management such as tilling, but can be utilized for grazing",TO BE DETERMINED,percent
+TOT_NLCD11_71,TO BE DETERMINED,"Grassland/Herbaceous - areas dominated by gramanoid or herbaceous vegetation, generally greater than 80% of total vegetation. These areas are not subject to intensive management such as tilling, but can be utilized for grazing",TO BE DETERMINED,percent
+TOT_NLCD11_52_RIP50,TO BE DETERMINED,"Shrub/Scrub - areas dominated by shrubs; less than 5 meters tall with shrub canopy typically greater than 20% of total vegetation. This class includes true shrubs, young trees in an early successional stage or trees stunted from environmental conditions.",TO BE DETERMINED,percent
+TOT_NLCD11_52,TO BE DETERMINED,"Shrub/Scrub - areas dominated by shrubs; less than 5 meters tall with shrub canopy typically greater than 20% of total vegetation. This class includes true shrubs, young trees in an early successional stage or trees stunted from environmental conditions.",TO BE DETERMINED,percent
+TOT_NLCD11_43_RIP50,TO BE DETERMINED,"Mixed Forest - areas dominated by trees generally greater than 5 meters tall, and greater than 20% of total vegetation cover. Neither deciduous nor evergreen species are greater than 75% of total tree cover.",TO BE DETERMINED,percent
+TOT_NLCD11_43,TO BE DETERMINED,"Mixed Forest - areas dominated by trees generally greater than 5 meters tall, and greater than 20% of total vegetation cover. Neither deciduous nor evergreen species are greater than 75% of total tree cover.",TO BE DETERMINED,percent
+TOT_NLCD11_42_RIP50,TO BE DETERMINED,"Evergreen Forest - areas dominated by trees generally greater than 5 meters tall, and greater than 20% of total vegetation cover. More than 75% of the tree species maintain their leaves all year. Canopy is never without green foliage.",TO BE DETERMINED,percent
+TOT_NLCD11_42,TO BE DETERMINED,"Evergreen Forest - areas dominated by trees generally greater than 5 meters tall, and greater than 20% of total vegetation cover. More than 75% of the tree species maintain their leaves all year. Canopy is never without green foliage.",TO BE DETERMINED,percent
+TOT_NLCD11_41_RIP50,TO BE DETERMINED,"Deciduous Forest - areas dominated by trees generally greater than 5 meters tall, and greater than 20% of total vegetation cover. More than 75% of the tree species shed foliage simultaneously in response to seasonal change.",TO BE DETERMINED,percent
+TOT_NLCD11_41,TO BE DETERMINED,"Deciduous Forest - areas dominated by trees generally greater than 5 meters tall, and greater than 20% of total vegetation cover. More than 75% of the tree species shed foliage simultaneously in response to seasonal change.",TO BE DETERMINED,percent
+TOT_NLCD11_31_RIP50,TO BE DETERMINED,"Barren Land (Rock/Sand/Clay) - areas of bedrock, desert pavement, scarps, talus, slides, volcanic material, glacial debris, sand dunes, strip mines, gravel pits and other accumulations of earthen material. Generally, vegetation accounts for less than 15% of total cover.",TO BE DETERMINED,percent
+TOT_NLCD11_31,TO BE DETERMINED,"Barren Land (Rock/Sand/Clay) - areas of bedrock, desert pavement, scarps, talus, slides, volcanic material, glacial debris, sand dunes, strip mines, gravel pits and other accumulations of earthen material. Generally, vegetation accounts for less than 15% of total cover.",TO BE DETERMINED,percent
+TOT_NLCD11_24_RIP50,TO BE DETERMINED,"Developed High Intensity - highly developed areas where people reside or work in high numbers. Examples include apartment complexes, row houses and commercial/industrial. Impervious surfaces account for 80% to 100% of the total cover.",TO BE DETERMINED,percent
+TOT_NLCD11_24,TO BE DETERMINED,"Developed High Intensity - highly developed areas where people reside or work in high numbers. Examples include apartment complexes, row houses and commercial/industrial. Impervious surfaces account for 80% to 100% of the total cover.",TO BE DETERMINED,percent
+TOT_NLCD11_23_RIP50,TO BE DETERMINED,"Developed, Medium Intensity - areas with a mixture of constructed materials and vegetation. Impervious surfaces account for 50% to 79% of the total cover. These areas most commonly include single-family housing units.",TO BE DETERMINED,percent
+TOT_NLCD11_23,TO BE DETERMINED,"Developed, Medium Intensity - areas with a mixture of constructed materials and vegetation. Impervious surfaces account for 50% to 79% of the total cover. These areas most commonly include single-family housing units.",TO BE DETERMINED,percent
+TOT_NLCD11_22_RIP50,TO BE DETERMINED,"Developed, Low Intensity - areas with a mixture of constructed materials and vegetation. Impervious surfaces account for 20% to 49% percent of total cover. These areas most commonly include single-family housing units.",TO BE DETERMINED,percent
+TOT_NLCD11_22,TO BE DETERMINED,"Developed, Low Intensity - areas with a mixture of constructed materials and vegetation. Impervious surfaces account for 20% to 49% percent of total cover. These areas most commonly include single-family housing units.",TO BE DETERMINED,percent
+TOT_NLCD11_21_RIP50,TO BE DETERMINED,"Developed, Open Space - areas with a mixture of some constructed materials, but mostly vegetation in the form of lawn grasses. Impervious surfaces account for less than 20% of total cover. These areas most commonly include large-lot single-family housing units, parks, golf courses, and vegetation planted in developed settings for recreation, erosion control, or aesthetic purposes.",TO BE DETERMINED,percent
+TOT_NLCD11_21,TO BE DETERMINED,"Developed, Open Space - areas with a mixture of some constructed materials, but mostly vegetation in the form of lawn grasses. Impervious surfaces account for less than 20% of total cover. These areas most commonly include large-lot single-family housing units, parks, golf courses, and vegetation planted in developed settings for recreation, erosion control, or aesthetic purposes.",TO BE DETERMINED,percent
+TOT_NLCD11_12_RIP50,TO BE DETERMINED,"Perennial Ice/Snow - areas characterized by a perennial cover of ice and/or snow, generally greater than 25% of total cover.",TO BE DETERMINED,percent
+TOT_NLCD11_12,TO BE DETERMINED,"Perennial Ice/Snow - areas characterized by a perennial cover of ice and/or snow, generally greater than 25% of total cover.",TO BE DETERMINED,percent
+TOT_NLCD11_11_RIP50,TO BE DETERMINED,"Open Water - areas of open water, generally with less than 25% cover of vegetation or soil.",TO BE DETERMINED,percent
+TOT_NLCD11_11,TO BE DETERMINED,"Open Water - areas of open water, generally with less than 25% cover of vegetation or soil.",TO BE DETERMINED,percent
+TOT_NLCD06_95,TO BE DETERMINED,Emergent Herbaceous Wetlands - areas where perennial herbaceous vegetation accounts for greater than 80% of vegetative cover and the soil or substrate is periodically saturated with or covered with water.,TO BE DETERMINED,percent
+TOT_NLCD06_90,TO BE DETERMINED,Woody Wetlands - areas where forest or shrubland vegetation accounts for greater than 20% of vegetative cover and the soil or substrate is periodically saturated with or covered with water.,TO BE DETERMINED,percent
+TOT_NLCD06_82,TO BE DETERMINED,"Cultivated Crops - areas used for the production of annual crops, such as corn, soybeans, vegetables, tobacco, and cotton, and also perennial woody crops such as orchards and vineyards. Crop vegetation accounts for greater than 20% of total vegetation. This class also includes all land being actively tilled.",TO BE DETERMINED,percent
+TOT_NLCD06_81,TO BE DETERMINED,"Pasture/Hay - areas of grasses, legumes, or grass-legume mixtures planted for livestock grazing or the production of seed or hay crops, typically on a perennial cycle. Pasture/hay vegetation accounts for greater than 20% of total vegetation.",TO BE DETERMINED,percent
+TOT_NLCD06_71,TO BE DETERMINED,"Grassland/Herbaceous - areas dominated by gramanoid or herbaceous vegetation, generally greater than 80% of total vegetation. These areas are not subject to intensive management such as tilling, but can be utilized for grazing",TO BE DETERMINED,percent
+TOT_NLCD06_52,TO BE DETERMINED,"Shrub/Scrub - areas dominated by shrubs; less than 5 meters tall with shrub canopy typically greater than 20% of total vegetation. This class includes true shrubs, young trees in an early successional stage or trees stunted from environmental conditions.",TO BE DETERMINED,percent
+TOT_NLCD06_43,TO BE DETERMINED,"Mixed Forest - areas dominated by trees generally greater than 5 meters tall, and greater than 20% of total vegetation cover. Neither deciduous nor evergreen species are greater than 75% of total tree cover.",TO BE DETERMINED,percent
+TOT_NLCD06_42,TO BE DETERMINED,"Evergreen Forest - areas dominated by trees generally greater than 5 meters tall, and greater than 20% of total vegetation cover. More than 75% of the tree species maintain their leaves all year. Canopy is never without green foliage.",TO BE DETERMINED,percent
+TOT_NLCD06_41,TO BE DETERMINED,"Deciduous Forest - areas dominated by trees generally greater than 5 meters tall, and greater than 20% of total vegetation cover. More than 75% of the tree species shed foliage simultaneously in response to seasonal change.",TO BE DETERMINED,percent
+TOT_NLCD06_31,TO BE DETERMINED,"Barren Land (Rock/Sand/Clay) - areas of bedrock, desert pavement, scarps, talus, slides, volcanic material, glacial debris, sand dunes, strip mines, gravel pits and other accumulations of earthen material. Generally, vegetation accounts for less than 15% of total cover.",TO BE DETERMINED,percent
+TOT_NLCD06_24,TO BE DETERMINED,"Developed High Intensity - highly developed areas where people reside or work in high numbers. Examples include apartment complexes, row houses and commercial/industrial. Impervious surfaces account for 80% to 100% of the total cover.",TO BE DETERMINED,percent
+TOT_NLCD06_23,TO BE DETERMINED,"Developed, Medium Intensity - areas with a mixture of constructed materials and vegetation. Impervious surfaces account for 50% to 79% of the total cover. These areas most commonly include single-family housing units.",TO BE DETERMINED,percent
+TOT_NLCD06_22,TO BE DETERMINED,"Developed, Low Intensity - areas with a mixture of constructed materials and vegetation. Impervious surfaces account for 20% to 49% percent of total cover. These areas most commonly include single-family housing units.",TO BE DETERMINED,percent
+TOT_NLCD06_21,TO BE DETERMINED,"Developed, Open Space - areas with a mixture of some constructed materials, but mostly vegetation in the form of lawn grasses. Impervious surfaces account for less than 20% of total cover. These areas most commonly include large-lot single-family housing units, parks, golf courses, and vegetation planted in developed settings for recreation, erosion control, or aesthetic purposes.",TO BE DETERMINED,percent
+TOT_NLCD06_12,TO BE DETERMINED,"Perennial Ice/Snow - areas characterized by a perennial cover of ice and/or snow, generally greater than 25% of total cover.",TO BE DETERMINED,percent
+TOT_NLCD06_11,TO BE DETERMINED,"Open Water - areas of open water, generally with less than 25% cover of vegetation or soil.",TO BE DETERMINED,percent
+TOT_NLCD01_95,TO BE DETERMINED,Emergent Herbaceous Wetlands - areas where perennial herbaceous vegetation accounts for greater than 80% of vegetative cover and the soil or substrate is periodically saturated with or covered with water.,TO BE DETERMINED,percent
+TOT_NLCD01_90,TO BE DETERMINED,Woody Wetlands - areas where forest or shrubland vegetation accounts for greater than 20% of vegetative cover and the soil or substrate is periodically saturated with or covered with water.,TO BE DETERMINED,percent
+TOT_NLCD01_82,TO BE DETERMINED,"Cultivated Crops - areas used for the production of annual crops, such as corn, soybeans, vegetables, tobacco, and cotton, and also perennial woody crops such as orchards and vineyards. Crop vegetation accounts for greater than 20% of total vegetation. This class also includes all land being actively tilled.",TO BE DETERMINED,percent
+TOT_NLCD01_81,TO BE DETERMINED,"Pasture/Hay - areas of grasses, legumes, or grass-legume mixtures planted for livestock grazing or the production of seed or hay crops, typically on a perennial cycle. Pasture/hay vegetation accounts for greater than 20% of total vegetation.",TO BE DETERMINED,percent
+TOT_NLCD01_71,TO BE DETERMINED,"Grassland/Herbaceous - areas dominated by gramanoid or herbaceous vegetation, generally greater than 80% of total vegetation. These areas are not subject to intensive management such as tilling, but can be utilized for grazing",TO BE DETERMINED,percent
+TOT_NLCD01_52,TO BE DETERMINED,"Shrub/Scrub - areas dominated by shrubs; less than 5 meters tall with shrub canopy typically greater than 20% of total vegetation. This class includes true shrubs, young trees in an early successional stage or trees stunted from environmental conditions.",TO BE DETERMINED,percent
+TOT_NLCD01_43,TO BE DETERMINED,"Mixed Forest - areas dominated by trees generally greater than 5 meters tall, and greater than 20% of total vegetation cover. Neither deciduous nor evergreen species are greater than 75% of total tree cover.",TO BE DETERMINED,percent
+TOT_NLCD01_42,TO BE DETERMINED,"Evergreen Forest - areas dominated by trees generally greater than 5 meters tall, and greater than 20% of total vegetation cover. More than 75% of the tree species maintain their leaves all year. Canopy is never without green foliage.",TO BE DETERMINED,percent
+TOT_NLCD01_41,TO BE DETERMINED,"Deciduous Forest - areas dominated by trees generally greater than 5 meters tall, and greater than 20% of total vegetation cover. More than 75% of the tree species shed foliage simultaneously in response to seasonal change.",TO BE DETERMINED,percent
+TOT_NLCD01_31,TO BE DETERMINED,"Barren Land (Rock/Sand/Clay) - areas of bedrock, desert pavement, scarps, talus, slides, volcanic material, glacial debris, sand dunes, strip mines, gravel pits and other accumulations of earthen material. Generally, vegetation accounts for less than 15% of total cover.",TO BE DETERMINED,percent
+TOT_NLCD01_24,TO BE DETERMINED,"Developed High Intensity - highly developed areas where people reside or work in high numbers. Examples include apartment complexes, row houses and commercial/industrial. Impervious surfaces account for 80% to 100% of the total cover.",TO BE DETERMINED,percent
+TOT_NLCD01_23,TO BE DETERMINED,"Developed, Medium Intensity - areas with a mixture of constructed materials and vegetation. Impervious surfaces account for 50% to 79% of the total cover. These areas most commonly include single-family housing units.",TO BE DETERMINED,percent
+TOT_NLCD01_22,TO BE DETERMINED,"Developed, Low Intensity - areas with a mixture of constructed materials and vegetation. Impervious surfaces account for 20% to 49% percent of total cover. These areas most commonly include single-family housing units.",TO BE DETERMINED,percent
+TOT_NLCD01_21,TO BE DETERMINED,"Developed, Open Space - areas with a mixture of some constructed materials, but mostly vegetation in the form of lawn grasses. Impervious surfaces account for less than 20% of total cover. These areas most commonly include large-lot single-family housing units, parks, golf courses, and vegetation planted in developed settings for recreation, erosion control, or aesthetic purposes.",TO BE DETERMINED,percent
+TOT_NLCD01_12,TO BE DETERMINED,"Perennial Ice/Snow - areas characterized by a perennial cover of ice and/or snow, generally greater than 25% of total cover.",TO BE DETERMINED,percent
+TOT_NLCD01_11,TO BE DETERMINED,"Open Water - areas of open water, generally with less than 25% cover of vegetation or soil.",TO BE DETERMINED,percent
+TOT_NID_STORAGE_2013,TO BE DETERMINED,"The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",TO BE DETERMINED,acre feet
+TOT_NID_STORAGE_2010,TO BE DETERMINED,"The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",TO BE DETERMINED,acre feet
+TOT_NID_STORAGE_2000,TO BE DETERMINED,"The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",TO BE DETERMINED,acre feet
+TOT_NID_STORAGE_1990,TO BE DETERMINED,"The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",TO BE DETERMINED,acre feet
+TOT_NID_STORAGE_1980,TO BE DETERMINED,"The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",TO BE DETERMINED,acre feet
+TOT_NID_STORAGE_1970,TO BE DETERMINED,"The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",TO BE DETERMINED,acre feet
+TOT_NID_STORAGE_1960,TO BE DETERMINED,"The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",TO BE DETERMINED,acre feet
+TOT_NID_STORAGE_1950,TO BE DETERMINED,"The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",TO BE DETERMINED,acre feet
+TOT_NID_STORAGE_1940,TO BE DETERMINED,"The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",TO BE DETERMINED,acre feet
+TOT_NID_STORAGE_1930,TO BE DETERMINED,"The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",TO BE DETERMINED,acre feet
+TOT_NID_MAJ_DENS_1950,TO BE DETERMINED,NA,TO BE DETERMINED,NA
+TOT_NID_DENS_1950,TO BE DETERMINED,NA,TO BE DETERMINED,NA
+TOT_NEMATICIDE,TO BE DETERMINED,"Average kilograms per square kilometer of nematicide use on agricultural land, 2009",TO BE DETERMINED,kg/km2
+TOT_NDAMS_2013,TO BE DETERMINED,Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT),TO BE DETERMINED,number of dams
+TOT_NDAMS_2010,TO BE DETERMINED,Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT),TO BE DETERMINED,number of dams
+TOT_NDAMS_2000,TO BE DETERMINED,Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT),TO BE DETERMINED,number of dams
+TOT_NDAMS_1990,TO BE DETERMINED,Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT),TO BE DETERMINED,number of dams
+TOT_NDAMS_1980,TO BE DETERMINED,Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT),TO BE DETERMINED,number of dams
+TOT_NDAMS_1970,TO BE DETERMINED,Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT),TO BE DETERMINED,number of dams
+TOT_NDAMS_1960,TO BE DETERMINED,Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT),TO BE DETERMINED,number of dams
+TOT_NDAMS_1950,TO BE DETERMINED,Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT),TO BE DETERMINED,number of dams
+TOT_NDAMS_1940,TO BE DETERMINED,Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT),TO BE DETERMINED,number of dams
+TOT_NDAMS_1930,TO BE DETERMINED,Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT),TO BE DETERMINED,number of dams
+TOT_NATL_P,TO BE DETERMINED,contribution of phosphorus (P) to streams from weathering and erosion of surficial geologic materials,TO BE DETERMINED,parts per million
+TOT_N97,TO BE DETERMINED,"Estimate of nitrogen from fertilizer and manure, from Census of Ag 1997 and AAPFCO",TO BE DETERMINED,kg/km2
+TOT_MIRAD_2012,TO BE DETERMINED,"Percent of watershed in irrigated agriculture, from USGS 2012 250-m MODIS data",TO BE DETERMINED,percent
+TOT_MIRAD_2007,TO BE DETERMINED,"Percent of watershed in irrigated agriculture, from USGS 2007 250-m MODIS data",TO BE DETERMINED,percent
+TOT_MIRAD_2002,TO BE DETERMINED,"Percent of watershed in irrigated agriculture, from USGS 2002 250-m MODIS data",TO BE DETERMINED,percent
+TOT_MINWD6190,TO BE DETERMINED,Minimum number of wet days (days) from 800m PRISM data. 30 year period or record from 1961-1990.,TO BE DETERMINED,days
+TOT_MINP6190,TO BE DETERMINED,Minimum average annual precipitation (mm) from 800m PRISM data. 30 year period or record from 1961-1990.,TO BE DETERMINED,millimeters
+TOT_META,TO BE DETERMINED,NA,TO BE DETERMINED,NA
+TOT_MAXWD6190,TO BE DETERMINED,Maximum number of wet days (days) from 800m PRISM data. 30 year period or record from 1961-1990.,TO BE DETERMINED,days
+TOT_MAXP6190,TO BE DETERMINED,Maximum average annual precipitation (mm) from 800m PRISM data. 30 year period or record from 1961-1990.,TO BE DETERMINED,millimeters
+TOT_MAJOR_2013,TO BE DETERMINED,Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT),TO BE DETERMINED,number of major dams
+TOT_MAJOR_2010,TO BE DETERMINED,Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT),TO BE DETERMINED,number of major dams
+TOT_MAJOR_2000,TO BE DETERMINED,Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT),TO BE DETERMINED,number of major dams
+TOT_MAJOR_1990,TO BE DETERMINED,Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT),TO BE DETERMINED,number of major dams
+TOT_MAJOR_1980,TO BE DETERMINED,Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT),TO BE DETERMINED,number of major dams
+TOT_MAJOR_1970,TO BE DETERMINED,Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT),TO BE DETERMINED,number of major dams
+TOT_MAJOR_1960,TO BE DETERMINED,Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT),TO BE DETERMINED,number of major dams
+TOT_MAJOR_1950,TO BE DETERMINED,Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT),TO BE DETERMINED,number of major dams
+TOT_MAJOR_1940,TO BE DETERMINED,Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT),TO BE DETERMINED,number of major dams
+TOT_MAJOR_1930,TO BE DETERMINED,Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT),TO BE DETERMINED,number of major dams
+TOT_LSTFZ6190,TO BE DETERMINED,"Watershed average of mean day of the year of last freeze, derived from 30 years of record (1961-1990), 2 km PRISM.",TO BE DETERMINED,day of the year
+TOT_LENGTH_KM,TO BE DETERMINED,NA,TO BE DETERMINED,NA
+TOT_LAKEPOND,TO BE DETERMINED,Lake or Pond,TO BE DETERMINED,percent
+TOT_KGFISH,TO BE DETERMINED,"Toxicity Weighted Use for fish in kilograms per square kilometer on agricultural land, 2013",TO BE DETERMINED,kg/km2
+TOT_KGCLADO,TO BE DETERMINED,"Toxicity Weighted Use for cladocerans in kilograms per square kilometer on agricultural land, 2013",TO BE DETERMINED,kg/km2
+TOT_KGBI,TO BE DETERMINED,"Toxicity Weighted Use for benthic invertebrates in kilograms per square kilometer on agricultural land, 2013",TO BE DETERMINED,kg/km2
+TOT_KFACT_UP,TO BE DETERMINED,Average K-factor value for the uppermost soil horizon in each soil component. K-factor is an erodibility factor which quantifies the susceptibility of soil particles to detachment and movement by water. The K-factor is used in the Universal Soil Loss Equation (USLE) to estimate soil loss by water. Higher values of K-factor indicate greater potential for erosion.,TO BE DETERMINED,unitless
+TOT_KFACT,TO BE DETERMINED,Average K-factor value. K-factor is an erodibility factor which quantifies the susceptibility of soil particles to detachment and movement by water. The K-factor is used in the Universal Soil Loss Equation (USLE) to estimate soil loss by water. Higher values of K-factor indicate greater potential for erosion.,TO BE DETERMINED,unitless
+TOT_INSECTICIDE,TO BE DETERMINED,"Average kilograms per square kilometer of insecticide use on agricultural land, 2009",TO BE DETERMINED,kg/km2
+TOT_IMPV11_BUFF100,TO BE DETERMINED,Impervious surface in 100 meter riparion buffers from NLCD 2011,TO BE DETERMINED,percent
+TOT_IMPV11,TO BE DETERMINED,Impervious surface from NLCD 2011,TO BE DETERMINED,percent
+TOT_IMPV06_BUFF100,TO BE DETERMINED,Impervious surface in 100 meter riparion buffers from NLCD 2006,TO BE DETERMINED,percent
+TOT_IMPV06,TO BE DETERMINED,Impervious surface from NLCD 2006,TO BE DETERMINED,percent
+TOT_IMPV01_BUFF100,TO BE DETERMINED,Impervious surface in 100 meter riparion buffers from NLCD 2001,TO BE DETERMINED,percent
+TOT_IMPV01,TO BE DETERMINED,Impervious surface from NLCD 2001,TO BE DETERMINED,percent
+TOT_ICEMASS,TO BE DETERMINED,Ice Mass,TO BE DETERMINED,percent
+TOT_HUNT9,TO BE DETERMINED,"(Hunt GEOCODE:  w) Gravel, sand and clay deposited by glacial streams adjacent to or downstream from temporary ice fronts",TO BE DETERMINED,percent
+TOT_HUNT8,TO BE DETERMINED,(Hunt GEOCODE:  mg) Deposits of mountain glaciers,TO BE DETERMINED,percent
+TOT_HUNT7,TO BE DETERMINED,"(Hunt GEOCODE:  ts/K,T) Thin ice-laid deposits, like ts but thin and discontinuous.  Extensive exposure of underlying Cretaceous- and Tertiary-age formations",TO BE DETERMINED,percent
+TOT_HUNT6,TO BE DETERMINED,"(Hunt GEOCODE:  ts) Ice-laid deposits, like tg but mostly sand and silt",TO BE DETERMINED,percent
+TOT_HUNT5,TO BE DETERMINED,"(Hunt GEOCODE:  tg) Till, or ground moraine",TO BE DETERMINED,percent
+TOT_HUNT45,TO BE DETERMINED,(Hunt GEOCODE:  co/c) Clayey and loamy colluvium; on poorly consolidated rocks on  lee sides of Pacific Coast Ranges,TO BE DETERMINED,percent
+TOT_HUNT44,TO BE DETERMINED,(Hunt GEOCODE:  co/gr) Bouldery and sandy colluvium on granitic rocks,TO BE DETERMINED,percent
+TOT_HUNT43,TO BE DETERMINED,(Hunt GEOCODE:  co/v) Colluvium on volcanic rocks,TO BE DETERMINED,percent
+TOT_HUNT42,TO BE DETERMINED,(Hunt GEOCODE:  co/m) Stony colluvium on metamorphic rocks; less silt and clay than in co/ls,TO BE DETERMINED,percent
+TOT_HUNT41,TO BE DETERMINED,"(Hunt GEOCODE:  co/ls) Stony colluvium on limestone; considerable admixed silt,  possibly of loess origin",TO BE DETERMINED,percent
+TOT_HUNT40,TO BE DETERMINED,"(Hunt GEOCODE:  co/ss,sh) Sandy and stony colluvium derived mostly from sandstone and shale",TO BE DETERMINED,percent
+TOT_HUNT4,TO BE DETERMINED,(Hunt GEOCODE:  pW) Pre-Wisconsinan drift,TO BE DETERMINED,percent
+TOT_HUNT39,TO BE DETERMINED,"(Hunt GEOCODE:  gp) Sandy coastal ground with organic layer over a shallow water  table, ground water podsols",TO BE DETERMINED,percent
+TOT_HUNT38,TO BE DETERMINED,"(Hunt GEOCODE:  m) Marshes, swamps, peat deposits; only locally thicker than 12 feet",TO BE DETERMINED,percent
+TOT_HUNT37,TO BE DETERMINED,(Hunt GEOCODE:  c) Clayey ground on weathered Permian- and/or Triassic-age red beds,TO BE DETERMINED,percent
+TOT_HUNT36,TO BE DETERMINED,"(Hunt GEOCODE:  gyp) Sandy gypsiferous ground; many sinks, local dunes; vegetation scanty or lacking where there is much gypsum or other salt",TO BE DETERMINED,percent
+TOT_HUNT35,TO BE DETERMINED,"(Hunt GEOCODE:  sh) Shaley or sandy ground; on mixed sandstone and shale formations; where shaley, contains considerable swelling clay",TO BE DETERMINED,percent
+TOT_HUNT34,TO BE DETERMINED,(Hunt GEOCODE:  ss) Sandy ground; mostly on poorly consolidated sandstone  formations,TO BE DETERMINED,percent
+TOT_HUNT33,TO BE DETERMINED,(Hunt GEOCODE:  ls) Silt on limestone; probably includes considerable loess; extensive bare rock,TO BE DETERMINED,percent
+TOT_HUNT32,TO BE DETERMINED,(Hunt GEOCODE:  rsi) Sandy or silty residuum; probably includes loess. Depth generally less than 10 feet,TO BE DETERMINED,percent
+TOT_HUNT31,TO BE DETERMINED,"(Hunt GEOCODE:  rph) Phosphatic clay; poorly sorted clay and phosphate pebbles or nodules in sandy matrix. Thickness 10 to 50 feet, commonly overlain by loose sand. Major source of phosphate fertilizer",TO BE DETERMINED,percent
+TOT_HUNT30,TO BE DETERMINED,"(Hunt GEOCODE:  rg) Intensively weathered upper Tertiary- and Quaternary-age gravels; thickness generally less than 30 feet,  distribution not completely known",TO BE DETERMINED,percent
+TOT_HUNT3,TO BE DETERMINED,(Hunt GEOCODE:  bm) Backshore deposits,TO BE DETERMINED,percent
+TOT_HUNT29,TO BE DETERMINED,"(Hunt GEOCODE:  rl) Loam; texture variable, ranging from sand to clay, mostly  non-swelling clay mineral, kaolinite; otherwise similar to rc",TO BE DETERMINED,percent
+TOT_HUNT28,TO BE DETERMINED,"(Hunt GEOCODE:  rc) Clay residuum that swells when wet; developed by weathering  of poorly consolidated shale, containing the clay mineral montmorillonite, generally less than 10 feet",TO BE DETERMINED,percent
+TOT_HUNT27,TO BE DETERMINED,"(Hunt GEOCODE:  rs) Sandy residuum, derived by intensive weathering of sandstone formations. Sand locally is in dunes",TO BE DETERMINED,percent
+TOT_HUNT26,TO BE DETERMINED,"(Hunt GEOCODE:  rtr)  Residuum on Triassic-age formations; depths less than most other saprolite, reddish color, largely inherited from from parent rock",TO BE DETERMINED,percent
+TOT_HUNT25,TO BE DETERMINED,"(Hunt GEOCODE:  rlc) Cherty red clay; similar to rls, but with chert from the parent rock",TO BE DETERMINED,percent
+TOT_HUNT24,TO BE DETERMINED,"(Hunt GEOCODE:  rls) Red clay, massive clay that is generally kaolinitic",TO BE DETERMINED,percent
+TOT_HUNT23,TO BE DETERMINED,(Hunt GEOCODE:  rga) Clay residuum with little mica or quartz; mostly massive kaolinitic clay,TO BE DETERMINED,percent
+TOT_HUNT22,TO BE DETERMINED,"(Hunt GEOCODE:  rgr) Residuum with abundant quartz; much less mica than rsh, but equal to clay",TO BE DETERMINED,percent
+TOT_HUNT21,TO BE DETERMINED,"(Hunt GEOCODE:  rsh) Micaceous residuum without much quartz; clay,  mostly kaolinite",TO BE DETERMINED,percent
+TOT_HUNT20,TO BE DETERMINED,(Hunt GEOCODE:  br) Bedrock,TO BE DETERMINED,percent
+TOT_HUNT2,TO BE DETERMINED,(Hunt GEOCODE:  cr) Coral,TO BE DETERMINED,percent
+TOT_HUNT19,TO BE DETERMINED,(Hunt GEOCODE:  b) Basalt,TO BE DETERMINED,percent
+TOT_HUNT18,TO BE DETERMINED,(Hunt GEOCODE:  es) Deeply weathered loess,TO BE DETERMINED,percent
+TOT_HUNT17,TO BE DETERMINED,(Hunt GEOCODE:  wl) Wisconsinan loess,TO BE DETERMINED,percent
+TOT_HUNT16,TO BE DETERMINED,(Hunt GEOCODE:  s/osg) Sand sheets on sandy and gravelly Ogallala Formation in southern Great Plains,TO BE DETERMINED,percent
+TOT_HUNT15,TO BE DETERMINED,"(Hunt GEOCODE:  s) Sand sheets, mostly with dunes or sand mounds at surface",TO BE DETERMINED,percent
+TOT_HUNT14,TO BE DETERMINED,(Hunt GEOCODE:  l) Lake deposits,TO BE DETERMINED,percent
+TOT_HUNT13,TO BE DETERMINED,(Hunt GEOCODE:  osg) Pliocene-age and older stream deposits on the Great Plains,TO BE DETERMINED,percent
+TOT_HUNT12,TO BE DETERMINED,(Hunt GEOCODE:  fs) Fan sands,TO BE DETERMINED,percent
+TOT_HUNT11,TO BE DETERMINED,(Hunt GEOCODE:  fg) Fan gravels,TO BE DETERMINED,percent
+TOT_HUNT10,TO BE DETERMINED,(Hunt GEOCODE:  al) Floodplain and alluvium gravel terraces,TO BE DETERMINED,percent
+TOT_HUNT1,TO BE DETERMINED,(Hunt GEOCODE:  si) Sea islands,TO BE DETERMINED,percent
+TOT_HLR_9,TO BE DETERMINED,Humid plateaus with impermeable soils and permeable bedrock,TO BE DETERMINED,percent
+TOT_HLR_8,TO BE DETERMINED,Semiarid plains with impermeable soils and bedrock,TO BE DETERMINED,percent
+TOT_HLR_7,TO BE DETERMINED,Humid plains with permeable soils and impermeable bedrock,TO BE DETERMINED,percent
+TOT_HLR_6,TO BE DETERMINED,Subhumid plains with impermeable soils and bedrock,TO BE DETERMINED,percent
+TOT_HLR_5,TO BE DETERMINED,Arid plains with permeable soils and bedrock,TO BE DETERMINED,percent
+TOT_HLR_4,TO BE DETERMINED,Humid plains with permeable soils and bedrock,TO BE DETERMINED,percent
+TOT_HLR_3,TO BE DETERMINED,Subhumid plains with impermeable soils and permeable bedrock,TO BE DETERMINED,percent
+TOT_HLR_20,TO BE DETERMINED,Humid mountains with permeable soils and impermeable bedrock,TO BE DETERMINED,percent
+TOT_HLR_2,TO BE DETERMINED,Humid plains with permeable soils and bedrock,TO BE DETERMINED,percent
+TOT_HLR_19,TO BE DETERMINED,Very humid mountains with permeable soils and impermeable bedrock,TO BE DETERMINED,percent
+TOT_HLR_18,TO BE DETERMINED,Semiarid mountains with permeable soils and impermeable bedrock,TO BE DETERMINED,percent
+TOT_HLR_17,TO BE DETERMINED,Semiarid mountains with impermeable soils and bedrock,TO BE DETERMINED,percent
+TOT_HLR_16,TO BE DETERMINED,Humid mountains with permeable soils and impermeable bedrock,TO BE DETERMINED,percent
+TOT_HLR_15,TO BE DETERMINED,Semiarid mountains with impermeable soils and permeable bedrock,TO BE DETERMINED,percent
+TOT_HLR_14,TO BE DETERMINED,Arid playas with permeable soils and bedrock,TO BE DETERMINED,percent
+TOT_HLR_13,TO BE DETERMINED,Semiarid plateaus with impermeable soils and bedrock,TO BE DETERMINED,percent
+TOT_HLR_12,TO BE DETERMINED,Semiarid plateaus with permeable soils and impermeable bedrock,TO BE DETERMINED,percent
+TOT_HLR_11,TO BE DETERMINED,Humid plateaus with impermeable soils and bedrock,TO BE DETERMINED,percent
+TOT_HLR_10,TO BE DETERMINED,Arid plateaus with impermeable soils and permeable bedrock,TO BE DETERMINED,percent
+TOT_HLR_1,TO BE DETERMINED,Subhumid plains with permeable soils and bedrock,TO BE DETERMINED,percent
+TOT_HGVAR,TO BE DETERMINED,Percentage of soils in hydrologic group VAR. Hydrologic group VAR soils have variable drainage characteristics.,TO BE DETERMINED,percent
+TOT_HGD,TO BE DETERMINED,"Percentage of soils in hydrologic group D. Hydrologic group D soils have very slow infiltration rates. Soils are clayey, have a high water table, or have a shallow impervious layer.",TO BE DETERMINED,percent
+TOT_HGCD,TO BE DETERMINED,Percentage of soils in hydrologic group C/D. Hydrologic group C/D soils have group C characteristics (slow infiltration rates) when artificially drained and have group D characteristics (very slow infiltration rates) when not drained.,TO BE DETERMINED,percent
+TOT_HGC,TO BE DETERMINED,"Percentage of soils in hydrologic group C. Hydrologic group C soils have slow soil inflitration rates. The soil profiles include layers impeding downward movement of water and, typically, have moderately fine or fine texture.",TO BE DETERMINED,percent
+TOT_HGBD,TO BE DETERMINED,Percentage of soils in hydrologic group B/D. Hydrologic group B/D soils have group B characteristics (moderate infiltration rates) when artificially drained and have group D characteristics (very slow infiltration rates) when not drained.,TO BE DETERMINED,percent
+TOT_HGBC,TO BE DETERMINED,Percentage of soils in hydrologic group B/C. Hydrologic group B/C soils have group B characteristics (moderate infiltration rates) when artificially drained and have group C characteristics (slow infiltration rates) when not drained.,TO BE DETERMINED,percent
+TOT_HGB,TO BE DETERMINED,"Percentage of soils in hydrologic group B. Hydrologic group B soils have moderate infiltration rates. Soils are moderately deep, moderately well drained, and moderately coarse in texture.",TO BE DETERMINED,percent
+TOT_HGAD,TO BE DETERMINED,Percentage of soils in hydrologic group A/D. Hydrologic group A/D soils have group A characteristics (high infiltration rates) when artificially drained and have group D characteristics (very slow infiltration rates) when not drained.,TO BE DETERMINED,percent
+TOT_HGAC,TO BE DETERMINED,Percentage of soils in hydrologic group A/C. Hydrologic group A/C soils have group A characteristics (high infiltration rates) when artificially drained and have group C characteristics  (slow infiltration rates when not drained.,TO BE DETERMINED,percent
+TOT_HGA,TO BE DETERMINED,"Percentage of soils in hydrologic group A. Hydrologic group A soils have high infiltration rates. Soils are deep and well drained and, typically, have high sand and gravel content.",TO BE DETERMINED,percent
+TOT_HERBICIDE,TO BE DETERMINED,"Average kilograms per square kilometer of herbicide use on agricultural land, 2009",TO BE DETERMINED,kg/km2
+TOT_HDENS80,TO BE DETERMINED,SILVIS lab housing density for 1980,TO BE DETERMINED,persons per square kilometer
+TOT_HDENS70,TO BE DETERMINED,SILVIS lab housing density for 1970,TO BE DETERMINED,persons per square kilometer
+TOT_HDENS60,TO BE DETERMINED,SILVIS lab housing density for 1960,TO BE DETERMINED,persons per square kilometer
+TOT_HDENS50,TO BE DETERMINED,SILVIS lab housing density for 1950,TO BE DETERMINED,persons per square kilometer
+TOT_HDENS40,TO BE DETERMINED,SILVIS lab housing density for 1940,TO BE DETERMINED,persons per square kilometer
+TOT_HDENS10,TO BE DETERMINED,SILVIS lab housing density for 2010,TO BE DETERMINED,persons per square kilometer
+TOT_HDENS00,TO BE DETERMINED,SILVIS lab housing density for 2000,TO BE DETERMINED,persons per square kilometer
+TOT_FUNGICIDE,TO BE DETERMINED,"Average kilograms per square kilometer of fungicide use on agricultural land, 2009",TO BE DETERMINED,kg/km2
+TOT_FSTFZ6190,TO BE DETERMINED,"Watershed average of mean day of the year of first freeze, derived from 30 years of record (1961-1990), 2 km PRISM.",TO BE DETERMINED,day of the year
+TOT_FRESHWATER_WD,TO BE DETERMINED,"Freshwater withdrawal megaliters (1000 cubic meters) per year per sqkm, from 1995-2000 county-level estimates",TO BE DETERMINED,megaliters/km2
+TOT_EVAP,TO BE DETERMINED,NA,TO BE DETERMINED,NA
+TOT_ET,TO BE DETERMINED,"Mean-annual actual evapotranspiration (ET), estimated using regression equation of Sanford and Selnick (2013)",TO BE DETERMINED,millimeters
+TOT_ESTUARY,TO BE DETERMINED,Estuary,TO BE DETERMINED,percent
+TOT_ELEV_MIN,TO BE DETERMINED,NHDPlus Version 2 Minimum elevation,TO BE DETERMINED,meters
+TOT_ELEV_MEAN,TO BE DETERMINED,NHDPlus Version 2 Mean elevation,TO BE DETERMINED,meters
+TOT_ELEV_MAX,TO BE DETERMINED,NHDPlus Version 2 Maximum elevation,TO BE DETERMINED,meters
+TOT_ECOL3_9,TO BE DETERMINED,Eastern Cascades Slopes and Foothills,TO BE DETERMINED,percent
+TOT_ECOL3_85,TO BE DETERMINED,"California Coastal Sage, Chaparral, and Oak Woodlands",TO BE DETERMINED,percent
+TOT_ECOL3_84,TO BE DETERMINED,Atlantic Coastal Pine Barrens,TO BE DETERMINED,percent
+TOT_ECOL3_83,TO BE DETERMINED,Eastern Great Lakes Lowlands,TO BE DETERMINED,percent
+TOT_ECOL3_82,TO BE DETERMINED,Acadian Plains and Hills,TO BE DETERMINED,percent
+TOT_ECOL3_81,TO BE DETERMINED,Sonoran Desert,TO BE DETERMINED,percent
+TOT_ECOL3_80,TO BE DETERMINED,Northern Basin and Range,TO BE DETERMINED,percent
+TOT_ECOL3_8,TO BE DETERMINED,Southern and Baja California Pine-Oak Mountains,TO BE DETERMINED,percent
+TOT_ECOL3_79,TO BE DETERMINED,Madrean Archipelago,TO BE DETERMINED,percent
+TOT_ECOL3_78,TO BE DETERMINED,Klamath Mountains,TO BE DETERMINED,percent
+TOT_ECOL3_77,TO BE DETERMINED,North Cascades,TO BE DETERMINED,percent
+TOT_ECOL3_76,TO BE DETERMINED,Southern Florida Coastal Plain,TO BE DETERMINED,percent
+TOT_ECOL3_75,TO BE DETERMINED,Southern Coastal Plain,TO BE DETERMINED,percent
+TOT_ECOL3_74,TO BE DETERMINED,Mississippi Valley Loess Plains,TO BE DETERMINED,percent
+TOT_ECOL3_73,TO BE DETERMINED,Mississippi Alluvial Plain,TO BE DETERMINED,percent
+TOT_ECOL3_72,TO BE DETERMINED,Interior River Valleys and Hills,TO BE DETERMINED,percent
+TOT_ECOL3_71,TO BE DETERMINED,Interior Plateau,TO BE DETERMINED,percent
+TOT_ECOL3_70,TO BE DETERMINED,Western Allegheny Plateau,TO BE DETERMINED,percent
+TOT_ECOL3_7,TO BE DETERMINED,Central California Valley,TO BE DETERMINED,percent
+TOT_ECOL3_69,TO BE DETERMINED,Central Appalachians,TO BE DETERMINED,percent
+TOT_ECOL3_68,TO BE DETERMINED,Southwestern Appalachians,TO BE DETERMINED,percent
+TOT_ECOL3_67,TO BE DETERMINED,Ridge and Valley,TO BE DETERMINED,percent
+TOT_ECOL3_66,TO BE DETERMINED,Blue Ridge,TO BE DETERMINED,percent
+TOT_ECOL3_65,TO BE DETERMINED,Southeastern Plains,TO BE DETERMINED,percent
+TOT_ECOL3_64,TO BE DETERMINED,Northern Piedmont,TO BE DETERMINED,percent
+TOT_ECOL3_63,TO BE DETERMINED,Middle Atlantic Coastal Plain,TO BE DETERMINED,percent
+TOT_ECOL3_62,TO BE DETERMINED,North Central Appalachians,TO BE DETERMINED,percent
+TOT_ECOL3_61,TO BE DETERMINED,Erie Drift Plain,TO BE DETERMINED,percent
+TOT_ECOL3_60,TO BE DETERMINED,Northern Allegheny Plateau,TO BE DETERMINED,percent
+TOT_ECOL3_6,TO BE DETERMINED,"California Coastal Sage, Chaparral, and Oak Woodlands",TO BE DETERMINED,percent
+TOT_ECOL3_59,TO BE DETERMINED,Northeastern Coastal Zone,TO BE DETERMINED,percent
+TOT_ECOL3_58,TO BE DETERMINED,Northern Appalachian and Atlantic Maritime Highlands,TO BE DETERMINED,percent
+TOT_ECOL3_57,TO BE DETERMINED,Huron/Erie Lake Plains,TO BE DETERMINED,percent
+TOT_ECOL3_56,TO BE DETERMINED,Southern Michigan/Northern Indiana Drift Plains,TO BE DETERMINED,percent
+TOT_ECOL3_55,TO BE DETERMINED,Eastern Corn Belt Plains,TO BE DETERMINED,percent
+TOT_ECOL3_54,TO BE DETERMINED,Central Corn Belt Plains,TO BE DETERMINED,percent
+TOT_ECOL3_53,TO BE DETERMINED,Southeastern Wisconsin Till Plains,TO BE DETERMINED,percent
+TOT_ECOL3_52,TO BE DETERMINED,Driftless Area,TO BE DETERMINED,percent
+TOT_ECOL3_51,TO BE DETERMINED,North Central Hardwood Forests,TO BE DETERMINED,percent
+TOT_ECOL3_50,TO BE DETERMINED,Northern Lakes and Forests,TO BE DETERMINED,percent
+TOT_ECOL3_5,TO BE DETERMINED,Sierra Nevada,TO BE DETERMINED,percent
+TOT_ECOL3_49,TO BE DETERMINED,Northern Minnesota Wetlands,TO BE DETERMINED,percent
+TOT_ECOL3_48,TO BE DETERMINED,Lake Manitoba and Lake Agassiz Plain,TO BE DETERMINED,percent
+TOT_ECOL3_47,TO BE DETERMINED,Western Corn Belt Plains,TO BE DETERMINED,percent
+TOT_ECOL3_46,TO BE DETERMINED,Aspen Parkland/Northern Glaciated Plains,TO BE DETERMINED,percent
+TOT_ECOL3_45,TO BE DETERMINED,Piedmont,TO BE DETERMINED,percent
+TOT_ECOL3_44,TO BE DETERMINED,Nebraska Sand Hills,TO BE DETERMINED,percent
+TOT_ECOL3_43,TO BE DETERMINED,Northwestern Great Plains,TO BE DETERMINED,percent
+TOT_ECOL3_42,TO BE DETERMINED,Northwestern Glaciated Plains,TO BE DETERMINED,percent
+TOT_ECOL3_41,TO BE DETERMINED,Canadian Rockies,TO BE DETERMINED,percent
+TOT_ECOL3_40,TO BE DETERMINED,Central Irregular Plains,TO BE DETERMINED,percent
+TOT_ECOL3_4,TO BE DETERMINED,Cascades,TO BE DETERMINED,percent
+TOT_ECOL3_39,TO BE DETERMINED,Ozark Highlands,TO BE DETERMINED,percent
+TOT_ECOL3_38,TO BE DETERMINED,Boston Mountains,TO BE DETERMINED,percent
+TOT_ECOL3_37,TO BE DETERMINED,Arkansas Valley,TO BE DETERMINED,percent
+TOT_ECOL3_36,TO BE DETERMINED,Ouachita Mountains,TO BE DETERMINED,percent
+TOT_ECOL3_35,TO BE DETERMINED,South Central Plains,TO BE DETERMINED,percent
+TOT_ECOL3_34,TO BE DETERMINED,Western Gulf Coastal Plain,TO BE DETERMINED,percent
+TOT_ECOL3_33,TO BE DETERMINED,East Central Texas Plains,TO BE DETERMINED,percent
+TOT_ECOL3_32,TO BE DETERMINED,Texas Blackland Prairies,TO BE DETERMINED,percent
+TOT_ECOL3_31,TO BE DETERMINED,Southern Texas Plains/Interior Plains and Hills with Xerophytic Shrub and Oak Forest,TO BE DETERMINED,percent
+TOT_ECOL3_30,TO BE DETERMINED,Edwards Plateau,TO BE DETERMINED,percent
+TOT_ECOL3_3,TO BE DETERMINED,Willamette Valley,TO BE DETERMINED,percent
+TOT_ECOL3_29,TO BE DETERMINED,Cross Timbers,TO BE DETERMINED,percent
+TOT_ECOL3_28,TO BE DETERMINED,Flint Hills,TO BE DETERMINED,percent
+TOT_ECOL3_27,TO BE DETERMINED,Central Great Plains,TO BE DETERMINED,percent
+TOT_ECOL3_26,TO BE DETERMINED,Southwestern Tablelands,TO BE DETERMINED,percent
+TOT_ECOL3_25,TO BE DETERMINED,High Plains,TO BE DETERMINED,percent
+TOT_ECOL3_24,TO BE DETERMINED,Chihuahuan Desert,TO BE DETERMINED,percent
+TOT_ECOL3_23,TO BE DETERMINED,Arizona/New Mexico Mountains,TO BE DETERMINED,percent
+TOT_ECOL3_22,TO BE DETERMINED,Arizona/New Mexico Plateau,TO BE DETERMINED,percent
+TOT_ECOL3_21,TO BE DETERMINED,Southern Rockies,TO BE DETERMINED,percent
+TOT_ECOL3_20,TO BE DETERMINED,Colorado Plateaus,TO BE DETERMINED,percent
+TOT_ECOL3_2,TO BE DETERMINED,Strait of Georgia/Puget Lowland,TO BE DETERMINED,percent
+TOT_ECOL3_19,TO BE DETERMINED,Wasatch and Uinta Mountains,TO BE DETERMINED,percent
+TOT_ECOL3_18,TO BE DETERMINED,Wyoming Basin,TO BE DETERMINED,percent
+TOT_ECOL3_17,TO BE DETERMINED,Middle Rockies,TO BE DETERMINED,percent
+TOT_ECOL3_16,TO BE DETERMINED,Idaho Batholith,TO BE DETERMINED,percent
+TOT_ECOL3_15,TO BE DETERMINED,Columbia Mountains/Northern Rockies,TO BE DETERMINED,percent
+TOT_ECOL3_14,TO BE DETERMINED,Mojave Basin and Range,TO BE DETERMINED,percent
+TOT_ECOL3_13,TO BE DETERMINED,Central Basin and Range,TO BE DETERMINED,percent
+TOT_ECOL3_12,TO BE DETERMINED,Snake River Plain,TO BE DETERMINED,percent
+TOT_ECOL3_11,TO BE DETERMINED,Blue Mountains,TO BE DETERMINED,percent
+TOT_ECOL3_10,TO BE DETERMINED,Columbia Plateau,TO BE DETERMINED,percent
+TOT_ECOL3_1,TO BE DETERMINED,Coast Range,TO BE DETERMINED,percent
+TOT_DITCHES92,TO BE DETERMINED,Percent of watershed subjected to ditches for the year 1992,TO BE DETERMINED,percent
+TOT_CWD,TO BE DETERMINED,Average number of consecutive days with measurable precipitation. It is also sometimes referred to as average storm duration.,TO BE DETERMINED,days
+TOT_CNPY11_BUFF100,TO BE DETERMINED,Tree canopy in 100 meter riparion buffers from NLCD 2006,TO BE DETERMINED,percent
+TOT_CLAYAVE,TO BE DETERMINED,Average value of clay content,TO BE DETERMINED,percent
+TOT_CLAST_U,TO BE DETERMINED,NA,TO BE DETERMINED,NA
+TOT_CLAST_F,TO BE DETERMINED,NA,TO BE DETERMINED,NA
+TOT_CLAST_C,TO BE DETERMINED,NA,TO BE DETERMINED,NA
+TOT_CDL12_92,TO BE DETERMINED,Aquaculture,TO BE DETERMINED,percent
+TOT_CDL12_77,TO BE DETERMINED,Pears,TO BE DETERMINED,percent
+TOT_CDL12_76,TO BE DETERMINED,Walnuts,TO BE DETERMINED,percent
+TOT_CDL12_75,TO BE DETERMINED,Almonds,TO BE DETERMINED,percent
+TOT_CDL12_74,TO BE DETERMINED,Pecans,TO BE DETERMINED,percent
+TOT_CDL12_72,TO BE DETERMINED,Citrus,TO BE DETERMINED,percent
+TOT_CDL12_71,TO BE DETERMINED,Other Tree Crops,TO BE DETERMINED,percent
+TOT_CDL12_70,TO BE DETERMINED,Christmas Trees,TO BE DETERMINED,percent
+TOT_CDL12_69,TO BE DETERMINED,Grapes,TO BE DETERMINED,percent
+TOT_CDL12_68,TO BE DETERMINED,Apples,TO BE DETERMINED,percent
+TOT_CDL12_67,TO BE DETERMINED,Peaches,TO BE DETERMINED,percent
+TOT_CDL12_66,TO BE DETERMINED,Cherries,TO BE DETERMINED,percent
+TOT_CDL12_61,TO BE DETERMINED,Fallow/Idle Cropland,TO BE DETERMINED,percent
+TOT_CDL12_60,TO BE DETERMINED,Switchgrass,TO BE DETERMINED,percent
+TOT_CDL12_6,TO BE DETERMINED,Sunflower,TO BE DETERMINED,percent
+TOT_CDL12_59,TO BE DETERMINED,Sod/Grass Seed,TO BE DETERMINED,percent
+TOT_CDL12_58,TO BE DETERMINED,Clover/Wildflowers,TO BE DETERMINED,percent
+TOT_CDL12_57,TO BE DETERMINED,Herbs,TO BE DETERMINED,percent
+TOT_CDL12_56,TO BE DETERMINED,Hops,TO BE DETERMINED,percent
+TOT_CDL12_55,TO BE DETERMINED,Caneberries,TO BE DETERMINED,percent
+TOT_CDL12_54,TO BE DETERMINED,Tomatoes,TO BE DETERMINED,percent
+TOT_CDL12_53,TO BE DETERMINED,Peas,TO BE DETERMINED,percent
+TOT_CDL12_52,TO BE DETERMINED,Lentils,TO BE DETERMINED,percent
+TOT_CDL12_50,TO BE DETERMINED,Cucumbers,TO BE DETERMINED,percent
+TOT_CDL12_5,TO BE DETERMINED,Soybeans,TO BE DETERMINED,percent
+TOT_CDL12_49,TO BE DETERMINED,Onions,TO BE DETERMINED,percent
+TOT_CDL12_48,TO BE DETERMINED,Watermelons,TO BE DETERMINED,percent
+TOT_CDL12_47,TO BE DETERMINED,Misc Vegs & Fruits,TO BE DETERMINED,percent
+TOT_CDL12_46,TO BE DETERMINED,Sweet Potatoes,TO BE DETERMINED,percent
+TOT_CDL12_45,TO BE DETERMINED,Sugarcane,TO BE DETERMINED,percent
+TOT_CDL12_44,TO BE DETERMINED,Other Crops,TO BE DETERMINED,percent
+TOT_CDL12_43,TO BE DETERMINED,Potatoes,TO BE DETERMINED,percent
+TOT_CDL12_42,TO BE DETERMINED,Dry Beans,TO BE DETERMINED,percent
+TOT_CDL12_41,TO BE DETERMINED,Sugarbeets,TO BE DETERMINED,percent
+TOT_CDL12_4,TO BE DETERMINED,Sorghum,TO BE DETERMINED,percent
+TOT_CDL12_38,TO BE DETERMINED,Camelina,TO BE DETERMINED,percent
+TOT_CDL12_37,TO BE DETERMINED,Other Hay/Non Alfalfa,TO BE DETERMINED,percent
+TOT_CDL12_36,TO BE DETERMINED,Alfalfa,TO BE DETERMINED,percent
+TOT_CDL12_35,TO BE DETERMINED,Mustard,TO BE DETERMINED,percent
+TOT_CDL12_34,TO BE DETERMINED,Rape Seed,TO BE DETERMINED,percent
+TOT_CDL12_33,TO BE DETERMINED,Safflower,TO BE DETERMINED,percent
+TOT_CDL12_32,TO BE DETERMINED,Flaxseed,TO BE DETERMINED,percent
+TOT_CDL12_31,TO BE DETERMINED,Canola,TO BE DETERMINED,percent
+TOT_CDL12_30,TO BE DETERMINED,Speltz,TO BE DETERMINED,percent
+TOT_CDL12_3,TO BE DETERMINED,Rice,TO BE DETERMINED,percent
+TOT_CDL12_29,TO BE DETERMINED,Millet,TO BE DETERMINED,percent
+TOT_CDL12_28,TO BE DETERMINED,Oats,TO BE DETERMINED,percent
+TOT_CDL12_27,TO BE DETERMINED,Rye,TO BE DETERMINED,percent
+TOT_CDL12_26,TO BE DETERMINED,Dbl Crop WinWht/Soybeans,TO BE DETERMINED,percent
+TOT_CDL12_254,TO BE DETERMINED,Dbl Crop Barley/Soybeans,TO BE DETERMINED,percent
+TOT_CDL12_250,TO BE DETERMINED,Cranberries,TO BE DETERMINED,percent
+TOT_CDL12_25,TO BE DETERMINED,Other Small Grains,TO BE DETERMINED,percent
+TOT_CDL12_249,TO BE DETERMINED,Gourds,TO BE DETERMINED,percent
+TOT_CDL12_248,TO BE DETERMINED,Eggplants,TO BE DETERMINED,percent
+TOT_CDL12_247,TO BE DETERMINED,Turnips,TO BE DETERMINED,percent
+TOT_CDL12_246,TO BE DETERMINED,Radishes,TO BE DETERMINED,percent
+TOT_CDL12_245,TO BE DETERMINED,Celery,TO BE DETERMINED,percent
+TOT_CDL12_244,TO BE DETERMINED,Cauliflower,TO BE DETERMINED,percent
+TOT_CDL12_243,TO BE DETERMINED,Cabbage,TO BE DETERMINED,percent
+TOT_CDL12_242,TO BE DETERMINED,Blueberries,TO BE DETERMINED,percent
+TOT_CDL12_241,TO BE DETERMINED,Dbl Crop Corn/Soybeans,TO BE DETERMINED,percent
+TOT_CDL12_240,TO BE DETERMINED,Dbl Crop Soybeans/Oats,TO BE DETERMINED,percent
+TOT_CDL12_24,TO BE DETERMINED,Winter Wheat,TO BE DETERMINED,percent
+TOT_CDL12_239,TO BE DETERMINED,Dbl Crop Soybeans/Cotton,TO BE DETERMINED,percent
+TOT_CDL12_238,TO BE DETERMINED,Dbl Crop WinWht/Cotton,TO BE DETERMINED,percent
+TOT_CDL12_237,TO BE DETERMINED,Dbl Crop Barley/Corn,TO BE DETERMINED,percent
+TOT_CDL12_236,TO BE DETERMINED,Dbl Crop WinWht/Sorghum,TO BE DETERMINED,percent
+TOT_CDL12_235,TO BE DETERMINED,Dbl Crop Barley/Sorghum,TO BE DETERMINED,percent
+TOT_CDL12_23,TO BE DETERMINED,Spring Wheat,TO BE DETERMINED,percent
+TOT_CDL12_223,TO BE DETERMINED,Apricots,TO BE DETERMINED,percent
+TOT_CDL12_222,TO BE DETERMINED,Squash,TO BE DETERMINED,percent
+TOT_CDL12_221,TO BE DETERMINED,Strawberries,TO BE DETERMINED,percent
+TOT_CDL12_220,TO BE DETERMINED,Plums,TO BE DETERMINED,percent
+TOT_CDL12_22,TO BE DETERMINED,Durum Wheat,TO BE DETERMINED,percent
+TOT_CDL12_219,TO BE DETERMINED,Greens,TO BE DETERMINED,percent
+TOT_CDL12_218,TO BE DETERMINED,Nectarines,TO BE DETERMINED,percent
+TOT_CDL12_217,TO BE DETERMINED,Pomegranates,TO BE DETERMINED,percent
+TOT_CDL12_216,TO BE DETERMINED,Peppers,TO BE DETERMINED,percent
+TOT_CDL12_214,TO BE DETERMINED,Broccoli,TO BE DETERMINED,percent
+TOT_CDL12_213,TO BE DETERMINED,Honeydew Melons,TO BE DETERMINED,percent
+TOT_CDL12_212,TO BE DETERMINED,Oranges,TO BE DETERMINED,percent
+TOT_CDL12_211,TO BE DETERMINED,Olives,TO BE DETERMINED,percent
+TOT_CDL12_210,TO BE DETERMINED,Prunes,TO BE DETERMINED,percent
+TOT_CDL12_21,TO BE DETERMINED,Barley,TO BE DETERMINED,percent
+TOT_CDL12_209,TO BE DETERMINED,Cantaloupes,TO BE DETERMINED,percent
+TOT_CDL12_208,TO BE DETERMINED,Garlic,TO BE DETERMINED,percent
+TOT_CDL12_207,TO BE DETERMINED,Asparagus,TO BE DETERMINED,percent
+TOT_CDL12_206,TO BE DETERMINED,Carrots,TO BE DETERMINED,percent
+TOT_CDL12_205,TO BE DETERMINED,Triticale,TO BE DETERMINED,percent
+TOT_CDL12_204,TO BE DETERMINED,Pistachios,TO BE DETERMINED,percent
+TOT_CDL12_2,TO BE DETERMINED,Cotton,TO BE DETERMINED,percent
+TOT_CDL12_195,TO BE DETERMINED,Herbaceous Wetlands,TO BE DETERMINED,percent
+TOT_CDL12_190,TO BE DETERMINED,Woody Wetlands,TO BE DETERMINED,percent
+TOT_CDL12_176,TO BE DETERMINED,Grass/Pasture,TO BE DETERMINED,percent
+TOT_CDL12_152,TO BE DETERMINED,Shrubland,TO BE DETERMINED,percent
+TOT_CDL12_143,TO BE DETERMINED,Mixed Forest,TO BE DETERMINED,percent
+TOT_CDL12_142,TO BE DETERMINED,Evergreen Forest,TO BE DETERMINED,percent
+TOT_CDL12_141,TO BE DETERMINED,Deciduous Forest,TO BE DETERMINED,percent
+TOT_CDL12_14,TO BE DETERMINED,Mint,TO BE DETERMINED,percent
+TOT_CDL12_131,TO BE DETERMINED,Barren,TO BE DETERMINED,percent
+TOT_CDL12_13,TO BE DETERMINED,Pop or Orn Corn,TO BE DETERMINED,percent
+TOT_CDL12_124,TO BE DETERMINED,Developed/High Intensity,TO BE DETERMINED,percent
+TOT_CDL12_123,TO BE DETERMINED,Developed/Med Intensity,TO BE DETERMINED,percent
+TOT_CDL12_122,TO BE DETERMINED,Developed/Low Intensity,TO BE DETERMINED,percent
+TOT_CDL12_121,TO BE DETERMINED,Developed/Open Space,TO BE DETERMINED,percent
+TOT_CDL12_12,TO BE DETERMINED,Sweet Corn,TO BE DETERMINED,percent
+TOT_CDL12_112,TO BE DETERMINED,Perennial Ice/Snow,TO BE DETERMINED,percent
+TOT_CDL12_111,TO BE DETERMINED,Open Water,TO BE DETERMINED,percent
+TOT_CDL12_11,TO BE DETERMINED,Tobacco,TO BE DETERMINED,percent
+TOT_CDL12_10,TO BE DETERMINED,Peanuts,TO BE DETERMINED,percent
+TOT_CDL12_1,TO BE DETERMINED,Corn,TO BE DETERMINED,percent
+TOT_CDL12_0,TO BE DETERMINED,No Data,TO BE DETERMINED,percent
+TOT_CARB,TO BE DETERMINED,NA,TO BE DETERMINED,NA
+TOT_BUSHREED_9,TO BE DETERMINED,anorthositic,TO BE DETERMINED,percent
+TOT_BUSHREED_8,TO BE DETERMINED,water,TO BE DETERMINED,percent
+TOT_BUSHREED_6,TO BE DETERMINED,volcanic,TO BE DETERMINED,percent
+TOT_BUSHREED_5,TO BE DETERMINED,sedimentary,TO BE DETERMINED,percent
+TOT_BUSHREED_4,TO BE DETERMINED,quarternary,TO BE DETERMINED,percent
+TOT_BUSHREED_3,TO BE DETERMINED,ultramafic,TO BE DETERMINED,percent
+TOT_BUSHREED_2,TO BE DETERMINED,granitic,TO BE DETERMINED,percent
+TOT_BUSHREED_10,TO BE DETERMINED,intermediate,TO BE DETERMINED,percent
+TOT_BUSHREED_1,TO BE DETERMINED,gneiss,TO BE DETERMINED,percent
+TOT_BEDPERM_7,TO BE DETERMINED,Carbonate rock,TO BE DETERMINED,percent
+TOT_BEDPERM_6,TO BE DETERMINED,Unconsolidated sand and gravel,TO BE DETERMINED,percent
+TOT_BEDPERM_5,TO BE DETERMINED,Sandstone and carbonate rocks,TO BE DETERMINED,percent
+TOT_BEDPERM_4,TO BE DETERMINED,Basalt and other volcanic rocks,TO BE DETERMINED,percent
+TOT_BEDPERM_3,TO BE DETERMINED,Semi consolidated sand,TO BE DETERMINED,percent
+TOT_BEDPERM_2,TO BE DETERMINED,Sandstone,TO BE DETERMINED,percent
+TOT_BEDPERM_1,TO BE DETERMINED,Not a principal aquifer ,TO BE DETERMINED,percent
+TOT_BDAVE,TO BE DETERMINED,Average value of bulk density,TO BE DETERMINED,grams per cubic centimeter
+TOT_BASIN_SLOPE,TO BE DETERMINED,NHDPlus Version 2 percent slope,TO BE DETERMINED,percent
+TOT_BASIN_AREA,TO BE DETERMINED,NHDPlus Version 2 basin area,TO BE DETERMINED,km2
+TOT_AWCAVE,TO BE DETERMINED,Average value for the range of available water capacity for the soil layer or horizon,TO BE DETERMINED,inches of water per inches of soil depth
+TOT_AREA_SQKM,TO BE DETERMINED,NA,TO BE DETERMINED,NA

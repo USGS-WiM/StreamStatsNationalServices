@@ -1,0 +1,183 @@
+{
+"maplayers": {
+    "anning_ator"
+    "basin_char"
+    "bedperm"
+    "bushreed"
+    "cdl12"
+    "cnpy11_buff100"
+    "cwd"
+    "ecol3"
+    "et_conus"
+    "fdr" (done)
+    "freshwater_wd"
+    "freshWithdraw" (done)
+    "fstfz6190"
+    "fungicide"
+    "hdens00"
+    "hdens10"
+    "hdens40"
+    "hdens50"
+    "hdens60"
+    "hdens70"
+    "hdens80"
+    "herbicide"
+    "hlr"
+    "hunt"
+    "impv01"
+    "impv01_buf100"
+    "impv06"
+    "impv06_buff100"
+    "impv11"
+    "impv11_buff100"
+    "insecticide"
+    "kgbi"
+    "kgclado"
+    "kgfish"
+    "lstfz6190"
+    "maxwd6190"
+    "minp6190"
+    "minwd6190"
+    "mirad_2002"
+    "mirad_2007"
+    "mirad_2012"
+    "mirand2002" (done)
+    "n97"
+    "natl_p"
+    "nematicide"
+    "nhdv2_ditches92"
+    "nhdwb"
+    "nhdwb"
+    "nhdwb"
+    "nhdwb"
+    "nhdwb"
+    "nhdwb"
+    "nid_1930"
+    "nid_1940"
+    "nid_1950"
+    "nid_1960"
+    "nid_1970"
+    "nid_1980"
+    "nid_1990"
+    "nid_2000"
+    "nid_2010"
+    "nid_2013"
+    "nid1980" (done)
+    "nlcd01"
+    "nlcd06"
+    "nlcd11"
+    "nlcd11_rip50"
+    "nlcd2011" (done)
+    "npdes" (done)
+    "npdes_density"
+    "npdes_maj"
+    "nwalt02"
+    "nwalt12"
+    "nwalt2012" (done)
+    "nwalt74"
+    "nwalt82"
+    "nwalt92"
+    "olson"
+    "p97"
+    "pest219"
+    "physio"
+    "popdens00"
+    "popdens10"
+    "popdens90"
+    "ppt7100"
+    "ppt7100_ann"
+    "prsnow"
+    "rdx"
+    "rechg"
+    "rh"
+    "road_dens"
+    "road7100"
+    "salinave_conus"
+    "senay_aet"
+    "sinuosity"
+    "ssurgo_srl"
+    "staof"
+    "statsgo"
+    "statsgo_hydgrp"
+    "statsgo_layer"
+    "statsgo_layer"
+    "statsgo_tex"
+    "strm_dens"
+    "tav7100"
+    "tiles92"
+    "tmax7100"
+    "tmin7100"
+    "twi"
+    "wb5100"
+    "wbm"
+    "wbm_dt_2012"
+    "wd6190"
+    "wdann"
+    "wildfire2010"
+    "wildfire2011"
+    "wildfire2012"
+
+
+    "fdr": {
+      "ID": 1001,
+      "Name": "fdr",
+      "Description": "Flow Direction Raster",
+      "isTiled": true,
+      "path": "Tiled/NHDPlus_v2",
+      "DatasetType": "ESRI_RASTER",
+      "queryFeaturePath": "RPU.shp",
+      "queryField": "Path",
+      "UnitID": "sq-m"
+    },
+    "nid1980": {
+      "ID": 2001,
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "National Inventory of Dams ",
+      "isTiled": false,
+      "path": "National",
+      "DatasetType": "ESRI_POINT"
+    },
+    "mirad2002": {
+      "ID": 3001,
+      "Name": "mirad250_02v3",
+      "Description": "2002 Moderate resolution Irrigated Agriculture Dataset",
+      "isTiled": false,
+      "path": "National",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "nlcd2011": {
+      "ID": 4001,
+      "Name": "nlcd_2011_impervious_2011_edition_2014_10_10",
+      "Description": "National Land Cover Database",
+      "isTiled": false,
+      "path": "National",
+      "DatasetType": "IMAGE_RASTER"
+    },
+    "npdes": {
+      "ID": 5001,
+      "DataSetName": "us_major_npd",
+      "Name": "point",
+      "Description": "National Pollutant Discharge Elimination Systems",
+      "isTiled": false,
+      "path": "National",
+      "DatasetType": "ESRI_POINT"
+    },
+    "nwalt2012": {
+      "ID": 6001,
+      "Name": "lu2012_050815",
+      "Description": "National Wall-to-Wall Anthropogenic Land Use Trends (NWALT) 2012",
+      "isTiled": false,
+      "path": "National",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "freshWithdraw": {
+      "ID": 6001,
+      "Name": "withdr_sqkm",
+      "Description": "Water withdrawals -- would be a new dataset from James Falcone.",
+      "isTiled": false,
+      "path": "National",
+      "DatasetType": "ESRI_RASTER"
+    }
+  }
+}
