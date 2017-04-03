@@ -69,6 +69,7 @@ class StreamStatsNationalOps(SpatialOps):
         self.mask = os.path.join(os.path.join(self._WorkspaceDirectory, self.WorkspaceID +'.gdb', "Layers"), Config()["catchment"]["downstream"])
         if not arcpy.Exists(self.mask): raise Exception("Mask does not exist: "+self.mask)
         self._sm("initialized StreamStatsNationalOps")
+        arcpy.ResetEnvironments()
     def __enter__(self):
         return self
     def __exit__(self, exc_type, exc_value, traceback):
@@ -247,8 +248,7 @@ class StreamStatsNationalOps(SpatialOps):
             ML = None
 
         return result
-    
-    def getPrismStatistic(self, Characteristic):
+	def getPrismStatistic(self, Characteristic):
         '''
         Computes statistic for prism data
         '''
@@ -274,6 +274,4 @@ class StreamStatsNationalOps(SpatialOps):
             ML = None
 
         return result
-        
-        
 #End Region

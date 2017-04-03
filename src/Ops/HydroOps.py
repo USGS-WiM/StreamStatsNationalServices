@@ -42,6 +42,8 @@ class HydroOps(SpatialOps):
 
         self._sm("initialized hydroops")
 
+        arcpy.ResetEnvironments()
+
     def __enter__(self):
         return self
 
@@ -70,6 +72,11 @@ class HydroOps(SpatialOps):
             if not fdr.Activated:
                 raise Exception("Flow direction could not be activated.")
 
+            fac = MapLayer(MapLayerDef("fac"), fdr.TileID)
+
+            if not fac.Activated:
+                raise Exception("Flow accumulation could not be activated.")
+
             sr = fdr.spatialreference
             if inmask != None:
                 mask = self.ProjectFeature(inmask, sr)
@@ -82,9 +89,15 @@ class HydroOps(SpatialOps):
             self._sm("Starting Delineation")
             arcpy.env.extent = arcpy.Describe(mask).extent
 
-            outWatershedRaster = Watershed(fdr.Dataset, PourPoint)
+            outSnapPour = SnapPourPoint(PourPoint, fac.Dataset, 60)
 
-            upCatch = arcpy.RasterToPolygon_conversion(outWatershedRaster, os.path.join(featurePath, catchments["upstream"]), "NO_SIMPLIFY")
+            #arcpy.env.extent = arcpy.Describe(mask).extent
+
+            outWatershedRaster = Watershed(fdr.Dataset, outSnapPour)
+            #arcpy.env.extent = "MAXOF"
+
+            upCatch = os.path.join(featurePath, catchments["upstream"])
+            arcpy.RasterToPolygon_conversion(outWatershedRaster, upCatch, "NO_SIMPLIFY")
             #strip downstream catchment from mask
             dstemp = arcpy.Erase_analysis(mask, upCatch, "dstemp")
             downCatch = self.__removePolygonHoles(dstemp, featurePath, catchments["downstream"])
@@ -107,6 +120,7 @@ class HydroOps(SpatialOps):
             if featurePath != None: del featurePath
             if upCatch != None: del upCatch; upCatch = None
             if downCatch != None: del downCatch; downCatch = None
+            arcpy.env.extent = ""
     def MergeCatchment(self,inbasin):
         dstemp = None
         try:

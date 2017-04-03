@@ -1,10 +1,9 @@
 {
   "characteristiclist": "https://docs.google.com/spreadsheets/d/1_5vxn94GqsQwv3zH3YDO-HaIDGpk_q3ou0jJSWPUZJo/edit#gid=733442906",
   "NLDIServiceOff": "https://cida-test.er.usgs.gov/nldi/",
-  "NLDIService": "D:/ss_apps/ss_apps/gages_iii",
-  "workingdirectory": "D:/gistemp/ClientData",
-  "parentdirectory": "D:/ss_apps/ss_apps",
-  "netCDFdirectory": "D:/ss_apps/ss_apps/netCDF",
+  "NLDIService": "E:/Applications/input",
+  "workingdirectory": "E:/Applications/output/gage_iii",
+  "parentdirectory": "E:/ss_data/FHWA",
   "outputFile": "splitCatchment.csv",
   "catchment": {
     "upstream": "upstreamcatchment",
@@ -20,11 +19,13 @@
       "QueryField": "NORM_STORA",
       "UnitID": "Ac-Ft"
     },
-    "TOT_NPDES_MAJ_DENS": {
-      "Procedure": "getPointFeatureDensity",
-      "Description": "NPDES Major site density, count/totalArea",
-      "MapLayers": [ "npdes" ],
-      "UnitID": "cnt/sqkm"
+    "TOT_PPT7100_FEB": {
+      
+      "Procedure": "getPrismStatistic","Description": "Gets precipitation from Dave Wollock data",
+      "Method": "Mean",
+      "MapLayers": [ "prismGrid" ],
+      "UnitID": "megaliters/km2",
+      "Data": "pptint.nc"
     },
     "TOT_NWALT12_41": {
       "Procedure": "getRasterPercent",
@@ -53,14 +54,6 @@
       "Method": "Mean",
       "MapLayers": [ "freshWithdraw" ],
       "UnitID": "megaliters/km2"
-    },
-    "TOT_PPT7100_FEB": {
-      "Procedure": "getPrismStatistic",
-      "Description": "Gets precipitation from Dave Wollock data",
-      "Method": "Mean",
-      "MapLayers": [ "prismGrid" ],
-      "UnitID": "megaliters/km2",
-      "Data": "pptint.nc"
     }
   },
   "maplayers": {
@@ -69,10 +62,21 @@
       "Name": "fdr",
       "Description": "Flow Direction Raster",
       "isTiled": true,
-      "path": "D:/ss_apps/ss_apps/HUCs",
+      "path": "Tiled/NHDPlus_v2",
       "DatasetType": "ESRI_RASTER",
-      "queryFeaturePath": "extent.gdb/Layers/hucpoly",
-      "queryField": "RPUID",
+      "queryFeaturePath": "RPU.shp",
+      "queryField": "Path",
+      "UnitID": "sq-m"
+    },
+    "fac": {
+      "ID": 1001,
+      "Name": "fac",
+      "Description": "Flow Accumulation Raster",
+      "isTiled": true,
+      "path": "Tiled/NHDPlus_v2",
+      "DatasetType": "ESRI_RASTER",
+      "queryFeaturePath": "RPU.shp",
+      "queryField": "Path",
       "UnitID": "sq-m"
     },
     "nid1980": {
@@ -81,16 +85,15 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "National Inventory of Dams ",
       "isTiled": false,
-      "path": "National",
+      "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
-
     },
     "mirad2002": {
       "ID": 3001,
       "Name": "mirad250_02v3",
       "Description": "2002 Moderate resolution Irrigated Agriculture Dataset",
       "isTiled": false,
-      "path": "National",
+      "path": "Nationwide/HYDRO_MOD/MIRAD",
       "DatasetType": "ESRI_RASTER"
     },
     "nlcd2011": {
@@ -98,24 +101,15 @@
       "Name": "nlcd_2011_impervious_2011_edition_2014_10_10",
       "Description": "National Land Cover Database",
       "isTiled": false,
-      "path": "National",
+      "path": "Nationwide/LANDSCAPE/NLCD",
       "DatasetType": "IMAGE_RASTER"
-    },
-    "npdes": {
-      "ID": 5001,
-      "DataSetName": "us_major_npd",
-      "Name": "point",
-      "Description": "National Pollutant Discharge Elimination Systems",
-      "isTiled": false,
-      "path": "National",
-      "DatasetType": "ESRI_POINT"
     },
     "nwalt2012": {
       "ID": 6001,
       "Name": "lu2012_050815",
       "Description": "National Wall-to-Wall Anthropogenic Land Use Trends (NWALT) 2012",
       "isTiled": false,
-      "path": "National",
+      "path": "Nationwide/LANDSCAPE/NWALT",
       "DatasetType": "ESRI_RASTER"
     },
     "freshWithdraw": {
@@ -123,7 +117,7 @@
       "Name": "withdr_sqkm",
       "Description": "Water withdrawals -- would be a new dataset from James Falcone.",
       "isTiled": false,
-      "path": "National",
+      "path": "Nationwide/HYDRO_MOD/WATERUSE",
       "DatasetType": "ESRI_RASTER"
     },
     "prismGrid": {

@@ -56,13 +56,13 @@ class DelineationWrapper(object):
             parser.add_argument("-projectID", help="specifies the projectID", type=str, default="FH")
             #Use the following LAT/LON pour point
             parser.add_argument("-pourpoint", help="specifies pourpoint geojson feature ", type=json.loads, 
-                                default = '{"type":"Feature","geometry":{"type":"Point","coordinates":[-89.20808,42.94940]}}')
+                                default = '{"type":"Feature","geometry":{"type":"Point","coordinates":[-69.088056,47.113056]}}')
             #Within this EPSG code
             parser.add_argument("-outwkid", help="specifies the esri well known id of pourpoint ", type=int, 
                                 default = '4326')
                            
             args = parser.parse_args()
-            
+
             startTime = time.time()
             projectID = args.projectID
             if projectID == '#' or not projectID:
@@ -83,7 +83,7 @@ class DelineationWrapper(object):
 
             sa = NLDIServiceAgent()
             #to be replaced later by service call etc.
-            comid = 13297184
+            comid = 4288603                                                              #THIS IS WHERE YOU CAHNGE THE COMID
             maskjson = sa.getBasin(comid,True) #Bringing in a JSON mask/catchment ID
 
             if(maskjson):
