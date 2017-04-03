@@ -19,6 +19,14 @@
       "QueryField": "NORM_STORA",
       "UnitID": "Ac-Ft"
     },
+    "TOT_PPT7100_FEB": {
+      
+      "Procedure": "getPrismStatistic","Description": "Gets precipitation from Dave Wollock data",
+      "Method": "Mean",
+      "MapLayers": [ "prismGrid" ],
+      "UnitID": "megaliters/km2",
+      "Data": "pptint.nc"
+    },
     "TOT_NWALT12_41": {
       "Procedure": "getRasterPercent",
       "Description": "Mining/Extraction - Barren areas due to probable surface mining/mineral extraction. Includes mining, quarries, sand and gravel operations, and energy operations.",

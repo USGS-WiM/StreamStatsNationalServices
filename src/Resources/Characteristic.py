@@ -22,6 +22,7 @@
 #region "Imports"
 import json
 from WiMLib.Config import Config
+import os
 #endregion
 class Characteristic(object):
     #region Constructor
@@ -39,5 +40,7 @@ class Characteristic(object):
         self.Description =  CharObj["Description"]if ("Description" in CharObj) else ""
         self.QueryField =  CharObj["QueryField"]if ("QueryField" in CharObj) else None
         self.ClassCodes =  CharObj["ClassCodes"]if ("ClassCodes" in CharObj) else None
-        self.Count = CharObj["Count"] if ("Count" in CharObj) else None
+        self.Count = CharObj["Count"] if ("Count" in CharObj) else None		
+        self.Data = os.path.join(Config()["netCDFdirectory"], CharObj["Data"])if ("Data" in CharObj) else None
+            
     #endregion
