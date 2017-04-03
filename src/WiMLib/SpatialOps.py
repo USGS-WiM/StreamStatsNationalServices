@@ -26,6 +26,8 @@ import os
 from os.path import split
 import tempfile
 import arcpy
+from arcpy.sa import *
+from arcpy import env
 import traceback
 import json
 from  WiMLib import WiMLogging
@@ -42,11 +44,10 @@ class SpatialOps(object):
         
         #protected properties
         self._WorkspaceDirectory = workspacePath
-        #self._TempLocation = os.path.join(self._WorkspaceDirectory,"Temp")
-        #if not os.path.exists(self._TempLocation):
-        #    os.makedirs(self._TempLocation)
-
-        self._TempLocation = tempfile.mkdtemp(dir=os.path.join(self._WorkspaceDirectory,"Temp"))   
+        self._TempLocation = tempfile.mkdtemp(dir=os.path.join(self._WorkspaceDirectory,"Temp"))  
+        
+        arcpy.env.workspace = self._TempLocation 
+        arcpy.env.overwriteOutput = True
         self._sm("initialized spatialOps")
     def __exit__(self, exc_type, exc_value, traceback):
         try:
@@ -59,7 +60,6 @@ class SpatialOps(object):
     #region Feature methods 
     def Select(self, inFeature, intersectfeature, fields):
         arcpy.Intersect_analysis([inFeature,intersectfeature], "intersectOutput")
- 
     def ProjectFeature(self, inFeature, sr):
         #http://joshwerts.com/blog/2015/09/10/arcpy-dot-project-in-memory-featureclass/
         inSR = None
@@ -103,7 +103,6 @@ class SpatialOps(object):
             if source_curs != None: del source_curs
             if ins_curs != None: del ins_curs
             if row != None: del row
-
     def PersistFeature(self,inFeature, path, name):
         arcpy.FeatureClassToFeatureClass_conversion(inFeature,path,name)
     def getAreaSqMeter(self, inFeature):
@@ -125,7 +124,7 @@ class SpatialOps(object):
         try:
             sr = arcpy.Describe(inFeature).spatialReference
             mask = self.ProjectFeature(maskfeature,sr) 
-            out_projected_fc = os.path.join(self._TempLocation, "ovrlytmp")
+            out_projected_fc = os.path.join(self._TempLocation, "ovrlytmpsj")
 
             if(doFieldMapping):
                 # Create a new fieldmappings and add the two input feature classes.
@@ -153,22 +152,26 @@ class SpatialOps(object):
              tb = traceback.format_exc()
              self._sm(tb,"Error",152)
         finally:
-            if mask != None: del mask; mask = None
+            mask = None
+            #do not release
+            out_projected_fc = None
     def spatialOverlay(self, inFeature, maskfeature):
         mask = None
         try:
             sr = arcpy.Describe(inFeature).spatialReference
             mask = self.ProjectFeature(maskfeature,sr) 
-            out_projected_fc = os.path.join(self._TempLocation, "ovrlytmp")
+            out_projected_fc = os.path.join(self._TempLocation, "ovrlytmpso")
 
             self._sm("performing spatial join ...")
-            return arcpy.SpatialJoin_analysis(maskfeature, inFeature, out_projected_fc,'', '', None,"COMPLETELY_CONTAINS")
+            return arcpy.SpatialJoin_analysis(maskfeature, inFeature, out_projected_fc,'JOIN_ONE_TO_MANY', 'KEEP_COMMON', None,"COMPLETELY_CONTAINS")
 
         except:
              tb = traceback.format_exc()
              self._sm(tb,"Error",152)
         finally:
-            if mask != None: del mask; mask = None
+            mask = None 
+            #do not release
+            out_projected_fc = None           
     def getFeatureStatistic(self,inFeature, maskFeature, statisticRules, fieldStr):
         '''
         computes the statistic 
@@ -179,13 +182,20 @@ class SpatialOps(object):
                             MAX—Finds the largest value for all records of the specified field.
                             RANGE—Finds the range of values (MAX minus MIN) for the specified field.
                             STD—Finds the standard deviation on values in the specified field.
-                            COUNT—Finds the number of values included in statistical calculations. This counts each value except null values. To determine the number of null values in a field, use the COUNT statistic on the field in question, and a COUNT statistic on a different field which does not contain nulls (for example, the OID if present), then subtract the two values.
+                            COUNT—Finds the number of values included in statistical calculations.
+                                This counts each value except null values. To determine the number
+                                of null values in a field, use the COUNT statistic on the field in
+                                question, and a COUNT statistic on a different field which does not 
+                                contain nulls (for example, the OID if present), then subtract the two values.
                             FIRST—Finds the first record in the Input Table and uses its specified field value.
                             LAST—Finds the last record in the Input Table and uses its specified field value.
         '''
         map = []
-        try:
-            spOverlay = self.spatialOverlay(inFeature,maskFeature)
+        values = {}
+        cursor = None
+        tblevalue=None
+        spOverlay = None
+        try:            
             methods = [x.strip() for x in statisticRules.split(';')]
             Fields = [x.strip() for x in fieldStr.split(';')]
             #sm(Fields.count + " Fields & " + methods.count + " Methods")
@@ -195,13 +205,45 @@ class SpatialOps(object):
                 #next method
             #next Field
 
-            out_projected_fc = os.path.join(self._TempLocation, "fstatstmp")
-            value = arcpy.Statistics_analysis(spOverlay,out_projected_fc,map)
-            return float(value)
+            spOverlay = self.spatialOverlay(inFeature,maskFeature)
+            if(int(arcpy.GetCount_management(spOverlay).getOutput(0)) < 1):
+                for m in map: values[m[0]]={m[1]: float(0)}
+                return values
+            #endif
+
+            tblevalue = arcpy.Statistics_analysis(spOverlay,os.path.join(self._TempLocation, "ftmp"),map)
+            mappedFeilds = [x[1]+"_"+x[0] for x in map]
+            cursor = arcpy.da.SearchCursor(tblevalue, mappedFeilds )
+            for row in cursor:
+                i=0
+                for m in map:
+                    values[m[0]]={m[1]: float(row[i])}
+                    i+=1
+
+            return values
         except:
             tb = traceback.format_exc()
             self._sm("Failed to get raster statistic " +tb,"ERROR",229)
+        finally:
+            #local cleanup
+            if cursor != None: del cursor; cursor = None            
+            if tblevalue != None: del tblevalue; tblevalue = None
+            if spOverlay != None: del spOverlay; spOverlay = None
+    def getFeatureCount(self,inFeature, maskFeature):
+        '''
+        Finds the number of features
+        '''
+        try:            
+            spOverlay = self.spatialOverlay(inFeature,maskFeature)
+            val = int(arcpy.GetCount_management(spOverlay).getOutput(0)) 
             
+            return val
+        except:
+            tb = traceback.format_exc()
+            self._sm("Failed to get raster statistic " +tb,"ERROR",229)
+        finally:
+            #local cleanup
+            if spOverlay != None: del spOverlay; spOverlay = None                     
     #endregion
 
     #region Raster methods
@@ -314,15 +356,15 @@ class SpatialOps(object):
                             OFFNADIR —Off-nadir angle, in degrees.
                             WAVELENGTH —Wavelength range of the band, in nanometers.
         '''
+        outExtractByMask = None
         try:
             arcpy.env.cellSize = "MINOF"
             sr = arcpy.Describe(inRaster).spatialReference
             mask = self.ProjectFeature(maskFeature,sr) 
-            out_projected_fc = os.path.join(self._TempLocation, "ovrlytmp")
-
+            self._LicenseManager("Spatial")
             outExtractByMask = arcpy.sa.ExtractByMask(inRaster, mask)
-            value = arcpy.GetRasterProperties_management(outExtractByMask, statisticRule).getOutput(0)
-            return float(value)
+            value = arcpy.GetRasterProperties_management(outExtractByMask, statisticRule)
+            return float(value.getOutput(0))
         except:
             tb = traceback.format_exc()
             self._sm("Failed to get raster statistic " +tb,"ERROR",229)
@@ -330,6 +372,11 @@ class SpatialOps(object):
             self._sm("Raster cell size: " + str(cellsize) , "ERROR")
             # try getting centroid
             return self.getValueAtCentroid(maskFeature,inRaster)
+        finally:
+            outExtractByMask = None           
+            mask = None
+            if sr != None: del sr; sr = None
+            self._LicenseManager("Spatial",False)            
     def getRasterPercentAreas(self,inRaster, maskFeature, uniqueRasterIDfield='VALUE',rasterValueField='COUNT'):
         '''
         computes the statistic 
@@ -372,32 +419,48 @@ class SpatialOps(object):
     def getRasterPercent(self,inRaster, maskFeature, ClassificationCodes=None, uniqueRasterIDfield='VALUE',rasterValueField='COUNT'):
         '''
         computes the raster % statistic 
+        classificationCodes = comma separated classification ID's
         rCode is the classification requested code[s] as comma separated string
         '''
+        attField = None    
+        attExtract = None   
+        constfield = None
+        const1 = None
+        mask = None
+        sr = None
         try:
             sr = arcpy.Describe(inRaster).spatialReference
-            mask = self.ProjectFeature(maskFeature,sr)
-          
+            mask = self.ProjectFeature(maskFeature,sr)        
 
             arcpy.env.cellSize = inRaster
-            arcpy.env.mask = mask
+            arcpy.env.snapRaster = inRaster
+            try:
+                arcpy.env.mask = mask
+            except:
+                self._LicenseManager("Spatial")
+                outExtractByMask = ExtractByMask(inRaster, mask)
+                arcpy.env.mask = outExtractByMask
+                self._LicenseManager("Spatial", False)
+            
             arcpy.env.extent = arcpy.Describe(mask).extent
             arcpy.env.outputCoordinateSystem = sr
-
+            # Check out the ArcGIS Spatial Analyst extension license
+            self._LicenseManager("Spatial")
             #creates a constant of the enviroment
             const1 = arcpy.sa.CreateConstantRaster(1)
-            const1.save("const1.img")
+            const1.save(os.path.join(self._TempLocation,"const1.img"))
             constfield = arcpy.da.TableToNumPyArray(os.path.join(self._TempLocation,"const1.img"), rasterValueField, skip_nulls=True)
 
             totalCount = float(constfield[rasterValueField].sum())
 
             SQLClause = " OR ".join(map(lambda s: uniqueRasterIDfield +"=" + s,ClassificationCodes.strip().split(",")))
-            # Check out the ArcGIS Spatial Analyst extension license
-            arcpy.CheckOutExtension("Spatial")
+            
+
             # Execute ExtractByAttributes
+            #ensure spatial analyst is checked out
             attExtract = arcpy.sa.ExtractByAttributes(inRaster, SQLClause)  
             #must save raster 
-            attExtract.save("attExtract.img")                
+            attExtract.save(os.path.join(self._TempLocation,"attExtract.img"))                
             if self.isRasterALLNoData(attExtract): return float(0)
             #Does not respect the workspace dir, so need to set it explicitly
             attField = arcpy.da.TableToNumPyArray(os.path.join(self._TempLocation,"attExtract.img"), rasterValueField, skip_nulls=True)            
@@ -407,7 +470,15 @@ class SpatialOps(object):
             tb = traceback.format_exc()
             self._sm("Error computing Raster Percent Area " +tb,"ERROR",289)
         finally:
-            arcpy.CheckInExtension("Spatial")             
+            #local clean up
+            if attField != None: del attField; attField = None    
+            attExtract = None   
+            if constfield != None: del constfield; constfield = None
+            const1 = None
+            mask = None
+            if sr != None: del sr; sr = None
+            self._LicenseManager("Spatial",False) 
+               
         return results
     def isRasterALLNoData(self,inRaster):
         try:
@@ -422,6 +493,15 @@ class SpatialOps(object):
     #endregion
 
     #region helper methods
+    def _LicenseManager(self, extension, checkout=True):
+        v = None
+        licAvailability = arcpy.CheckExtension(extension)
+        if(licAvailability == "Available"): 
+            if(checkout):v = arcpy.CheckOutExtension(extension)
+            else: v= arcpy.CheckInExtension(extension)
+        else:raise Exception("Lisense "+ extension +" "+ licAvailability)
+        
+        print v
     def __getFieldMap(self, mappedFields,FieldIndex, newName, mergeRule):
         '''
         Maps the field

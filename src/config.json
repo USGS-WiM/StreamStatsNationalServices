@@ -1,12 +1,52 @@
 {
+  "characteristiclist": "https://docs.google.com/spreadsheets/d/1_5vxn94GqsQwv3zH3YDO-HaIDGpk_q3ou0jJSWPUZJo/edit#gid=733442906",
   "NLDIServiceOff": "https://cida-test.er.usgs.gov/nldi/",
-  "NLDIService": "D:/ss_apps/gages_iii",
-  "workingdirectory": "D:/gistemp/ClientData",
-  "outputFile": "gages3.txt",
+  "NLDIService": "E:/Applications/input",
+  "workingdirectory": "E:/Applications/output/gage_iii",
+  "parentdirectory": "E:/ss_data/FHWA",
+  "outputFile": "splitCatchment.csv",
   "catchment": {
     "upstream": "upstreamcatchment",
     "downstream": "downstreamcatchment",
     "global": "global"
+  },
+  "characteristics": {
+    "TOT_NID_STORAGE_1980": {
+      "Procedure": "getFeatureStatistic",
+      "Description": "Reservoir storage",
+      "Method": "SUM",
+      "MapLayers": [ "nid1980" ],
+      "QueryField": "NORM_STORA",
+      "UnitID": "Ac-Ft"
+    },
+    "TOT_NWALT12_41": {
+      "Procedure": "getRasterPercent",
+      "Description": "Mining/Extraction - Barren areas due to probable surface mining/mineral extraction. Includes mining, quarries, sand and gravel operations, and energy operations.",
+      "MapLayers": [ "nwalt2012" ],
+      "ClassCodes": "41",
+      "UnitID": "percent"
+    },
+    "TOT_MIRAD_2002": {
+      "Procedure": "getRasterPercent",
+      "Description": "Percent of watershed in irrigated agriculture, from USGS 2002 250-m MODIS data",
+      "MapLayers": [ "mirad2002" ],
+      "ClassCodes": "1",
+      "UnitID": "percent"
+    },
+    "TOT_IMPV11": {
+      "Procedure": "getRasterStatistic",
+      "Description": "Impervious surface from NLCD 2011",
+      "Method": "Mean",
+      "MapLayers": [ "nlcd2011" ],
+      "UnitID": "percent"
+    },
+    "TOT_FRESHWATER_WD": {
+      "Procedure": "getRasterStatistic",
+      "Description": "Freshwater withdrawal megaliters (1000 cubic meters) per year per sqkm, from 1995-2000 county-level estimates",
+      "Method": "Mean",
+      "MapLayers": [ "freshWithdraw" ],
+      "UnitID": "megaliters/km2"
+    }
   },
   "maplayers": {
     "fdr": {
@@ -14,53 +54,54 @@
       "Name": "fdr",
       "Description": "Flow Direction Raster",
       "isTiled": true,
-      "path": "D:/ss_apps/HUCs",
+      "path": "Tiled/NHDPlus_v2",
       "DatasetType": "ESRI_RASTER",
-      "queryFeaturePath": "extent.gdb/Layers/hucpoly",
-      "queryField": "RPUID"
+      "queryFeaturePath": "RPU.shp",
+      "queryField": "Path",
+      "UnitID": "sq-m"
     },
-    "nid": {
+    "fac": {
+      "ID": 1001,
+      "Name": "fac",
+      "Description": "Flow Accumulation Raster",
+      "isTiled": true,
+      "path": "Tiled/NHDPlus_v2",
+      "DatasetType": "ESRI_RASTER",
+      "queryFeaturePath": "RPU.shp",
+      "queryField": "Path",
+      "UnitID": "sq-m"
+    },
+    "nid1980": {
       "ID": 2001,
       "Name": "point",
       "DataSetName": "nid09ad_jun11",
       "Description": "National Inventory of Dams ",
       "isTiled": false,
-      "path": "D:/ss_apps/National",
-      "DatasetType": "ESRI_POINT",
-      "queryField": "NORM_STORA"
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "mirad2002": {
       "ID": 3001,
       "Name": "mirad250_02v3",
       "Description": "2002 Moderate resolution Irrigated Agriculture Dataset",
       "isTiled": false,
-      "path": "D:/ss_apps/National",
+      "path": "Nationwide/HYDRO_MOD/MIRAD",
       "DatasetType": "ESRI_RASTER"
     },
-    "nlcd": {
+    "nlcd2011": {
       "ID": 4001,
       "Name": "nlcd_2011_impervious_2011_edition_2014_10_10",
       "Description": "National Land Cover Database",
       "isTiled": false,
-      "path": "D:/ss_apps/National",
+      "path": "Nationwide/LANDSCAPE/NLCD",
       "DatasetType": "IMAGE_RASTER"
-    },
-    "npdes": {
-      "ID": 5001,
-      "DataSetName": "us_major_npd",
-      "Name": "point",
-      "Description": "National Pollutant Discharge Elimination Systems",
-      "isTiled": false,
-      "path": "D:/ss_apps/National",
-      "DatasetType": "ESRI_POINT",
-      "queryField": "FLOW_RATE"
     },
     "nwalt2012": {
       "ID": 6001,
       "Name": "lu2012_050815",
-      "Description": "wall-to-wall anthropogenic land use trends",
+      "Description": "National Wall-to-Wall Anthropogenic Land Use Trends (NWALT) 2012",
       "isTiled": false,
-      "path": "D:/ss_apps/National",
+      "path": "Nationwide/LANDSCAPE/NWALT",
       "DatasetType": "ESRI_RASTER"
     },
     "freshWithdraw": {
@@ -68,7 +109,7 @@
       "Name": "withdr_sqkm",
       "Description": "Water withdrawals -- would be a new dataset from James Falcone.",
       "isTiled": false,
-      "path": "D:/ss_apps/National",
+      "path": "Nationwide/HYDRO_MOD/WATERUSE",
       "DatasetType": "ESRI_RASTER"
     }
   }

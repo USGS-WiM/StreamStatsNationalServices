@@ -36,11 +36,13 @@ from WiMLib.Config import Config
 
 class HydroOps(SpatialOps):
     #region Constructor and Dispose
-    def __init__(self, workspacePath):     
+    def __init__(self, workspacePath, id):     
         SpatialOps.__init__(self, workspacePath) 
-        self.WorkspaceID = os.path.basename(os.path.normpath(workspacePath))
+        self.WorkspaceID = id
 
         self._sm("initialized hydroops")
+
+        arcpy.ResetEnvironments()
 
     def __enter__(self):
         return self
@@ -70,6 +72,11 @@ class HydroOps(SpatialOps):
             if not fdr.Activated:
                 raise Exception("Flow direction could not be activated.")
 
+            fac = MapLayer(MapLayerDef("fac"), fdr.TileID)
+
+            if not fac.Activated:
+                raise Exception("Flow accumulation could not be activated.")
+
             sr = fdr.spatialreference
             if inmask != None:
                 mask = self.ProjectFeature(inmask, sr)
@@ -82,9 +89,15 @@ class HydroOps(SpatialOps):
             self._sm("Starting Delineation")
             arcpy.env.extent = arcpy.Describe(mask).extent
 
-            outWatershedRaster = Watershed(fdr.Dataset, PourPoint)
+            outSnapPour = SnapPourPoint(PourPoint, fac.Dataset, 60)
 
-            upCatch = arcpy.RasterToPolygon_conversion(outWatershedRaster, os.path.join(featurePath, catchments["upstream"]), "NO_SIMPLIFY")
+            #arcpy.env.extent = arcpy.Describe(mask).extent
+
+            outWatershedRaster = Watershed(fdr.Dataset, outSnapPour)
+            #arcpy.env.extent = "MAXOF"
+
+            upCatch = os.path.join(featurePath, catchments["upstream"])
+            arcpy.RasterToPolygon_conversion(outWatershedRaster, upCatch, "NO_SIMPLIFY")
             #strip downstream catchment from mask
             dstemp = arcpy.Erase_analysis(mask, upCatch, "dstemp")
             downCatch = self.__removePolygonHoles(dstemp, featurePath, catchments["downstream"])
@@ -107,6 +120,7 @@ class HydroOps(SpatialOps):
             if featurePath != None: del featurePath
             if upCatch != None: del upCatch; upCatch = None
             if downCatch != None: del downCatch; downCatch = None
+            arcpy.env.extent = ""
     def MergeCatchment(self,inbasin):
         dstemp = None
         try:
@@ -138,42 +152,6 @@ class HydroOps(SpatialOps):
                 arcpy.Delete_management(fs)
             for rs in arcpy.ListRasters():
                 arcpy.Delete_management(rs)
-    def getFreshWaterWithdrawals(self):
-        '''
-        Computes FreshWaterWithdrawals (per unit area)
-        '''
-        fwithdrML = None
-        result = {"FreshWaterWithdrawal":None}
-        try:
-            self._sm("Computing NID reservoir storage")
-            fwithdrML = MapLayer(MapLayerDef("freshWithdraw"))
-
-            arcpy.env.workspace = self._TempLocation
-            if not fwithdrML.Activated:
-                raise Exception("maplayer could not be activated.")
-
-            #set mask
-            mask = os.path.join(os.path.join(self._WorkspaceDirectory, self.WorkspaceID +'.gdb', "Layers"),Config()["catchment"]["downstream"])
-            if not arcpy.Exists(mask): raise Exception("Mask does not exist: "+mask)
-
-            result["FreshWaterWithdrawal"] = self.getRasterStatistic(fwithdrML.Dataset, mask, "MEAN")
-
-        except:
-            tb = traceback.format_exc()
-            self._sm(arcpy.GetMessages(), 'AHMSG')
-            self._sm("Anthops ReservoirStorage" +tb, "ERROR", 71)
-            result["ReservoirStorageSum"] = None
-
-        finally:
-            #cleanup
-            for fs in arcpy.ListFeatureClasses():
-                arcpy.Delete_management(fs)
-            for rs in arcpy.ListRasters():
-                arcpy.Delete_management(rs)
-
-        return result
-
-
     #endregion
 
     #region Helper Methods
