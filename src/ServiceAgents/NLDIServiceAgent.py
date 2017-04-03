@@ -55,8 +55,12 @@ class NLDIServiceAgent(ServiceAgentBase.ServiceAgentBase):
             distance = "gages_iii_catchments" if isCatchmentLevel else "gages_iii_basins"
             resource = "/{1}/{0}.json".format(comID, distance)
 
-            results = self.Execute(resource)
-            return json.loads(results)
+            try:
+                results = self.Execute(resource)
+                return json.loads(results)
+            except:
+                tb = traceback.format_exc()
+                self._sm("Exception raised for "+ os.path.basename(resource)+ ". Moving to next ComID.", "ERROR")
         except:
             tb = traceback.format_exc()
             self._sm("NLDIService getBasin Error "+tb, "ERROR")
@@ -66,11 +70,11 @@ class NLDIServiceAgent(ServiceAgentBase.ServiceAgentBase):
             #resource = "comid/{0}/navigate/UT/basin?distance={1}".format(comID,distance)
             resource = "gagesIII_mw_characteristics_{0}.csv".format("tot")
             #Temp solution until they get the services up and running
-            csv_file = Shared.readCSVFile(os.path.join(self.BaseUrl,resource))
-            headers = csv_file[0]
-            csv_file.pop(0)
+            file = Shared.readCSVFile(os.path.join(self.BaseUrl,resource))
+            headers = file[0]
+            file.pop(0)
             comIDindex = headers.index('COMID')           
-            for row in csv_file:
+            for row in file:
                 if(len(row) < comIDindex): continue
                 if comID == row[comIDindex]:
                     for h in headers:

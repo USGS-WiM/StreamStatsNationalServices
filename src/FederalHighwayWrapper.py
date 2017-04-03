@@ -1,4 +1,4 @@
-﻿
+
 #------------------------------------------------------------------------------
 #----- DelineateWrapper.py ----------------------------------------------------
 #------------------------------------------------------------------------------
@@ -44,8 +44,7 @@ from ServiceAgents.NLDIServiceAgent import NLDIServiceAgent
 import ServiceAgents.NLDIServiceAgent
 from Ops.StreamStatsNationalOps import *
 import json
-#INFO 0 -+-+-+-+-+-+-+-+-+ 4287975 -+-+-+-+-+-+-+-+-+
-#INFO 0 -+-+-+-+-+-+-+-+-+ -68.58527778,47.2833333 -+-+-+-+-+-+-+-+-+
+
 #endregion
 
 ##-------1---------2---------3---------4---------5---------6---------7---------8
@@ -59,11 +58,11 @@ class DelineationWrapper(object):
             parser = argparse.ArgumentParser()
             parser.add_argument("-projectID", help="specifies the projectID", type=str, default="FH")
             parser.add_argument("-file", help="specifies csv file location including gage lat/long and comid's to estimate", type=str, 
-                                default = 'D:\\ss_apps\\ss_apps\\gages_iii\\gagesiii_lat_lon.csv')
+                                default = 'E:\\Applications\\input\\gagesiii_lat_lon.csv')
             parser.add_argument("-outwkid", help="specifies the esri well known id of pourpoint ", type=int, 
                                 default = '4326')
             parser.add_argument("-parameters", help="specifies the ';' separated list of parameters to be computed", type=str, 
-                                      default = "TOT_PPT7100_FEB")  
+                                      default = "")  
                            
             args = parser.parse_args()
             startTime = time.time()
@@ -117,11 +116,7 @@ class DelineationWrapper(object):
                 if isFirst:
                     Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(['COMID','WorkspaceID','Description','LAT','LONG']+results.Values.keys()))
                     isFirst = False
-                
-                if results is None:
-                    Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(str(v) for v in [g.comid,workspaceID,'error',g.lat,g.long])) 
-                else:
-                    Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(str(v) for v in [g.comid,workspaceID,results.Description,g.lat,g.long]+results.Values.values()))             
+                Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(str(v) for v in [g.comid,workspaceID,results.Description,g.lat,g.long]+results.Values.values()))             
             #next station           
             
             print 'Finished.  Total time elapsed:', round((time.time()- startTime)/60, 2), 'minutes'
@@ -139,8 +134,13 @@ class DelineationWrapper(object):
             else:
                 GeoJsonHandler.read_feature_collection(pnt,ppoint,gage.sr)  
 
+            #try:
             sa = NLDIServiceAgent()
             maskjson = sa.getBasin(gage.comid,True)
+            #except:
+            #    tb = traceback.format_exc()
+            #    WiMLogging.sm("Error: COMID "+gage.comid+" does not exist "+tb)
+            #    return None
 
             if(not maskjson): return None
 
@@ -150,7 +150,12 @@ class DelineationWrapper(object):
             else:
                 GeoJsonHandler.read_feature_collection(maskjson,mask,gage.sr) 
             
+            #try:
             basinjson = sa.getBasin(gage.comid,False)
+            #except:
+            #    tb = traceback.format_exc()
+            #    WiMLogging.sm("Error: COMID "+gage.comid+" does not exist "+tb)
+            #    return None
 
             if(not basinjson): return None
 
@@ -205,7 +210,8 @@ class DelineationWrapper(object):
         except:
              tb = traceback.format_exc()
              WiMLogging.sm("Error writing computing Characteristics "+tb)
-    
+             return WiMResults
+            
 if __name__ == '__main__':
     DelineationWrapper()
 

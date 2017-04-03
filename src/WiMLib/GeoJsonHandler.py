@@ -161,7 +161,7 @@ def _create_arcpy_sr(geojson_crs):
     """
     Creates an arcpy Spatial Reference object from incoming geojson crs string.
     """
-    ##TODO: Support more than EPSG. Thus this will need a re-write at some point
+    ##to do: Support more than EPSG. Thus this will need a re-write at some point -- changed by jwx
     assert "type" in geojson_crs, "GeoJSON does not validate.\n\t'type' missing from 'crs'"
     assert "properties" in geojson_crs, "GeoJSON does not validate.\n\t'properties' missing from 'crs'"
     assert geojson_crs["type"] == "name", "GeoJSON does not validate.\n\tOnly CRS type of name currently supported"
@@ -217,8 +217,8 @@ def read_feature(geojson_feat, target_fc, sr=None):
 
     if sr is None and "crs" in geojson_feat:
         logger.debug("Looking for feature CRS")
-    
-        ##TODO: probably need some output messages. Just sayin' ;)
+
+        #to do: probably need some output messages. Just sayin' ;) -- changed by jwx
         try:
             sr = _create_arcpy_sr(geojson_feat["crs"])
         except Exception, e:
@@ -231,7 +231,7 @@ def read_feature(geojson_feat, target_fc, sr=None):
         varshape = read_geometry(geojson_feat["geometry"], sr)
         row.SHAPE = varshape[0]
 
-        
+
         logger.debug("Adding attributes")
         for k in geojson_feat:
             if isinstance(geojson_feat[k], dict):
@@ -273,7 +273,7 @@ def read_feature_collection(geojson_feat_collection, target_fc, sr=None):
 
 
 def dump_geometry(geom):
-    ##TODO: Implement this!
+    ##to do: Implement this!  -- changed by jwx
     """
     Read an arcpy object and return a geojson object
     """
