@@ -89,12 +89,10 @@ class HydroOps(SpatialOps):
             self._sm("Starting Delineation")
             arcpy.env.extent = arcpy.Describe(mask).extent
 
+            #Build snap pour point then use it for watershed.
+            #   Pour point search distance of 60 m is equal to two cells.
             outSnapPour = SnapPourPoint(PourPoint, fac.Dataset, 60)
-
-            #arcpy.env.extent = arcpy.Describe(mask).extent
-
             outWatershedRaster = Watershed(fdr.Dataset, outSnapPour)
-            #arcpy.env.extent = "MAXOF"
 
             upCatch = os.path.join(featurePath, catchments["upstream"])
             arcpy.RasterToPolygon_conversion(outWatershedRaster, upCatch, "NO_SIMPLIFY")

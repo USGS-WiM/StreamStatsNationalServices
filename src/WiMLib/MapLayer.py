@@ -98,6 +98,7 @@ class MapLayer(object):
 
         try:
             if self.TileID != "":
+                #Is the below correct or this one? return os.path.join(self.Path,self.TileID,self.Name)
                 self.Path = os.path.join(self.Path,self.TileID)
             elif self.QueryFeaturePath:
                 arcpy.MakeFeatureLayer_management(os.path.join(self.Path,self.QueryFeaturePath), "select_lyr")

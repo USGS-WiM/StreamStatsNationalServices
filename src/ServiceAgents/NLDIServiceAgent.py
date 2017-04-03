@@ -55,12 +55,16 @@ class NLDIServiceAgent(ServiceAgentBase.ServiceAgentBase):
             distance = "gages_iii_catchments" if isCatchmentLevel else "gages_iii_basins"
             resource = "/{1}/{0}.json".format(comID, distance)
 
+            #Should these lines be included?
+            #results = self.Execute(resource)
+            #return json.loads(results)
+
             try:
                 results = self.Execute(resource)
                 return json.loads(results)
             except:
                 tb = traceback.format_exc()
-                self._sm("Exception raised for "+ os.path.basename(resource)+ ". Moving to next ComID.", "ERROR")
+                self._sm("Exception raised for "+ os.path.basename(resource) + ". Moving to next ComID.", "ERROR")
         except:
             tb = traceback.format_exc()
             self._sm("NLDIService getBasin Error "+tb, "ERROR")
