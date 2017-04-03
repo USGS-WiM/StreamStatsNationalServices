@@ -20,7 +20,7 @@
 #endregion
 
 #region "Imports"
-import glob, sys
+import glob, sys, os
 import requests
 import certifi
 import json
@@ -37,7 +37,10 @@ class ServiceAgentBase(object):
     #region Constructor
     def __init__(self,baseurl):
         self.BaseUrl = baseurl
-
+    def __enter__(self):
+        return self
+    def __exit__(self, exc_type, exc_value, traceback):
+        self.BaseUrl = None
     #endregion
 
     #region Methods
@@ -45,20 +48,24 @@ class ServiceAgentBase(object):
         try:
             url = self.BaseUrl + resource
             #below is temporary for batch jkn
-            return json.dumps(json.load(open(url)))
-            response = requests.get(url)
-            return response.text
+            try:
+                return json.dumps(json.load(open(url)))
+                response = requests.get(url)
+                return response.text
+            except:
+                self._sm("Error: file " + os.path.basename(resource) + " does not exist within Gages iii", 1.62, 'ERROR')
+                return ''
         except requests.exceptions as e:
              if hasattr(e, 'reason'):
-                self.__sm("Error:, failed to reach a server " + e.reason.strerror, 1.54, 'ERROR')
+                self._sm("Error:, failed to reach a server " + e.reason.strerror, 1.54, 'ERROR')
                 return ""
 
              elif hasattr(e, 'code'):
-                self.__sm("Error: server couldn't fullfill request " + e.code, 1.58, 'ERROR')
+                self._sm("Error: server couldn't fullfill request " + e.code, 1.58, 'ERROR')
                 return ''
         except:
             tb = traceback.format_exc()            
-            self.__sm("url exception failed " + resource + ' ' + tb, 1.60, 'ERROR')
+            self._sm("url exception failed " + resource + ' ' + tb, 1.60, 'ERROR')
             return ""    
     
     def indexMatching(self, seq, condition):

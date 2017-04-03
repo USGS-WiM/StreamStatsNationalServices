@@ -51,21 +51,26 @@ class DelineationWrapper(object):
     def __init__(self):
         try:
             parser = argparse.ArgumentParser()
+            #For project ID
+            
             parser.add_argument("-projectID", help="specifies the projectID", type=str, default="FH")
+            #Use the following LAT/LON pour point
             parser.add_argument("-pourpoint", help="specifies pourpoint geojson feature ", type=json.loads, 
-                                default = '{"type":"Feature","geometry":{"type":"Point","coordinates":[-89.20808,42.94940]}}')
+                                default = '{"type":"Feature","geometry":{"type":"Point","coordinates":[-69.088056,47.113056]}}')
+            #Within this EPSG code
             parser.add_argument("-outwkid", help="specifies the esri well known id of pourpoint ", type=int, 
                                 default = '4326')
                            
             args = parser.parse_args()
-            
+
             startTime = time.time()
             projectID = args.projectID
             if projectID == '#' or not projectID:
                 raise Exception('Input Study Area required')
             
             config = Config(json.load(open(os.path.join(os.path.dirname(__file__), 'config.json'))))  
-            workingDir = Shared.GetWorkspaceDirectory(config["workingdirectory"],args.projectID)        
+            workingDir = Shared.GetWorkspaceDirectory(config["workingdirectory"],args.projectID) 
+            workspaceID = os.path.basename(os.path.normpath(workingDir))       
             WiMLogging.init(os.path.join(workingDir,"Temp"),"Delineation.log")
             WiMLogging.sm("Started Delineation routine")
             
@@ -78,8 +83,8 @@ class DelineationWrapper(object):
 
             sa = NLDIServiceAgent()
             #to be replaced later by service call etc.
-            comid = 13297184
-            maskjson = sa.getBasin(comid,True)
+            comid = 4288603                                                              #THIS IS WHERE YOU CAHNGE THE COMID
+            maskjson = sa.getBasin(comid,True) #Bringing in a JSON mask/catchment ID
 
             if(maskjson):
                 mask = arcpy.CreateFeatureclass_management("in_memory", "maskFC", "POLYGON", spatial_reference=sr) 
@@ -97,7 +102,7 @@ class DelineationWrapper(object):
                 else:
                     GeoJsonHandler.read_feature_collection(basinjson,basin,sr)         
                     
-            hOps = HydroOps(workingDir)
+            hOps = HydroOps(workingDir,workspaceID)
             hOps.Delineate(ppoint, mask)
             hOps.MergeCatchment(basin)
             

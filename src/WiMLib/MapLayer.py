@@ -41,7 +41,7 @@ class MapLayer(object):
         self.Description =  mlayerDef.Description
         self.Name =  mlayerDef.Name
         self.IsTiled = mlayerDef.IsTiled
-        self.Path =  mlayerDef.Path
+        self.Path =  os.path.join(Config()["parentdirectory"], mlayerDef.Path)
         self.QueryFeaturePath = mlayerDef.QueryFeaturePath
         self.QueryField = mlayerDef.QueryField
         self.TileID = tileID
@@ -62,8 +62,8 @@ class MapLayer(object):
         try:
             if self.Activated: return
 
-            if not os.path.isdir(self.Path): 
-                self.canActivate = False    
+            if not os.path.isdir(self.Path):
+                self.canActivate = False
                 raise Exception(self.Name +" path doesn't exist")
 
             if self.IsTiled:
@@ -82,6 +82,7 @@ class MapLayer(object):
             self.Activated = True;
         except:
             tb = traceback.format_exc()
+            WiMLib.WiMLogging.sm(tb,type="Error", errorID=0) #changed by jwx
             self.Activated = False
     
     #endregion   
@@ -96,7 +97,7 @@ class MapLayer(object):
 
         try:
             if self.TileID != "":
-                return os.path.join(self.Path,self.TileID,self.Name)
+                self.Path = os.path.join(self.Path,self.TileID)
             elif self.QueryFeaturePath:
                 arcpy.MakeFeatureLayer_management(os.path.join(self.Path,self.QueryFeaturePath), "select_lyr")
                 selectlyr = arcpy.SelectLayerByLocation_management("select_lyr","INTERSECT", self.__queryfeature)
@@ -104,10 +105,12 @@ class MapLayer(object):
                 for row in cursor:
                     # if you want all values in the field
                     self.Path = os.path.join(self.Path,row[0])
+                    self.TileID = row[0]
                 #end for
 
         except:
             tb = traceback.format_exc()
+            WiMLib.WiMLogging.sm(tb,type="Error", errorID=0) #changed by jwx
             return ""
             msg = tb 
         finally:
@@ -132,5 +135,6 @@ class MapLayerDef(object):
         self.QueryField = maplayerObj["queryField"] if ("queryField" in maplayerObj) else None
         self.DataSetName = maplayerObj["DataSetName"] if ("DataSetName" in maplayerObj) else ""
         self.DatasetType =  maplayerObj["DatasetType"]    
+        self.UnitID = maplayerObj["UnitID"]if ("UnitID" in maplayerObj) else None
 
     #endregion

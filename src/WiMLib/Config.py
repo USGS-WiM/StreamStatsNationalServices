@@ -32,9 +32,11 @@ class Config:
             Config.instance = Config.__Config(configurationitems)
         
     def __getattr__(self, name):
-        return getattr(self.instance.Items, name)
+        try:
+            return getattr(self.instance.Items, name)
+        except:
+            return None
 
     def getElement(self, elementName):
         items = self.instance.Items
         return items[elementName]
-
