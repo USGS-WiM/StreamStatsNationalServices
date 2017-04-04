@@ -1,23 +1,21 @@
 #------------------------------------------------------------------------------
-#----- ServiceAgent.py ----------------------------------------------------
+#----- ServiceAgent.py --------------------------------------------------------
 #------------------------------------------------------------------------------
-
-#-------1---------2---------3---------4---------5---------6---------7---------8
-#       01234567890123456789012345678901234567890123456789012345678901234567890
-#-------+---------+---------+---------+---------+---------+---------+---------+
-
-# copyright:   2016 WiM - USGS
-
-#    authors:  Jeremy K. Newson USGS Web Informatics and Mapping
-# 
-#   purpose:  Data retrieval code 
-#          
-#discussion:  
 #
-
-#region "Comments"
-#07.18.2010 jkn - Created
-#endregion
+#  copyright:  2016 WiM - USGS
+#
+#    authors:  Jeremy K. Newson - USGS Web Informatics and Mapping (WiM)
+#              
+#    purpose:  Data retrieval code
+#
+#      usage:  THIS SECTION NEEDS TO BE UPDATED
+#
+# discussion:  THIS SECTION NEEDS TO BE UPDATED
+#
+#
+#      dates:   18 JUL 2016 jkn - Created / Date notation edited by jw
+#
+#------------------------------------------------------------------------------
 
 #region "Imports"
 import glob, sys, os

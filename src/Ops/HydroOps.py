@@ -1,26 +1,28 @@
-
 #------------------------------------------------------------------------------
-#----- Delineate.py ----------------------------------------------------
+#----- HydroOps.py -----------------------------------------------
+#----- Formerly known as Delineate.py ----------------------------------
 #------------------------------------------------------------------------------
-
-#-------1---------2---------3---------4---------5---------6---------7---------8
-#       01234567890123456789012345678901234567890123456789012345678901234567890
-#-------+---------+---------+---------+---------+---------+---------+---------+
-
-# copyright:   2016 WiM - USGS
-
-#    authors:  Jeremy K. Newson USGS Web Informatics and Mapping
-# 
-#   purpose:  Delineate using mask using arcpy
-#          
-#discussion:  https://github.com/GeoJSON-Net/GeoJSON.Net/blob/master/src/GeoJSON.Net/Feature/Feature.cs
-#             http://pro.arcgis.com/en/pro-app/tool-reference/spatial-analyst/watershed.htm
-#             geojsonToShape: http://desktop.arcgis.com/en/arcmap/10.3/analyze/arcpy-functions/asshape.htm
-#       
-
-#region "Comments"
-#08.19.2015 jkn - Created
-#endregion
+#
+#  copyright:  2016 WiM - USGS
+#
+#    authors:  Jeremy K. Newson - USGS Web Informatics and Mapping (WiM)
+#              
+#    purpose:  Delineate using mask using ArcGIS's Python library (arcpy)
+#
+#      usage:  THIS SECTION NEEDS TO BE UPDATED
+#
+# discussion:  Intial code was created by Jeremy K. Newson. Some minor edits were done
+#                   by John Wall (NC State University).
+#
+#              See:
+#                   https://github.com/GeoJSON-Net/GeoJSON.Net/blob/master/src/GeoJSON.Net/Feature/Feature.cs
+#                   http://pro.arcgis.com/en/pro-app/tool-reference/spatial-analyst/watershed.htm
+#                   geojsonToShape: http://desktop.arcgis.com/en/arcmap/10.3/analyze/arcpy-functions/asshape.htm
+#
+#      dates:   19 AUG 2016 jkn - Created / Date notation edited by jw
+#               03 APR 2017 jw - Modified
+#
+#------------------------------------------------------------------------------
 
 #region "Imports"
 import traceback

@@ -1,26 +1,29 @@
-
 #------------------------------------------------------------------------------
-#----- DelineateWrapper.py ----------------------------------------------------
+#----- FederalHighwayWrapper.py -----------------------------------------------
+#----- Formerly known as DelineateWrapper.py ----------------------------------
 #------------------------------------------------------------------------------
-
-#-------1---------2---------3---------4---------5---------6---------7---------8
-#       01234567890123456789012345678901234567890123456789012345678901234567890
-#-------+---------+---------+---------+---------+---------+---------+---------+
-
-# copyright:   2017 WiM - USGS
-
-#    authors:  Jeremy K. Newson USGS Web Informatics and Mapping
-# 
-#   purpose:  Wrapper to delineate and compute FederalHighway basin char 
-#          
-#discussion:  https://github.com/GeoJSON-Net/GeoJSON.Net/blob/master/src/GeoJSON.Net/Feature/Feature.cs
-#             http://pro.arcgis.com/en/pro-app/tool-reference/spatial-analyst/watershed.htm
-#             geojsonToShape: http://desktop.arcgis.com/en/arcmap/10.3/analyze/arcpy-functions/asshape.htm
-#       
-
-#region "Comments"
-#08.19.2015 jkn - Created
-#endregion
+#
+#  copyright:  2016 WiM - USGS
+#
+#    authors:  Jeremy K. Newson - USGS Web Informatics and Mapping (WiM)
+#              
+#    purpose:  Wrapper to delineate and compute FederalHighway basin characterisitics.
+#
+#      usage:  Acts as a wrapper to calcualte the Federal Highway basin
+#                   characterisitcs.
+#
+# discussion:  Intial code was created by Jeremy K. Newson. Some minor edits were done
+#                   by John Wall (NC State University).
+#
+#              See:
+#                   https://github.com/GeoJSON-Net/GeoJSON.Net/blob/master/src/GeoJSON.Net/Feature/Feature.cs
+#                   http://pro.arcgis.com/en/pro-app/tool-reference/spatial-analyst/watershed.htm
+#                   geojsonToShape: http://desktop.arcgis.com/en/arcmap/10.3/analyze/arcpy-functions/asshape.htm
+#
+#      dates:   19 AUG 2016 jkn - Created / Date notation edited by jw
+#               03 APR 2017 jw - Modified
+#
+#------------------------------------------------------------------------------
 
 #region "Imports"
 import traceback
