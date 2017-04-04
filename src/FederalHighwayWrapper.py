@@ -137,13 +137,8 @@ class DelineationWrapper(object):
             else:
                 GeoJsonHandler.read_feature_collection(pnt,ppoint,gage.sr)  
 
-            #try:
             sa = NLDIServiceAgent()
             maskjson = sa.getBasin(gage.comid,True)
-            #except:
-            #    tb = traceback.format_exc()
-            #    WiMLogging.sm("Error: COMID "+gage.comid+" does not exist "+tb)
-            #    return None
 
             if(not maskjson): return None
 
@@ -153,12 +148,7 @@ class DelineationWrapper(object):
             else:
                 GeoJsonHandler.read_feature_collection(maskjson,mask,gage.sr) 
             
-            #try:
             basinjson = sa.getBasin(gage.comid,False)
-            #except:
-            #    tb = traceback.format_exc()
-            #    WiMLogging.sm("Error: COMID "+gage.comid+" does not exist "+tb)
-            #    return None
 
             if(not basinjson): return None
 

@@ -60,7 +60,7 @@ class NLDIServiceAgent(ServiceAgentBase.ServiceAgentBase):
                 return json.loads(results)
             except:
                 tb = traceback.format_exc()
-                self._sm("Exception raised for "+ os.path.basename(resource)+ ". Moving to next ComID.", "ERROR")
+                self._sm("Exception raised for "+ os.path.basename(resource) + ". Moving to next ComID.", "ERROR")
         except:
             tb = traceback.format_exc()
             self._sm("NLDIService getBasin Error "+tb, "ERROR")
