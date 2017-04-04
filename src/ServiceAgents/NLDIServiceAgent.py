@@ -55,10 +55,6 @@ class NLDIServiceAgent(ServiceAgentBase.ServiceAgentBase):
             distance = "gages_iii_catchments" if isCatchmentLevel else "gages_iii_basins"
             resource = "/{1}/{0}.json".format(comID, distance)
 
-            #Should these lines be included?
-            #results = self.Execute(resource)
-            #return json.loads(results)
-
             try:
                 results = self.Execute(resource)
                 return json.loads(results)

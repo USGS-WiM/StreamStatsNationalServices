@@ -53,7 +53,6 @@
       "MapLayers": [ "freshWithdraw" ],
       "UnitID": "megaliters/km2"
     },
-<<<<<<< HEAD
     "TOT_WTDEP": {
       "Procedure": "TO BE DETERMINED",
       "Description": "Average value of depth to seasonally high water table ",
