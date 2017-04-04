@@ -1,26 +1,22 @@
 #------------------------------------------------------------------------------
 #----- NLDIServiceAgent.py ----------------------------------------------------
 #------------------------------------------------------------------------------
-
-#-------1---------2---------3---------4---------5---------6---------7---------8
-#       01234567890123456789012345678901234567890123456789012345678901234567890
-#-------+---------+---------+---------+---------+---------+---------+---------+
-
-# copyright:   2016 WiM - USGS
-
-#    authors:  Jeremy K. Newson USGS Web Informatics and Mapping
-# 
-#   purpose:  NLDIServiceAgent is a server class, to provide hunting and gathering  
-#               methods for NLDI service
-#     usage:  
-#             
 #
-#discussion:  
-#       
-
-#region "Comments"
-#12.09.2016 jkn - Created
-#endregion
+#  copyright:  2016 WiM - USGS
+#
+#    authors:  Jeremy K. Newson - USGS Web Informatics and Mapping (WiM)
+#              
+#    purpose:  NLDIServiceAgent is a server class to provide hunting and gathering  
+#                   methods for NLDI service
+#
+#      usage:  THIS SECTION NEEDS TO BE UPDATED
+#
+# discussion:  THIS SECTION NEEDS TO BE UPDATED
+#
+#
+#      dates:   09 DEC 2016 jkn - Created / Date notation edited by jw
+#
+#------------------------------------------------------------------------------
 
 #region "Imports"
 import traceback

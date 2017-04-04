@@ -1,8 +1,21 @@
-'''
-Created on Mar 16, 2017
-
-@author: gpetrochenkov
-'''
+#------------------------------------------------------------------------------
+#----- PrismOps.py ------------------------------------------------------------
+#------------------------------------------------------------------------------
+#
+#  copyright:  2016 WiM - USGS
+#
+#    authors:  Greg Petrochenkov - USGS Web Informatics and Mapping (WiM)
+#              
+#    purpose:  Handles PRISIM data for the StreamStats project
+#
+#      usage:  THIS SECTION NEEDS TO BE UPDATED
+#
+# discussion:  THIS SECTION NEEDS TO BE UPDATED
+#
+#      dates:  16 MAR 2017 gp - Created / Date notation edited by jw
+#              04 APR 2017 jw - Modified
+#
+#------------------------------------------------------------------------------
 
 import numpy as np
 import netCDF4

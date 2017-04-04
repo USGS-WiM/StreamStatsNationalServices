@@ -1,24 +1,40 @@
-'''
-Helper class to read and write geojson objects in ArcGIS as a replacement for
-the arcpy.asShape(geojson) function. Requires ArcGIS installation...
-
-Creation includes creating a geojson object from an ArcGIS feature class,
-feature or geometry.
-
-Reading is more complex. This module includes support for Feature Collections,
-Features and Geometry. All geometry types are supported except for
-GeometryCollection which is unsupported by ArcGIS. Feature collections must have
-the same geometry type.
-
-CRS support is included, but only for EPSG codes at this point (if the epsg code
-is in the projection string we search for it with regex "epsg:\d\d\d\d\d?"
-
-Motivation for this module came from the lack of ESRI support for geojson. As it
-currently stands geometries created in ArcGIS without a projection are rounded
-to three decimal places
-
-@author: om_henners
-'''
+#------------------------------------------------------------------------------
+#----- GeoJsonHandler.py ------------------------------------------------------
+#------------------------------------------------------------------------------
+#
+#  copyright:  Henry Walshaw (om-henners)
+#              2016 WiM - USGS (for all modifications)
+#
+#    authors:  Jeremy K. Newson - USGS Web Informatics and Mapping (WiM)
+#              Henry Walshaw 
+#
+#    purpose:  Helper class to read and write geojson objects in ArcGIS as a
+#                   replacement for the arcpy.asShape(geojson) function.
+#                   Requires ArcGIS installation...
+#
+#      usage:  Creation includes creating a geojson object from an ArcGIS
+#                   feature class, feature or geometry.
+#
+#               Reading is more complex. This module includes support for
+#                   Feature Collections, Features and Geometry. All geometry
+#                   types are supported except for GeometryCollection which
+#                   is unsupported by ArcGIS. Feature collections must have
+#                   the same geometry type.
+#
+#               CRS support is included, but only for EPSG codes at this point
+#                   (if the epsg code is in the projection string we search for
+#                   it with regex "epsg:\d\d\d\d\d?"
+#
+# discussion:  Motivation for this module came from the lack of ESRI support
+#                   for geojson. As it currently stands geometries created in
+#                   ArcGIS without a projection are rounded to three decimal places
+#
+#              See:
+#                  https://github.com/om-henners 
+#
+#      dates:  04 APR 2017 jw - Modified
+#
+#------------------------------------------------------------------------------
 
 import arcpy
 import os

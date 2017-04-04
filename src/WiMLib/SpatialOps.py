@@ -1,23 +1,26 @@
 ﻿#------------------------------------------------------------------------------
-#----- SpatialOps.py ----------------------------------------------------
+#----- SpatialOps.py ------------------------------------------------------------
 #------------------------------------------------------------------------------
-
-#-------1---------2---------3---------4---------5---------6---------7---------8
-#       01234567890123456789012345678901234567890123456789012345678901234567890
-#-------+---------+---------+---------+---------+---------+---------+---------+
-
-# copyright:   2016 WiM - USGS
-
-#    authors:  Jeremy K. Newson USGS Web Informatics and Mapping
-# 
-#   purpose:  Contains reusable global spatial methods
-#          
-#discussion: explaination of different overlay tools https://blogs.esri.com/esri/arcgis/2012/10/12/comparingoverlaytools/ 
 #
-
-#region "Comments"
-#11.05.2014 jkn - Created
-#endregion
+#  copyright:  2016 WiM - USGS
+#
+#    authors:  John Wall - Ph.D. Student NC State University
+#              Jeremy K. Newson - USGS Web Informatics and Mapping (WiM)
+#              
+#    purpose:  Contains reusable global spatial methods
+#
+#      usage:  THIS SECTION NEEDS TO BE UPDATED
+#
+# discussion:  An explaination of different overlay tools is provided by the
+#                   link below.
+#
+#              See:
+#                   https://blogs.esri.com/esri/arcgis/2012/10/12/comparingoverlaytools/
+#
+#      dates:   05 NOV 2016 jkn - Created / Date notation edited by jw
+#               03 APR 2017 jw - Modified
+#
+#------------------------------------------------------------------------------
 
 #region "Imports"
 import shutil

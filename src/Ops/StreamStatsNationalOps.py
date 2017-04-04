@@ -2,7 +2,7 @@
 #----- StreamStatsNationalOps.py ----------------------------------------------
 #------------------------------------------------------------------------------
 #
-# copyright:   2016 WiM - USGS
+#  copyright:  2016 WiM - USGS
 #
 #    authors:  John Wall - Ph.D. Student NC State University
 #              Jeremy K. Newson - USGS Web Informatics and Mapping (WiM)
@@ -39,8 +39,6 @@
 #                   config.json. Thus, config.json was updates to include these
 #                   classes.
 #
-# add. notes:   Why not just define MapLayers/ML at the top? This is repeated frequently
-# 
 #------------------------------------------------------------------------------
 
 #Region "Imports"

@@ -1,32 +1,27 @@
 ﻿#------------------------------------------------------------------------------
-#----- Logging.py ----------------------------------------------------
+#----- Logging.py ------------------------------------------------------------
 #------------------------------------------------------------------------------
-
-#-------1---------2---------3---------4---------5---------6---------7---------8
-#       01234567890123456789012345678901234567890123456789012345678901234567890
-#-------+---------+---------+---------+---------+---------+---------+---------+
-
-# copyright:   2016 WiM - USGS
-
-#    authors:  Jeremy K. Newson USGS Web Informatics and Mapping
-# 
-#   purpose:  Simple log tracking app.
-#          
-#discussion:  
 #
-
-#region "Comments"
-#11.05.2014 jkn - Created
-#endregion
+#  copyright:  2016 WiM - USGS
+#
+#    authors:  Jeremy K. Newson - USGS Web Informatics and Mapping (WiM)
+#              
+#    purpose:  A simple log tracking application for StreamStats.
+#
+#      usage:  THIS SECTION NEEDS TO BE UPDATED
+#
+# discussion:  THIS SECTION NEEDS TO BE UPDATED
+#
+#      dates:   05 NOV 2016 jkn - Created / Date notation edited by jw
+#               04 APR 2017 jw - Modified
+#
+#------------------------------------------------------------------------------
 
 #region "Imports"
 import os
 import logging
 #endregion
 
-##-------1---------2---------3---------4---------5---------6---------7---------8
-##       Logging
-##-------+---------+---------+---------+---------+---------+---------+---------+
 #region Constructor
 LogMessages =[]
 """ Handles logging  """

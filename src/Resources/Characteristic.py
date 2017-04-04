@@ -1,23 +1,20 @@
 #------------------------------------------------------------------------------
 #----- Characteristic.py ----------------------------------------------------
 #------------------------------------------------------------------------------
-
-#-------1---------2---------3---------4---------5---------6---------7---------8
-#       01234567890123456789012345678901234567890123456789012345678901234567890
-#-------+---------+---------+---------+---------+---------+---------+---------+
-
-# copyright:   2016 WiM - USGS
-
-#   authors:  Jeremy K. Newson USGS Web Informatics and Mapping (WiM)
 #
-#   purpose:   Data holder
+#  copyright:  2016 WiM - USGS
 #
-#discussion:
+#    authors:  Jeremy K. Newson - USGS Web Informatics and Mapping (WiM)
+#              
+#    purpose:  Data holder
 #
-
-#region "Comments"
-#12.01.2016 jkn - Created
-#endregion
+#      usage:  THIS SECTION NEEDS TO BE UPDATED
+#
+# discussion:  THIS SECTION NEEDS TO BE UPDATED
+#
+#      dates:   01 DEC 2016 jkn - Created / Date notation edited by jw
+#
+#------------------------------------------------------------------------------
 
 #region "Imports"
 import json

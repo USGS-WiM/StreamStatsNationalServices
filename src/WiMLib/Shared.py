@@ -1,3 +1,21 @@
+#------------------------------------------------------------------------------
+#----- Shared.py --------------------------------------------------------------
+#------------------------------------------------------------------------------
+#
+#  copyright:  2016 WiM - USGS
+#
+#    authors:  Jeremy K. Newson - USGS Web Informatics and Mapping (WiM) ??????
+#              
+#    purpose:  THIS SECTION NEEDS TO BE UPDATED
+#
+#      usage:  THIS SECTION NEEDS TO BE UPDATED
+#
+# discussion:  THIS SECTION NEEDS TO BE UPDATED
+#
+#      dates:  THIS SECTION NEEDS TO BE UPDATED
+#
+#------------------------------------------------------------------------------
+
 import os
 import sys
 import datetime
