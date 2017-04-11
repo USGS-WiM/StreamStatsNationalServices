@@ -2505,21 +2505,21 @@
     },
     "TOT_MIRAD_2012": {
       "Reference": "https://www.sciencebase.gov/catalog/item/573b78aee4b0dae0d5e3aeb7",
-      "MapLayers": "TO BE DETERMINED",
+      "MapLayers": [ "mirad2012" ],
       "Description": "Percent of watershed in irrigated agriculture, from USGS 2012 250-m MODIS data",
       "Procedure": "TO BE DETERMINED",
       "UnitID": "percent"
     },
     "TOT_MIRAD_2007": {
       "Reference": "https://www.sciencebase.gov/catalog/item/573b7850e4b0dae0d5e3aeb0",
-      "MapLayers": "TO BE DETERMINED",
+      "MapLayers": [ "mirad2007" ],
       "Description": "Percent of watershed in irrigated agriculture, from USGS 2007 250-m MODIS data",
       "Procedure": "TO BE DETERMINED",
       "UnitID": "percent"
     },
     "TOT_MIRAD_2002": {
       "Reference": "https://www.sciencebase.gov/catalog/item/573b77afe4b0dae0d5e3aea6",
-      "MapLayers": "TO BE DETERMINED",
+      "MapLayers": [ "mirad2002" ],
       "Description": "Percent of watershed in irrigated agriculture, from USGS 2002 250-m MODIS data",
       "Procedure": "TO BE DETERMINED",
       "UnitID": "percent"
@@ -5005,6 +5005,22 @@
       "ID": 3001,
       "Name": "mirad250_02v3",
       "Description": "2002 Moderate resolution Irrigated Agriculture Dataset",
+      "isTiled": false,
+      "path": "Nationwide/HYDRO_MOD/MIRAD",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "mirad2007": {
+      "ID": 3001,
+      "Name": "mirad250_07v3",
+      "Description": "2007 Moderate resolution Irrigated Agriculture Dataset",
+      "isTiled": false,
+      "path": "Nationwide/HYDRO_MOD/MIRAD",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "mirad2012": {
+      "ID": 3001,
+      "Name": "mirad250_12v3",
+      "Description": "2012 Moderate resolution Irrigated Agriculture Dataset",
       "isTiled": false,
       "path": "Nationwide/HYDRO_MOD/MIRAD",
       "DatasetType": "ESRI_RASTER"
