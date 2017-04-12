@@ -27,6 +27,7 @@
 #
 #      dates:   30 NOV 2016 jkn - Created / Date notation edited by jw
 #               27 FEB 2017 jw - Modified
+#               11 APR 2017 jw - Added getVectoryDensity
 #
 #   mod work:   Pull from HydroOps - Tutorial with Jeremy (DONE)
 #               AnthOps (DONE)
@@ -255,15 +256,22 @@ class StreamStatsNationalOps(SpatialOps):
         result = {Characteristic.Name:0}
         try:
             self._sm("Computing " + Characteristic.Name)
-            ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))
+            #This has to call two different layers, right?
+            wholeML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))
+            partML = MapLayer(MapLayerDef(Characteristic.MapLayers[1]))
 
-            if not ML.Activated:
-                raise Exception("Map Layer could not be activated.")
+            if not wholeML.Activated:
+                raise Exception("Map Layer for initial data could not be activated.")
+            if not partML.Activated:
+                raise Exception("Map Layer for overlying data could not be activated.")
 
-            totArea = self.getAreaSqMeter(self.mask)*Shared.CF_SQMETERS2SQKILOMETER
-            count = super(StreamStatsNationalOps,self).getFeatureCount(ML.Dataset, self.mask)
+            spOverlayWhole = self.spatialOverlay(wholeML,self.mask)
+            spOverlayPart = self.spatialOverlay(partML,self.mask)
 
-            result[Characteristic.Name] = count/totArea
+            sumWhole = arcpy.Statistics_analysis(spOverlayWhole,os.path.join(self._TempLocation, "vdtmp"),Characteristic.Method)          
+            sumPart = arcpy.Statistics_analysis(spOverlayPart,os.path.join(self._TempLocation, "vdtmp"),Characteristic.Method)
+            
+            result[Characteristic.Name] = sumPart/sumWhole
 
         except:
             tb = traceback.format_exc()
@@ -281,7 +289,6 @@ class StreamStatsNationalOps(SpatialOps):
         '''
         Computes statistic for prism data
         '''
-        
         result = {Characteristic.Name:None}
         try:
             self._sm("Computing " + Characteristic.Name)
