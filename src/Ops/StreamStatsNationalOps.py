@@ -257,8 +257,7 @@ class StreamStatsNationalOps(SpatialOps):
         try:
             self._sm("Computing " + Characteristic.Name)
             #This has to call two different layers, right?
-            wholeML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))
-            partML = MapLayer(MapLayerDef(Characteristic.MapLayers[1]))
+            ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))
 
             if not wholeML.Activated:
                 raise Exception("Map Layer for initial data could not be activated.")
@@ -266,7 +265,8 @@ class StreamStatsNationalOps(SpatialOps):
                 raise Exception("Map Layer for overlying data could not be activated.")
 
             spOverlayWhole = self.spatialOverlay(wholeML,self.mask)
-            spOverlayPart = self.spatialOverlay(partML,self.mask)
+
+            #select by attribute
 
             sumWhole = arcpy.Statistics_analysis(spOverlayWhole,os.path.join(self._TempLocation, "vdtmp"),Characteristic.Method)          
             sumPart = arcpy.Statistics_analysis(spOverlayPart,os.path.join(self._TempLocation, "vdtmp"),Characteristic.Method)
