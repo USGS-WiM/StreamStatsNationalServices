@@ -256,7 +256,7 @@ class StreamStatsNationalOps(SpatialOps):
         result = {Characteristic.Name:0}
         try:
             self._sm("Computing " + Characteristic.Name)
-            #This has to call two different layers, right?
+            
             ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))
 
             if not wholeML.Activated:
@@ -264,14 +264,27 @@ class StreamStatsNationalOps(SpatialOps):
             if not partML.Activated:
                 raise Exception("Map Layer for overlying data could not be activated.")
 
-            spOverlayWhole = self.spatialOverlay(wholeML,self.mask)
+            spOverlayWhole = self.spatialOverlay(ML,self.mask)
 
-            #select by attribute
+            #Select by attribute created by JWX
+            arcpy.MakeFeatureLayer_management(ML, "Subsetlayer") #Make feature layer
+            #Create query
+            queryField = Characteristic.Field                                           #Generalized to pass whatever field needed
+            operator = Characterisitic.Operator                                         #Generalized to whatever operator e.g. =, LIKE, !=
+            if operator == "LIKE":                                                      #If operator = LIKE, flanking "%" are needed
+                keyword = "%"+ Characteristic.Keyword + "%"
+            else:
+                keyword = Characteristic.Keyword
+            #There will likely need to be some serious error handling within this component.
+            #   Usually, "[FIELD] <operator> '<key>'" is sufficent, but sometimes, ArcGIS
+            #   wants to have '"FIELD"" <operator> <key>' which is for FGDBs.
+            query = " [%s] %s '%s'" % (queryField, operator, keyword)                   #Build query -- ACHTUNG! this nearly always fails and will need some troubleshooting
+            arcpy.SelectLayerByAttribute_management("Subsetlayer", "NEW_SELECTION", query)   #Carry out selection
 
-            sumWhole = arcpy.Statistics_analysis(spOverlayWhole,os.path.join(self._TempLocation, "vdtmp"),Characteristic.Method)          
-            sumPart = arcpy.Statistics_analysis(spOverlayPart,os.path.join(self._TempLocation, "vdtmp"),Characteristic.Method)
+            sumMain = arcpy.Statistics_analysis(spOverlayWhole,os.path.join(self._TempLocation, "vdtmp"),Characteristic.Method)          
+            sumSubset = arcpy.Statistics_analysis("Subsetlayer",os.path.join(self._TempLocation, "vdtmp"),Characteristic.Method)
             
-            result[Characteristic.Name] = sumPart/sumWhole
+            result[Characteristic.Name] = sumSubset/sumMain
 
         except:
             tb = traceback.format_exc()
@@ -282,6 +295,7 @@ class StreamStatsNationalOps(SpatialOps):
         finally:
             #Cleans up workspace
             ML = None
+            arcpy.SelectLayerByAttribute_management("Subsetlayer", "CLEAR_SELECTION")   #This was added by JWX
 
         return result
 

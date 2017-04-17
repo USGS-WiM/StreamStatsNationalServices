@@ -1,9 +1,9 @@
 {
   "characteristiclist": "https://docs.google.com/spreadsheets/d/1_5vxn94GqsQwv3zH3YDO-HaIDGpk_q3ou0jJSWPUZJo/edit#gid=733442906",
   "NLDIServiceOff": "https://cida-test.er.usgs.gov/nldi/",
-  "NLDIService": "E:/Applications/input",
-  "workingdirectory": "E:/Applications/output/gage_iii",
-  "parentdirectory": "E:/ss_data/FHWA",
+  "NLDIService": "C:/gis/usgs/ss/Applications/input",
+  "workingdirectory": "C:/gis/usgs/ss/Applications/output/gage_iii",
+  "parentdirectory": "C:/gis/usgs/ss/ss_data/FHWA",
   "outputFile": "splitCatchment.csv",
   "catchment": {
     "upstream": "upstreamcatchment",
