@@ -56,7 +56,7 @@ class DelineationWrapper(object):
             parser.add_argument("-projectID", help="specifies the projectID", type=str, default="FH")
             #Use the following LAT/LON pour point
             parser.add_argument("-pourpoint", help="specifies pourpoint geojson feature ", type=json.loads, 
-                                default = '{"type":"Feature","geometry":{"type":"Point","coordinates":[-69.088056,47.113056]}}')
+                                default = '{"type":"Feature","geometry":{"type":"Point","coordinates":[-84.088548,39.79728106]}}')
             #Within this EPSG code
             parser.add_argument("-outwkid", help="specifies the esri well known id of pourpoint ", type=int, 
                                 default = '4326')

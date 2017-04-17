@@ -142,14 +142,14 @@
       "Description": "30 year (1971 - 2000) mean January number of days of measurable precipitation (days) from 2.3km PRISM data",
       "MapLayers": [ "wd6190" ],
       "UnitID": "days",
-      "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd",
+      "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
     },
     "TOT_WD6190_FEB": {
       "Procedure": "TO BE DETERMINED",
       "Description": "30 year (1971 - 2000) mean February number of days of measurable precipitation (days) from 800 m PRISM data",
       "MapLayers": [ "wd6190" ],
       "UnitID": "days",
-      "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd",
+      "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
     },
     "TOT_WD6190_DEC": {
       "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd",
@@ -1572,13 +1572,6 @@
       "Procedure": "TO BE DETERMINED",
       "UnitID": "percent"
     },
-    "TOT_NWALT12_41": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5743139be4b07e28b660ae85",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "Mining/Extraction - Barren areas due to probable surface mining/mineral extraction. Includes mining, quarries, sand and gravel operations, and energy operations.",
-      "Procedure": "TO BE DETERMINED",
-      "UnitID": "percent"
-    },
     "TOT_NWALT12_33": {
       "Reference": "https://www.sciencebase.gov/catalog/item/5743139be4b07e28b660ae85",
       "MapLayers": "TO BE DETERMINED",
@@ -1781,13 +1774,6 @@
       "Description": "Water - Streams, rivers, lakes, ponds, bays, and estuaries.",
       "Procedure": "TO BE DETERMINED",
       "UnitID": "percent"
-    },
-    "TOT_NPDES_MAJ_DENS": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57c9d89ce4b0f2f0cec192da",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "NA",
-      "Procedure": "TO BE DETERMINED",
-      "UnitID": "NA"
     },
     "TOT_NORM_STORAGE_2013": {
       "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1",
@@ -2356,13 +2342,6 @@
       "Procedure": "TO BE DETERMINED",
       "UnitID": "acre feet"
     },
-    "TOT_NID_STORAGE_1980": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/577179e4e4b07657d1a6badf",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
-      "Procedure": "TO BE DETERMINED",
-      "UnitID": "acre feet"
-    },
     "TOT_NID_STORAGE_1970": {
       "Reference": "https://www.sciencebase.gov/catalog/item/57717888e4b07657d1a6badb",
       "MapLayers": "TO BE DETERMINED",
@@ -2514,13 +2493,6 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/573b7850e4b0dae0d5e3aeb0",
       "MapLayers": [ "mirad2007" ],
       "Description": "Percent of watershed in irrigated agriculture, from USGS 2007 250-m MODIS data",
-      "Procedure": "TO BE DETERMINED",
-      "UnitID": "percent"
-    },
-    "TOT_MIRAD_2002": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/573b77afe4b0dae0d5e3aea6",
-      "MapLayers": [ "mirad2002" ],
-      "Description": "Percent of watershed in irrigated agriculture, from USGS 2002 250-m MODIS data",
       "Procedure": "TO BE DETERMINED",
       "UnitID": "percent"
     },
@@ -2689,13 +2661,6 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/570577fee4b0d4e2b7571d7b",
       "MapLayers": "TO BE DETERMINED",
       "Description": "Impervious surface in 100 meter riparion buffers from NLCD 2011",
-      "Procedure": "TO BE DETERMINED",
-      "UnitID": "percent"
-    },
-    "TOT_IMPV11": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57057a9be4b0d4e2b7571fbb",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "Impervious surface from NLCD 2011",
       "Procedure": "TO BE DETERMINED",
       "UnitID": "percent"
     },
@@ -3328,13 +3293,6 @@
       "Description": "Watershed average of mean day of the year of first freeze, derived from 30 years of record (1961-1990), 2 km PRISM.",
       "Procedure": "TO BE DETERMINED",
       "UnitID": "day of the year"
-    },
-    "TOT_FRESHWATER_WD": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57c9dc05e4b0f2f0cec192f2",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "Freshwater withdrawal megaliters (1000 cubic meters) per year per sqkm, from 1995-2000 county-level estimates",
-      "Procedure": "TO BE DETERMINED",
-      "UnitID": "megaliters/km2"
     },
     "TOT_EVAP": {
       "Reference": "https://www.sciencebase.gov/catalog/item/57e04f52e4b09082500213a9",
@@ -4959,14 +4917,6 @@
       "Description": "NA",
       "Procedure": "TO BE DETERMINED",
       "UnitID": "NA"
-    },
-    "TOT_PPT7100_FEB": {
-      "Procedure": "getPrismStatistic",
-      "Description": "Gets precipitation from Dave Wollock data",
-      "Method": "Mean",
-      "MapLayers": [ "prismGrid" ],
-      "UnitID": "megaliters/km2",
-      "Data": "pptint.nc"
     }
   },
   "maplayers": {
@@ -5056,7 +5006,7 @@
       "isTiled": false,
       "path": "National",
       "DatasetType": "TIF_RASTER"
-    }
+    },
    "nid2013": {
       "ID": 2001,
       "Name": "point",
@@ -5338,15 +5288,6 @@
       "ID": "NEEDS DETAILS",
       "Name": "NEEDS DETAILS",
       "Description": "Average value of potential evapotranspiration (PET) from the water balance model for 2000-2014 detrended to 2012",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
-      "Reference": "https://www.sciencebase.gov/catalog/item/572245ece4b0b13d39138efe"
-    },
-    "wbm_dt_aet_2012": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
-      "Description": "Average value of actual evapotranspiration (AET) from the water balance model for 2000-2014 detrended to 2012",
       "isTiled": "NEEDS DETAILS",
       "path": "NEEDS DETAILS",
       "DatasetType": "NEEDS DETAILS",
@@ -10248,15 +10189,6 @@
       "DatasetType": "NEEDS DETAILS",
       "Reference": "https://www.sciencebase.gov/catalog/item/573f7c20e4b04a3a6a24af72"
     },
-    "cdl12_72": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
-      "Description": "Citrus",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
-      "Reference": "https://www.sciencebase.gov/catalog/item/573f7c20e4b04a3a6a24af72"
-    },
     "cdl12_71": {
       "ID": "NEEDS DETAILS",
       "Name": "NEEDS DETAILS",
@@ -11399,15 +11331,6 @@
       "path": "NEEDS DETAILS",
       "DatasetType": "NEEDS DETAILS",
       "Reference": "https://www.sciencebase.gov/catalog/item/5783ed1ce4b0ac0b97f5428f"
-    },
-    "ppt7100_feb": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
-      "Description": "Gets precipitation from Dave Wollock data",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
-      "Reference": "NEEDS DETAILS"
-    },
+    }
   }
 }

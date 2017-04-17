@@ -299,10 +299,10 @@ class StreamStatsNationalOps(SpatialOps):
 
         return result
 
-	def getPrismStatistic(self, Characteristic):
-        '''
-        Computes statistic for prism data
-        '''
+    def getPrismStatistic(self, Characteristic):
+
+        #Computes statistic for prism data. Changed by JWX. Indent block did not work.
+
         result = {Characteristic.Name:None}
         try:
             self._sm("Computing " + Characteristic.Name)
