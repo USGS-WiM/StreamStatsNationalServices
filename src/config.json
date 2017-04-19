@@ -22,7 +22,7 @@
       "Procedure": "getRasterStatistic",
       "Description": "Freshwater withdrawal megaliters (1000 cubic meters) per year per sqkm, from 1995-2000 county-level estimates",
       "Method": "Mean",
-      "MapLayers": [ "freshWithdraw" ],
+      "MapLayers": [ "freshwater_wd" ],
       "UnitID": "megaliters/km2"
     },
     "TOT_IMPV11": {
@@ -88,7 +88,6 @@
     "freshwater_wd": {
       "ID": 3001,
       "Name": "withdr_sqkm",
-      "DataSetName": "withdr_sqkm",
       "Description": "Freshwater withdrawal megaliters (1000 cubic meters) per year per sqkm, from 1995-2000 county-level estimates",
       "isTiled": false,
       "path": "Nationwide/HYDRO_MOD/WATERUSE",
@@ -129,11 +128,12 @@
     },
     "npdes": {
       "ID": 8001,
-      "Name": "NPDES NEEDS DETAILS",
+      "Name": "point",
+      "DataSetName": "us_major_npd",
       "Description": "NPDES NEEDS DETAILS",
-      "isTiled": "NPDES NEEDS DETAILS",
-      "path": "NPDES NEEDS DETAILS",
-      "DatasetType": "NPDES NEEDS DETAILS"
+      "isTiled": false,
+      "path": "Nationwide/HYDRO_MOD/NPDES",
+      "DatasetType": "ESRI_POINT"
     }
   }
 }
