@@ -15,6 +15,7 @@
       "Procedure": "getStoragePerUnitArea",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
       "MapLayers": ["nid2013"],
+      "QueryField": "NID_STORAG",
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1"
     },

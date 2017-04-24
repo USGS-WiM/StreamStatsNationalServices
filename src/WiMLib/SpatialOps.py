@@ -371,9 +371,9 @@ class SpatialOps(object):
             return float(value.getOutput(0))
         except:
             tb = traceback.format_exc()
-            self._sm("Failed to get raster statistic " +tb,"ERROR",229)
+            self._sm("Failed to get raster statistic computing centroid value.","WARNING",229)
             cellsize = float(arcpy.GetRasterProperties_management(inRaster, 'CELLSIZEX').getOutput(0))**2
-            self._sm("Raster cell size: " + str(cellsize) , "ERROR")
+            self._sm("Raster cell size: " + str(cellsize) , "WARNING")
             # try getting centroid
             return self.getValueAtCentroid(maskFeature,inRaster)
         finally:
