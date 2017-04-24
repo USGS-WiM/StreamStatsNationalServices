@@ -1,5 +1,72 @@
 {
 "maplayers": {
+  "Immediate": "Julie",
+  "Reservoir storage or presence of major dams": "NID Storage of Dams Built before 2013 converted to storage per unit area -- do all years",
+  "Water withdrawals -- would be a new dataset from James Falcone (1 km gridded)": "Freshwater withdrawals (converted to per unit area)",
+  "Percent Impervious": "NLCD percent imperviousness, 2011",
+  "Percent irrigated agriculture": "percent of irrigated agriculture (2012), MIRAD data * (percent of catchment that is irrigated agriculture) -- get all years",
+  "Percent mining possibly, James says Mike W. has this one in his dataset": "Class 41 of NWALT",
+  "Canals -- percent of stream km coded as canal or ditch": "Calcualte based on NHD+ flowlines",
+  "NPDES permits": "NPDES Major site density (2006)"
+}
+    "nid2013": {
+      "ID": 2001,
+      "Name": "point",
+      "DataSetName": "THIS DATA IS MISSING FROM SERVER",
+      "Description": "National Inventory of Dams before 2013",
+      "isTiled": false,
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
+    },
+    "freshWithdraw": {
+      "ID": 6001,
+      "Name": "withdr_sqkm",
+      "Description": "Water withdrawals -- would be a new dataset from James Falcone. NB ALREADY EXISTS IN CONFIG.JSON",
+      "isTiled": false,
+      "path": "Nationwide/HYDRO_MOD/WATERUSE",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "nlcd2011": {
+      "ID": 4001,
+      "Name": "nlcd_2011_impervious_2011_edition_2014_10_10",
+      "Description": "National Land Cover Database. NB ALREADY EXISTS IN CONFIG.JSON",
+      "isTiled": false,
+      "path": "Nationwide/LANDSCAPE/NLCD",
+      "DatasetType": "IMAGE_RASTER"
+    },
+    "mirad2012": {
+      "ID": 3001,
+      "Name": "UNCLEAR IF THE DATA ALREADY EXISTS ON SERVER",
+      "Description": "2012 Moderate resolution Irrigated Agriculture Dataset",
+      "isTiled": false,
+      "path": "Nationwide/HYDRO_MOD/MIRAD",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "nwalt2012": {
+      "ID": 6001,
+      "Name": "lu2012_050815",
+      "Description": "National Wall-to-Wall Anthropogenic Land Use Trends (NWALT) 2012. NB ALREADY EXISTS IN CONFIG.JSON",
+      "isTiled": false,
+      "path": "Nationwide/LANDSCAPE/NWALT",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "canals": {
+      "ID": "NEEDS DETAILS",
+      "Name": "NEEDS DETAILS",
+      "Description": "NEEDS DETAILS",
+      "isTiled": "NEEDS DETAILS",
+      "path": "NEEDS DETAILS",
+      "DatasetType": "NEEDS DETAILS"
+    },
+    "npdes": {
+      "ID": "NEEDS DETAILS",
+      "Name": "NEEDS DETAILS",
+      "Description": "NEEDS DETAILS",
+      "isTiled": "NEEDS DETAILS",
+      "path": "NEEDS DETAILS",
+      "DatasetType": "NEEDS DETAILS"
+    },
+
     "anning_ator"
     "basin_char"
     "bedperm"

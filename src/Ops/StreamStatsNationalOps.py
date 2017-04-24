@@ -27,6 +27,7 @@
 #
 #      dates:   30 NOV 2016 jkn - Created / Date notation edited by jw
 #               27 FEB 2017 jw - Modified
+#               11 APR 2017 jw - Added getVectoryDensity
 #
 #   mod work:   Pull from HydroOps - Tutorial with Jeremy (DONE)
 #               AnthOps (DONE)
@@ -246,11 +247,48 @@ class StreamStatsNationalOps(SpatialOps):
             ML = None
 
         return result
-    def getPrismStatistic(self, Characteristic):
+
+    def getVectorDensity(self, Characteristic):
+        '''
+        Is a modification of getPointFeatureDensity. Initially created to calculate the percent of dams per stream.
+        '''
+        ML = None
+        result = {Characteristic.Name:0}
+        try:
+            self._sm("Computing " + Characteristic.Name)
+            #This has to call two different layers, right?
+            wholeML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))
+            partML = MapLayer(MapLayerDef(Characteristic.MapLayers[1]))
+
+            if not wholeML.Activated:
+                raise Exception("Map Layer for initial data could not be activated.")
+            if not partML.Activated:
+                raise Exception("Map Layer for overlying data could not be activated.")
+
+            spOverlayWhole = self.spatialOverlay(wholeML,self.mask)
+            spOverlayPart = self.spatialOverlay(partML,self.mask)
+
+            sumWhole = arcpy.Statistics_analysis(spOverlayWhole,os.path.join(self._TempLocation, "vdtmp"),Characteristic.Method)          
+            sumPart = arcpy.Statistics_analysis(spOverlayPart,os.path.join(self._TempLocation, "vdtmp"),Characteristic.Method)
+            
+            result[Characteristic.Name] = sumPart/sumWhole
+
+        except:
+            tb = traceback.format_exc()
+            self._sm(arcpy.GetMessages(), 'GP')
+            self._sm("getPointFeatureDensity "+ Characteristic.Name+" " +tb, "ERROR", 71)
+            result[Characteristic.Name] = float('nan')
+
+        finally:
+            #Cleans up workspace
+            ML = None
+
+        return result
+
+	def getPrismStatistic(self, Characteristic):
         '''
         Computes statistic for prism data
         '''
-        
         result = {Characteristic.Name:None}
         try:
             self._sm("Computing " + Characteristic.Name)
@@ -259,7 +297,7 @@ class StreamStatsNationalOps(SpatialOps):
             if not ML.Activated:
                 raise Exception("Map Layer could not be activated.")
            
-            result[Characteristic.Name] = super(StreamStatsNationalOps,self).getPrismStatistic(ML.Dataset,self.mask, Characteristic.Method, Characteristic.Data)
+        result[Characteristic.Name] = super(StreamStatsNationalOps,self).getPrismStatistic(ML.Dataset,self.mask, Characteristic.Method, Characteristic.Data)
 
         except:
             tb = traceback.format_exc()
