@@ -66,19 +66,20 @@ class NLDIServiceAgent(ServiceAgentBase.ServiceAgentBase):
             #resource = "comid/{0}/navigate/UT/basin?distance={1}".format(comID,distance)
             resource = "gagesIII_mw_characteristics_{0}.csv".format("tot")
             #Temp solution until they get the services up and running
-            file = Shared.readCSVFile(os.path.join(self.BaseUrl,resource))
-            headers = file[0]
-            file.pop(0)
+            gauge_file = Shared.readCSVFile(os.path.join(self.BaseUrl,resource))
+            headers = gauge_file[0]
+            
+            gauge_file.pop(0)
             comIDindex = headers.index('COMID')           
-            for row in file:
+            for row in gauge_file:
                 if(len(row) < comIDindex): continue
                 if comID == row[comIDindex]:
                     for h in headers:
-                       results[h] = row[headers.index(h)]
-                       break
+                        results[h] = row[headers.index(h)]
+                        
                     #next h
                     return results
-               #endif
+                #endif
             #next row
             return None
         except:

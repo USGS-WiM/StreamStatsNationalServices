@@ -33,7 +33,7 @@ import arcpy
 from arcpy import env
 from arcpy.sa import *
 import json
-import WiMLib.WiMLogging as WiMLogging
+import WiMLib
 from WiMLib.Config import Config
 #endregion
 

@@ -19,7 +19,7 @@
 import os
 import sys
 import datetime
-import WiMLib.WiMLogging
+from WiMLib import WiMLogging
 import traceback
 import string
 import csv
@@ -56,7 +56,7 @@ def readCSVFile( file):
         if (not os.path.isfile(file)):
             return []
         f = open(file, 'r')
-		csv.field_size_limit(sys.maxsize)
+        csv.field_size_limit(sys.maxsize)
         return map(lambda s: s, csv.reader(f))
     except:
         tb = traceback.format_exc()
