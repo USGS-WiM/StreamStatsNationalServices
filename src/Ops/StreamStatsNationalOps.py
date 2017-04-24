@@ -285,7 +285,7 @@ class StreamStatsNationalOps(SpatialOps):
 
         return result
 
-	def getPrismStatistic(self, Characteristic):
+    def getPrismStatistic(self, Characteristic):
         '''
         Computes statistic for prism data
         '''
@@ -297,7 +297,7 @@ class StreamStatsNationalOps(SpatialOps):
             if not ML.Activated:
                 raise Exception("Map Layer could not be activated.")
            
-        result[Characteristic.Name] = super(StreamStatsNationalOps,self).getPrismStatistic(ML.Dataset,self.mask, Characteristic.Method, Characteristic.Data)
+            result[Characteristic.Name] = super(StreamStatsNationalOps,self).getPrismStatistic(ML.Dataset,self.mask, Characteristic.Method, Characteristic.Data)
 
         except:
             tb = traceback.format_exc()
