@@ -47,6 +47,17 @@
       "ClassCodes": "41",
       "UnitID": "percent"
     },
+    "TOT_DITCHES92": {
+      "Procedure": "getVectorDensity",
+      "Operator": "LIKE",
+      "Keyword": "Canal",
+      "Method": "SUM",
+      "selectorField": "FTYPE",
+      "Description": "Percent of watershed subjected to ditches for the year 1992",
+      "MapLayers": [ "flowlines" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57067257e4b03f95a075ab0c"
+    },
     "TOT_NPDES_MAJ_DENS": {
       "Procedure": "getPointFeatureDensity",
       "Description": "NPDES Major site density, count/totalArea",
@@ -119,13 +130,16 @@
       "path": "Nationwide/LANDSCAPE/NWALT",
       "DatasetType": "ESRI_RASTER"
     },
-    "canals": {
+    "flowlines": {
       "ID": 7001,
-      "Name": "CANALS NEEDS DETAILS",
-      "Description": "CANALS NEEDS DETAILS",
-      "isTiled": "CANALS NEEDS DETAILS",
-      "path": "CANALS NEEDS DETAILS",
-      "DatasetType": "CANALS NEEDS DETAILS"
+      "Name": "NHDFlowline",
+      "Description": "Percent of watershed subjected to ditches for the year 1992",
+      "isTiled": true,
+      "path": "Tiled/NHDPlus_v2",
+      "DatasetType": "ESRI_SHAPE",
+      "queryFeaturePath": "RPU.shp",
+      "queryField": "HydroPath",
+      "UnitID": "sq-m"
     },
     "npdes": {
       "ID": 8001,

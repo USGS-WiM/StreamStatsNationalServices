@@ -257,39 +257,41 @@ class StreamStatsNationalOps(SpatialOps):
         try:
             self._sm("Computing " + Characteristic.Name)
             
-            ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))
+            ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]), "", self.mask)
 
-            if not wholeML.Activated:
-                raise Exception("Map Layer for initial data could not be activated.")
-            if not partML.Activated:
-                raise Exception("Map Layer for overlying data could not be activated.")
+            if not ML.Activated:
+                raise Exception("Map Layer could not be activated.")
 
-            spOverlayWhole = self.spatialOverlay(ML,self.mask)
+            #spOverlayWhole = self.spatialOverlay(ML.Dataset, self.mask, "INTERSECTS") SHOULD NOT BE NEEDED WITH new sumMain
 
-            #Select by attribute created by JWX
-            arcpy.MakeFeatureLayer_management(ML, "Subsetlayer") #Make feature layer
             #Create query
-            queryField = Characteristic.Field                                           #Generalized to pass whatever field needed
-            operator = Characterisitic.Operator                                         #Generalized to whatever operator e.g. =, LIKE, !=
+            queryField =  "{}".format(Characteristic.Field)                                      #Generalized to pass whatever field needed
+            operator = Characteristic.Operator                                       #Generalized to whatever operator e.g. =, LIKE, !=
             if operator == "LIKE":                                                      #If operator = LIKE, flanking "%" are needed
-                keyword = "%"+ Characteristic.Keyword + "%"
+                keyword = "'%{}%'".format(Characteristic.Keyword)
             else:
                 keyword = Characteristic.Keyword
             #There will likely need to be some serious error handling within this component.
             #   Usually, "[FIELD] <operator> '<key>'" is sufficent, but sometimes, ArcGIS
             #   wants to have '"FIELD"" <operator> <key>' which is for FGDBs.
-            query = " [%s] %s '%s'" % (queryField, operator, keyword)                   #Build query -- ACHTUNG! this nearly always fails and will need some troubleshooting
+            query = "{} {} {}".format(queryField,operator,keyword)                   #Build query -- ACHTUNG! this nearly always fails and will need some troubleshooting
+            arcpy.MakeFeatureLayer_management(ML.Dataset, "Subsetlayer") #Make feature layer
             arcpy.SelectLayerByAttribute_management("Subsetlayer", "NEW_SELECTION", query)   #Carry out selection
+            arcpy.CopyFeatures_management("Subsetlayer", os.path.join(self._TempLocation, "vdtmp")) #Copy out features to avoid selection errors
+            arcpy.SelectLayerByAttribute_management("Subsetlayer", "CLEAR_SELECTION")
 
-            sumMain = arcpy.Statistics_analysis(spOverlayWhole,os.path.join(self._TempLocation, "vdtmp"),Characteristic.Method)          
-            sumSubset = arcpy.Statistics_analysis("Subsetlayer",os.path.join(self._TempLocation, "vdtmp"),Characteristic.Method)
-            
+            #sumMain = arcpy.Statistics_analysis(spOverlayWhole,os.path.join(self._TempLocation, "vdtmp"),[["LENGTHKM", Characteristic.Method]]) #Make it take case field
+            #sumSubset = arcpy.Statistics_analysis("Subsetlayer",os.path.join(self._TempLocation, "vdtmp"),[["LENGTHKM", Characteristic.Method]])
+#self,inFeature, maskFeature, statisticRules, fieldStr)
+            sumMain = WiMLib.SpatialOps.getFeatureStatistic(ML, self.mask, Characteristic.Method, "LENGTHKM", "INTERSECTS")
+            sumSubset = WiMLib.SpatialOps.getFeatureStatistic(os.path.join(self._TempLocation, "vdtmp"), self.mask, Characteristic.Method, "LENGTHKM", "INTERSECTS")
+
             result[Characteristic.Name] = sumSubset/sumMain
 
         except:
             tb = traceback.format_exc()
             self._sm(arcpy.GetMessages(), 'GP')
-            self._sm("getPointFeatureDensity "+ Characteristic.Name+" " +tb, "ERROR", 71)
+            self._sm("getVectorDensity "+ Characteristic.Name+" " +tb, "ERROR", 71)
             result[Characteristic.Name] = float('nan')
 
         finally:
