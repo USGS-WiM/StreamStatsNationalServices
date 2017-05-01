@@ -142,14 +142,14 @@
       "Description": "30 year (1971 - 2000) mean January number of days of measurable precipitation (days) from 2.3km PRISM data",
       "MapLayers": [ "wd6190" ],
       "UnitID": "days",
-      "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd",
+      "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
     },
     "TOT_WD6190_FEB": {
       "Procedure": "TO BE DETERMINED",
       "Description": "30 year (1971 - 2000) mean February number of days of measurable precipitation (days) from 800 m PRISM data",
       "MapLayers": [ "wd6190" ],
       "UnitID": "days",
-      "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd",
+      "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
     },
     "TOT_WD6190_DEC": {
       "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd",
@@ -1572,13 +1572,7 @@
       "Procedure": "TO BE DETERMINED",
       "UnitID": "percent"
     },
-    "TOT_NWALT12_41": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5743139be4b07e28b660ae85",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "Mining/Extraction - Barren areas due to probable surface mining/mineral extraction. Includes mining, quarries, sand and gravel operations, and energy operations.",
-      "Procedure": "TO BE DETERMINED",
-      "UnitID": "percent"
-    },
+    
     "TOT_NWALT12_33": {
       "Reference": "https://www.sciencebase.gov/catalog/item/5743139be4b07e28b660ae85",
       "MapLayers": "TO BE DETERMINED",
@@ -1781,13 +1775,6 @@
       "Description": "Water - Streams, rivers, lakes, ponds, bays, and estuaries.",
       "Procedure": "TO BE DETERMINED",
       "UnitID": "percent"
-    },
-    "TOT_NPDES_MAJ_DENS": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57c9d89ce4b0f2f0cec192da",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "NA",
-      "Procedure": "TO BE DETERMINED",
-      "UnitID": "NA"
     },
     "TOT_NORM_STORAGE_2013": {
       "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1",
@@ -2356,13 +2343,7 @@
       "Procedure": "TO BE DETERMINED",
       "UnitID": "acre feet"
     },
-    "TOT_NID_STORAGE_1980": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/577179e4e4b07657d1a6badf",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
-      "Procedure": "TO BE DETERMINED",
-      "UnitID": "acre feet"
-    },
+   
     "TOT_NID_STORAGE_1970": {
       "Reference": "https://www.sciencebase.gov/catalog/item/57717888e4b07657d1a6badb",
       "MapLayers": "TO BE DETERMINED",
@@ -5056,7 +5037,7 @@
       "isTiled": false,
       "path": "National",
       "DatasetType": "TIF_RASTER"
-    }
+    },
    "nid2013": {
       "ID": 2001,
       "Name": "point",
@@ -11408,6 +11389,6 @@
       "path": "NEEDS DETAILS",
       "DatasetType": "NEEDS DETAILS",
       "Reference": "NEEDS DETAILS"
-    },
+    }
   }
 }

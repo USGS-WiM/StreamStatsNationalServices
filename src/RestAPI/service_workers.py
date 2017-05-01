@@ -123,7 +123,7 @@ def basin_chars(**kwargs):
     config = get_config()
     
     #list all available charactersitics if no workspace is provided
-    if 'workspaceID' not in data_dict:
+    if 'workspaceID' not in data_dict or data_dict['worspaceID'] == '':
        
         characteristics = []
       

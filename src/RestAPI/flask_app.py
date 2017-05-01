@@ -5,7 +5,7 @@ Created on Apr 10, 2017
 '''
 from flask import Flask, jsonify, request, Response
 from dicttoxml import dicttoxml
-from RestAPI.service_workers import check_exists, validate_format
+from RestAPI.utilities import check_exists, validate_format
 from RestAPI.service_workers import get_comma_sep_values, basin_chars
 import os
 from RestAPI.service_workers import delineate
