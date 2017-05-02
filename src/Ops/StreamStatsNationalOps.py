@@ -251,44 +251,113 @@ class StreamStatsNationalOps(SpatialOps):
     def getVectorDensity(self, Characteristic):
         '''
         Is a modification of getPointFeatureDensity. Initially created to calculate the percent of dams per stream.
+        This method is a mash-up of prior work done within this method and the getFeatureStatistic Method found in SpatialOps.py.
+        Mashed-up by JWX.
         '''
+
+        map = []
+        analysisFeatures = []
         ML = None
         result = {Characteristic.Name:0}
         try:
             self._sm("Computing " + Characteristic.Name)
-            #This has to call two different layers, right?
-            wholeML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))
-            partML = MapLayer(MapLayerDef(Characteristic.MapLayers[1]))
 
-            if not wholeML.Activated:
-                raise Exception("Map Layer for initial data could not be activated.")
-            if not partML.Activated:
-                raise Exception("Map Layer for overlying data could not be activated.")
+            ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]), "", self.mask)
 
-            spOverlayWhole = self.spatialOverlay(wholeML,self.mask)
-            spOverlayPart = self.spatialOverlay(partML,self.mask)
+            if not ML.Activated:
+                raise Exception("Map Layer could not be activated.")
 
-            sumWhole = arcpy.Statistics_analysis(spOverlayWhole,os.path.join(self._TempLocation, "vdtmp"),Characteristic.Method)          
-            sumPart = arcpy.Statistics_analysis(spOverlayPart,os.path.join(self._TempLocation, "vdtmp"),Characteristic.Method)
-            
-            result[Characteristic.Name] = sumPart/sumWhole
+            spOverlayWhole = self.spatialOverlay(ML.Dataset, self.mask, "INTERSECTS")               #Added back after sumMain was removed
+            analysisFeatures.append(spOverlayWhole[0])
+
+            #Create query
+            queryField =  "{}".format(Characteristic.Field)                                         #Generalized to pass whatever field needed
+            operator = Characteristic.Operator                                                      #Generalized to whatever operator e.g. =, LIKE, !=
+            if operator == "LIKE":                                                                  #If operator = LIKE, flanking "%" are needed
+                keyword = "'%{}%'".format(Characteristic.Keyword)
+            else:
+                keyword = Characteristic.Keyword
+            query = "{} {} {}".format(queryField,operator,keyword)                                  #Build query
+
+            #Create sub-set feature class using query
+            arcpy.MakeFeatureLayer_management(spOverlayWhole, "Subsetlayer")                        #Make feature layer
+            arcpy.SelectLayerByAttribute_management("Subsetlayer", "NEW_SELECTION", query)          #Carry out selection
+            outName = os.path.join(self._TempLocation, "vdtmp.shp")                                 #SHP has to be included for proper function
+            arcpy.CopyFeatures_management("Subsetlayer", outName)                                   #Copy out features to avoid selection errors
+            arcpy.SelectLayerByAttribute_management("Subsetlayer", "CLEAR_SELECTION")
+            if arcpy.GetCount_management(outName).getOutput(0) == "0":                              #Catch if the dataset is blank
+                self._sm("Warning: Subset feature is blank")
+            else:
+                analysisFeatures.append(outName)
+
+            #Get methods and field for analysis
+            statisticRules = Characteristic.Method
+            Fields = Characteristic.MethField                                                        #Method operation field (newly added to config.json)
+            #methods = [x.strip() for x in statisticRules.split(';')]                                #Could be used to scale the method section
+            #Fields = [x.strip() for x in fieldStr.split(';')]                                       #Could be used to scale the fields section
+            map.append([Fields,statisticRules])                                                      #Build statistics statement
+
+            for feaure in analysisFeatures:                                                          #NEEDED CALCULATE EVERYTHING***
+                resultCalculation = []                                                               #AN ARRAY TO CAPTURE VALUES***
+                tblevalue = arcpy.Statistics_analysis(feaure,os.path.join(self._TempLocation, "aftmp"),map)
+                mappedFeilds = [x[1]+"_"+x[0] for x in map]
+                cursor = arcpy.da.SearchCursor(tblevalue, mappedFeilds)
+                for row in cursor:
+                    resultCalculation.append(row)
+
+            #Generate values for results
+            if len(analysisFeatures) == 1:                                                            #Catch streams only instances
+                result[Characteristic.Name] = 0
+            else:
+                if resultCalculation[0] == 0:                                                         #Catch canal only instances
+                    result[Characteristic.Name] = 100
+                else:
+                    result[Characteristic.Name] = (resultCalculation[1]/resultCalculation[0])*100     #Otherwise carry out math
 
         except:
             tb = traceback.format_exc()
             self._sm(arcpy.GetMessages(), 'GP')
-            self._sm("getPointFeatureDensity "+ Characteristic.Name+" " +tb, "ERROR", 71)
+            self._sm("getVectorDensity "+ Characteristic.Name+" " +tb, "ERROR", 71)
             result[Characteristic.Name] = float('nan')
 
         finally:
             #Cleans up workspace
             ML = None
+            arcpy.SelectLayerByAttribute_management("Subsetlayer", "CLEAR_SELECTION")                 #This was added by JWX
+
+        return result
+
+<<<<<<< HEAD
+    def toBeDetermined(self, Characteristic):
+
+        #Is a place holder characteristic. Is stripped down version of getPrismStatistic. Created by JWX.
+
+        result = {Characteristic.Name:None}
+        try:
+            self._sm("Computing " + Characteristic.Name)
+
+            result[Characteristic.Name] = "To be determined"
+
+        except:
+            tb = traceback.format_exc()
+            self._sm(arcpy.GetMessages(), 'GP')
+            self._sm("getPrismStatistic error" +tb +" "+Characteristic.Name, "ERROR", 71)
+            result[Characteristic.Name] = None
+
+            #Not much to be cleaned up
 
         return result
 
     def getPrismStatistic(self, Characteristic):
+
+        #Computes statistic for prism data. Changed by JWX. Indent block did not work.
+
+=======
+    def getPrismStatistic(self, Characteristic):
         '''
         Computes statistic for prism data
         '''
+>>>>>>> 7b982b137de6ebf4a304d9bc4b81151118b06d4e
         result = {Characteristic.Name:None}
         try:
             self._sm("Computing " + Characteristic.Name)

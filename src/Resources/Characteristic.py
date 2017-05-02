@@ -39,5 +39,8 @@ class Characteristic(object):
         self.ClassCodes =  CharObj["ClassCodes"]if ("ClassCodes" in CharObj) else None
         self.Count = CharObj["Count"] if ("Count" in CharObj) else None		
         self.Data = os.path.join(Config()["netCDFdirectory"], CharObj["Data"])if ("Data" in CharObj) else None
-            
+        self.MethField = CharObj["methodField"]if ("methodField" in CharObj) else None
+        self.Field = CharObj["selectorField"]if ("selectorField" in CharObj) else None
+        self.Operator = CharObj["Operator"]if ("Operator" in CharObj) else None
+        self.Keyword = CharObj["Keyword"]if ("Keyword" in CharObj) else None
     #endregion

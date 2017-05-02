@@ -61,7 +61,7 @@ class DelineationWrapper(object):
             parser = argparse.ArgumentParser()
             parser.add_argument("-projectID", help="specifies the projectID", type=str, default="FH")
             parser.add_argument("-file", help="specifies csv file location including gage lat/long and comid's to estimate", type=str, 
-                                default = 'E:\\Applications\\input\\gagesiii_lat_lon.csv')
+                                default = 'C:\\gis\\usgs\\ss\\Applications\\input\\gagesiii_lat_lon.csv')
             parser.add_argument("-outwkid", help="specifies the esri well known id of pourpoint ", type=int, 
                                 default = '4326')
             parser.add_argument("-parameters", help="specifies the ';' separated list of parameters to be computed", type=str, 
@@ -74,7 +74,7 @@ class DelineationWrapper(object):
                 raise Exception('Input Study Area required')
 
             config = Config(json.load(open(os.path.join(os.path.dirname(__file__), 'config.json')))) 
-                                    
+
             if(args.parameters): self.params =  args.parameters.split(";") 
             #get all characteristics from config
             else: self.params =  config["characteristics"].keys() 
@@ -119,10 +119,10 @@ class DelineationWrapper(object):
                 if isFirst:
                     Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(['COMID','WorkspaceID','Description','LAT','LONG']+results.Values.keys()))
                     isFirst = False
-				if results is None:
+                if results is None: #changed to elif by jwx
                     Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(str(v) for v in [g.comid,workspaceID,'error',g.lat,g.long])) 
-				else:
-                Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(str(v) for v in [g.comid,workspaceID,results.Description,g.lat,g.long]+results.Values.values()))             
+                else:
+                    Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(str(v) for v in [g.comid,workspaceID,results.Description,g.lat,g.long]+results.Values.values()))             
             #next station           
             
             print 'Finished.  Total time elapsed:', round((time.time()- startTime)/60, 2), 'minutes'
