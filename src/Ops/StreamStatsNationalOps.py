@@ -285,8 +285,7 @@ class StreamStatsNationalOps(SpatialOps):
             outName = os.path.join(self._TempLocation, "vdtmp.shp")                                 #SHP has to be included for proper function
             arcpy.CopyFeatures_management("Subsetlayer", outName)                                   #Copy out features to avoid selection errors
             arcpy.SelectLayerByAttribute_management("Subsetlayer", "CLEAR_SELECTION")
-            #testnumb = int(arcpy.GetCount_management(outName).getOutput(0))
-            if arcpy.GetCount_management(outName).getOutput(0) == "0":                                           #Catch if the dataset is blank
+            if arcpy.GetCount_management(outName).getOutput(0) == "0":                              #Catch if the dataset is blank
                 self._sm("Warning: Subset feature is blank")
             else:
                 analysisFeatures.append(outName)
@@ -298,23 +297,22 @@ class StreamStatsNationalOps(SpatialOps):
             #Fields = [x.strip() for x in fieldStr.split(';')]                                       #Could be used to scale the fields section
             map.append([Fields,statisticRules])                                                      #Build statistics statement
 
-            for feaure in analysisFeatures:                                                         #NEEDED CALCULATE EVERYTHING***
-                resultCalculation = []                                                              #AN ARRAY TO CAPTURE VALUES***
+            for feaure in analysisFeatures:                                                          #NEEDED CALCULATE EVERYTHING***
+                resultCalculation = []                                                               #AN ARRAY TO CAPTURE VALUES***
                 tblevalue = arcpy.Statistics_analysis(feaure,os.path.join(self._TempLocation, "aftmp"),map)
                 mappedFeilds = [x[1]+"_"+x[0] for x in map]
                 cursor = arcpy.da.SearchCursor(tblevalue, mappedFeilds)
                 for row in cursor:
                     resultCalculation.append(row)
-#            return resultCalculation #Should probably drop this
 
             #Generate values for results
-            if len(analysisFeatures) == 1:                                                                      #Catch streams only instances
+            if len(analysisFeatures) == 1:                                                            #Catch streams only instances
                 result[Characteristic.Name] = 0
             else:
-                if resultCalculation[0] == 0:                                                                   #Catch canal only instances
+                if resultCalculation[0] == 0:                                                         #Catch canal only instances
                     result[Characteristic.Name] = 100
                 else:
-                    result[Characteristic.Name] = (resultCalculation[1]/resultCalculation[0])*100               #Otherwise carry out math
+                    result[Characteristic.Name] = (resultCalculation[1]/resultCalculation[0])*100     #Otherwise carry out math
 
         except:
             tb = traceback.format_exc()
@@ -325,7 +323,7 @@ class StreamStatsNationalOps(SpatialOps):
         finally:
             #Cleans up workspace
             ML = None
-            arcpy.SelectLayerByAttribute_management("Subsetlayer", "CLEAR_SELECTION")   #This was added by JWX
+            arcpy.SelectLayerByAttribute_management("Subsetlayer", "CLEAR_SELECTION")                 #This was added by JWX
 
         return result
 
@@ -336,7 +334,7 @@ class StreamStatsNationalOps(SpatialOps):
         result = {Characteristic.Name:None}
         try:
             self._sm("Computing " + Characteristic.Name)
-           
+
             result[Characteristic.Name] = "To be determined"
 
         except:
