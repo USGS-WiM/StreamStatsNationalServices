@@ -19,7 +19,7 @@
 import os
 import sys
 import datetime
-import WiMLib.WiMLogging
+from WiMLib import WiMLogging
 import traceback
 import string
 import csv

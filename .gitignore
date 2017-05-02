@@ -160,3 +160,11 @@ $RECYCLE.BIN/
 
 # Mac desktop service store files
 .DS_Store
+
+# Eclipse things
+.metadata/
+.settings/
+.project
+.pydevproject
+*.inn
+*.top

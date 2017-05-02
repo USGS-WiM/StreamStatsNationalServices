@@ -192,32 +192,32 @@ class StreamStatsNationalOps(SpatialOps):
             ML = None
 
         return result
-    def getRasterStatistic(self, Characteristic):
-        '''
-        Computes the percent of a whole. Useful for calculating percent impervious from the NLCD data,
-            percent irrigated agriculture using MIRAD data, and NWALT data.
-        '''
-        ML = None
-        result = {Characteristic.Name:None}
-        try:
-            self._sm("Computing " + Characteristic.Name)
-            ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))
-            if not ML.Activated: 
-                raise Exception("Map Layer could not be activated.")
-
-            result[Characteristic.Name] = super(StreamStatsNationalOps,self).getRasterStatistic(ML.Dataset, self.mask, Characteristic.Method)
-
-        except:
-            tb = traceback.format_exc()
-            self._sm(arcpy.GetMessages(), 'GP')
-            self._sm("Error getRasterStatistic " + Characteristic.Name+ " " +tb, "ERROR", 71)
-            result[Characteristic.Name] = None
-
-        finally:
-            #Cleans up workspace
-            ML = None
-
-        return result
+#     def getRasterStatistic(self, Characteristic):
+#         '''
+#         Computes the percent of a whole. Useful for calculating percent impervious from the NLCD data,
+#             percent irrigated agriculture using MIRAD data, and NWALT data.
+#         '''
+#         ML = None
+#         result = {Characteristic.Name:None}
+#         try:
+#             self._sm("Computing " + Characteristic.Name)
+#             ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))
+#             if not ML.Activated: 
+#                 raise Exception("Map Layer could not be activated.")
+# 
+#             result[Characteristic.Name] = super(StreamStatsNationalOps,self).getRasterStatistic(ML.Dataset, self.mask, Characteristic.Method)
+# 
+#         except:
+#             tb = traceback.format_exc()
+#             self._sm(arcpy.GetMessages(), 'GP')
+#             self._sm("Error getRasterStatistic " + Characteristic.Name+ " " +tb, "ERROR", 71)
+#             result[Characteristic.Name] = None
+# 
+#         finally:
+#             #Cleans up workspace
+#             ML = None
+# 
+#         return result
     def getPointFeatureDensity(self, Characteristic):
         '''
         Computes feature count per unit area.
@@ -327,6 +327,7 @@ class StreamStatsNationalOps(SpatialOps):
 
         return result
 
+<<<<<<< HEAD
     def toBeDetermined(self, Characteristic):
 
         #Is a place holder characteristic. Is stripped down version of getPrismStatistic. Created by JWX.
@@ -351,6 +352,12 @@ class StreamStatsNationalOps(SpatialOps):
 
         #Computes statistic for prism data. Changed by JWX. Indent block did not work.
 
+=======
+    def getPrismStatistic(self, Characteristic):
+        '''
+        Computes statistic for prism data
+        '''
+>>>>>>> 7b982b137de6ebf4a304d9bc4b81151118b06d4e
         result = {Characteristic.Name:None}
         try:
             self._sm("Computing " + Characteristic.Name)
