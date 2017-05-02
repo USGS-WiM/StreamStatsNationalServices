@@ -251,42 +251,70 @@ class StreamStatsNationalOps(SpatialOps):
     def getVectorDensity(self, Characteristic):
         '''
         Is a modification of getPointFeatureDensity. Initially created to calculate the percent of dams per stream.
+        This method is a mash-up of prior work done within this method and the getFeatureStatistic Method found in SpatialOps.py.
+        Mashed-up by JWX.
         '''
+
+        map = []
+        analysisFeatures = []
         ML = None
         result = {Characteristic.Name:0}
         try:
             self._sm("Computing " + Characteristic.Name)
-            
+
             ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]), "", self.mask)
 
             if not ML.Activated:
                 raise Exception("Map Layer could not be activated.")
 
-            #spOverlayWhole = self.spatialOverlay(ML.Dataset, self.mask, "INTERSECTS") SHOULD NOT BE NEEDED WITH new sumMain
+            spOverlayWhole = self.spatialOverlay(ML.Dataset, self.mask, "INTERSECTS")               #Added back after sumMain was removed
+            analysisFeatures.append(spOverlayWhole[0])
 
             #Create query
-            queryField =  "{}".format(Characteristic.Field)                                      #Generalized to pass whatever field needed
-            operator = Characteristic.Operator                                       #Generalized to whatever operator e.g. =, LIKE, !=
-            if operator == "LIKE":                                                      #If operator = LIKE, flanking "%" are needed
+            queryField =  "{}".format(Characteristic.Field)                                         #Generalized to pass whatever field needed
+            operator = Characteristic.Operator                                                      #Generalized to whatever operator e.g. =, LIKE, !=
+            if operator == "LIKE":                                                                  #If operator = LIKE, flanking "%" are needed
                 keyword = "'%{}%'".format(Characteristic.Keyword)
             else:
                 keyword = Characteristic.Keyword
-            #There will likely need to be some serious error handling within this component.
-            #   Usually, "[FIELD] <operator> '<key>'" is sufficent, but sometimes, ArcGIS
-            #   wants to have '"FIELD"" <operator> <key>' which is for FGDBs.
-            query = "{} {} {}".format(queryField,operator,keyword)                   #Build query -- ACHTUNG! this nearly always fails and will need some troubleshooting
-            arcpy.MakeFeatureLayer_management(ML.Dataset, "Subsetlayer") #Make feature layer
-            arcpy.SelectLayerByAttribute_management("Subsetlayer", "NEW_SELECTION", query)   #Carry out selection
-            arcpy.CopyFeatures_management("Subsetlayer", os.path.join(self._TempLocation, "vdtmp")) #Copy out features to avoid selection errors
+            query = "{} {} {}".format(queryField,operator,keyword)                                  #Build query
+
+            #Create sub-set feature class using query
+            arcpy.MakeFeatureLayer_management(spOverlayWhole, "Subsetlayer")                        #Make feature layer
+            arcpy.SelectLayerByAttribute_management("Subsetlayer", "NEW_SELECTION", query)          #Carry out selection
+            outName = os.path.join(self._TempLocation, "vdtmp.shp")                                 #SHP has to be included for proper function
+            arcpy.CopyFeatures_management("Subsetlayer", outName)                                   #Copy out features to avoid selection errors
             arcpy.SelectLayerByAttribute_management("Subsetlayer", "CLEAR_SELECTION")
+            #testnumb = int(arcpy.GetCount_management(outName).getOutput(0))
+            if arcpy.GetCount_management(outName).getOutput(0) == "0":                                           #Catch if the dataset is blank
+                self._sm("Warning: Subset feature is blank")
+            else:
+                analysisFeatures.append(outName)
 
-            #sumMain = arcpy.Statistics_analysis(spOverlayWhole,os.path.join(self._TempLocation, "vdtmp"),[["LENGTHKM", Characteristic.Method]]) #Make it take case field
-            #sumSubset = arcpy.Statistics_analysis("Subsetlayer",os.path.join(self._TempLocation, "vdtmp"),[["LENGTHKM", Characteristic.Method]])
-#self,inFeature, maskFeature, statisticRules, fieldStr)
-            sumMain = WiMLib.SpatialOps.getFeatureStatistic(ML, self.mask, Characteristic.Method, "LENGTHKM", "INTERSECTS")
-            sumSubset = WiMLib.SpatialOps.getFeatureStatistic(os.path.join(self._TempLocation, "vdtmp"), self.mask, Characteristic.Method, "LENGTHKM", "INTERSECTS")
+            #Get methods and field for analysis
+            statisticRules = Characteristic.Method
+            Fields = Characteristic.MethField                                                        #Method operation field (newly added to config.json)
+            #methods = [x.strip() for x in statisticRules.split(';')]                                #Could be used to scale the method section
+            #Fields = [x.strip() for x in fieldStr.split(';')]                                       #Could be used to scale the fields section
+            map.append([Fields,statisticRules])                                                      #Build statistics statement
 
-            result[Characteristic.Name] = sumSubset/sumMain
+            for feaure in analysisFeatures:                                                         #NEEDED CALCULATE EVERYTHING***
+                resultCalculation = []                                                              #AN ARRAY TO CAPTURE VALUES***
+                tblevalue = arcpy.Statistics_analysis(feaure,os.path.join(self._TempLocation, "aftmp"),map)
+                mappedFeilds = [x[1]+"_"+x[0] for x in map]
+                cursor = arcpy.da.SearchCursor(tblevalue, mappedFeilds)
+                for row in cursor:
+                    resultCalculation.append(row)
+#            return resultCalculation #Should probably drop this
+
+            #Generate values for results
+            if len(analysisFeatures) == 1:                                                                      #Catch streams only instances
+                result[Characteristic.Name] = 0
+            else:
+                if resultCalculation[0] == 0:                                                                   #Catch canal only instances
+                    result[Characteristic.Name] = 100
+                else:
+                    result[Characteristic.Name] = (resultCalculation[1]/resultCalculation[0])*100               #Otherwise carry out math
 
         except:
             tb = traceback.format_exc()

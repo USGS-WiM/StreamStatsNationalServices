@@ -52,6 +52,7 @@
       "Operator": "LIKE",
       "Keyword": "Canal",
       "Method": "SUM",
+      "methodField": "LENGTHKM",
       "selectorField": "FTYPE",
       "Description": "Percent of watershed subjected to ditches for the year 1992",
       "MapLayers": [ "flowlines" ],
