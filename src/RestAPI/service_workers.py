@@ -40,11 +40,11 @@ def delineate(**kargs):
     WiMLogging.init(os.path.join(workingDir,"Temp"),"gage3.log")
     
     #get appropriate guage via either x/y point or comID
-    gauge = get_gauge(xpoint, ypoint, crs, comID)
+#     gauge = get_gauge(xpoint, ypoint, crs, comID)
     
     #perform delineation task and get back the workspace,
     #basin featureClass, and pourpoint featureClass
-    workspaceID, basin, ppoint = _delineate(gauge,workingDir)
+    workspaceID, basin, ppoint = _delineate(workingDir, xpoint, ypoint, crs)
     
     #convert data in to geojson
     featureCollection = get_delineation_features(ppoint, basin, crs)
@@ -67,43 +67,50 @@ def delineate(**kargs):
     
     return data
     
-def _delineate(gage, workspace):
+def _delineate(workspace, xpoint, ypoint, crs):
         '''Main worker for the delineation of catchments'''
     
+        sr = SpatialReference(crs)
+        
         #create pour point in memory and read in features
-        ppoint = arcpy.CreateFeatureclass_management("in_memory", "ppFC"+gage.comid, "POINT", spatial_reference=gage.sr)
-        pnt = {"type":"Feature","geometry":{"type":"Point","coordinates":[gage.lat,gage.long]}} 
-        if (pnt["type"].lower() =="feature"):
-            GeoJsonHandler.read_feature(pnt,ppoint,gage.sr)
-        else:
-            GeoJsonHandler.read_feature_collection(pnt,ppoint,gage.sr)  
-
+        
         #get basin for  gauge
         sa = NLDIServiceAgent()
-        maskjson = sa.getBasin(gage.comid,True)
-
+        maskjson = sa.getBasin(None, True, xpoint, ypoint, crs)
+        comid = str(maskjson['features'][0]['properties']['featureid'])
+        
         if(not maskjson): return None
 
         #create in memory basin featureClass and read in properties
-        mask = arcpy.CreateFeatureclass_management("in_memory", "maskFC"+gage.comid, "POLYGON", spatial_reference=gage.sr) 
-        if (maskjson["type"].lower() =="feature"):
-            GeoJsonHandler.read_feature(maskjson,mask,gage.sr)
-        else:
-            GeoJsonHandler.read_feature_collection(maskjson,mask,gage.sr) 
+        mask = arcpy.CreateFeatureclass_management("in_memory", "maskFC"+comid, "POLYGON", spatial_reference=sr) 
         
-        basinjson = sa.getBasin(gage.comid,False)
+        if (maskjson["type"].lower() =="feature"):
+            GeoJsonHandler.read_feature(maskjson,mask,sr)
+        else:
+            GeoJsonHandler.read_feature_collection(maskjson,mask,sr) 
+            
+        ppoint = arcpy.CreateFeatureclass_management("in_memory", "ppFC"+comid, "POINT", spatial_reference=sr)
+        pnt = {"type":"Feature","geometry":{"type":"Point","coordinates":[xpoint,ypoint]}} 
+        
+        if (pnt["type"].lower() =="feature"):
+            GeoJsonHandler.read_feature(pnt,ppoint,sr)
+        else:
+            GeoJsonHandler.read_feature_collection(pnt,ppoint,sr)  
+        
+        basinjson = sa.getBasin(comid,False)
 
         if(not basinjson): return None
 
         #create in memory basin featureClass and read in properties
-        basin = arcpy.CreateFeatureclass_management("in_memory", "globalBasin"+gage.comid, "POLYGON", spatial_reference=gage.sr) 
+        basin = arcpy.CreateFeatureclass_management("in_memory", "globalBasin"+comid, "POLYGON", spatial_reference=sr) 
+        
         if (basinjson["type"].lower() =="feature"):
-            GeoJsonHandler.read_feature(basinjson,basin,gage.sr)
+            GeoJsonHandler.read_feature(basinjson,basin,sr)
         else:
-            GeoJsonHandler.read_feature_collection(basinjson,basin,gage.sr)         
+            GeoJsonHandler.read_feature_collection(basinjson,basin,sr)         
                 
         #go throught delineation process and merge the associated catchments
-        ssdel = HydroOps(workspace,gage.comid)
+        ssdel = HydroOps(workspace,comid)
         ssdel.Delineate(ppoint, mask)
         ssdel.MergeCatchment(basin)
         
@@ -123,7 +130,7 @@ def basin_chars(**kwargs):
     config = get_config()
     
     #list all available charactersitics if no workspace is provided
-    if 'workspaceID' not in data_dict or data_dict['worspaceID'] == '':
+    if 'workspaceID' not in data_dict or data_dict['workspaceID'] == '':
        
         characteristics = []
       
@@ -205,6 +212,8 @@ def _computeCharacteristics(gage,workspace,workspaceID,parameters):
                     characteristics.append(
                         get_characteristic_dict(parameter, char_value)
                         )
+                else:
+                    WiMLogging.sm("%s characteristic not in global service") % p
 
                 WiMResults.Values.update(result)
             else:

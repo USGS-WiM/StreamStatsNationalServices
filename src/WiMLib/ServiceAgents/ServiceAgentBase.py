@@ -47,18 +47,17 @@ class ServiceAgentBase(object):
             url = self.BaseUrl + resource
             #below is temporary for batch jkn
             try:
-                return json.dumps(json.load(open(url)))
                 response = requests.get(url)
                 return response.text
             except:
                 self._sm("Error: file " + os.path.basename(resource) + " does not exist within Gages iii", 1.62, 'ERROR')
                 return ''
         except requests.exceptions as e:
-             if hasattr(e, 'reason'):
+            if hasattr(e, 'reason'):
                 self._sm("Error:, failed to reach a server " + e.reason.strerror, 1.54, 'ERROR')
                 return ""
 
-             elif hasattr(e, 'code'):
+            elif hasattr(e, 'code'):
                 self._sm("Error: server couldn't fullfill request " + e.code, 1.58, 'ERROR')
                 return ''
         except:
