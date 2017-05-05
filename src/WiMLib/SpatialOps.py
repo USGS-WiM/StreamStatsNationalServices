@@ -159,7 +159,7 @@ class SpatialOps(object):
             mask = None
             #do not release
             out_projected_fc = None
-    def spatialOverlay(self, inFeature, maskfeature):
+    def spatialOverlay(self, inFeature, maskfeature, matchOption = "COMPLETELY_CONTAINS"):
         mask = None
         try:
             sr = arcpy.Describe(inFeature).spatialReference
@@ -167,7 +167,7 @@ class SpatialOps(object):
             out_projected_fc = os.path.join(self._TempLocation, "ovrlytmpso")
 
             self._sm("performing spatial join ...")
-            return arcpy.SpatialJoin_analysis(maskfeature, inFeature, out_projected_fc,'JOIN_ONE_TO_MANY', 'KEEP_COMMON', None,"COMPLETELY_CONTAINS")
+            return arcpy.SpatialJoin_analysis(maskfeature, inFeature, out_projected_fc,'JOIN_ONE_TO_MANY', 'KEEP_COMMON', None, matchOption)
 
         except:
              tb = traceback.format_exc()
@@ -176,7 +176,7 @@ class SpatialOps(object):
             mask = None 
             #do not release
             out_projected_fc = None           
-    def getFeatureStatistic(self,inFeature, maskFeature, statisticRules, fieldStr):
+    def getFeatureStatistic(self, inFeature, maskFeature, statisticRules, fieldStr, matchOption = "COMPLETELY_CONTAINS"):
         '''
         computes the statistic 
         Statistic rules, semicolon separated
@@ -209,7 +209,7 @@ class SpatialOps(object):
                 #next method
             #next Field
 
-            spOverlay = self.spatialOverlay(inFeature,maskFeature)
+            spOverlay = self.spatialOverlay(inFeature,maskFeature,matchOption)
             if(int(arcpy.GetCount_management(spOverlay).getOutput(0)) < 1):
                 for m in map: values[m[0]]={m[1]: float(0)}
                 return values
@@ -371,9 +371,9 @@ class SpatialOps(object):
             return float(value.getOutput(0))
         except:
             tb = traceback.format_exc()
-            self._sm("Failed to get raster statistic " +tb,"ERROR",229)
+            self._sm("Failed to get raster statistic computing centroid value.","WARNING",229)
             cellsize = float(arcpy.GetRasterProperties_management(inRaster, 'CELLSIZEX').getOutput(0))**2
-            self._sm("Raster cell size: " + str(cellsize) , "ERROR")
+            self._sm("Raster cell size: " + str(cellsize) , "WARNING")
             # try getting centroid
             return self.getValueAtCentroid(maskFeature,inRaster)
         finally:
