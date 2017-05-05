@@ -327,7 +327,6 @@ class StreamStatsNationalOps(SpatialOps):
 
         return result
 
-<<<<<<< HEAD
     def toBeDetermined(self, Characteristic):
 
         #Is a place holder characteristic. Is stripped down version of getPrismStatistic. Created by JWX.
@@ -352,12 +351,7 @@ class StreamStatsNationalOps(SpatialOps):
 
         #Computes statistic for prism data. Changed by JWX. Indent block did not work.
 
-=======
-    def getPrismStatistic(self, Characteristic):
-        '''
-        Computes statistic for prism data
-        '''
->>>>>>> 7b982b137de6ebf4a304d9bc4b81151118b06d4e
+
         result = {Characteristic.Name:None}
         try:
             self._sm("Computing " + Characteristic.Name)
