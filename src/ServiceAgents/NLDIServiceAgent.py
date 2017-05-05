@@ -43,13 +43,14 @@ class NLDIServiceAgent(ServiceAgentBase.ServiceAgentBase):
         ServiceAgentBase.ServiceAgentBase.__exit__(self, exc_type, exc_value, traceback) 
     #endregion
     #region Methods
-    def getBasin(self, comID, isCatchmentLevel=False):
+    def getBasin(self, comID, isCatchmentLevel=False, xpoint = None, ypoint = None, crs = None):
         try:
-            #distance = "0" if isCatchmentLevel else ""
-            #resource = "comid/{0}/navigate/UT/basin?distance={1}".format(comID,distance)
-
-            distance = "gages_iii_catchments" if isCatchmentLevel else "gages_iii_basins"
-            resource = "/{1}/{0}.json".format(comID, distance)
+            
+            if isCatchmentLevel == True:
+                resource = Config()['queryParams']['nldiWFS'].format(crs, xpoint, ypoint)
+#             
+            else:
+                resource = Config()['queryParams']['nldiQuery'].format(comID)
 
             try:
                 results = self.Execute(resource)
@@ -63,25 +64,14 @@ class NLDIServiceAgent(ServiceAgentBase.ServiceAgentBase):
     def getBasinCharacteristics(self,comID):
         results={}
         try:
-            #resource = "comid/{0}/navigate/UT/basin?distance={1}".format(comID,distance)
-            resource = "gagesIII_mw_characteristics_{0}.csv".format("tot")
-            #Temp solution until they get the services up and running
-            gauge_file = Shared.readCSVFile(os.path.join(self.BaseUrl,resource))
-            headers = gauge_file[0]
+            resource = Config()['queryParams']['nldiChars'].format(comID)
             
-            gauge_file.pop(0)
-            comIDindex = headers.index('COMID')           
-            for row in gauge_file:
-                if(len(row) < comIDindex): continue
-                if comID == row[comIDindex]:
-                    for h in headers:
-                        results[h] = row[headers.index(h)]
-                        
-                    #next h
-                    return results
-                #endif
-            #next row
-            return None
+            results = json.loads(self.Execute(resource))
+            
+            for x in results['characteristics']:
+                results[str(x['characteristic_id'])] = x['characteristic_value']
+            
+            return results
         except:
             tb = traceback.format_exc()
             self._sm("NLDIService getBasinCharacteristics Error "+tb, "ERROR")

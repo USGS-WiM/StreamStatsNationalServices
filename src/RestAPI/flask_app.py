@@ -27,7 +27,7 @@ def basinCharacteristics(format_type):
     #args_dict['rcode'] = check_exists('rcode', request.args)
   
     #necessary for computing basin characteristics
-    if 'workspaceID' in request.args:
+    if 'workspaceID' in request.args and request.args['workspaceID'] != '':
         args_dict['workspaceID'] = str(request.args.get('workspaceID'))
         
     #optional arguments

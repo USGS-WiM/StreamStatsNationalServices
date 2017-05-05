@@ -1,9 +1,14 @@
 {
   "characteristiclist": "https://docs.google.com/spreadsheets/d/1_5vxn94GqsQwv3zH3YDO-HaIDGpk_q3ou0jJSWPUZJo/edit#gid=733442906",
-  "NLDIServiceOff": "https://cida-test.er.usgs.gov/nldi/",
-  "NLDIService": "C:/gis/usgs/ss/Applications/input",
-  "workingdirectory": "C:/gis/usgs/ss/Applications/output/gage_iii",
-  "parentdirectory": "C:/gis/usgs/ss/ss_data/FHWA",
+  "NLDIServiceOff": "E:/Applications/input",
+  "NLDIService": "https://cida.usgs.gov",
+  "queryParams": {
+    "nldiQuery": "/nldi/comid/{0}/basin",
+    "nldiWFS": "/nwc/geoserver/nhdplus/ows?service=wfs&version=1.0.0&request=GetFeature&typeName=nhdplus:catchmentsp&srsName=EPSG:{0}&outputFormat=json&filter=<Filter xmlns=\"http://www.opengis.net/ogc\" xmlns:gml=\"http://www.opengis.net/gml\"><Contains><PropertyName>the_geom</PropertyName><gml:Point srsName=\"EPSG:{0}\"><gml:coordinates>{1},{2}</gml:coordinates></gml:Point></Contains></Filter>",
+    "nldiChars": "/nldi/comid/{0}/tot"
+  },
+  "workingdirectory": "E:/Applications/output/gage_iii",
+  "parentdirectory": "E:/ss_data/FHWA",
   "outputFile": "splitCatchment.csv",
   "catchment": {
     "upstream": "upstreamcatchment",
@@ -38,9 +43,6 @@
       "Description": "Percent of watershed in irrigated agriculture, from USGS 2012 250-m MODIS data",
       "MapLayers": [ "mirad2012" ],
       "UnitID": "percent",
-<<<<<<< HEAD
-      "Reference": "https://www.sciencebase.gov/catalog/item/573b78aee4b0dae0d5e3aeb7"
-=======
       "Reference": "https://www.sciencebase.gov/catalog/item/57f66d66e4b0bc0bec06de3a"
     },
     "TOT_WDANN": {
@@ -861,7 +863,6 @@
       "Description": "New England",
       "Procedure": "TO BE DETERMINED",
       "UnitID": "percent"
->>>>>>> 7b982b137de6ebf4a304d9bc4b81151118b06d4e
     },
     "TOT_NWALT12_41": {
       "Procedure": "getRasterPercent",
@@ -954,7 +955,6 @@
       "path": "Nationwide/LANDSCAPE/NWALT",
       "DatasetType": "ESRI_RASTER"
     },
-<<<<<<< HEAD
     "flowlines": {
       "ID": 7001,
       "Name": "NHDFlowline",
@@ -974,7 +974,7 @@
       "isTiled": false,
       "path": "Nationwide/HYDRO_MOD/NPDES",
       "DatasetType": "ESRI_POINT"
-=======
+    },
     "TOT_PHYSIO_22": {
       "Reference": "https://www.sciencebase.gov/catalog/item/57dafd3ae4b090824ffc32f1",
       "MapLayers": "TO BE DETERMINED",
@@ -11401,7 +11401,6 @@
       "path": "NEEDS DETAILS",
       "DatasetType": "NEEDS DETAILS",
       "Reference": "NEEDS DETAILS"
->>>>>>> 7b982b137de6ebf4a304d9bc4b81151118b06d4e
     }
   }
 }
