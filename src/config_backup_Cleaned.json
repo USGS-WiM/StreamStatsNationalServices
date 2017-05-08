@@ -1,0 +1,168 @@
+{
+  "characteristiclist": "https://docs.google.com/spreadsheets/d/1_5vxn94GqsQwv3zH3YDO-HaIDGpk_q3ou0jJSWPUZJo/edit#gid=733442906",
+  "NLDIServiceOff": "C:/gis/usgs/ss/Applications/input",
+  "NLDIService": "https://cida.usgs.gov",
+  "queryParams": {
+    "nldiQuery": "/nldi/comid/{0}/basin",
+    "nldiWFS": "/nwc/geoserver/nhdplus/ows?service=wfs&version=1.0.0&request=GetFeature&typeName=nhdplus:catchmentsp&srsName=EPSG:{0}&outputFormat=json&filter=<Filter xmlns=\"http://www.opengis.net/ogc\" xmlns:gml=\"http://www.opengis.net/gml\"><Contains><PropertyName>the_geom</PropertyName><gml:Point srsName=\"EPSG:{0}\"><gml:coordinates>{1},{2}</gml:coordinates></gml:Point></Contains></Filter>",
+    "nldiChars": "/nldi/comid/{0}/tot"
+  },
+  "workingdirectory": "C:/gis/usgs/ss/Applications/output/gage_iii",
+  "parentdirectory": "C:/gis/usgs/ss/ss_data/FHWA",
+  "outputFile": "splitCatchment.csv",
+  "catchment": {
+    "upstream": "upstreamcatchment",
+    "downstream": "downstreamcatchment",
+    "global": "global"
+  },
+  "characteristics": {
+    "TOT_NID_STORAGE_2013": {
+      "Procedure": "getStoragePerUnitArea",
+      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
+      "MapLayers": ["nid2013"],
+      "QueryField": "NID_STORAG",
+      "UnitID": "acre feet",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1"
+    },
+    "TOT_FRESHWATER_WD": {
+      "Procedure": "getRasterStatistic",
+      "Description": "Freshwater withdrawal megaliters (1000 cubic meters) per year per sqkm, from 1995-2000 county-level estimates",
+      "Method": "Mean",
+      "MapLayers": [ "freshwater_wd" ],
+      "UnitID": "megaliters/km2"
+    },
+    "TOT_IMPV11": {
+      "Procedure": "getRasterStatistic",
+      "Description": "Impervious surface from NLCD 2011",
+      "Method": "Mean",
+      "MapLayers": [ "nlcd2011" ],
+      "UnitID": "percent"
+    },
+    "TOT_MIRAD_2012": {
+      "Procedure": "getRasterPercent",
+      "Description": "Percent of watershed in irrigated agriculture, from USGS 2012 250-m MODIS data",
+      "MapLayers": [ "mirad2012" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57f66d66e4b0bc0bec06de3a"
+    },
+    "TOT_NWALT12_41": {
+      "Procedure": "getRasterPercent",
+      "Description": "Mining/Extraction - Barren areas due to probable surface mining/mineral extraction. Includes mining, quarries, sand and gravel operations, and energy operations.",
+      "MapLayers": [ "nwalt2012" ],
+      "ClassCodes": "41",
+      "UnitID": "percent"
+    },
+    "TOT_DITCHES92": {
+      "Procedure": "getVectorDensity",
+      "Operator": "LIKE",
+      "Keyword": "Canal",
+      "Method": "SUM",
+      "methodField": "LENGTHKM",
+      "selectorField": "FTYPE",
+      "Description": "Percent of watershed subjected to ditches for the year 1992",
+      "MapLayers": [ "flowlines" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57067257e4b03f95a075ab0c"
+    },
+    "TOT_NPDES_MAJ_DENS": {
+      "Procedure": "getPointFeatureDensity",
+      "Description": "NPDES Major site density, count/totalArea",
+      "MapLayers": [ "npdes" ],
+      "UnitID": "cnt/sqkm"
+    }
+  },
+  "maplayers": {
+    "fdr": {
+      "ID": 1001,
+      "Name": "fdr",
+      "Description": "Flow Direction Raster",
+      "isTiled": true,
+      "path": "Tiled/NHDPlus_v2",
+      "DatasetType": "ESRI_RASTER",
+      "queryFeaturePath": "RPU.shp",
+      "queryField": "Path",
+      "UnitID": "sq-m"
+    },
+    "fac": {
+      "ID": 1001,
+      "Name": "fac",
+      "Description": "Flow Accumulation Raster",
+      "isTiled": true,
+      "path": "Tiled/NHDPlus_v2",
+      "DatasetType": "ESRI_RASTER",
+      "queryFeaturePath": "RPU.shp",
+      "queryField": "Path",
+      "UnitID": "sq-m"
+    },
+    "nid2013": {
+      "ID": 2001,
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "National Inventory of Dams ",
+      "isTiled": false,
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
+    },
+    "freshwater_wd": {
+      "ID": 3001,
+      "Name": "withdr_sqkm",
+      "Description": "Freshwater withdrawal megaliters (1000 cubic meters) per year per sqkm, from 1995-2000 county-level estimates",
+      "isTiled": false,
+      "path": "Nationwide/HYDRO_MOD/WATERUSE",
+      "DatasetType": "ESRI_GRID",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57c9dc05e4b0f2f0cec192f2"
+    },
+    "nlcd2011": {
+      "ID": 4001,
+      "Name": "nlcd_2011_impervious_2011_edition_2014_10_10",
+      "Description": "National Land Cover Database",
+      "isTiled": false,
+      "path": "Nationwide/LANDSCAPE/NLCD",
+      "DatasetType": "IMAGE_RASTER"
+    },
+    "mirad2012": {
+      "ID": 5001,
+      "Name": "mirad250_12v3",
+      "Description": "2012 Moderate resolution Irrigated Agriculture Dataset",
+      "isTiled": false,
+      "path": "Nationwide/HYDRO_MOD/MIRAD",
+      "DatasetType": "ESRI_RASTER"
+    },    
+    "nwalt2012": {
+      "ID": 6001,
+      "Name": "lu2012_050815",
+      "Description": "National Wall-to-Wall Anthropogenic Land Use Trends (NWALT) 2012",
+      "isTiled": false,
+      "path": "Nationwide/LANDSCAPE/NWALT",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "prismGrid": {
+      "ID": 7001,
+      "Name": "prismgrid_Resample1",
+      "Description": "Prism indices for stored netCDF values",
+      "isTiled": false,
+      "path": "National",
+      "DatasetType": "TIF_RASTER"
+    },
+    "flowlines": {
+      "ID": 7001,
+      "Name": "NHDFlowline",
+      "Description": "Percent of watershed subjected to ditches for the year 1992",
+      "isTiled": true,
+      "path": "Tiled/NHDPlus_v2",
+      "DatasetType": "ESRI_SHAPE",
+      "queryFeaturePath": "RPU.shp",
+      "queryField": "HydroPath",
+      "UnitID": "sq-m"
+    },
+    "npdes": {
+      "ID": 8001,
+      "Name": "point",
+      "DataSetName": "us_major_npd",
+      "Description": "NPDES NEEDS DETAILS",
+      "isTiled": false,
+      "path": "Nationwide/HYDRO_MOD/NPDES",
+      "DatasetType": "ESRI_POINT"
+    }
+  }
+}
