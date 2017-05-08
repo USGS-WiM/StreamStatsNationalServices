@@ -175,7 +175,7 @@ class SpatialOps(object):
         finally:
             mask = None 
             #do not release
-            out_projected_fc = None           
+            out_projected_fc = None      
     def getFeatureStatistic(self, inFeature, maskFeature, statisticRules, fieldStr, matchOption = "COMPLETELY_CONTAINS"):
         '''
         computes the statistic 

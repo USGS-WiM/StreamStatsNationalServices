@@ -61,11 +61,11 @@ class DelineationWrapper(object):
             parser = argparse.ArgumentParser()
             parser.add_argument("-projectID", help="specifies the projectID", type=str, default="FH")
             parser.add_argument("-file", help="specifies csv file location including gage lat/long and comid's to estimate", type=str, 
-                                default = 'C:\\GIS\\gagesiii_lat_lon.csv')
+                                default = 'C:\\gis\\usgs\\ss\\Applications\\input\\gagesiii_lat_lon.csv')
             parser.add_argument("-outwkid", help="specifies the esri well known id of pourpoint ", type=int, 
                                 default = '4326')
             parser.add_argument("-parameters", help="specifies the ';' separated list of parameters to be computed", type=str, 
-                                      default = "TOT_FRESHWATER_WD")  
+                                      default = "")  
                            
             args = parser.parse_args()
             startTime = time.time()
@@ -191,7 +191,17 @@ class DelineationWrapper(object):
                         result = method(parameter) 
                         #todo:merge with request from NLDI
                         if(parameter.Name in globalValue): 
-                            result[parameter.Name] = float(globalValue[parameter.Name])-result[parameter.Name]
+                            print "The Name is: " + parameter.Name
+                            try:
+                                if globalValue[parameter.Name] == "":
+                                    print "Global Value was blank. Subsituting zero."
+                                    globalValue[parameter.Name] = 0
+                                print "The Global Value is: " + str(float(globalValue[parameter.Name]))
+                                print "The Result Value is: " + str(result[parameter.Name])
+                                result[parameter.Name] = float(globalValue[parameter.Name])-result[parameter.Name]
+                                print "The Updated Result Value is: " + str(result[parameter.Name])
+                            except:
+                                "Couldn't convert " + parameter.Name + " to Float"
 
                         WiMResults.Values.update(result)
                     else:
