@@ -43,7 +43,7 @@ class NLDIServiceAgent(ServiceAgentBase.ServiceAgentBase):
         ServiceAgentBase.ServiceAgentBase.__exit__(self, exc_type, exc_value, traceback) 
     #endregion
     #region Methods
-    def getBasin(self, comID, isCatchmentLevel=False, xpoint = None, ypoint = None, crs = None):
+    def getBasin(self, comID, isCatchmentLevel=False, xpoint = None, ypoint = None, crs = 4326):
         try:
             
             if isCatchmentLevel == True:

@@ -61,11 +61,11 @@ class DelineationWrapper(object):
             parser = argparse.ArgumentParser()
             parser.add_argument("-projectID", help="specifies the projectID", type=str, default="FH")
             parser.add_argument("-file", help="specifies csv file location including gage lat/long and comid's to estimate", type=str, 
-                                default = 'C:\\gis\\usgs\\ss\\Applications\\input\\gagesiii_lat_lon.csv')
+                                default = 'C:\\GIS\\gagesiii_lat_lon.csv')
             parser.add_argument("-outwkid", help="specifies the esri well known id of pourpoint ", type=int, 
                                 default = '4326')
             parser.add_argument("-parameters", help="specifies the ';' separated list of parameters to be computed", type=str, 
-                                      default = "")  
+                                      default = "TOT_FRESHWATER_WD")  
                            
             args = parser.parse_args()
             startTime = time.time()
@@ -141,7 +141,7 @@ class DelineationWrapper(object):
                 GeoJsonHandler.read_feature_collection(pnt,ppoint,gage.sr)  
 
             sa = NLDIServiceAgent()
-            maskjson = sa.getBasin(gage.comid,True)
+            maskjson = sa.getBasin(gage.comid, True, gage.lat, gage.long, gage.sr.factoryCode)
 
             if(not maskjson): return None
 
