@@ -286,7 +286,8 @@ class StreamStatsNationalOps(SpatialOps):
             arcpy.CopyFeatures_management("Subsetlayer", outName)                                   #Copy out features to avoid selection errors
             arcpy.SelectLayerByAttribute_management("Subsetlayer", "CLEAR_SELECTION")
             if arcpy.GetCount_management(outName).getOutput(0) == "0":                              #Catch if the dataset is blank
-                self._sm("Warning: Subset feature is blank")
+                self._sm("Warning: Subset feature is blank. Zero will be substituded.")
+                result[Characteristic.Name] = 0                                                     #If blank, result is zero
             else:
                 analysisFeatures.append(outName)
 
