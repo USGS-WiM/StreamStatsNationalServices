@@ -44,6 +44,7 @@ from WiMLib import Shared
 from WiMLib import GeoJsonHandler
 from WiMLib.Config import Config
 from ServiceAgents.NLDIServiceAgent import NLDIServiceAgent
+from ServiceAgents.NLDIFileServiceAgent import NLDIFileServiceAgent
 import ServiceAgents.NLDIServiceAgent
 from Ops.StreamStatsNationalOps import *
 import json
@@ -140,7 +141,10 @@ class DelineationWrapper(object):
             else:
                 GeoJsonHandler.read_feature_collection(pnt,ppoint,gage.sr)  
 
-            sa = NLDIServiceAgent()
+            if Config()["UseNLDIServices"] == False: #Toggler
+                sa = NLDIFileServiceAgent()
+            else:
+                sa = NLDIServiceAgent()
             maskjson = sa.getBasin(gage.comid, True, gage.lat, gage.long, gage.sr.factoryCode)
 
             if(not maskjson): return None
@@ -194,10 +198,7 @@ class DelineationWrapper(object):
                             print "The Name is: " + parameter.Name
                             try:
                                 if globalValue[parameter.Name] == "":
-                                    print "Global Value was blank. Subsituting zero."
                                     globalValue[parameter.Name] = 0
-                                print "The Global Value is: " + str(float(globalValue[parameter.Name]))
-                                print "The Result Value is: " + str(result[parameter.Name])
                                 result[parameter.Name] = float(globalValue[parameter.Name])-result[parameter.Name]
                                 print "The Updated Result Value is: " + str(result[parameter.Name])
                             except:

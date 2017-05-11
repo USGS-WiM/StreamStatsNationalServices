@@ -374,8 +374,10 @@ class SpatialOps(object):
             self._sm("Failed to get raster statistic computing centroid value.","WARNING",229)
             cellsize = float(arcpy.GetRasterProperties_management(inRaster, 'CELLSIZEX').getOutput(0))**2
             self._sm("Raster cell size: " + str(cellsize) , "WARNING")
-            # try getting centroid
-            return self.getValueAtCentroid(maskFeature,inRaster)
+            maskArea = self.getAreaSqMeter(self.mask)
+            maskArea = maskArea*0.000001
+            centValue = self.getValueAtCentroid(maskFeature,inRaster)            # try getting centroid
+            return (maskArea/cellsize)*centValue
         finally:
             outExtractByMask = None           
             mask = None
@@ -552,6 +554,7 @@ class SpatialOps(object):
         except:
             tb = traceback.format_exc()
             self._sm("Error computing Raster Percent Area " +tb,"ERROR",289)
+            return self.getValueAtCentroid(mask, inRaster)
         finally:
             #local clean up
             if attField != None: del attField; attField = None    
