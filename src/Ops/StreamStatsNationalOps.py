@@ -341,7 +341,7 @@ class StreamStatsNationalOps(SpatialOps):
         except:
             tb = traceback.format_exc()
             self._sm(arcpy.GetMessages(), 'GP')
-            self._sm("getPrismStatistic error" +tb +" "+Characteristic.Name, "ERROR", 71)
+            self._sm("To be determined error" +tb +" "+Characteristic.Name, "ERROR", 71)
             result[Characteristic.Name] = None
 
             #Not much to be cleaned up

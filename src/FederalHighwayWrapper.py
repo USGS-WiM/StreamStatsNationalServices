@@ -200,7 +200,6 @@ class DelineationWrapper(object):
                                 if globalValue[parameter.Name] == "":
                                     globalValue[parameter.Name] = 0
                                 result[parameter.Name] = float(globalValue[parameter.Name])-result[parameter.Name]
-                                print "The Updated Result Value is: " + str(result[parameter.Name])
                             except:
                                 "Couldn't convert " + parameter.Name + " to Float"
 
