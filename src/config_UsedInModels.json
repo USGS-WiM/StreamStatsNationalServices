@@ -72,237 +72,239 @@
       "UnitID": "cnt/sqkm"
     },
     "TOT_PPT7100_ANN": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/573b70a7e4b0dae0d5e3ae85",
-      "MapLayers": "toBeDetermined",
-      "Description": "Mean annual precipitation (mm) from 800m PRISM data. 30 year period of record 1971-2000.",
       "Procedure": "toBeDetermined",
-      "UnitID": "millimeters"
+      "Description": "Mean annual precipitation (mm) from 800m PRISM data. 30 year period of record 1971-2000.",
+      "UnitID": "millimeters",
+      "MapLayers": "toBeDetermined",
+      "Reference": "https://www.sciencebase.gov/catalog/item/573b70a7e4b0dae0d5e3ae85"
     },
     "TOT_TAV7100_ANN": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57054bf2e4b0d4e2b756d364",
       "Procedure": "toBeDetermined",
       "Description": "Mean annual air temperature (degrees Celsius) from 800m PRISM data. 30 year period of record 1971-2000.",
+      "UnitID": "degrees Celsius",
       "MapLayers": "toBeDetermined",
-      "UnitID": "degrees Celsius"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57054bf2e4b0d4e2b756d364"
     },
     "TOT_MINWD6190": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57040be3e4b0328dcb82850a",
-      "MapLayers": "toBeDetermined",
-      "Description": "Minimum number of wet days (days) from 800m PRISM data. 30 year period or record from 1961-1990.",
       "Procedure": "toBeDetermined",
-      "UnitID": "days"
+      "Description": "Minimum number of wet days (days) from 800m PRISM data. 30 year period or record from 1961-1990.",
+      "UnitID": "days",
+      "MapLayers": "toBeDetermined",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57040be3e4b0328dcb82850a"
     },
     "TOT_TMAX7100": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57054aebe4b0d4e2b756d1fc",
       "Procedure": "toBeDetermined",
       "Description": "30 year (1971 - 2000) minimum mean annual temperature (Celsius)  from 800m PRISM data",
       "MapLayers": "toBeDetermined",
-      "UnitID": "degrees Celsius"
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57054aebe4b0d4e2b756d1fc"
     },
     "TOT_FSTFZ6190": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5704052ae4b0328dcb827bc7",
-      "MapLayers": "toBeDetermined",
-      "Description": "Watershed average of mean day of the year of first freeze, derived from 30 years of record (1961-1990), 2 km PRISM.",
       "Procedure": "toBeDetermined",
-      "UnitID": "day of the year"
+      "Description": "Watershed average of mean day of the year of first freeze, derived from 30 years of record (1961-1990), 2 km PRISM.",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "day of the year",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5704052ae4b0328dcb827bc7"
     },
     "lstfz6190": {
+      "Procedure": "toBeDetermined",
+      "Description": "Watershed average of mean day of the year of last freeze, derived from 30 years of record (1961-1990), 2 km PRISM",
       "ID": "NEEDS DETAILS",
       "Name": "NEEDS DETAILS",
-      "Description": "Watershed average of mean day of the year of last freeze, derived from 30 years of record (1961-1990), 2 km PRISM",
       "isTiled": "NEEDS DETAILS",
       "path": "NEEDS DETAILS",
       "DatasetType": "NEEDS DETAILS",
       "Reference": "https://www.sciencebase.gov/catalog/item/57040a6ce4b0328dcb828378"
     },
     "TOT_PRSNOW": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57053dc5e4b0d4e2b756c117",
-      "MapLayers": "toBeDetermined",
+      "Procedure": "toBeDetermined",
       "Description": "Snow percent of total precipitation estimate, mean for period 1901-2000. From McCabe and Wolock (submitted, 2008), 1 km grid.",
-      "Procedure": "toBeDetermined",
-      "UnitID": "percent"
+      "MapLayers": "toBeDetermined",
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57053dc5e4b0d4e2b756c117"
     },
     "TOT_TMIN7100": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57054c9be4b0d4e2b756d465",
       "Procedure": "toBeDetermined",
       "Description": "30 year (1971 - 2000) minimum mean annual temperature (Celsius)  from 800m PRISM data",
       "MapLayers": "toBeDetermined",
-      "UnitID": "degrees Celsius"
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57054c9be4b0d4e2b756d465"
     },
     "TOT_TMIN7100": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57054c9be4b0d4e2b756d465",
       "Procedure": "toBeDetermined",
       "Description": "30 year (1971 - 2000) minimum mean annual temperature (Celsius)  from 800m PRISM data",
       "MapLayers": "toBeDetermined",
-      "UnitID": "degrees Celsius"
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57054c9be4b0d4e2b756d465"
     },
     "TOT_PPT7100_SEP": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
-      "MapLayers": "toBeDetermined",
-      "Description": "30 year (1971 - 2000) mean September precipitation(mm) from 800 m PRISM data",
       "Procedure": "toBeDetermined",
-      "UnitID": "millimeters"
+      "Description": "30 year (1971 - 2000) mean September precipitation(mm) from 800 m PRISM data",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
     },
     "TOT_PPT7100_OCT": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
-      "MapLayers": "toBeDetermined",
-      "Description": "30 year (1971 - 2000) mean October precipitation(mm) from 800 m PRISM data",
       "Procedure": "toBeDetermined",
-      "UnitID": "millimeters"
+      "Description": "30 year (1971 - 2000) mean October precipitation(mm) from 800 m PRISM data",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
     },
     "TOT_PPT7100_NOV": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
-      "MapLayers": "toBeDetermined",
-      "Description": "30 year (1971 - 2000) mean November precipitation(mm) from 800 m PRISM data",
       "Procedure": "toBeDetermined",
-      "UnitID": "millimeters"
+      "Description": "30 year (1971 - 2000) mean November precipitation(mm) from 800 m PRISM data",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
     },
     "TOT_PPT7100_MAY": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
-      "MapLayers": "toBeDetermined",
-      "Description": "30 year (1971 - 2000) mean May precipitation(mm) from 800 m PRISM data",
       "Procedure": "toBeDetermined",
-      "UnitID": "millimeters"
+      "Description": "30 year (1971 - 2000) mean May precipitation(mm) from 800 m PRISM data",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
     },
     "TOT_PPT7100_MAR": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
-      "MapLayers": "toBeDetermined",
-      "Description": "30 year (1971 - 2000) mean March precipitation(mm) from 800 m PRISM data",
       "Procedure": "toBeDetermined",
-      "UnitID": "millimeters"
+      "Description": "30 year (1971 - 2000) mean March precipitation(mm) from 800 m PRISM data",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
     },
     "TOT_PPT7100_JUN": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
-      "MapLayers": "toBeDetermined",
-      "Description": "30 year (1971 - 2000) mean June precipitation(mm) from 800 m PRISM data",
       "Procedure": "toBeDetermined",
-      "UnitID": "millimeters"
+      "Description": "30 year (1971 - 2000) mean June precipitation(mm) from 800 m PRISM data",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
     },
     "TOT_PPT7100_JUL": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
-      "MapLayers": "toBeDetermined",
-      "Description": "30 year (1971 - 2000) mean July precipitation(mm) from 800 m PRISM data",
       "Procedure": "toBeDetermined",
-      "UnitID": "millimeters"
+      "Description": "30 year (1971 - 2000) mean July precipitation(mm) from 800 m PRISM data",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
     },
     "TOT_PPT7100_JAN": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
-      "MapLayers": "toBeDetermined",
-      "Description": "30 year (1971 - 2000) mean January precipitation (mm) from 800m PRISM data",
       "Procedure": "toBeDetermined",
-      "UnitID": "millimeters"
+      "Description": "30 year (1971 - 2000) mean January precipitation (mm) from 800m PRISM data",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
     },
     "TOT_PPT7100_FEB": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
-      "MapLayers": "toBeDetermined",
-      "Description": "30 year (1971 - 2000) mean February precipitation (mm) from 800 m PRISM data",
       "Procedure": "toBeDetermined",
-      "UnitID": "millimeters"
+      "Description": "30 year (1971 - 2000) mean February precipitation (mm) from 800 m PRISM data",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
     },
     "TOT_PPT7100_DEC": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
-      "MapLayers": "toBeDetermined",
-      "Description": "30 year (1971 - 2000) mean December precipitation(mm) from 800 m PRISM data",
       "Procedure": "toBeDetermined",
-      "UnitID": "millimeters"
+      "Description": "30 year (1971 - 2000) mean December precipitation(mm) from 800 m PRISM data",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
     },
     "TOT_PPT7100_AUG": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
-      "MapLayers": "toBeDetermined",
-      "Description": "30 year (1971 - 2000) mean August precipitation(mm) from 800 m PRISM data",
       "Procedure": "toBeDetermined",
-      "UnitID": "millimeters"
+      "Description": "30 year (1971 - 2000) mean August precipitation(mm) from 800 m PRISM data",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
     },
     "TOT_PPT7100_APR": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
-      "MapLayers": "toBeDetermined",
-      "Description": "30 year (1971 - 2000) mean April precipitation(mm) from 800 m PRISM data",
       "Procedure": "toBeDetermined",
-      "UnitID": "millimeters"
+      "Description": "30 year (1971 - 2000) mean April precipitation(mm) from 800 m PRISM data",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
     },
     "TOT_TAV7100_SEP": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c",
       "Procedure": "toBeDetermined",
       "Description": "30 year (1971 - 2000) mean September temperature (deg C) from 800 m PRISM data",
       "MapLayers": "toBeDetermined",
-      "UnitID": "degrees Celsius"
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
     },
     "TOT_TAV7100_OCT": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c",
       "Procedure": "toBeDetermined",
       "Description": "30 year (1971 - 2000) mean October temperature (deg C) from 800 m PRISM data",
       "MapLayers": "toBeDetermined",
-      "UnitID": "degrees Celsius"
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
     },
     "TOT_TAV7100_NOV": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c",
+
       "Procedure": "toBeDetermined",
       "Description": "30 year (1971 - 2000) mean November temperature (deg C) from 800 m PRISM data",
       "MapLayers": "toBeDetermined",
-      "UnitID": "degrees Celsius"
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
     },
     "TOT_TAV7100_MAY": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c",
       "Procedure": "toBeDetermined",
       "Description": "30 year (1971 - 2000) mean May temperature (deg C) from 800 m PRISM data",
       "MapLayers": "toBeDetermined",
-      "UnitID": "degrees Celsius"
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
     },
     "TOT_TAV7100_MAR": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c",
       "Procedure": "toBeDetermined",
       "Description": "30 year (1971 - 2000) mean March temperature (deg C) from 800 m PRISM data",
       "MapLayers": "toBeDetermined",
-      "UnitID": "degrees Celsius"
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
     },
     "TOT_TAV7100_JUN": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c",
       "Procedure": "toBeDetermined",
       "Description": "30 year (1971 - 2000) mean June temperature (deg C) from 800 m PRISM data",
       "MapLayers": "toBeDetermined",
-      "UnitID": "degrees Celsius"
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
     },
     "TOT_TAV7100_JUL": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c",
       "Procedure": "toBeDetermined",
       "Description": "30 year (1971 - 2000) mean July temperature (deg C) from 800 m PRISM data",
       "MapLayers": "toBeDetermined",
-      "UnitID": "degrees Celsius"
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
     },
     "TOT_TAV7100_JAN": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c",
       "Procedure": "toBeDetermined",
       "Description": "30 year (1971 - 2000) mean January temperature (deg C) from 800m PRISM data",
       "MapLayers": "toBeDetermined",
-      "UnitID": "degrees Celsius"
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
     },
     "TOT_TAV7100_FEB": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c",
       "Procedure": "toBeDetermined",
       "Description": "30 year (1971 - 2000) mean February temperature (deg C) from 800 m PRISM data",
       "MapLayers": "toBeDetermined",
-      "UnitID": "degrees Celsius"
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
     },
     "TOT_TAV7100_DEC": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c",
       "Procedure": "toBeDetermined",
       "Description": "30 year (1971 - 2000) mean December temperature (deg C) from 800 m PRISM data",
       "MapLayers": "toBeDetermined",
-      "UnitID": "degrees Celsius"
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
     },
     "TOT_TAV7100_AUG": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c",
       "Procedure": "toBeDetermined",
       "Description": "30 year (1971 - 2000) mean August temperature (deg C) from 800 m PRISM data",
       "MapLayers": "toBeDetermined",
-      "UnitID": "degrees Celsius"
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
     },
     "TOT_TAV7100_APR": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c",
       "Procedure": "toBeDetermined",
       "Description": "30 year (1971 - 2000) mean April temperature (deg C) from 800 m PRISM data",
       "MapLayers": "toBeDetermined",
-      "UnitID": "degrees Celsius"
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
     },
     "TOT_WD6190_SEP": {
       "Procedure": "toBeDetermined",
@@ -368,67 +370,67 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
     },
     "TOT_WD6190_DEC": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd",
       "Procedure": "toBeDetermined",
       "Description": "30 year (1971 - 2000) mean December number of days of measurable precipitation (days) from 800 m PRISM data",
       "MapLayers": "toBeDetermined",
-      "UnitID": "days"
+      "UnitID": "days",
+      "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
     },
     "TOT_WD6190_AUG": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd",
       "Procedure": "toBeDetermined",
       "Description": "30 year (1971 - 2000) mean August number of days of measurable precipitation (days) from 800 m PRISM data",
       "MapLayers": "toBeDetermined",
-      "UnitID": "days"
+      "UnitID": "days",
+      "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
     },
     "TOT_WD6190_APR": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd",
       "Procedure": "toBeDetermined",
       "Description": "30 year (1971 - 2000) mean April number of days of measurable precipitation (days) from 800 m PRISM data",
       "MapLayers": "toBeDetermined",
-      "UnitID": "days"
+      "UnitID": "days",
+      "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
     },
     "TOT_RH": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57054a24e4b0d4e2b756d0e7",
       "Procedure": "toBeDetermined",
       "Description": "Watershed average relative humidity (percent), from 2 km PRISM, derived from 30 years of record (1961-1990).",
       "MapLayers": "toBeDetermined",
-      "UnitID": "percent"
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57054a24e4b0d4e2b756d0e7"
     },
     "TOT_WBM_PET_2012": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5783e16ae4b0ac0b97f54285",
       "Procedure": "toBeDetermined",
       "Description": "Average value of potential evapotranspiration (PET) from the water balance model for 2000-2014",
       "MapLayers": "toBeDetermined",
-      "UnitID": "millimeters"
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5783e16ae4b0ac0b97f54285"
     },
     "TOT_WB5100_ANN": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/56fd5bd0e4b0c07cbfa40473",
       "Procedure": "toBeDetermined",
       "Description": "50 year (1951-2000) average annual runoff (mm) from McCabe and Wolock's Runoff Model",
       "MapLayers": "toBeDetermined",
-      "UnitID": "millimeters"
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/56fd5bd0e4b0c07cbfa40473"
     },
     "TOT_TWI": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/56f97be4e4b0a6037df06b70",
       "Procedure": "toBeDetermined",
       "Description": "Topographic wetness index, ln(a/S); where \"ln\" is the natural log, \"a\" is the upslope area per unit contour length and \"S\" is the slope at that point",
       "MapLayers": "toBeDetermined",
-      "UnitID": "ln(m)"
+      "UnitID": "ln(m)",
+      "Reference": "https://www.sciencebase.gov/catalog/item/56f97be4e4b0a6037df06b70"
     },
     "TOT_SATOF": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/56f97acbe4b0a6037df06b6a",
       "Procedure": "toBeDetermined",
       "Description": "Percentage of Dunne overland flow as a percent",
       "MapLayers": "toBeDetermined",
-      "UnitID": "percent of total stream flow"
+      "UnitID": "percent of total stream flow",
+      "Reference": "https://www.sciencebase.gov/catalog/item/56f97acbe4b0a6037df06b6a"
     },
     "TOT_AREA_SQKM": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5783ed1ce4b0ac0b97f5428f",
-      "MapLayers": "toBeDetermined",
-      "Description": "NA",
       "Procedure": "toBeDetermined",
-      "UnitID": "NA"
+      "Description": "NA",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "NA",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5783ed1ce4b0ac0b97f5428f"
     },
     "nlcd06_95": {
       "ID": "NEEDS DETAILS",
@@ -584,151 +586,151 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
     },
     "TOT_BASIN_SLOPE": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890",
-      "MapLayers": "toBeDetermined",
-      "Description": "NHDPlus Version 2 percent slope",
       "Procedure": "toBeDetermined",
-      "UnitID": "percent"
+      "Description": "NHDPlus Version 2 percent slope",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
     },
     "TOT_ELEV_MAX": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890",
-      "MapLayers": "toBeDetermined",
-      "Description": "NHDPlus Version 2 Maximum elevation",
       "Procedure": "toBeDetermined",
-      "UnitID": "meters"
+      "Description": "NHDPlus Version 2 Maximum elevation",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "meters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
     },
     "TOT_ELEV_MIN": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890",
-      "MapLayers": "toBeDetermined",
-      "Description": "NHDPlus Version 2 Minimum elevation",
       "Procedure": "toBeDetermined",
-      "UnitID": "meters"
+      "Description": "NHDPlus Version 2 Minimum elevation",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "meters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
     },
     "TOT_ELEV_MEAN": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890",
-      "MapLayers": "toBeDetermined",
-      "Description": "NHDPlus Version 2 Mean elevation",
       "Procedure": "toBeDetermined",
-      "UnitID": "meters"
+      "Description": "NHDPlus Version 2 Mean elevation",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "meters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
     },
     "TOT_HGA": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5728d93be4b0b13d3918a99f",
-      "MapLayers": "toBeDetermined",
-      "Description": "Percentage of soils in hydrologic group A. Hydrologic group A soils have high infiltration rates. Soils are deep and well drained and, typically, have high sand and gravel content.",
       "Procedure": "toBeDetermined",
-      "UnitID": "percent"
+      "Description": "Percentage of soils in hydrologic group A. Hydrologic group A soils have high infiltration rates. Soils are deep and well drained and, typically, have high sand and gravel content.",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728d93be4b0b13d3918a99f"
     },
     "TOT_HGB": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5728d93be4b0b13d3918a99f",
-      "MapLayers": "toBeDetermined",
-      "Description": "Percentage of soils in hydrologic group B. Hydrologic group B soils have moderate infiltration rates. Soils are moderately deep, moderately well drained, and moderately coarse in texture.",
       "Procedure": "toBeDetermined",
-      "UnitID": "percent"
+      "Description": "Percentage of soils in hydrologic group B. Hydrologic group B soils have moderate infiltration rates. Soils are moderately deep, moderately well drained, and moderately coarse in texture.",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728d93be4b0b13d3918a99f"
     },
     "TOT_HGC": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5728d93be4b0b13d3918a99f",
-      "MapLayers": "toBeDetermined",
-      "Description": "Percentage of soils in hydrologic group C. Hydrologic group C soils have slow soil inflitration rates. The soil profiles include layers impeding downward movement of water and, typically, have moderately fine or fine texture.",
       "Procedure": "toBeDetermined",
-      "UnitID": "percent"
+      "Description": "Percentage of soils in hydrologic group C. Hydrologic group C soils have slow soil inflitration rates. The soil profiles include layers impeding downward movement of water and, typically, have moderately fine or fine texture.",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728d93be4b0b13d3918a99f"
     },
     "TOT_HGD": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5728d93be4b0b13d3918a99f",
-      "MapLayers": "toBeDetermined",
-      "Description": "Percentage of soils in hydrologic group D. Hydrologic group D soils have very slow infiltration rates. Soils are clayey, have a high water table, or have a shallow impervious layer.",
       "Procedure": "toBeDetermined",
-      "UnitID": "percent"
+      "Description": "Percentage of soils in hydrologic group D. Hydrologic group D soils have very slow infiltration rates. Soils are clayey, have a high water table, or have a shallow impervious layer.",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728d93be4b0b13d3918a99f"
     },
     "TOT_HGCD": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5728d93be4b0b13d3918a99f",
-      "MapLayers": "toBeDetermined",
-      "Description": "Percentage of soils in hydrologic group C/D. Hydrologic group C/D soils have group C characteristics (slow infiltration rates) when artificially drained and have group D characteristics (very slow infiltration rates) when not drained.",
       "Procedure": "toBeDetermined",
-      "UnitID": "percent"
+      "Description": "Percentage of soils in hydrologic group C/D. Hydrologic group C/D soils have group C characteristics (slow infiltration rates) when artificially drained and have group D characteristics (very slow infiltration rates) when not drained.",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728d93be4b0b13d3918a99f"
     },
     "TOT_AWCAVE": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa",
-      "MapLayers": "toBeDetermined",
-      "Description": "Average value for the range of available water capacity for the soil layer or horizon",
       "Procedure": "toBeDetermined",
-      "UnitID": "inches of water per inches of soil depth"
+      "Description": "Average value for the range of available water capacity for the soil layer or horizon",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "inches of water per inches of soil depth",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
     "TOT_KFACT_UP": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9a",
-      "MapLayers": "toBeDetermined",
-      "Description": "Average K-factor value for the uppermost soil horizon in each soil component. K-factor is an erodibility factor which quantifies the susceptibility of soil particles to detachment and movement by water. The K-factor is used in the Universal Soil Loss Equation (USLE) to estimate soil loss by water. Higher values of K-factor indicate greater potential for erosion.",
       "Procedure": "toBeDetermined",
-      "UnitID": "unitless"
+      "Description": "Average K-factor value for the uppermost soil horizon in each soil component. K-factor is an erodibility factor which quantifies the susceptibility of soil particles to detachment and movement by water. The K-factor is used in the Universal Soil Loss Equation (USLE) to estimate soil loss by water. Higher values of K-factor indicate greater potential for erosion.",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "unitless",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9a"
     },
     "TOT_NO10AVE": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa",
-      "MapLayers": "toBeDetermined",
-      "Description": "Average value of percent by weight of soil material less than 3 inches in size and passing a No. 10 sieve (2 mm)",
       "Procedure": "toBeDetermined",
-      "UnitID": "percent"
+      "Description": "Average value of percent by weight of soil material less than 3 inches in size and passing a No. 10 sieve (2 mm)",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
     "TOT_NO200AVE": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa",
-      "MapLayers": "toBeDetermined",
-      "Description": "Average value of percent by weight of soil material less than 3 inches in size and passing a No. 200 sieve (.074 mm)",
       "Procedure": "toBeDetermined",
-      "UnitID": "percent"
+      "Description": "Average value of percent by weight of soil material less than 3 inches in size and passing a No. 200 sieve (.074 mm)",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
     "TOT_NO4AVE": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa",
-      "MapLayers": "toBeDetermined",
-      "Description": "Average value of percent by weight of soil material less than 3 inches in size and passing a No. 4 sieve (5 mm)",
       "Procedure": "toBeDetermined",
-      "UnitID": "percent"
+      "Description": "Average value of percent by weight of soil material less than 3 inches in size and passing a No. 4 sieve (5 mm)",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
     "TOT_OM": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa",
-      "MapLayers": "toBeDetermined",
-      "Description": "Average value of organic matter content (percent by weight)",
       "Procedure": "toBeDetermined",
-      "UnitID": "percent"
+      "Description": "Average value of organic matter content (percent by weight)",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
     "TOT_PERMAVE": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa",
-      "MapLayers": "toBeDetermined",
-      "Description": "Average permeability",
       "Procedure": "toBeDetermined",
-      "UnitID": "inches/hour"
+      "Description": "Average permeability",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "inches/hour",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
     "TOT_RFACT": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa",
-      "MapLayers": "toBeDetermined",
-      "Description": "Rainfall and Runoff factor (\"R factor\" of Universal Soil Loss Equation); average annual value for period 1971-2000",
       "Procedure": "toBeDetermined",
-      "UnitID": "100s ft-tonf in/h/ac/yr"
+      "Description": "Rainfall and Runoff factor (\"R factor\" of Universal Soil Loss Equation); average annual value for period 1971-2000",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "100s ft-tonf in/h/ac/yr",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
     "TOT_ROCKDEP": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa",
       "Procedure": "toBeDetermined",
       "Description": "Average value of total soil thickness examined",
       "MapLayers": "toBeDetermined",
-      "UnitID": "inches"
+      "UnitID": "inches",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
     "TOT_CLAYAVE": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5728dd46e4b0b13d3918a9a7",
-      "MapLayers": "toBeDetermined",
-      "Description": "Average value of clay content",
       "Procedure": "toBeDetermined",
-      "UnitID": "percent"
+      "Description": "Average value of clay content",
+      "MapLayers": "toBeDetermined",
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728dd46e4b0b13d3918a9a7"
     },
     "TOT_SANDAVE": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5728dd46e4b0b13d3918a9a7",
       "Procedure": "toBeDetermined",
       "Description": "Average value of sand content",
       "MapLayers": "toBeDetermined",
-      "UnitID": "percent"
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728dd46e4b0b13d3918a9a7"
     },
     "TOT_SILTAVE": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5728dd46e4b0b13d3918a9a7",
       "Procedure": "toBeDetermined",
       "Description": "Average value of silt ave",
       "MapLayers": "toBeDetermined",
-      "UnitID": "percent"
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728dd46e4b0b13d3918a9a7"
     }
   },
   "maplayers": {
