@@ -98,7 +98,7 @@
     "TOT_TMAX7100": {
       "Procedure": "getPrismStatistic",
       "Description": "30 year (1971 - 2000) minimum mean annual temperature (Celsius)  from 800m PRISM data",
-      "Method": "Mean",
+      "Method": "MAXIMUM",
       "MapLayers": [ "tmax7100_800a" ],
       "UnitID": "degrees Celsius",
       "Reference": "https://www.sciencebase.gov/catalog/item/57054aebe4b0d4e2b756d1fc"
@@ -128,8 +128,8 @@
     },
     "TOT_TMIN7100": {
       "Procedure": "getPrismStatistic",
-      "Description": "30 year (1971 - 2000) minimum mean annual temperature (Celsius)  from 800m PRISM data",
-      "Method": "Mean",
+      "Description": "30 year (1971 - 2000) minimum mean annual temperature (Celsius) from 800m PRISM data",
+      "Method": "MINIMUM",
       "MapLayers": [ "tmin7100_800a" ],
       "UnitID": "degrees Celsius",
       "Reference": "https://www.sciencebase.gov/catalog/item/57054c9be4b0d4e2b756d465"
@@ -462,142 +462,137 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/56f97acbe4b0a6037df06b6a"
     },
     "nlcd06_95": {
-      "Procedure": "getRasterStatistic",
+      "Procedure": "getRasterPercent",
       "Description": "Emergent Herbaceous Wetlands - areas where perennial herbaceous vegetation accounts for greater than 80% of vegetative cover and the soil or substrate is periodically saturated with or covered with water",
-      "Method": "Mean",
-      "MapLayers": [ "nlcd_2006_landcover_2011_edition_2014_10_10.img" ],
+      "ClassCodes": "95",
+      "MapLayers": [ "nlcd_2006" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
     },
     "nlcd06_90": {
-      "Procedure": "getRasterStatistic",
+      "Procedure": "getRasterPercent",
       "Description": "Woody Wetlands - areas where forest or shrubland vegetation accounts for greater than 20% of vegetative cover and the soil or substrate is periodically saturated with or covered with water",
-      "Method": "Mean",
-      "MapLayers": [ "nlcd_2006_landcover_2011_edition_2014_10_10.img" ],
+      "ClassCodes": "90",
+      "MapLayers": [ "nlcd_2006" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
     },
     "nlcd06_82": {
-      "Procedure": "getRasterStatistic",
+      "Procedure": "getRasterPercent",
       "Description": "Cultivated Crops - areas used for the production of annual crops, such as corn, soybeans, vegetables, tobacco, and cotton, and also perennial woody crops such as orchards and vineyards. Crop vegetation accounts for greater than 20% of total vegetation. This class also includes all land being actively tilled",
-      "Method": "Mean",
-      "MapLayers": [ "nlcd_2006_landcover_2011_edition_2014_10_10.img" ],
+      "ClassCodes": "82",
+      "MapLayers": [ "nlcd_2006" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
     },
     "nlcd06_81": {
-      "Procedure": "getRasterStatistic",
+      "Procedure": "getRasterPercent",
       "Description": "Pasture/Hay - areas of grasses, legumes, or grass-legume mixtures planted for livestock grazing or the production of seed or hay crops, typically on a perennial cycle. Pasture/hay vegetation accounts for greater than 20% of total vegetation",
-      "Method": "Mean",
-      "MapLayers": [ "nlcd_2006_landcover_2011_edition_2014_10_10.img" ],
+      "ClassCodes": "81",
+      "MapLayers": [ "nlcd_2006" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
     },
     "nlcd06_71": {
-      "Procedure": "getRasterStatistic",
+      "Procedure": "getRasterPercent",
       "Description": "Grassland/Herbaceous - areas dominated by gramanoid or herbaceous vegetation, generally greater than 80% of total vegetation. These areas are not subject to intensive management such as tilling, but can be utilized for grazing",
-      "Method": "Mean",
-      "MapLayers": [ "nlcd_2006_landcover_2011_edition_2014_10_10.img" ],
+      "ClassCodes": "71",
+      "MapLayers": [ "nlcd_2006" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
     },
     "nlcd06_52": {
-      "Procedure": "getRasterStatistic",
+      "Procedure": "getRasterPercent",
       "Description": "Shrub/Scrub - areas dominated by shrubs; less than 5 meters tall with shrub canopy typically greater than 20% of total vegetation. This class includes true shrubs, young trees in an early successional stage or trees stunted from environmental conditions",
-      "Method": "Mean",
-      "MapLayers": [ "nlcd_2006_landcover_2011_edition_2014_10_10.img" ],
+      "ClassCodes": "52",
+      "MapLayers": [ "nlcd_2006" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
     },
     "nlcd06_43": {
-      "Procedure": "getRasterStatistic",
+      "Procedure": "getRasterPercent",
       "Description": "Mixed Forest - areas dominated by trees generally greater than 5 meters tall, and greater than 20% of total vegetation cover. Neither deciduous nor evergreen species are greater than 75% of total tree cover",
-      "Method": "Mean",
-      "MapLayers": [ "nlcd_2006_landcover_2011_edition_2014_10_10.img" ],
+      "ClassCodes": "43",
+      "MapLayers": [ "nlcd_2006" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
     },
     "nlcd06_42": {
-      "Procedure": "getRasterStatistic",
+      "Procedure": "getRasterPercent",
       "Description": "Evergreen Forest - areas dominated by trees generally greater than 5 meters tall, and greater than 20% of total vegetation cover. More than 75% of the tree species maintain their leaves all year. Canopy is never without green foliage",
-      "Method": "Mean",
-      "MapLayers": [ "nlcd_2006_landcover_2011_edition_2014_10_10.img" ],
+      "ClassCodes": "42",
+      "MapLayers": [ "nlcd_2006" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
     },
     "nlcd06_41": {
-      "Procedure": "getRasterStatistic",
+      "Procedure": "getRasterPercent",
       "Description": "Deciduous Forest - areas dominated by trees generally greater than 5 meters tall, and greater than 20% of total vegetation cover. More than 75% of the tree species shed foliage simultaneously in response to seasonal change",
-      "Method": "Mean",
-      "MapLayers": [ "nlcd_2006_landcover_2011_edition_2014_10_10.img" ],
+      "ClassCodes": "41",
+      "MapLayers": [ "nlcd_2006" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
     },
     "nlcd06_31": {
-      "Procedure": "getRasterStatistic",
+      "Procedure": "getRasterPercent",
       "Description": "Barren Land (Rock/Sand/Clay) - areas of bedrock, desert pavement, scarps, talus, slides, volcanic material, glacial debris, sand dunes, strip mines, gravel pits and other accumulations of earthen material. Generally, vegetation accounts for less than 15% of total cover",
-      "Method": "Mean",
-      "MapLayers": [ "nlcd_2006_landcover_2011_edition_2014_10_10.img" ],
+      "ClassCodes": "31",
+      "MapLayers": [ "nlcd_2006" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
     },
     "nlcd06_24": {
-      "Procedure": "getRasterStatistic",
+      "Procedure": "getRasterPercent",
       "Description": "Developed High Intensity - highly developed areas where people reside or work in high numbers. Examples include apartment complexes, row houses and commercial/industrial. Impervious surfaces account for 80% to 100% of the total cover",
-      "Method": "Mean",
-      "MapLayers": [ "nlcd_2006_landcover_2011_edition_2014_10_10.img" ],
+      "ClassCodes": "24",
+      "MapLayers": [ "nlcd_2006" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
     },
     "nlcd06_23": {
-      "Procedure": "getRasterStatistic",
+      "Procedure": "getRasterPercent",
       "Description": "Developed, Medium Intensity - areas with a mixture of constructed materials and vegetation. Impervious surfaces account for 50% to 79% of the total cover. These areas most commonly include single-family housing units",
-      "Method": "Mean",
-      "MapLayers": [ "nlcd_2006_landcover_2011_edition_2014_10_10.img" ],
+      "ClassCodes": "23",
+      "MapLayers": [ "nlcd_2006" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
     },
     "nlcd06_22": {
-      "Procedure": "getRasterStatistic",
+      "Procedure": "getRasterPercent",
       "Description": "Developed, Low Intensity - areas with a mixture of constructed materials and vegetation. Impervious surfaces account for 20% to 49% percent of total cover. These areas most commonly include single-family housing units",
-      "Method": "Mean",
-      "MapLayers": [ "nlcd_2006_landcover_2011_edition_2014_10_10.img" ],
+      "ClassCodes": "22",
+      "MapLayers": [ "nlcd_2006" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
     },
     "nlcd06_21": {
-      "Procedure": "getRasterStatistic",
+      "Procedure": "getRasterPercent",
       "Description": "Developed, Open Space - areas with a mixture of some constructed materials, but mostly vegetation in the form of lawn grasses. Impervious surfaces account for less than 20% of total cover. These areas most commonly include large-lot single-family housing units, parks, golf courses, and vegetation planted in developed settings for recreation, erosion control, or aesthetic purposes",
-      "Method": "Mean",
-      "MapLayers": [ "nlcd_2006_landcover_2011_edition_2014_10_10.img" ],
+      "ClassCodes": "21",
+      "MapLayers": [ "nlcd_2006" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
     },
     "nlcd06_12": {
-      "Procedure": "getRasterStatistic",
+      "Procedure": "getRasterPercent",
       "Description": "Perennial Ice/Snow - areas characterized by a perennial cover of ice and/or snow, generally greater than 25% of total cover",
-      "Method": "Mean",
-      "MapLayers": [ "nlcd_2006_landcover_2011_edition_2014_10_10.img" ],
+      "ClassCodes": "12",
+      "MapLayers": [ "nlcd_2006" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
     },
     "nlcd06_11": {
-      "Procedure": "getRasterStatistic",
+      "Procedure": "getRasterPercent",
       "Description": "Open Water - areas of open water, generally with less than 25% cover of vegetation or soil",
-      "Method": "Mean",
-      "MapLayers": [ "nlcd_2006_landcover_2011_edition_2014_10_10.img" ],
+      "ClassCodes": "11",
+      "MapLayers": [ "nlcd_2006" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
-    },
-    "basin_area": {
-      "Procedure": "getFeatureStatistic",
-      "Description": "NHDPlus Version 2 basin area",
-      "MapLayers": [ "elev_cm" ],
-      "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
     },
     "TOT_BASIN_SLOPE": {
       "Procedure": "getRasterStatistic",
       "Description": "NHDPlus Version 2 percent slope",
+      "Method": "Mean",
       "MapLayers": [ "elev_cm" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
@@ -1214,11 +1209,11 @@
     },
     "wbm_pet_2012": {
       "ID": 21001,
-      "Name": "WBM_PET_2012",
+      "Name": "petwyselffilip.txt",
       "Description": "Water balance model output 2000-2014, McCabe and Wolock",
       "isTiled": false,
       "path": "Nationwide/CLIMATE/MCCABE_WOLOCK",
-      "DatasetType": "ESRI_POINT"
+      "DatasetType": "Text file"
     },
     "wb5100ann": {
       "ID": 22001,
@@ -1244,9 +1239,9 @@
       "path": "Nationwide/HYDROLOGIC/WOLOCK",
       "DatasetType": "ESRI_RASTER"
     },
-    "nlcd_2006_landcover_2011_edition_2014_10_10.img": {
+    "nlcd_2006": {
       "ID": 26001,
-      "Name": "nlcd_2006_landcover_2011_edition_2014_10_10.img",
+      "Name": "nlcd_2006",
       "Description": "National Land Cover Database (NLCD) 2006",
       "isTiled": false,
       "path": "Nationwide/LANDSCAPE/NLCD/2006",
