@@ -43,4 +43,8 @@ class Characteristic(object):
         self.Field = CharObj["selectorField"]if ("selectorField" in CharObj) else None
         self.Operator = CharObj["Operator"]if ("Operator" in CharObj) else None
         self.Keyword = CharObj["Keyword"]if ("Keyword" in CharObj) else None
+        self.Variables = CharObj["Variables"]if ("Variables" in CharObj) else None
+        self.Equation = CharObj["Equation"]if ("Equation" in CharObj) else None
+        self.EquationVariables = CharObj["EquationVariables"]if ("EquationVariables" in CharObj) else None
+        self.SubProcedure = CharObj["SubProcedure"]if ("SubProcedure" in CharObj) else None
     #endregion
