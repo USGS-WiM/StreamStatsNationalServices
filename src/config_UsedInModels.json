@@ -84,6 +84,7 @@
       "Description": "Mean annual air temperature (degrees Celsius) from 800m PRISM data. 30 year period of record 1971-2000.",
       "Variables": ["TOT_TMIN7100", "TOT_TMAX7100"],
       "Equation": "(a + b)/2",
+      "EquationVariables": ["a", "b"],
       "MapLayers": ["tmin7100_800a", "tmax7100_800a" ],
       "SubProcedure": "getPrismStatistic",
       "UnitID": "degrees Celsius",
@@ -435,7 +436,7 @@
     "TOT_WBM_PET_2012": {
       "Procedure": "toBeDetermined",
       "Description": "Average value of potential evapotranspiration (PET) from the water balance model for 2000-2014",
-      "MapLayers": [ "xxx" ],
+      "MapLayers": [ "xxx -- Refer to Tana" ],
       "UnitID": "millimeters",
       "Reference": "https://www.sciencebase.gov/catalog/item/5783e16ae4b0ac0b97f54285"
     },
@@ -590,6 +591,12 @@
       "MapLayers": [ "nlcd_2006" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
+    },
+    "TOT_BASIN_Area": {
+      "Procedure": "getAreaSqMeter",
+      "Description": "NHDPlus Version 2 percent slope",
+      "UnitID": "km2",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
     },
     "TOT_BASIN_SLOPE": {
       "Procedure": "getRasterStatistic",
@@ -855,15 +862,6 @@
       "isTiled": false,
       "path": "Nationwide/CLIMATE/PRISM",
       "DatasetType": "ESRI_RASTER"
-    },
-    "xxx": {
-      "ID": 10001,
-      "Name": "point",
-      "DataSetName": "xxx",
-      "Description": "30 Year (1971 - 2000) Mean Annual Temperature (Celsius) from 800m PRISM data",
-      "isTiled": false,
-      "path": "XXX",
-      "DatasetType": "ESRI_POINT"
     },
     "minwd_alb": {
       "ID": 11001,
