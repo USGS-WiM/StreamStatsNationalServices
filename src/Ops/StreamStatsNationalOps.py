@@ -328,6 +328,56 @@ class StreamStatsNationalOps(SpatialOps):
 
         return result
 
+    def getCalculateEval(self, Characteristic):
+        """
+            This method takes input from config.json including: Variables, Equation, EquationVariables, MapLayers, and SubProcedure.
+            The initial component of this method calcualtes the subprocedure(s) on each maplayer and returns the variable. For example,
+            if a given input has Variables "TOT_TMIN7100" and "TOT_TMAX7100", MapLayers "tmin7100_800a" and "tmax7100_800a", and
+            SubProcedure "getPrismStatistic", then the intial component should calcualte the getPrismStatistic method using MapLayers
+            "tmin7100_800a" and "tmax7100_800a". The Variables component is not entirely needed and could probably be disposed.
+
+            The second component takes the input equation and equation variables from config.json and replaces the equation variables
+            with the results from the first component of this method. Finally, eval() is invoked to calculate the result.
+
+            N.B.: As of 31 MAY 2017 this method is a rough draft by JWX and should be cleaned up.
+        """
+        variableValues = []
+        for p in Characteristic.Variables:                              #For each Variable
+            method = None
+            if len(Characteristic.SubProcedure) == 1:                   #If only one subprocedure exists
+                parameter = Characteristic.SubProcedure                 #Use the defined SubProcedure
+            else:
+                parameter = Characteristic.SubProcedure(p)              #Else use the defined SubProcedures
+            if(not parameter):                                          #Error handling for no parameters
+                self._sm(p + " Not available to compute")
+                continue
+            
+            method = getattr(self, parameter)                           #Return value for self.procedure
+            variableValues.append(method)                               #Update MY array with returned value
+            if (method): WiMResults.Values.update(method(parameter))    #Update array with returned value???
+            else:
+                self._sm(p.Proceedure + " Does not exist", "Error")
+                continue
+        #next p
+
+        equation = Characteristic.Equation                              #Obtain equation from config.json
+        equationVariables = Characteristic.EquationVariables            #Obtain variables from config.json
+        equationResults = [1,3]                                         #Placeholder; needs to pull results from above
+
+        equationList = []                                               #There's probably a more elegant way to do this
+        for i, var in enumerate(equation):                              #Find each location where the variables are in the equation
+            equationList.append(str(var))
+
+        indexList = []                                                  #Create a list of indecies; Can this be merged with above?
+        for item in equationVariables:
+            indexList.append(equationList.index(item))
+
+        for (index, equationResult) in zip(indexList, equationResults): #Replace values in list with equation results
+            equationList[index] = str(equationResult)
+        finalEquation = ''.join(equationList)                           #Join list together into a single string
+
+        print eval(finalEquation)                                       #Evaluate the results
+
     def toBeDetermined(self, Characteristic):
 
         #Is a place holder characteristic. Is stripped down version of getPrismStatistic. Created by JWX.

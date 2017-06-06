@@ -578,6 +578,13 @@ class SpatialOps(object):
             return True
     #endregion
 
+    def getCalculateEval(self, equation):
+        """
+            Uses eval() running on an equation to calculate a resultant. Created by JWX
+        """
+        python_obj = json.loads(config.json) #Ref: https://pythonspot.com/en/json-encoding-and-decoding-with-python/
+        
+
     #region helper methods
     def _LicenseManager(self, extension, checkout=True):
         v = None
