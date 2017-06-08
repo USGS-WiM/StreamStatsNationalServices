@@ -1,0 +1,1267 @@
+{
+  "characteristiclist": "https://docs.google.com/spreadsheets/d/1_5vxn94GqsQwv3zH3YDO-HaIDGpk_q3ou0jJSWPUZJo/edit#gid=733442906",
+  "NLDIServiceFiles": "C:/gis/usgs/ss/Applications/input",
+  "NLDIService": "https://cida.usgs.gov",
+  "queryParams": {
+    "nldiQuery": "/nldi/comid/{0}/basin",
+    "nldiWFS": "/nwc/geoserver/nhdplus/ows?service=wfs&version=1.0.0&request=GetFeature&typeName=nhdplus:catchmentsp&srsName=EPSG:{0}&outputFormat=json&filter=<Filter xmlns=\"http://www.opengis.net/ogc\" xmlns:gml=\"http://www.opengis.net/gml\"><Contains><PropertyName>the_geom</PropertyName><gml:Point srsName=\"EPSG:{0}\"><gml:coordinates>{1},{2}</gml:coordinates></gml:Point></Contains></Filter>",
+    "nldiChars": "/nldi/comid/{0}/tot"
+  },
+  "UseNLDIServices": false,
+  "workingdirectory": "C:/gis/usgs/ss/Applications/output/gage_iii",
+  "parentdirectory": "C:/gis/usgs/ss/ss_data/FHWA",
+  "outputFile": "splitCatchment.csv",
+  "catchment": {
+    "upstream": "upstreamcatchment",
+    "downstream": "downstreamcatchment",
+    "global": "global"
+  },
+  "characteristics": {
+    "TOT_NID_STORAGE_2013": {
+      "Procedure": "getStoragePerUnitArea",
+      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
+      "MapLayers": ["nid2013"],
+      "QueryField": "NID_STORAG",
+      "UnitID": "acre feet",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1"
+    },
+    "TOT_FRESHWATER_WD": {
+      "Procedure": "getRasterStatistic",
+      "Description": "Freshwater withdrawal megaliters (1000 cubic meters) per year per sqkm, from 1995-2000 county-level estimates",
+      "Method": "Mean",
+      "MapLayers": [ "freshwater_wd" ],
+      "UnitID": "megaliters/km2"
+    },
+    "TOT_IMPV11": {
+      "Procedure": "getRasterStatistic",
+      "Description": "Impervious surface from NLCD 2011",
+      "Method": "Mean",
+      "MapLayers": [ "nlcd2011" ],
+      "UnitID": "percent"
+    },
+    "TOT_MIRAD_2012": {
+      "Procedure": "getRasterPercent",
+      "Description": "Percent of watershed in irrigated agriculture, from USGS 2012 250-m MODIS data",
+      "MapLayers": [ "mirad2012" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57f66d66e4b0bc0bec06de3a"
+    },
+    "TOT_NWALT12_41": {
+      "Procedure": "getRasterPercent",
+      "Description": "Mining/Extraction - Barren areas due to probable surface mining/mineral extraction. Includes mining, quarries, sand and gravel operations, and energy operations.",
+      "MapLayers": [ "nwalt2012" ],
+      "ClassCodes": "41",
+      "UnitID": "percent"
+    },
+    "TOT_DITCHES92": {
+      "Procedure": "getVectorDensity",
+      "Operator": "LIKE",
+      "Keyword": "Canal",
+      "Method": "SUM",
+      "methodField": "LENGTHKM",
+      "selectorField": "FTYPE",
+      "Description": "Percent of watershed subjected to ditches for the year 1992",
+      "MapLayers": [ "flowlines" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57067257e4b03f95a075ab0c"
+    },
+    "TOT_NPDES_MAJ_DENS": {
+      "Procedure": "getPointFeatureDensity",
+      "Description": "NPDES Major site density, count/totalArea",
+      "MapLayers": [ "npdes" ],
+      "UnitID": "cnt/sqkm"
+    },
+    "TOT_PPT7100_ANN": {
+      "Procedure": "getPrismStatistic",
+      "Description": "Mean annual precipitation (mm) from 800m PRISM data. 30 year period of record 1971-2000.",
+      "Method": "Mean",
+      "MapLayers": [ "ppt7100_800a" ],
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/573b70a7e4b0dae0d5e3ae85"
+    },
+    "TOT_TAV7100_ANN": {
+      "Procedure": "getCalculateEval",
+      "Description": "Mean annual air temperature (degrees Celsius) from 800m PRISM data. 30 year period of record 1971-2000.",
+      "Variables": ["TOT_TMIN7100", "TOT_TMAX7100"],
+      "Equation": "(a + b)/2",
+      "EquationVariables": ["a", "b"],
+      "MapLayers": ["tmin7100_800a", "tmax7100_800a" ],
+      "SubProcedure": "getPrismStatistic",
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57054bf2e4b0d4e2b756d364"
+    },
+    "TOT_MINWD6190": {
+      "Procedure": "getPrismStatistic",
+      "Description": "Minimum number of wet days (days) from 800m PRISM data. 30 year period or record from 1961-1990.",
+      "Method": "Mean",
+      "MapLayers": [ "minwd_alb" ],
+      "UnitID": "days",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57040be3e4b0328dcb82850a"
+    },
+    "TOT_TMAX7100": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) minimum mean annual temperature (Celsius)  from 800m PRISM data",
+      "Method": "MAXIMUM",
+      "MapLayers": [ "tmax7100_800a" ],
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57054aebe4b0d4e2b756d1fc"
+    },
+    "TOT_FSTFZ6190": {
+      "Procedure": "getPrismStatistic",
+      "Description": "Watershed average of mean day of the year of first freeze, derived from 30 years of record (1961-1990), 2 km PRISM.",
+      "Method": "Mean",
+      "MapLayers": [ "fst32f_alb" ],
+      "UnitID": "day of the year",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5704052ae4b0328dcb827bc7"
+    },
+    "lstfz6190": {
+      "Procedure": "getPrismStatistic",
+      "Description": "Watershed average of mean day of the year of last freeze, derived from 30 years of record (1961-1990), 2 km PRISM",
+      "Method": "Mean",
+      "MapLayers": [ "lst32f_alb" ],
+      "Reference": "https://www.sciencebase.gov/catalog/item/57040a6ce4b0328dcb828378"
+    },
+    "TOT_PRSNOW": {
+      "Procedure": "getPrismStatistic",
+      "Description": "Snow percent of total precipitation estimate, mean for period 1901-2000. From McCabe and Wolock (submitted, 2008), 1 km grid.",
+      "Method": "Mean",
+      "MapLayers": [ "prsnow" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57053dc5e4b0d4e2b756c117"
+    },
+    "TOT_TMIN7100": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) minimum mean annual temperature (Celsius) from 800m PRISM data",
+      "Method": "MINIMUM",
+      "MapLayers": [ "tmin7100_800a" ],
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57054c9be4b0d4e2b756d465"
+    },
+    "TOT_PPT7100_SEP": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean September precipitation(mm) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "ppt7100_sepa" ],
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
+    },
+    "TOT_PPT7100_OCT": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean October precipitation(mm) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "ppt7100_octa" ],
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
+    },
+    "TOT_PPT7100_NOV": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean November precipitation(mm) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "ppt7100_nova" ],
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
+    },
+    "TOT_PPT7100_MAY": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean May precipitation(mm) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "ppt7100_maya" ],
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
+    },
+    "TOT_PPT7100_MAR": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean March precipitation(mm) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "ppt7100_mara" ],
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
+    },
+    "TOT_PPT7100_JUN": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean June precipitation(mm) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "ppt7100_juna" ],
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
+    },
+    "TOT_PPT7100_JUL": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean July precipitation(mm) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "ppt7100_jula" ],
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
+    },
+    "TOT_PPT7100_JAN": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean January precipitation (mm) from 800m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "ppt7100_jana" ],
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
+    },
+    "TOT_PPT7100_FEB": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean February precipitation (mm) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "ppt7100_feba" ],
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
+    },
+    "TOT_PPT7100_DEC": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean December precipitation(mm) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "ppt7100_deca" ],
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
+    },
+    "TOT_PPT7100_AUG": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean August precipitation(mm) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "ppt7100_auga" ],
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
+    },
+    "TOT_PPT7100_APR": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean April precipitation(mm) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "ppt7100_apra" ],
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
+    },
+    "TOT_TAV7100_SEP": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean September temperature (deg C) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "tavg7100_sepa" ],
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
+    },
+    "TOT_TAV7100_OCT": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean October temperature (deg C) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "tavg7100_octa" ],
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
+    },
+    "TOT_TAV7100_NOV": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean November temperature (deg C) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "tavg7100_nova" ],
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
+    },
+    "TOT_TAV7100_MAY": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean May temperature (deg C) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "tavg7100_maya" ],
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
+    },
+    "TOT_TAV7100_MAR": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean March temperature (deg C) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "tavg7100_mara" ],
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
+    },
+    "TOT_TAV7100_JUN": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean June temperature (deg C) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "tavg7100_juna" ],
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
+    },
+    "TOT_TAV7100_JUL": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean July temperature (deg C) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "tavg7100_jula" ],
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
+    },
+    "TOT_TAV7100_JAN": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean January temperature (deg C) from 800m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "tavg7100_jana" ],
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
+    },
+    "TOT_TAV7100_FEB": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean February temperature (deg C) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "tavg7100_feba" ],
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
+    },
+    "TOT_TAV7100_DEC": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean December temperature (deg C) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "tavg7100_deca" ],
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
+    },
+    "TOT_TAV7100_AUG": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean August temperature (deg C) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "tavg7100_auga" ],
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
+    },
+    "TOT_TAV7100_APR": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean April temperature (deg C) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "tavg7100_apra" ],
+      "UnitID": "degrees Celsius",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
+    },
+    "TOT_WD6190_SEP": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean September number of days of measurable precipitation (days) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "wetdays09_alb" ],
+      "UnitID": "days",
+      "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
+    },
+    "TOT_WD6190_OCT": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean October number of days of measurable precipitation (days) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "wetdays10_alb" ],
+      "UnitID": "days",
+      "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
+    },
+    "TOT_WD6190_NOV": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean November number of days of measurable precipitation (days) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "wetdays11_alb" ],
+      "UnitID": "days",
+      "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
+    },
+    "TOT_WD6190_MAY": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean May number of days of measurable precipitation (days) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "wetdays05_alb" ],
+      "UnitID": "days",
+      "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
+    },
+    "TOT_WD6190_MAR": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean March number of days of measurable precipitation (days) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "wetdays03_alb" ],
+      "UnitID": "days",
+      "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
+    },
+    "TOT_WD6190_JUN": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean June number of days of measurable precipitation (days) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "wetdays06_alb" ],
+      "UnitID": "days",
+      "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
+    },
+    "TOT_WD6190_JUL": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean July number of days of measurable precipitation (days) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "wetdays07_alb" ],
+      "UnitID": "days",
+      "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
+    },
+    "TOT_WD6190_JAN": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean January number of days of measurable precipitation (days) from 2.3km PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "wetdays01_alb" ],
+      "UnitID": "days",
+      "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
+    },
+    "TOT_WD6190_FEB": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean February number of days of measurable precipitation (days) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "wetdays02_alb" ],
+      "UnitID": "days",
+      "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
+    },
+    "TOT_WD6190_DEC": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean December number of days of measurable precipitation (days) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "wetdays12_alb" ],
+      "UnitID": "days",
+      "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
+    },
+    "TOT_WD6190_AUG": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean August number of days of measurable precipitation (days) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "wetdays08_alb" ],
+      "UnitID": "days",
+      "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
+    },
+    "TOT_WD6190_APR": {
+      "Procedure": "getPrismStatistic",
+      "Description": "30 year (1971 - 2000) mean April number of days of measurable precipitation (days) from 800 m PRISM data",
+      "Method": "Mean",
+      "MapLayers": [ "wetdays04_alb" ],
+      "UnitID": "days",
+      "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
+    },
+    "TOT_RH": {
+      "Procedure": "getPrismStatistic",
+      "Description": "Watershed average relative humidity (percent), from 2 km PRISM, derived from 30 years of record (1961-1990).",
+      "Method": "Mean",
+      "MapLayers": [ "rh_alb" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57054a24e4b0d4e2b756d0e7"
+    },
+    "TOT_WBM_PET_2012": {
+      "Procedure": "toBeDetermined",
+      "Description": "Average value of potential evapotranspiration (PET) from the water balance model for 2000-2014",
+      "MapLayers": [ "xxx -- Refer to Tana" ],
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5783e16ae4b0ac0b97f54285"
+    },
+    "TOT_WB5100_ANN": {
+      "Procedure": "getRasterStatistic",
+      "Description": "50 year (1951-2000) average annual runoff (mm) from McCabe and Wolock's Runoff Model",
+      "Method": "Mean",
+      "MapLayers": [ "wb5100ann" ],
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/56fd5bd0e4b0c07cbfa40473"
+    },
+    "TOT_TWI": {
+      "Procedure": "getRasterStatistic",
+      "Description": "Average Topographic wetness index, ln(a/S); where \"ln\" is the natural log, \"a\" is the upslope area per unit contour length and \"S\" is the slope at that point",
+      "Method": "Mean",
+      "MapLayers": [ "twix100" ],
+      "UnitID": "ln(m)",
+      "Reference": "https://www.sciencebase.gov/catalog/item/56f97be4e4b0a6037df06b70"
+    },
+    "TOT_SATOF": {
+      "Procedure": "getRasterStatistic",
+      "Description": "Mean Saturation Overland Flow as a Percent of Stream Flow, 2002",
+      "Method": "Mean",
+      "MapLayers": [ "satof48" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/56f97acbe4b0a6037df06b6a"
+    },
+    "nlcd06_95": {
+      "Procedure": "getRasterPercent",
+      "Description": "Emergent Herbaceous Wetlands - areas where perennial herbaceous vegetation accounts for greater than 80% of vegetative cover and the soil or substrate is periodically saturated with or covered with water",
+      "ClassCodes": "95",
+      "MapLayers": [ "nlcd_2006" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
+    },
+    "nlcd06_90": {
+      "Procedure": "getRasterPercent",
+      "Description": "Woody Wetlands - areas where forest or shrubland vegetation accounts for greater than 20% of vegetative cover and the soil or substrate is periodically saturated with or covered with water",
+      "ClassCodes": "90",
+      "MapLayers": [ "nlcd_2006" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
+    },
+    "nlcd06_82": {
+      "Procedure": "getRasterPercent",
+      "Description": "Cultivated Crops - areas used for the production of annual crops, such as corn, soybeans, vegetables, tobacco, and cotton, and also perennial woody crops such as orchards and vineyards. Crop vegetation accounts for greater than 20% of total vegetation. This class also includes all land being actively tilled",
+      "ClassCodes": "82",
+      "MapLayers": [ "nlcd_2006" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
+    },
+    "nlcd06_81": {
+      "Procedure": "getRasterPercent",
+      "Description": "Pasture/Hay - areas of grasses, legumes, or grass-legume mixtures planted for livestock grazing or the production of seed or hay crops, typically on a perennial cycle. Pasture/hay vegetation accounts for greater than 20% of total vegetation",
+      "ClassCodes": "81",
+      "MapLayers": [ "nlcd_2006" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
+    },
+    "nlcd06_71": {
+      "Procedure": "getRasterPercent",
+      "Description": "Grassland/Herbaceous - areas dominated by gramanoid or herbaceous vegetation, generally greater than 80% of total vegetation. These areas are not subject to intensive management such as tilling, but can be utilized for grazing",
+      "ClassCodes": "71",
+      "MapLayers": [ "nlcd_2006" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
+    },
+    "nlcd06_52": {
+      "Procedure": "getRasterPercent",
+      "Description": "Shrub/Scrub - areas dominated by shrubs; less than 5 meters tall with shrub canopy typically greater than 20% of total vegetation. This class includes true shrubs, young trees in an early successional stage or trees stunted from environmental conditions",
+      "ClassCodes": "52",
+      "MapLayers": [ "nlcd_2006" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
+    },
+    "nlcd06_43": {
+      "Procedure": "getRasterPercent",
+      "Description": "Mixed Forest - areas dominated by trees generally greater than 5 meters tall, and greater than 20% of total vegetation cover. Neither deciduous nor evergreen species are greater than 75% of total tree cover",
+      "ClassCodes": "43",
+      "MapLayers": [ "nlcd_2006" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
+    },
+    "nlcd06_42": {
+      "Procedure": "getRasterPercent",
+      "Description": "Evergreen Forest - areas dominated by trees generally greater than 5 meters tall, and greater than 20% of total vegetation cover. More than 75% of the tree species maintain their leaves all year. Canopy is never without green foliage",
+      "ClassCodes": "42",
+      "MapLayers": [ "nlcd_2006" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
+    },
+    "nlcd06_41": {
+      "Procedure": "getRasterPercent",
+      "Description": "Deciduous Forest - areas dominated by trees generally greater than 5 meters tall, and greater than 20% of total vegetation cover. More than 75% of the tree species shed foliage simultaneously in response to seasonal change",
+      "ClassCodes": "41",
+      "MapLayers": [ "nlcd_2006" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
+    },
+    "nlcd06_31": {
+      "Procedure": "getRasterPercent",
+      "Description": "Barren Land (Rock/Sand/Clay) - areas of bedrock, desert pavement, scarps, talus, slides, volcanic material, glacial debris, sand dunes, strip mines, gravel pits and other accumulations of earthen material. Generally, vegetation accounts for less than 15% of total cover",
+      "ClassCodes": "31",
+      "MapLayers": [ "nlcd_2006" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
+    },
+    "nlcd06_24": {
+      "Procedure": "getRasterPercent",
+      "Description": "Developed High Intensity - highly developed areas where people reside or work in high numbers. Examples include apartment complexes, row houses and commercial/industrial. Impervious surfaces account for 80% to 100% of the total cover",
+      "ClassCodes": "24",
+      "MapLayers": [ "nlcd_2006" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
+    },
+    "nlcd06_23": {
+      "Procedure": "getRasterPercent",
+      "Description": "Developed, Medium Intensity - areas with a mixture of constructed materials and vegetation. Impervious surfaces account for 50% to 79% of the total cover. These areas most commonly include single-family housing units",
+      "ClassCodes": "23",
+      "MapLayers": [ "nlcd_2006" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
+    },
+    "nlcd06_22": {
+      "Procedure": "getRasterPercent",
+      "Description": "Developed, Low Intensity - areas with a mixture of constructed materials and vegetation. Impervious surfaces account for 20% to 49% percent of total cover. These areas most commonly include single-family housing units",
+      "ClassCodes": "22",
+      "MapLayers": [ "nlcd_2006" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
+    },
+    "nlcd06_21": {
+      "Procedure": "getRasterPercent",
+      "Description": "Developed, Open Space - areas with a mixture of some constructed materials, but mostly vegetation in the form of lawn grasses. Impervious surfaces account for less than 20% of total cover. These areas most commonly include large-lot single-family housing units, parks, golf courses, and vegetation planted in developed settings for recreation, erosion control, or aesthetic purposes",
+      "ClassCodes": "21",
+      "MapLayers": [ "nlcd_2006" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
+    },
+    "nlcd06_12": {
+      "Procedure": "getRasterPercent",
+      "Description": "Perennial Ice/Snow - areas characterized by a perennial cover of ice and/or snow, generally greater than 25% of total cover",
+      "ClassCodes": "12",
+      "MapLayers": [ "nlcd_2006" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
+    },
+    "nlcd06_11": {
+      "Procedure": "getRasterPercent",
+      "Description": "Open Water - areas of open water, generally with less than 25% cover of vegetation or soil",
+      "ClassCodes": "11",
+      "MapLayers": [ "nlcd_2006" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
+    },
+    "TOT_BASIN_Area": {
+      "Procedure": "getAreaSqMeter",
+      "Description": "NHDPlus Version 2 percent slope",
+      "UnitID": "km2",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
+    },
+    "TOT_BASIN_SLOPE": {
+      "Procedure": "getRasterStatistic",
+      "Description": "NHDPlus Version 2 percent slope",
+      "Method": "Mean",
+      "MapLayers": [ "elev_cm" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
+    },
+    "TOT_ELEV_MAX": {
+      "Procedure": "getRasterStatistic",
+      "Description": "NHDPlus Version 2 Maximum elevation",
+      "Method": "Max",
+      "MapLayers": [ "elev_cm" ],
+      "UnitID": "meters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
+    },
+    "TOT_ELEV_MIN": {
+      "Procedure": "getRasterStatistic",
+      "Description": "NHDPlus Version 2 Minimum elevation",
+      "Method": "Minimum",
+      "MapLayers": [ "elev_cm" ],
+      "UnitID": "meters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
+    },
+    "TOT_ELEV_MEAN": {
+      "Procedure": "getRasterStatistic",
+      "Description": "NHDPlus Version 2 Mean elevation",
+      "Method": "Mean",
+      "MapLayers": [ "elev_cm" ],
+      "UnitID": "meters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
+    },
+    "TOT_HGA": {
+      "Procedure": "getRasterPercent",
+      "Description": "Percentage of soils in hydrologic group A. Hydrologic group A soils have high infiltration rates. Soils are deep and well drained and, typically, have high sand and gravel content.",
+      "MapLayers": [ "statsgo" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728d93be4b0b13d3918a99f"
+    },
+    "TOT_HGB": {
+      "Procedure": "getRasterPercent",
+      "Description": "Percentage of soils in hydrologic group B. Hydrologic group B soils have moderate infiltration rates. Soils are moderately deep, moderately well drained, and moderately coarse in texture.",
+      "MapLayers": [ "statsgo" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728d93be4b0b13d3918a99f"
+    },
+    "TOT_HGC": {
+      "Procedure": "getRasterPercent",
+      "Description": "Percentage of soils in hydrologic group C. Hydrologic group C soils have slow soil inflitration rates. The soil profiles include layers impeding downward movement of water and, typically, have moderately fine or fine texture.",
+      "MapLayers": [ "statsgo" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728d93be4b0b13d3918a99f"
+    },
+    "TOT_HGD": {
+      "Procedure": "getRasterPercent",
+      "Description": "Percentage of soils in hydrologic group D. Hydrologic group D soils have very slow infiltration rates. Soils are clayey, have a high water table, or have a shallow impervious layer.",
+      "MapLayers": [ "statsgo" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728d93be4b0b13d3918a99f"
+    },
+    "TOT_HGCD": {
+      "Procedure": "getRasterPercent",
+      "Description": "Percentage of soils in hydrologic group C/D. Hydrologic group C/D soils have group C characteristics (slow infiltration rates) when artificially drained and have group D characteristics (very slow infiltration rates) when not drained.",
+      "MapLayers": [ "statsgo" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728d93be4b0b13d3918a99f"
+    },
+    "TOT_AWCAVE": {
+      "Procedure": "getRasterStatistic",
+      "Description": "Average value for the range of available water capacity for the soil layer or horizon",
+      "Method": "Mean",
+      "MapLayers": [ "statsgo" ],
+      "UnitID": "inches of water per inches of soil depth",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
+    },
+    "TOT_KFACT_UP": {
+      "Procedure": "getRasterStatistic",
+      "Description": "Average K-factor value for the uppermost soil horizon in each soil component. K-factor is an erodibility factor which quantifies the susceptibility of soil particles to detachment and movement by water. The K-factor is used in the Universal Soil Loss Equation (USLE) to estimate soil loss by water. Higher values of K-factor indicate greater potential for erosion.",
+      "Method": "Mean",
+      "MapLayers": [ "statsgo" ],
+      "UnitID": "unitless",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9a"
+    },
+    "TOT_NO10AVE": {
+      "Procedure": "getRasterStatistic",
+      "Description": "Average value of percent by weight of soil material less than 3 inches in size and passing a No. 10 sieve (2 mm)",
+      "Method": "Mean",
+      "MapLayers": [ "statsgo" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
+    },
+    "TOT_NO200AVE": {
+      "Procedure": "getRasterStatistic",
+      "Description": "Average value of percent by weight of soil material less than 3 inches in size and passing a No. 200 sieve (.074 mm)",
+      "Method": "Mean",
+      "MapLayers": [ "statsgo" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
+    },
+    "TOT_NO4AVE": {
+      "Procedure": "getRasterStatistic",
+      "Description": "Average value of percent by weight of soil material less than 3 inches in size and passing a No. 4 sieve (5 mm)",
+      "Method": "Mean",
+      "MapLayers": [ "statsgo" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
+    },
+    "TOT_OM": {
+      "Procedure": "getRasterStatistic",
+      "Description": "Average value of organic matter content (percent by weight)",
+      "Method": "Mean",
+      "MapLayers": [ "statsgo" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
+    },
+    "TOT_PERMAVE": {
+      "Procedure": "getRasterStatistic",
+      "Description": "Average permeability",
+      "Method": "Mean",
+      "MapLayers": [ "statsgo" ],
+      "UnitID": "inches/hour",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
+    },
+    "TOT_RFACT": {
+      "Procedure": "getRasterStatistic",
+      "Description": "Rainfall and Runoff factor (\"R factor\" of Universal Soil Loss Equation); average annual value for period 1971-2000",
+      "Method": "Mean",
+      "MapLayers": [ "statsgo" ],
+      "UnitID": "100s ft-tonf in/h/ac/yr",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
+    },
+    "TOT_ROCKDEP": {
+      "Procedure": "getRasterStatistic",
+      "Description": "Average value of total soil thickness examined",
+      "Method": "Mean",
+      "MapLayers": [ "statsgo" ],
+      "UnitID": "inches",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
+    },
+    "TOT_CLAYAVE": {
+      "Procedure": "getRasterStatistic",
+      "Description": "Average value of clay content",
+      "Method": "Mean",
+      "MapLayers": [ "statsgo" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728dd46e4b0b13d3918a9a7"
+    },
+    "TOT_SANDAVE": {
+      "Procedure": "getRasterStatistic",
+      "Description": "Average value of sand content",
+      "Method": "Mean",
+      "MapLayers": [ "statsgo" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728dd46e4b0b13d3918a9a7"
+    },
+    "TOT_SILTAVE": {
+      "Procedure": "getRasterStatistic",
+      "Description": "Average value of silt ave",
+      "Method": "Mean",
+      "MapLayers": [ "statsgo" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728dd46e4b0b13d3918a9a7"
+    }
+  },
+  "maplayers": {
+    "fdr": {
+      "ID": 1001,
+      "Name": "fdr",
+      "Description": "Flow Direction Raster",
+      "isTiled": true,
+      "path": "Tiled/NHDPlus_v2",
+      "DatasetType": "ESRI_RASTER",
+      "queryFeaturePath": "RPU.shp",
+      "queryField": "Path",
+      "UnitID": "sq-m"
+    },
+    "fac": {
+      "ID": 1001,
+      "Name": "fac",
+      "Description": "Flow Accumulation Raster",
+      "isTiled": true,
+      "path": "Tiled/NHDPlus_v2",
+      "DatasetType": "ESRI_RASTER",
+      "queryFeaturePath": "RPU.shp",
+      "queryField": "Path",
+      "UnitID": "sq-m"
+    },
+    "nid2013": {
+      "ID": 2001,
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "National Inventory of Dams ",
+      "isTiled": false,
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
+    },
+    "freshwater_wd": {
+      "ID": 3001,
+      "Name": "withdr_sqkm",
+      "Description": "Freshwater withdrawal megaliters (1000 cubic meters) per year per sqkm, from 1995-2000 county-level estimates",
+      "isTiled": false,
+      "path": "Nationwide/HYDRO_MOD/WATERUSE",
+      "DatasetType": "ESRI_GRID",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57c9dc05e4b0f2f0cec192f2"
+    },
+    "nlcd2011": {
+      "ID": 4001,
+      "Name": "nlcd_2011_impervious_2011_edition_2014_10_10",
+      "Description": "National Land Cover Database",
+      "isTiled": false,
+      "path": "Nationwide/LANDSCAPE/NLCD",
+      "DatasetType": "IMAGE_RASTER"
+    },
+    "mirad2012": {
+      "ID": 5001,
+      "Name": "mirad250_12v3",
+      "Description": "2012 Moderate resolution Irrigated Agriculture Dataset",
+      "isTiled": false,
+      "path": "Nationwide/HYDRO_MOD/MIRAD",
+      "DatasetType": "ESRI_RASTER"
+    },    
+    "nwalt2012": {
+      "ID": 6001,
+      "Name": "lu2012_050815",
+      "Description": "National Wall-to-Wall Anthropogenic Land Use Trends (NWALT) 2012",
+      "isTiled": false,
+      "path": "Nationwide/LANDSCAPE/NWALT",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "prismGrid": {
+      "ID": 7001,
+      "Name": "prismgrid_Resample1",
+      "Description": "Prism indices for stored netCDF values",
+      "isTiled": false,
+      "path": "National",
+      "DatasetType": "TIF_RASTER"
+    },
+    "flowlines": {
+      "ID": 7001,
+      "Name": "NHDFlowline",
+      "Description": "Percent of watershed subjected to ditches for the year 1992",
+      "isTiled": true,
+      "path": "Tiled/NHDPlus_v2",
+      "DatasetType": "ESRI_SHAPE",
+      "queryFeaturePath": "RPU.shp",
+      "queryField": "HydroPath",
+      "UnitID": "sq-m"
+    },
+    "npdes": {
+      "ID": 8001,
+      "Name": "point",
+      "DataSetName": "us_major_npd",
+      "Description": "NPDES NEEDS DETAILS",
+      "isTiled": false,
+      "path": "Nationwide/HYDRO_MOD/NPDES",
+      "DatasetType": "ESRI_POINT"
+    },
+    "ppt7100_800a": {
+      "ID": 9001,
+      "Name": "ppt7100_800a",
+      "Description": "30 Year (1971 - 2000) Mean Annual Precipitation (cm) from 800m PRISM data",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "minwd_alb": {
+      "ID": 11001,
+      "Name": "minwd_alb",
+      "Description": "30 Year Average (1961-1990) of Minimum Monthly Number of Days of Measurable Precipitation",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "tmax7100_800a": {
+      "ID": 12001,
+      "Name": "tmax7100_800a",
+      "Description": "Maximum 30 Year (1971 - 2000) Mean Annual Temperature (Celsius) from 800m PRISM data",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "fst32f_alb": {
+      "ID": 13001,
+      "Name": "fst32f_alb",
+      "Description": "Mean Day of the Year of First Freeze, from 30 Years of Record (1961-1990)",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "lst32f_alb": {
+      "ID": 14001,
+      "Name": "lst32f_alb",
+      "Description": "Mean Day of the Year of Last Freeze, from 30 Years of Record (1961-1990)",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "prsnow": {
+      "ID": 15001,
+      "Name": "prsnow",
+      "Description": "Mean Estimated Snow Percent of Total Precipitation, 1901-2000",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/MCCABE_WOLOCK/snow-percent",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "tmin7100_800a": {
+      "ID": 16001,
+      "Name": "tmin7100_800a",
+      "Description": "Minimum 30 Year (1971 - 2000) Mean Annual Temperature (Celsius) from 800m PRISM data",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "ppt7100_apra": {
+      "ID": 17004,
+      "Name": "ppt7100_apra",
+      "Description": "Monthly Precipitation Averages 1971 - 2000",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "ppt7100_auga": {
+      "ID": 17008,
+      "Name": "ppt7100_auga",
+      "Description": "Monthly Precipitation Averages 1971 - 2000",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "ppt7100_deca": {
+      "ID": 17012,
+      "Name": "ppt7100_deca",
+      "Description": "Monthly Precipitation Averages 1971 - 2000",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "ppt7100_feba": {
+      "ID": 17002,
+      "Name": "ppt7100_feba",
+      "Description": "Monthly Precipitation Averages 1971 - 2000",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "ppt7100_jana": {
+      "ID": 17001,
+      "Name": "ppt7100_jana",
+      "Description": "Monthly Precipitation Averages 1971 - 2000",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "ppt7100_jula": {
+      "ID": 17007,
+      "Name": "ppt7100_jula",
+      "Description": "Monthly Precipitation Averages 1971 - 2000",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "ppt7100_juna": {
+      "ID": 17006,
+      "Name": "ppt7100_juna",
+      "Description": "Monthly Precipitation Averages 1971 - 2000",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "ppt7100_mara": {
+      "ID": 17003,
+      "Name": "ppt7100_mara",
+      "Description": "Monthly Precipitation Averages 1971 - 2000",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "ppt7100_maya": {
+      "ID": 17005,
+      "Name": "ppt7100_maya",
+      "Description": "Monthly Precipitation Averages 1971 - 2000",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "ppt7100_nova": {
+      "ID": 17011,
+      "Name": "ppt7100_nova",
+      "Description": "Monthly Precipitation Averages 1971 - 2000",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "ppt7100_octa": {
+      "ID": 17010,
+      "Name": "ppt7100_octa",
+      "Description": "Monthly Precipitation Averages 1971 - 2000",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "ppt7100_sepa": {
+      "ID": 17009,
+      "Name": "ppt7100_sepa",
+      "Description": "Monthly Precipitation Averages 1971 - 2000",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "tavg7100_apra": {
+      "ID": 18004,
+      "Name": "tavg7100_apra",
+      "Description": "Monthly Precipitation Averages 1971 - 2000",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "tavg7100_auga": {
+      "ID": 18008,
+      "Name": "tavg7100_auga",
+      "Description": "Monthly Precipitation Averages 1971 - 2000",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "tavg7100_deca": {
+      "ID": 18012,
+      "Name": "tavg7100_deca",
+      "Description": "Monthly Precipitation Averages 1971 - 2000",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "tavg7100_feba": {
+      "ID": 18002,
+      "Name": "tavg7100_feba",
+      "Description": "Monthly Precipitation Averages 1971 - 2000",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "tavg7100_jana": {
+      "ID": 18001,
+      "Name": "tavg7100_jana",
+      "Description": "Monthly Precipitation Averages 1971 - 2000",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "tavg7100_jula": {
+      "ID": 18007,
+      "Name": "tavg7100_jula",
+      "Description": "Monthly Precipitation Averages 1971 - 2000",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "tavg7100_juna": {
+      "ID": 18006,
+      "Name": "tavg7100_juna",
+      "Description": "Monthly Precipitation Averages 1971 - 2000",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "tavg7100_mara": {
+      "ID": 18003,
+      "Name": "tavg7100_mara",
+      "Description": "Monthly Precipitation Averages 1971 - 2000",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "tavg7100_maya": {
+      "ID": 18005,
+      "Name": "tavg7100_maya",
+      "Description": "Monthly Precipitation Averages 1971 - 2000",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "tavg7100_nova": {
+      "ID": 18011,
+      "Name": "tavg7100_nova",
+      "Description": "Monthly Precipitation Averages 1971 - 2000",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "tavg7100_octa": {
+      "ID": 18010,
+      "Name": "tavg7100_octa",
+      "Description": "Monthly Precipitation Averages 1971 - 2000",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "tavg7100_sepa": {
+      "ID": 18009,
+      "Name": "tavg7100_sepa",
+      "Description": "Monthly Precipitation Averages 1971 - 2000",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "wetdays04_alb": {
+      "ID": 19004,
+      "Name": "wetdays04_alb",
+      "Description": "PRISM 30 Year (1961-1990) Monthly Mean Number of Days Measurable Precipitation",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "wetdays08_alb": {
+      "ID": 19008,
+      "Name": "wetdays08_alb",
+      "Description": "PRISM 30 Year (1961-1990) Monthly Mean Number of Days Measurable Precipitation",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "wetdays12_alb": {
+      "ID": 19012,
+      "Name": "wetdays12_alb",
+      "Description": "PRISM 30 Year (1961-1990) Monthly Mean Number of Days Measurable Precipitation",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "wetdays02_alb": {
+      "ID": 19002,
+      "Name": "wetdays02_alb",
+      "Description": "PRISM 30 Year (1961-1990) Monthly Mean Number of Days Measurable Precipitation",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "wetdays01_alb": {
+      "ID": 19001,
+      "Name": "wetdays01_alb",
+      "Description": "PRISM 30 Year (1961-1990) Monthly Mean Number of Days Measurable Precipitation",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "wetdays07_alb": {
+      "ID": 19007,
+      "Name": "wetdays07_alb",
+      "Description": "PRISM 30 Year (1961-1990) Monthly Mean Number of Days Measurable Precipitation",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "wetdays06_alb": {
+      "ID": 19006,
+      "Name": "wetdays06_alb",
+      "Description": "PRISM 30 Year (1961-1990) Monthly Mean Number of Days Measurable Precipitation",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "wetdays03_alb": {
+      "ID": 19003,
+      "Name": "wetdays03_alb",
+      "Description": "PRISM 30 Year (1961-1990) Monthly Mean Number of Days Measurable Precipitation",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "wetdays05_alb": {
+      "ID": 19005,
+      "Name": "wetdays05_alb",
+      "Description": "PRISM 30 Year (1961-1990) Monthly Mean Number of Days Measurable Precipitation",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "wetdays11_alb": {
+      "ID": 19011,
+      "Name": "wetdays11_alb",
+      "Description": "PRISM 30 Year (1961-1990) Monthly Mean Number of Days Measurable Precipitation",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "wetdays10_alb": {
+      "ID": 19010,
+      "Name": "wetdays10_alb",
+      "Description": "PRISM 30 Year (1961-1990) Monthly Mean Number of Days Measurable Precipitation",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "wetdays09_alb": {
+      "ID": 19009,
+      "Name": "wetdays09_alb",
+      "Description": "PRISM 30 Year (1961-1990) Monthly Mean Number of Days Measurable Precipitation",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/PRISM",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "rh_alb": {
+      "ID": 20001,
+      "Name": "rh_alb",
+      "Description": "PRISM 30-Year Average (1961-1990) Relative Humidity (percent)",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/MCCABE_WOLOCK",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "wbm_pet_2012": {
+      "ID": 21001,
+      "Name": "petwyselffilip.txt",
+      "Description": "Water balance model output 2000-2014, McCabe and Wolock",
+      "isTiled": false,
+      "path": "Nationwide/CLIMATE/MCCABE_WOLOCK",
+      "DatasetType": "Text file"
+    },
+    "wb5100ann": {
+      "ID": 22001,
+      "Name": "wb5100ann",
+      "Description": "Average Annual Runoff from McCabe and Wolock's Runoff Model 1951-2000",
+      "isTiled": false,
+      "path": "Nationwide/HYDROLOGIC/WOLOCK",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "twix100": {
+      "ID": 23001,
+      "Name": "twix100",
+      "Description": "Average Topographic Wetness Index",
+      "isTiled": false,
+      "path": "Nationwide/HYDROLOGIC/WOLOCK",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "satof48": {
+      "ID": 24001,
+      "Name": "satof48",
+      "Description": "Mean Saturation Overland Flow as a Percent of Stream Flow, 2002",
+      "isTiled": false,
+      "path": "Nationwide/HYDROLOGIC/WOLOCK",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "nlcd_2006": {
+      "ID": 26001,
+      "Name": "nlcd_2006_landcover_2011_edition_2014_10_10.img",
+      "Description": "National Land Cover Database (NLCD) 2006",
+      "isTiled": false,
+      "path": "Nationwide/LANDSCAPE/NLCD/2006/nlcd_2006_landcover_2011_edition_2014_10_10",
+      "DatasetType": "IMAGE_RASTER"
+    },
+    "elev_cm": {
+      "ID": 27001,
+      "Name": "elev_cm",
+      "Description": "Basin Characteristics",
+      "isTiled": true,
+      "path": "Tiled/NHDPlus_v2",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "statsgo": {
+      "ID": 28001,
+      "Name": "statsgo",
+      "Description": "STATSGO Soil Characteristics, Hydrologic Groups",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/muid",
+      "DatasetType": "ESRI_RASTER"
+    }
+  }
+}
