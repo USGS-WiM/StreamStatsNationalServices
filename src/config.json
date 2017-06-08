@@ -1253,6 +1253,8 @@
       "Description": "Basin Characteristics",
       "isTiled": true,
       "path": "Tiled/NHDPlus_v2",
+      "queryFeaturePath": "RPU.shp",
+      "queryField": "Path",
       "DatasetType": "ESRI_RASTER"
     },
     "statsgo": {
