@@ -1580,371 +1580,409 @@
     },
     "impv01": {
       "ID": 29001,
-      "Name": "",
-      "Description": "",
+      "Name": "nlcd_2001_impervious_2011_edition_2014_10_10.img",
+      "Description": "Impervious surface from NLCD 2001",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/LANDSCAPE/NLCD/2001/nlcd_2001_impervious_2011_edition_2014_10_10",
+      "DatasetType": "IMAGE_RASTER"
     },
     "impv06": {
       "ID": 30001,
-      "Name": "",
-      "Description": "",
+      "Name": "nlcd_2006_impervious_2011_edition_2014_10_10.img",
+      "Description": "Impervious surface from NLCD 2006",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/LANDSCAPE/NLCD/2006/nlcd_2006_impervious_2011_edition_2014_10_10",
+      "DatasetType": "IMAGE_RASTER"
     },
     "major2013": {
       "ID": 31001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/LANDSCAPE/NLCD/2011/nlcd_2011_impervious_2011_edition_2014_10_10",
+      "DatasetType": "ESRI_POINT"
     },
     "major2010": {
       "ID": 32001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "major2000": {
       "ID": 33001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "major1990": {
       "ID": 34001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "major1980": {
       "ID": 35001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "major1970": {
       "ID": 36001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "major1960": {
       "ID": 37001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "major1950": {
       "ID": 38001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "major1940": {
       "ID": 39001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "major1930": {
       "ID": 40001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "mirad2007": {
       "ID": 41001,
-      "Name": "",
-      "Description": "",
+      "Name": "mirad250_07v3 and mirad1k_07v3",
+      "Description": "Percent of watershed in irrigated agriculture, from USGS 2007 250-m MODIS data",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/MIRAD",
+      "DatasetType": "ESRI_GRID"
     },
     "mirad2002": {
       "ID": 42001,
-      "Name": "",
-      "Description": "",
+      "Name": "mirad250_02v3 and mirad1k_02v3",
+      "Description": "Percent of watershed in irrigated agriculture, from USGS 2002 250-m MODIS data",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/MIRAD",
+      "DatasetType": "ESRI_GRID"
     },
     "ndams2010": {
       "ID": 43001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "ndams2000": {
       "ID": 44001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "ndams1990": {
       "ID": 45001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "ndams1980": {
       "ID": 46001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "ndams1970": {
       "ID": 47001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "ndams1960": {
       "ID": 48001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "ndams1950": {
       "ID": 49001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "ndams1940": {
       "ID": 50001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "ndams1930": {
       "ID": 51001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "nidstorage2010": {
       "ID": 52001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "nidstorage2000": {
       "ID": 53001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "nidstorage1990": {
       "ID": 54001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "nidstorage1980": {
       "ID": 55001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "nidstorage1970": {
       "ID": 56001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "nidstorage1960": {
       "ID": 57001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "nidstorage1950": {
       "ID": 58001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "nidstorage1940": {
       "ID": 59001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "nidstorage1930": {
       "ID": 60001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "normstorage2013": {
       "ID": 61001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "normstorage2010": {
       "ID": 62001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "normstorage2000": {
       "ID": 63001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "normstorage1990": {
       "ID": 64001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "normstorage1980": {
       "ID": 65001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "normstorage1970": {
       "ID": 66001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "normstorage1960": {
       "ID": 67001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "normstorage1950": {
       "ID": 68001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "normstorage1940": {
       "ID": 69001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "normstorage1930": {
       "ID": 70001,
-      "Name": "",
-      "Description": "",
+      "Name": "point",
+      "DataSetName": "nid09ad_jun11",
+      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
     },
     "popdens90": {
       "ID": 71001,
-      "Name": "",
-      "Description": "",
+      "Name": "pden90_60m",
+      "Description": "Population density in the watershed, persons per sq km, from 1990 Census block data regridded to 100m",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/POPULATION_INFRASTRUCTURE/FALCONE/us_pden_90_00_10_grids",
+      "DatasetType": "ESRI_GRID"
     },
     "popdens10": {
       "ID": 72001,
-      "Name": "",
-      "Description": "",
+      "Name": "pden10_60m",
+      "Description": "Population density in the watershed, persons per sq km, from 2010 Census block data regridded to 100m",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/POPULATION_INFRASTRUCTURE/FALCONE/us_pden_90_00_10_grids",
+      "DatasetType": "ESRI_GRID"
     },
     "popdens00": {
       "ID": 73001,
-      "Name": "",
-      "Description": "",
+      "Name": "pden00_60m",
+      "Description": "Population density in the watershed, persons per sq km, from 2000 Census block data regridded to 100m",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/POPULATION_INFRASTRUCTURE/FALCONE/us_pden_90_00_10_grids",
+      "DatasetType": "ESRI_GRID"
     },
     "rechg": {
       "ID": 74001,
-      "Name": "",
-      "Description": "",
+      "Name": "rech48grd",
+      "Description": "Mean annual natural ground-water recharge in millimeters per year",
       "isTiled": false,
-      "path": "",
-      "DatasetType": ""
+      "path": "Nationwide/HYDROLOGIC/WOLOCK/rech48grd",
+      "DatasetType": "ESRI_GRID"
     }
   }
 }
