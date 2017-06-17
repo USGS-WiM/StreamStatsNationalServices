@@ -762,429 +762,319 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/5728dd46e4b0b13d3918a9a7"
     },
     "TOT_IMPV01": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/570575fae4b0d4e2b7571bba",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "Impervious surface from NLCD 2001",
       "Procedure": "TO BE DETERMINED",
-      "UnitID": "percent"
+      "Description": "Impervious surface from NLCD 2001",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/570575fae4b0d4e2b7571bba"
     },
     "TOT_IMPV06": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5705773de4b0d4e2b7571cd7",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "Impervious surface from NLCD 2006",
       "Procedure": "TO BE DETERMINED",
-      "UnitID": "percent"
+      "Description": "Impervious surface from NLCD 2006",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5705773de4b0d4e2b7571cd7"
     },
-    "major_2013": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
+    "TOT_MAJOR_2013": {
+      "Procedure": "TO BE DETERMINED",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "number of major dams",
       "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1"
     },
-    "major_2010": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
+    "TOT_MAJOR_2010": {
+      "Procedure": "TO BE DETERMINED",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "number of major dams",
       "Reference": "https://www.sciencebase.gov/catalog/item/57718550e4b07657d1a6baf1"
     },
-    "major_2000": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
+    "TOT_MAJOR_2000": {
+      "Procedure": "TO BE DETERMINED",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "number of major dams",
       "Reference": "https://www.sciencebase.gov/catalog/item/57717f71e4b07657d1a6bae9"
     },
-    "major_1990": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
+    "TOT_MAJOR_1990": {
+      "Procedure": "TO BE DETERMINED",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "number of major dams",
       "Reference": "https://www.sciencebase.gov/catalog/item/57717cb2e4b07657d1a6bae5"
     },
-    "major_1980": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
+    "TOT_MAJOR_1980": {
+      "Procedure": "TO BE DETERMINED",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "number of major dams",
       "Reference": "https://www.sciencebase.gov/catalog/item/577179e4e4b07657d1a6badf"
     },
-    "major_1970": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
+    "TOT_MAJOR_1970": {
+      "Procedure": "TO BE DETERMINED",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "number of major dams",
       "Reference": "https://www.sciencebase.gov/catalog/item/57717888e4b07657d1a6badb"
     },
-    "major_1960": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
+    "TOT_MAJOR_1960": {
+      "Procedure": "TO BE DETERMINED",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "number of major dams",
       "Reference": "https://www.sciencebase.gov/catalog/item/577177e0e4b07657d1a6bad8"
     },
-    "major_1950": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
+    "TOT_MAJOR_1950": {
+      "Procedure": "TO BE DETERMINED",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "number of major dams",
       "Reference": "https://www.sciencebase.gov/catalog/item/5771775de4b07657d1a6bad2"
     },
-    "major_1940": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
+    "TOT_MAJOR_1940": {
+      "Procedure": "TO BE DETERMINED",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "number of major dams",
       "Reference": "https://www.sciencebase.gov/catalog/item/5771766de4b07657d1a6bac8"
     },
-    "major_1930": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
+    "TOT_MAJOR_1930": {
+      "Procedure": "TO BE DETERMINED",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "number of major dams",
       "Reference": "https://www.sciencebase.gov/catalog/item/57716be5e4b07657d1a6baab"
     },
-    "mirad_2012": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
-      "Description": "Percent of watershed in irrigated agriculture, from USGS 2012 250-m MODIS data",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
-      "Reference": "https://www.sciencebase.gov/catalog/item/573b78aee4b0dae0d5e3aeb7"
-    },
-    "mirad_2007": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
+    "TOT_MIRAD_2007": {
+      "Procedure": "TO BE DETERMINED",
+      "MapLayers": [ "mirad2007" ],
       "Description": "Percent of watershed in irrigated agriculture, from USGS 2007 250-m MODIS data",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
+      "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/573b7850e4b0dae0d5e3aeb0"
     },
-    "mirad_2002": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
+    "TOT_MIRAD_2002": {
+      "Procedure": "TO BE DETERMINED",
       "Description": "Percent of watershed in irrigated agriculture, from USGS 2002 250-m MODIS data",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
+      "MapLayers": [ "mirad2002" ],
+      "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/573b77afe4b0dae0d5e3aea6"
     },
-    "TOT_NDAMS_2013": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
-      "Procedure": "TO BE DETERMINED",
-      "UnitID": "number of dams"
-    },
     "TOT_NDAMS_2010": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57718550e4b07657d1a6baf1",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "Procedure": "TO BE DETERMINED",
-      "UnitID": "number of dams"
-    },
-    "TOT_NDAMS_2000": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57717f71e4b07657d1a6bae9",
-      "MapLayers": "TO BE DETERMINED",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
-      "Procedure": "TO BE DETERMINED",
-      "UnitID": "number of dams"
-    },
-    "TOT_NDAMS_1990": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57717cb2e4b07657d1a6bae5",
       "MapLayers": "TO BE DETERMINED",
-      "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
-      "Procedure": "TO BE DETERMINED",
-      "UnitID": "number of dams"
-    },
-    "TOT_NDAMS_1980": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/577179e4e4b07657d1a6badf",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
-      "Procedure": "TO BE DETERMINED",
-      "UnitID": "number of dams"
-    },
-    "TOT_NDAMS_1970": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57717888e4b07657d1a6badb",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
-      "Procedure": "TO BE DETERMINED",
-      "UnitID": "number of dams"
-    },
-    "TOT_NDAMS_1960": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/577177e0e4b07657d1a6bad8",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
-      "Procedure": "TO BE DETERMINED",
-      "UnitID": "number of dams"
-    },
-    "TOT_NDAMS_1950": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5771775de4b07657d1a6bad2",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
-      "Procedure": "TO BE DETERMINED",
-      "UnitID": "number of dams"
-    },
-    "TOT_NDAMS_1940": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5771766de4b07657d1a6bac8",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
-      "Procedure": "TO BE DETERMINED",
-      "UnitID": "number of dams"
-    },
-    "TOT_NDAMS_1930": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57716be5e4b07657d1a6baab",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
-      "Procedure": "TO BE DETERMINED",
-      "UnitID": "number of dams"
-    },
-    "nid_storage_2013": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
-      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage.",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1"
-    },
-    "nid_storage_2010": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
-      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage.",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
+      "UnitID": "number of dams",
       "Reference": "https://www.sciencebase.gov/catalog/item/57718550e4b07657d1a6baf1"
     },
-    "nid_storage_2000": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
-      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage.",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
+    "TOT_NDAMS_2000": {
+      "Procedure": "TO BE DETERMINED",
+      "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "number of dams",
       "Reference": "https://www.sciencebase.gov/catalog/item/57717f71e4b07657d1a6bae9"
     },
-    "nid_storage_1990": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
-      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage.",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
+    "TOT_NDAMS_1990": {
+      "Procedure": "TO BE DETERMINED",
+      "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "number of dams",
       "Reference": "https://www.sciencebase.gov/catalog/item/57717cb2e4b07657d1a6bae5"
     },
-    "nid_storage_1980": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
-      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage.",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
+    "TOT_NDAMS_1980": {
+      "Procedure": "TO BE DETERMINED",
+      "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "number of dams",
       "Reference": "https://www.sciencebase.gov/catalog/item/577179e4e4b07657d1a6badf"
     },
-    "nid_storage_1970": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
-      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage.",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
+    "TOT_NDAMS_1970": {
+      "Procedure": "TO BE DETERMINED",
+      "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "number of dams",
       "Reference": "https://www.sciencebase.gov/catalog/item/57717888e4b07657d1a6badb"
     },
-    "nid_storage_1960": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
-      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage.",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
+    "TOT_NDAMS_1960": {
+      "Procedure": "TO BE DETERMINED",
+      "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "number of dams",
       "Reference": "https://www.sciencebase.gov/catalog/item/577177e0e4b07657d1a6bad8"
     },
-    "nid_storage_1950": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
-      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage.",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
+    "TOT_NDAMS_1950": {
+      "Procedure": "TO BE DETERMINED",
+      "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "number of dams",
       "Reference": "https://www.sciencebase.gov/catalog/item/5771775de4b07657d1a6bad2"
     },
-    "nid_storage_1940": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
-      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage.",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
+    "TOT_NDAMS_1940": {
+      "Procedure": "TO BE DETERMINED",
+      "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "number of dams",
       "Reference": "https://www.sciencebase.gov/catalog/item/5771766de4b07657d1a6bac8"
     },
-    "nid_storage_1930": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
-      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage.",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
+    "TOT_NDAMS_1930": {
+      "Procedure": "TO BE DETERMINED",
+      "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "number of dams",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57716be5e4b07657d1a6baab"
+    },
+    "TOT_NID_STORAGE_2010": {
+      "Procedure": "TO BE DETERMINED",
+      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "acre feet",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57718550e4b07657d1a6baf1"
+    },
+    "TOT_NID_STORAGE_2000": {
+      "Procedure": "TO BE DETERMINED",
+      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "acre feet",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57717f71e4b07657d1a6bae9"
+    },
+    "TOT_NID_STORAGE_1990": {
+      "Procedure": "TO BE DETERMINED",
+      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "acre feet",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57717cb2e4b07657d1a6bae5"
+    },
+    "TOT_NID_STORAGE_1970": {
+      "Procedure": "TO BE DETERMINED",
+      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "acre feet",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57717888e4b07657d1a6badb"
+    },
+    "TOT_NID_STORAGE_1960": {
+      "Procedure": "TO BE DETERMINED",
+      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "acre feet",
+      "Reference": "https://www.sciencebase.gov/catalog/item/577177e0e4b07657d1a6bad8"
+    },
+    "TOT_NID_STORAGE_1950": {
+      "Procedure": "TO BE DETERMINED",
+      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "acre feet",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5771775de4b07657d1a6bad2"
+    },
+    "TOT_NID_STORAGE_1940": {
+      "Procedure": "TO BE DETERMINED",
+      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "acre feet",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5771766de4b07657d1a6bac8"
+    },
+    "TOT_NID_STORAGE_1930": {
+      "Procedure": "TO BE DETERMINED",
+      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/57716be5e4b07657d1a6baab"
     },
     "TOT_NORM_STORAGE_2013": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
       "Procedure": "TO BE DETERMINED",
-      "UnitID": "acre feet"
+      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "acre feet",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1"
     },
     "TOT_NORM_STORAGE_2010": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57718550e4b07657d1a6baf1",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
       "Procedure": "TO BE DETERMINED",
-      "UnitID": "acre feet"
+      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "acre feet",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57718550e4b07657d1a6baf1"
     },
     "TOT_NORM_STORAGE_2000": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57717f71e4b07657d1a6bae9",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
       "Procedure": "TO BE DETERMINED",
-      "UnitID": "acre feet"
+      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "acre feet",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57717f71e4b07657d1a6bae9"
     },
     "TOT_NORM_STORAGE_1990": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57717cb2e4b07657d1a6bae5",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
       "Procedure": "TO BE DETERMINED",
-      "UnitID": "acre feet"
+      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "acre feet",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57717cb2e4b07657d1a6bae5"
     },
     "TOT_NORM_STORAGE_1980": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/577179e4e4b07657d1a6badf",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
       "Procedure": "TO BE DETERMINED",
-      "UnitID": "acre feet"
+      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "acre feet",
+      "Reference": "https://www.sciencebase.gov/catalog/item/577179e4e4b07657d1a6badf"
     },
     "TOT_NORM_STORAGE_1970": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57717888e4b07657d1a6badb",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
       "Procedure": "TO BE DETERMINED",
-      "UnitID": "acre feet"
+      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "acre feet",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57717888e4b07657d1a6badb"
     },
     "TOT_NORM_STORAGE_1960": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/577177e0e4b07657d1a6bad8",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
       "Procedure": "TO BE DETERMINED",
-      "UnitID": "acre feet"
+      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "acre feet",
+      "Reference": "https://www.sciencebase.gov/catalog/item/577177e0e4b07657d1a6bad8"
     },
     "TOT_NORM_STORAGE_1950": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5771775de4b07657d1a6bad2",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
       "Procedure": "TO BE DETERMINED",
-      "UnitID": "acre feet"
+      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "acre feet",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5771775de4b07657d1a6bad2"
     },
     "TOT_NORM_STORAGE_1940": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5771766de4b07657d1a6bac8",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
       "Procedure": "TO BE DETERMINED",
-      "UnitID": "acre feet"
+      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "acre feet",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5771766de4b07657d1a6bac8"
     },
     "TOT_NORM_STORAGE_1930": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/57716be5e4b07657d1a6baab",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
       "Procedure": "TO BE DETERMINED",
-      "UnitID": "acre feet"
-    },
-    "npdes_maj_dens": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
-      "Description": "NEEDS DETAILS",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57c9d89ce4b0f2f0cec192da"
+      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "acre feet",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57716be5e4b07657d1a6baab"
     },
     "TOT_POPDENS90": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5728f609e4b0b13d3918aa0e",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "Population density in the watershed, persons per sq km, from 1990 Census block data regridded to 100m.",
       "Procedure": "TO BE DETERMINED",
-      "UnitID": "persons per square kilometer"
+      "Description": "Population density in the watershed, persons per sq km, from 1990 Census block data regridded to 100m.",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "persons per square kilometer",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728f609e4b0b13d3918aa0e"
     },
     "TOT_POPDENS10": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5728f746e4b0b13d3918aa1e",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "Population density in the watershed, persons per sq km, from 2010 Census block data regridded to 100m.",
       "Procedure": "TO BE DETERMINED",
-      "UnitID": "persons per square kilometer"
+      "Description": "Population density in the watershed, persons per sq km, from 2010 Census block data regridded to 100m.",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "persons per square kilometer",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728f746e4b0b13d3918aa1e"
     },
     "TOT_POPDENS00": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/5728f532e4b0b13d3918aa0a",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "Population density in the watershed, persons per sq km, from 2000 Census block data regridded to 100m.",
       "Procedure": "TO BE DETERMINED",
-      "UnitID": "persons per square kilometer"
+      "Description": "Population density in the watershed, persons per sq km, from 2000 Census block data regridded to 100m.",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "persons per square kilometer",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5728f532e4b0b13d3918aa0a"
     },
     "TOT_RECHG": {
-      "Reference": "https://www.sciencebase.gov/catalog/item/56f97577e4b0a6037df06b5a",
-      "MapLayers": "TO BE DETERMINED",
-      "Description": "Mean annual natural ground-water recharge in millimeters per year",
       "Procedure": "TO BE DETERMINED",
-      "UnitID": "meters"
-    },
-    "wildfire2012": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
-      "Description": "Percent area of wildfire in 2012",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57f66dc5e4b0bc0bec06de78"
-    },
-    "wildfire2011": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
-      "Description": "Percent area of wildfire in 2011",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57f66d8ce4b0bc0bec06de53"
-    },
-    "wildfire2010": {
-      "ID": "NEEDS DETAILS",
-      "Name": "NEEDS DETAILS",
-      "Description": "Percent area of wildfire in 2010",
-      "isTiled": "NEEDS DETAILS",
-      "path": "NEEDS DETAILS",
-      "DatasetType": "NEEDS DETAILS",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57f66d66e4b0bc0bec06de3a"
+      "Description": "Mean annual natural ground-water recharge in millimeters per year",
+      "MapLayers": "TO BE DETERMINED",
+      "UnitID": "meters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/56f97577e4b0a6037df06b5a"
     }
   },
   "maplayers": {
