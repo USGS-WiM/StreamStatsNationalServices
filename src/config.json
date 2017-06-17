@@ -1254,7 +1254,7 @@
       "isTiled": true,
       "path": "Tiled/NHDPlus_v2",
       "queryFeaturePath": "RPU.shp",
-      "queryField": "Path",
+      "queryField": "ElevPath",
       "DatasetType": "ESRI_RASTER"
     },
     "statsgo": {

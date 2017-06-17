@@ -83,7 +83,8 @@ class StreamStatsNationalOps(SpatialOps):
         result = {Characteristic.Name:None}
         try:
             self._sm("Computing " + Characteristic.Name)
-            ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))            
+#            ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))
+            ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]), "", self.mask)
             if not ML.Activated:
                 raise Exception("Map Layer could not be activated.")
 
