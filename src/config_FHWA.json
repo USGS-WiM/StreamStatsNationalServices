@@ -779,70 +779,70 @@
       "Procedure": "TO BE DETERMINED",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
       "MapLayers": [ "major2013" ],
-      "UnitID": "number of major dams",
+      "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1"
     },
     "TOT_MAJOR_2010": {
       "Procedure": "TO BE DETERMINED",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
       "MapLayers": [ "major2010" ],
-      "UnitID": "number of major dams",
+      "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/57718550e4b07657d1a6baf1"
     },
     "TOT_MAJOR_2000": {
       "Procedure": "TO BE DETERMINED",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
       "MapLayers": [ "major2000" ],
-      "UnitID": "number of major dams",
+      "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/57717f71e4b07657d1a6bae9"
     },
     "TOT_MAJOR_1990": {
       "Procedure": "TO BE DETERMINED",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
       "MapLayers": [ "major1990" ],
-      "UnitID": "number of major dams",
+      "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/57717cb2e4b07657d1a6bae5"
     },
     "TOT_MAJOR_1980": {
       "Procedure": "TO BE DETERMINED",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
       "MapLayers": ["major1980"],
-      "UnitID": "number of major dams",
+      "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/577179e4e4b07657d1a6badf"
     },
     "TOT_MAJOR_1970": {
       "Procedure": "TO BE DETERMINED",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
       "MapLayers": ["major1970"],
-      "UnitID": "number of major dams",
+      "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/57717888e4b07657d1a6badb"
     },
     "TOT_MAJOR_1960": {
       "Procedure": "TO BE DETERMINED",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
       "MapLayers": [ "major1960" ],
-      "UnitID": "number of major dams",
+      "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/577177e0e4b07657d1a6bad8"
     },
     "TOT_MAJOR_1950": {
       "Procedure": "TO BE DETERMINED",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
       "MapLayers": [ "major1950" ],
-      "UnitID": "number of major dams",
+      "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/5771775de4b07657d1a6bad2"
     },
     "TOT_MAJOR_1940": {
       "Procedure": "TO BE DETERMINED",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
       "MapLayers": [ "major1940" ],
-      "UnitID": "number of major dams",
+      "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/5771766de4b07657d1a6bac8"
     },
     "TOT_MAJOR_1930": {
       "Procedure": "TO BE DETERMINED",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
       "MapLayers": [ "major1930" ],
-      "UnitID": "number of major dams",
+      "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/57716be5e4b07657d1a6baab"
     },
     "TOT_MIRAD_2007": {
@@ -863,63 +863,63 @@
       "Procedure": "TO BE DETERMINED",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "MapLayers": [ "ndams2010" ],
-      "UnitID": "number of dams",
+      "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/57718550e4b07657d1a6baf1"
     },
     "TOT_NDAMS_2000": {
       "Procedure": "TO BE DETERMINED",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "MapLayers": [ "ndams2000" ],
-      "UnitID": "number of dams",
+      "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/57717f71e4b07657d1a6bae9"
     },
     "TOT_NDAMS_1990": {
       "Procedure": "TO BE DETERMINED",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "MapLayers": [ "ndams1990" ],
-      "UnitID": "number of dams",
+      "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/57717cb2e4b07657d1a6bae5"
     },
     "TOT_NDAMS_1980": {
       "Procedure": "TO BE DETERMINED",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "MapLayers": [ "ndams1980" ],
-      "UnitID": "number of dams",
+      "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/577179e4e4b07657d1a6badf"
     },
     "TOT_NDAMS_1970": {
       "Procedure": "TO BE DETERMINED",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "MapLayers": [ "ndams1970" ],
-      "UnitID": "number of dams",
+      "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/57717888e4b07657d1a6badb"
     },
     "TOT_NDAMS_1960": {
       "Procedure": "TO BE DETERMINED",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "MapLayers": [ "ndams1960" ],
-      "UnitID": "number of dams",
+      "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/577177e0e4b07657d1a6bad8"
     },
     "TOT_NDAMS_1950": {
       "Procedure": "TO BE DETERMINED",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "MapLayers": [ "ndams1950" ],
-      "UnitID": "number of dams",
+      "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/5771775de4b07657d1a6bad2"
     },
     "TOT_NDAMS_1940": {
       "Procedure": "TO BE DETERMINED",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "MapLayers": [ "ndams1940" ],
-      "UnitID": "number of dams",
+      "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/5771766de4b07657d1a6bac8"
     },
     "TOT_NDAMS_1930": {
       "Procedure": "TO BE DETERMINED",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "MapLayers": [ "ndams1930" ],
-      "UnitID": "number of dams",
+      "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/57716be5e4b07657d1a6baab"
     },
     "TOT_NID_STORAGE_2010": {
@@ -1075,6 +1075,27 @@
       "MapLayers": [ "rechg" ],
       "UnitID": "meters",
       "Reference": "https://www.sciencebase.gov/catalog/item/56f97577e4b0a6037df06b5a"
+    },
+    "TOT_WILDFIRE_2010": {
+      "Procedure": "TO BE DETERMINED",
+      "Description": "Percent area of wildfire in 2010",
+      "MapLayers": [ "wildfire2010" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5669a834e4b08895842a1d49"
+    },
+    "TOT_WILDFIRE_2011": {
+      "Procedure": "TO BE DETERMINED",
+      "Description": "Percent area of wildfire in 2011",
+      "MapLayers": [ "wildfire2011" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5669a834e4b08895842a1d49"
+    },
+    "TOT_WILDFIRE_2012": {
+      "Procedure": "TO BE DETERMINED",
+      "Description": "Percent area of wildfire in 2012",
+      "MapLayers": [ "wildfire2011" ],
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5669a834e4b08895842a1d49"
     }
   },
   "maplayers": {
@@ -1686,7 +1707,7 @@
     },
     "mirad2007": {
       "ID": 41001,
-      "Name": "mirad250_07v3 and mirad1k_07v3",
+      "Name": "mirad250_07v3",
       "Description": "Percent of watershed in irrigated agriculture, from USGS 2007 250-m MODIS data",
       "isTiled": false,
       "path": "Nationwide/HYDRO_MOD/MIRAD",
@@ -1694,7 +1715,7 @@
     },
     "mirad2002": {
       "ID": 42001,
-      "Name": "mirad250_02v3 and mirad1k_02v3",
+      "Name": "mirad250_02v3",
       "Description": "Percent of watershed in irrigated agriculture, from USGS 2002 250-m MODIS data",
       "isTiled": false,
       "path": "Nationwide/HYDRO_MOD/MIRAD",
@@ -1981,7 +2002,31 @@
       "Name": "rech48grd",
       "Description": "Mean annual natural ground-water recharge in millimeters per year",
       "isTiled": false,
-      "path": "Nationwide/HYDROLOGIC/WOLOCK/rech48grd",
+      "path": "Nationwide/HYDROLOGIC/WOLOCK",
+      "DatasetType": "ESRI_GRID"
+    },
+    "wildfire2010": {
+      "ID": 75001,
+      "Name": "us_dist2010",
+      "Description": "Wildfire 2010",
+      "isTiled": false,
+      "path": "Nationwide/LANDSCAPE/WILDFIRE/2010",
+      "DatasetType": "ESRI_GRID"
+    },
+    "wildfire2011": {
+      "ID": 76001,
+      "Name": "us_dist2011",
+      "Description": "Wildfire 2011",
+      "isTiled": false,
+      "path": "Nationwide/LANDSCAPE/WILDFIRE/2011",
+      "DatasetType": "ESRI_GRID"
+    },
+    "wildfire2012": {
+      "ID": 77001,
+      "Name": "us_dist2012",
+      "Description": "Wildfire 2012",
+      "isTiled": false,
+      "path": "Nationwide/LANDSCAPE/WILDFIRE/2012",
       "DatasetType": "ESRI_GRID"
     }
   }
