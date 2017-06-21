@@ -778,7 +778,9 @@
     "TOT_MAJOR_2013": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "2013",
+      "Method": "COUNT",
       "MapLayers": [ "major2013" ],
       "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1"
@@ -786,6 +788,7 @@
     "TOT_MAJOR_2010": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "2010",
       "MapLayers": [ "major2010" ],
       "UnitID": "count",
@@ -794,6 +797,7 @@
     "TOT_MAJOR_2000": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "2000",
       "MapLayers": [ "major2000" ],
       "UnitID": "count",
@@ -802,6 +806,7 @@
     "TOT_MAJOR_1990": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1990",
       "MapLayers": [ "major1990" ],
       "UnitID": "count",
@@ -810,6 +815,7 @@
     "TOT_MAJOR_1980": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1980",
       "MapLayers": ["major1980"],
       "UnitID": "count",
@@ -818,6 +824,7 @@
     "TOT_MAJOR_1970": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1970",
       "MapLayers": ["major1970"],
       "UnitID": "count",
@@ -826,6 +833,7 @@
     "TOT_MAJOR_1960": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1960",
       "MapLayers": [ "major1960" ],
       "UnitID": "count",
@@ -834,6 +842,7 @@
     "TOT_MAJOR_1950": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1950",
       "MapLayers": [ "major1950" ],
       "UnitID": "count",
@@ -842,6 +851,7 @@
     "TOT_MAJOR_1940": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1940",
       "MapLayers": [ "major1940" ],
       "UnitID": "count",
@@ -850,6 +860,7 @@
     "TOT_MAJOR_1930": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1930",
       "MapLayers": [ "major1930" ],
       "UnitID": "count",
@@ -872,6 +883,7 @@
     "TOT_NDAMS_2010": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "2010",
       "MapLayers": [ "ndams2010" ],
       "UnitID": "count",
@@ -880,6 +892,7 @@
     "TOT_NDAMS_2000": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "2000",
       "MapLayers": [ "ndams2000" ],
       "UnitID": "count",
@@ -888,6 +901,7 @@
     "TOT_NDAMS_1990": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1990",
       "MapLayers": [ "ndams1990" ],
       "UnitID": "count",
@@ -896,6 +910,7 @@
     "TOT_NDAMS_1980": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1980",
       "MapLayers": [ "ndams1980" ],
       "UnitID": "count",
@@ -904,6 +919,7 @@
     "TOT_NDAMS_1970": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1970",
       "MapLayers": [ "ndams1970" ],
       "UnitID": "count",
@@ -912,6 +928,7 @@
     "TOT_NDAMS_1960": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1960",
       "MapLayers": [ "ndams1960" ],
       "UnitID": "count",
@@ -920,6 +937,7 @@
     "TOT_NDAMS_1950": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1950",
       "MapLayers": [ "ndams1950" ],
       "UnitID": "count",
@@ -928,6 +946,7 @@
     "TOT_NDAMS_1940": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1940",
       "MapLayers": [ "ndams1940" ],
       "UnitID": "count",
@@ -936,6 +955,7 @@
     "TOT_NDAMS_1930": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1930",
       "MapLayers": [ "ndams1930" ],
       "UnitID": "count",
@@ -944,6 +964,7 @@
     "TOT_NID_STORAGE_2010": {
       "Procedure": "getFeatureStatistic",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "2010",
       "MapLayers": [ "nidstorage2010" ],
       "UnitID": "acre feet",
@@ -952,6 +973,7 @@
     "TOT_NID_STORAGE_2000": {
       "Procedure": "getFeatureStatistic",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "2000",
       "MapLayers": [ "nidstorage2000" ],
       "UnitID": "acre feet",
@@ -960,6 +982,7 @@
     "TOT_NID_STORAGE_1990": {
       "Procedure": "getFeatureStatistic",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1990",
       "MapLayers": [ "nidstorage1990" ],
       "UnitID": "acre feet",
@@ -968,6 +991,7 @@
     "TOT_NID_STORAGE_1970": {
       "Procedure": "getFeatureStatistic",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1970",
       "MapLayers": [ "nidstorage1970" ],
       "UnitID": "acre feet",
@@ -976,6 +1000,7 @@
     "TOT_NID_STORAGE_1960": {
       "Procedure": "getFeatureStatistic",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1960",
       "MapLayers": [ "nidstorage1960" ],
       "UnitID": "acre feet",
@@ -984,6 +1009,7 @@
     "TOT_NID_STORAGE_1950": {
       "Procedure": "getFeatureStatistic",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1950",
       "MapLayers": [ "nidstorage1950" ],
       "UnitID": "acre feet",
@@ -992,6 +1018,7 @@
     "TOT_NID_STORAGE_1940": {
       "Procedure": "getFeatureStatistic",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1940",
       "MapLayers": [ "nidstorage1940" ],
       "UnitID": "acre feet",
@@ -1000,6 +1027,7 @@
     "TOT_NID_STORAGE_1930": {
       "Procedure": "getFeatureStatistic",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1930",
       "MapLayers": [ "nidstorage1930" ],
       "UnitID": "acre feet",
@@ -1008,6 +1036,7 @@
     "TOT_NORM_STORAGE_2013": {
       "Procedure": "getFeatureStatistic",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "2013",
       "MapLayers": [ "normstorage2013" ],
       "UnitID": "acre feet",
@@ -1016,6 +1045,7 @@
     "TOT_NORM_STORAGE_2010": {
       "Procedure": "getFeatureStatistic",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "2010",
       "MapLayers": [ "normstorage2010" ],
       "UnitID": "acre feet",
@@ -1024,6 +1054,7 @@
     "TOT_NORM_STORAGE_2000": {
       "Procedure": "getFeatureStatistic",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "2000",
       "MapLayers": [ "normstorage2000" ],
       "UnitID": "acre feet",
@@ -1032,6 +1063,7 @@
     "TOT_NORM_STORAGE_1990": {
       "Procedure": "getFeatureStatistic",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1990",
       "MapLayers": [ "normstorage1990" ],
       "UnitID": "acre feet",
@@ -1040,6 +1072,7 @@
     "TOT_NORM_STORAGE_1980": {
       "Procedure": "getFeatureStatistic",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1980",
       "MapLayers": [ "normstorage1980" ],
       "UnitID": "acre feet",
@@ -1048,6 +1081,7 @@
     "TOT_NORM_STORAGE_1970": {
       "Procedure": "getFeatureStatistic",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1970",
       "MapLayers": [ "normstorage1970" ],
       "UnitID": "acre feet",
@@ -1056,6 +1090,7 @@
     "TOT_NORM_STORAGE_1960": {
       "Procedure": "getFeatureStatistic",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1960",
       "MapLayers": [ "normstorage1960" ],
       "UnitID": "acre feet",
@@ -1064,6 +1099,7 @@
     "TOT_NORM_STORAGE_1950": {
       "Procedure": "getFeatureStatistic",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1950",
       "MapLayers": [ "normstorage1950" ],
       "UnitID": "acre feet",
@@ -1072,6 +1108,7 @@
     "TOT_NORM_STORAGE_1940": {
       "Procedure": "getFeatureStatistic",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1940",
       "MapLayers": [ "normstorage1940" ],
       "UnitID": "acre feet",
@@ -1080,6 +1117,7 @@
     "TOT_NORM_STORAGE_1930": {
       "Procedure": "getFeatureStatistic",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
+      "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1930",
       "MapLayers": [ "normstorage1930" ],
       "UnitID": "acre feet",
