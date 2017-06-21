@@ -790,6 +790,7 @@
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "2010",
+      "Method": "COUNT",
       "MapLayers": [ "major2010" ],
       "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/57718550e4b07657d1a6baf1"
@@ -799,6 +800,7 @@
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "2000",
+      "Method": "COUNT",
       "MapLayers": [ "major2000" ],
       "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/57717f71e4b07657d1a6bae9"
@@ -808,6 +810,7 @@
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1990",
+      "Method": "COUNT",
       "MapLayers": [ "major1990" ],
       "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/57717cb2e4b07657d1a6bae5"
@@ -817,6 +820,7 @@
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1980",
+      "Method": "COUNT",
       "MapLayers": ["major1980"],
       "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/577179e4e4b07657d1a6badf"
@@ -826,6 +830,7 @@
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1970",
+      "Method": "COUNT",
       "MapLayers": ["major1970"],
       "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/57717888e4b07657d1a6badb"
@@ -835,6 +840,7 @@
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1960",
+      "Method": "COUNT",
       "MapLayers": [ "major1960" ],
       "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/577177e0e4b07657d1a6bad8"
@@ -844,6 +850,7 @@
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1950",
+      "Method": "COUNT",
       "MapLayers": [ "major1950" ],
       "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/5771775de4b07657d1a6bad2"
@@ -853,6 +860,7 @@
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1940",
+      "Method": "COUNT",
       "MapLayers": [ "major1940" ],
       "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/5771766de4b07657d1a6bac8"
@@ -862,6 +870,7 @@
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1930",
+      "Method": "COUNT",
       "MapLayers": [ "major1930" ],
       "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/57716be5e4b07657d1a6baab"
@@ -885,6 +894,7 @@
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "2010",
+      "Method": "COUNT",
       "MapLayers": [ "ndams2010" ],
       "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/57718550e4b07657d1a6baf1"
@@ -894,6 +904,7 @@
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "2000",
+      "Method": "COUNT",
       "MapLayers": [ "ndams2000" ],
       "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/57717f71e4b07657d1a6bae9"
@@ -903,6 +914,7 @@
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1990",
+      "Method": "COUNT",
       "MapLayers": [ "ndams1990" ],
       "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/57717cb2e4b07657d1a6bae5"
@@ -912,6 +924,7 @@
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1980",
+      "Method": "COUNT",
       "MapLayers": [ "ndams1980" ],
       "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/577179e4e4b07657d1a6badf"
@@ -921,6 +934,7 @@
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1970",
+      "Method": "COUNT",
       "MapLayers": [ "ndams1970" ],
       "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/57717888e4b07657d1a6badb"
@@ -930,6 +944,7 @@
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1960",
+      "Method": "COUNT",
       "MapLayers": [ "ndams1960" ],
       "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/577177e0e4b07657d1a6bad8"
@@ -939,6 +954,7 @@
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1950",
+      "Method": "COUNT",
       "MapLayers": [ "ndams1950" ],
       "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/5771775de4b07657d1a6bad2"
@@ -948,6 +964,7 @@
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1940",
+      "Method": "COUNT",
       "MapLayers": [ "ndams1940" ],
       "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/5771766de4b07657d1a6bac8"
@@ -957,6 +974,7 @@
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1930",
+      "Method": "COUNT",
       "MapLayers": [ "ndams1930" ],
       "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/57716be5e4b07657d1a6baab"
@@ -966,6 +984,7 @@
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "2010",
+      "Method": "SUM",
       "MapLayers": [ "nidstorage2010" ],
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/57718550e4b07657d1a6baf1"
@@ -975,6 +994,7 @@
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "2000",
+      "Method": "SUM",
       "MapLayers": [ "nidstorage2000" ],
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/57717f71e4b07657d1a6bae9"
@@ -984,6 +1004,7 @@
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1990",
+      "Method": "SUM",
       "MapLayers": [ "nidstorage1990" ],
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/57717cb2e4b07657d1a6bae5"
@@ -993,6 +1014,7 @@
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1970",
+      "Method": "SUM",
       "MapLayers": [ "nidstorage1970" ],
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/57717888e4b07657d1a6badb"
@@ -1002,6 +1024,7 @@
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1960",
+      "Method": "SUM",
       "MapLayers": [ "nidstorage1960" ],
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/577177e0e4b07657d1a6bad8"
@@ -1011,6 +1034,7 @@
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1950",
+      "Method": "SUM",
       "MapLayers": [ "nidstorage1950" ],
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/5771775de4b07657d1a6bad2"
@@ -1020,6 +1044,7 @@
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1940",
+      "Method": "SUM",
       "MapLayers": [ "nidstorage1940" ],
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/5771766de4b07657d1a6bac8"
@@ -1029,6 +1054,7 @@
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1930",
+      "Method": "SUM",
       "MapLayers": [ "nidstorage1930" ],
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/57716be5e4b07657d1a6baab"
@@ -1038,6 +1064,7 @@
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "2013",
+      "Method": "SUM",
       "MapLayers": [ "normstorage2013" ],
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1"
@@ -1047,6 +1074,7 @@
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "2010",
+      "Method": "SUM",
       "MapLayers": [ "normstorage2010" ],
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/57718550e4b07657d1a6baf1"
@@ -1056,6 +1084,7 @@
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "2000",
+      "Method": "SUM",
       "MapLayers": [ "normstorage2000" ],
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/57717f71e4b07657d1a6bae9"
@@ -1065,6 +1094,7 @@
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1990",
+      "Method": "SUM",
       "MapLayers": [ "normstorage1990" ],
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/57717cb2e4b07657d1a6bae5"
@@ -1074,6 +1104,7 @@
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1980",
+      "Method": "SUM",
       "MapLayers": [ "normstorage1980" ],
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/577179e4e4b07657d1a6badf"
@@ -1083,6 +1114,7 @@
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1970",
+      "Method": "SUM",
       "MapLayers": [ "normstorage1970" ],
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/57717888e4b07657d1a6badb"
@@ -1092,6 +1124,7 @@
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1960",
+      "Method": "SUM",
       "MapLayers": [ "normstorage1960" ],
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/577177e0e4b07657d1a6bad8"
@@ -1101,6 +1134,7 @@
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1950",
+      "Method": "SUM",
       "MapLayers": [ "normstorage1950" ],
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/5771775de4b07657d1a6bad2"
@@ -1110,6 +1144,7 @@
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1940",
+      "Method": "SUM",
       "MapLayers": [ "normstorage1940" ],
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/5771766de4b07657d1a6bac8"
@@ -1119,6 +1154,7 @@
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
       "SelectionField": "YEAR_COMPL",
       "SelectionYear": "1930",
+      "Method": "SUM",
       "MapLayers": [ "normstorage1930" ],
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/57716be5e4b07657d1a6baab"
