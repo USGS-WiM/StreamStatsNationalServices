@@ -1058,6 +1058,7 @@
     "TOT_POPDENS10": {
       "Procedure": "getRasterStatistic",
       "Description": "Population density in the watershed, persons per sq km, from 2010 Census block data regridded to 100m.",
+      "Method": "Mean",
       "MapLayers": [ "popdens10" ],
       "UnitID": "persons per square kilometer",
       "Reference": "https://www.sciencebase.gov/catalog/item/5728f746e4b0b13d3918aa1e"
@@ -1065,6 +1066,7 @@
     "TOT_POPDENS00": {
       "Procedure": "getRasterStatistic",
       "Description": "Population density in the watershed, persons per sq km, from 2000 Census block data regridded to 100m.",
+      "Method": "Mean",
       "MapLayers": [ "popdens00" ],
       "UnitID": "persons per square kilometer",
       "Reference": "https://www.sciencebase.gov/catalog/item/5728f532e4b0b13d3918aa0a"
@@ -1072,6 +1074,7 @@
     "TOT_RECHG": {
       "Procedure": "getRasterStatistic",
       "Description": "Mean annual natural ground-water recharge in millimeters per year",
+      "Method": "Mean",
       "MapLayers": [ "rechg" ],
       "UnitID": "meters",
       "Reference": "https://www.sciencebase.gov/catalog/item/56f97577e4b0a6037df06b5a"
@@ -1100,6 +1103,7 @@
     "TOT_HDENS00": {
       "Procedure": "getRasterStatistic",
       "Description": "SILVIS lab housing density for 2000",
+      "Method": "Mean",
       "MapLayers": [ "hdens00" ],
       "UnitID": "persons per square kilometer",
       "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
@@ -1107,6 +1111,7 @@
     "TOT_HDENS10": {
       "Procedure": "getRasterStatistic",
       "Description": "SILVIS lab housing density for 2010",
+      "Method": "Mean",
       "MapLayers": [ "hdens10" ],
       "UnitID": "persons per square kilometer",
       "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
@@ -1114,6 +1119,7 @@
     "TOT_HDENS40": {
       "Procedure": "getRasterStatistic",
       "Description": "SILVIS lab housing density for 1940",
+      "Method": "Mean",
       "MapLayers": [ "hdens40" ],
       "UnitID": "persons per square kilometer",
       "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
@@ -1121,6 +1127,7 @@
     "TOT_HDENS50": {
       "Procedure": "getRasterStatistic",
       "Description": "SILVIS lab housing density for 1950",
+      "Method": "Mean",
       "MapLayers": [ "hdens50" ],
       "UnitID": "persons per square kilometer",
       "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
@@ -1128,6 +1135,7 @@
     "TOT_HDENS60": {
       "Procedure": "getRasterStatistic",
       "Description": "SILVIS lab housing density for 1960",
+      "Method": "Mean",
       "MapLayers": [ "hdens60" ],
       "UnitID": "persons per square kilometer",
       "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
@@ -1135,6 +1143,7 @@
     "TOT_HDENS70": {
       "Procedure": "getRasterStatistic",
       "Description": "SILVIS lab housing density for 1970",
+      "Method": "Mean",
       "MapLayers": [ "hdens70" ],
       "UnitID": "persons per square kilometer",
       "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
@@ -1142,6 +1151,7 @@
     "TOT_HDENS80": {
       "Procedure": "getRasterStatistic",
       "Description": "SILVIS lab housing density for 1980",
+      "Method": "Mean",
       "MapLayers": [ "hdens80" ],
       "UnitID": "persons per square kilometer",
       "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
@@ -1149,6 +1159,7 @@
     "TOT_HDENS90": {
       "Procedure": "getRasterStatistic",
       "Description": "SILVIS lab housing density for 1990",
+      "Method": "Mean",
       "MapLayers": [ "hdens90" ],
       "UnitID": "persons per square kilometer",
       "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
@@ -1677,7 +1688,8 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
-      "path": "Nationwide/LANDSCAPE/NLCD/2011/nlcd_2011_impervious_2011_edition_2014_10_10",
+      "QueryField": "NID_STORAG",
+      "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
     "major2010": {
@@ -1686,6 +1698,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
+      "QueryField": "NID_STORAG",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1695,6 +1708,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
+      "QueryField": "NID_STORAG",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1704,6 +1718,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
+      "QueryField": "NID_STORAG",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1713,6 +1728,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
+      "QueryField": "NID_STORAG",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1722,6 +1738,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
+      "QueryField": "NID_STORAG",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1731,6 +1748,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
+      "QueryField": "NID_STORAG",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1740,6 +1758,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
+      "QueryField": "NID_STORAG",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1749,6 +1768,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
+      "QueryField": "NID_STORAG",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1758,6 +1778,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
+      "QueryField": "NID_STORAG",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1783,6 +1804,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
+      "QueryField": "NID_STORAG",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1792,6 +1814,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
+      "QueryField": "NID_STORAG",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1801,6 +1824,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
+      "QueryField": "NID_STORAG",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1810,6 +1834,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
+      "QueryField": "NID_STORAG",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1819,6 +1844,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
+      "QueryField": "NID_STORAG",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1828,6 +1854,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
+      "QueryField": "NID_STORAG",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1837,6 +1864,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
+      "QueryField": "NID_STORAG",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1846,6 +1874,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
+      "QueryField": "NID_STORAG",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1855,6 +1884,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
       "isTiled": false,
+      "QueryField": "NID_STORAG",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1864,6 +1894,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage",
       "isTiled": false,
+      "QueryField": "NID_STORA",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1873,6 +1904,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage",
       "isTiled": false,
+      "QueryField": "NID_STORA",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1882,6 +1914,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage",
       "isTiled": false,
+      "QueryField": "NID_STORA",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1891,6 +1924,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage",
       "isTiled": false,
+      "QueryField": "NID_STORA",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1900,6 +1934,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage",
       "isTiled": false,
+      "QueryField": "NID_STORA",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1909,6 +1944,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage",
       "isTiled": false,
+      "QueryField": "NID_STORA",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1918,6 +1954,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage",
       "isTiled": false,
+      "QueryField": "NID_STORA",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1927,6 +1964,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage",
       "isTiled": false,
+      "QueryField": "NID_STORA",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1936,6 +1974,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage",
       "isTiled": false,
+      "QueryField": "NID_STORA",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1945,6 +1984,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage",
       "isTiled": false,
+      "QueryField": "NORM_STORA",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1954,6 +1994,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage",
       "isTiled": false,
+      "QueryField": "NORM_STORA",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1963,6 +2004,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage",
       "isTiled": false,
+      "QueryField": "NORM_STORA",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1972,6 +2014,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage",
       "isTiled": false,
+      "QueryField": "NORM_STORA",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1981,6 +2024,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage",
       "isTiled": false,
+      "QueryField": "NORM_STORA",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1990,6 +2034,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage",
       "isTiled": false,
+      "QueryField": "NORM_STORA",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -1999,6 +2044,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage",
       "isTiled": false,
+      "QueryField": "NORM_STORA",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -2008,6 +2054,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage",
       "isTiled": false,
+      "QueryField": "NORM_STORA",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -2017,6 +2064,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage",
       "isTiled": false,
+      "QueryField": "NORM_STORA",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
@@ -2026,6 +2074,7 @@
       "DataSetName": "nid09ad_jun11",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage",
       "isTiled": false,
+      "QueryField": "NORM_STORA",
       "path": "Nationwide/HYDRO_MOD/NID",
       "DatasetType": "ESRI_POINT"
     },
