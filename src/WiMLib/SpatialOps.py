@@ -176,7 +176,7 @@ class SpatialOps(object):
             mask = None 
             #do not release
             out_projected_fc = None      
-    def getFeatureStatistic(self, inFeature, maskFeature, statisticRules, fieldStr, matchOption = "COMPLETELY_CONTAINS"):
+    def getFeatureStatistic(self, inFeature, maskFeature, statisticRules, fieldStr, matchOption = "COMPLETELY_CONTAINS", SelectionField, SelectionYear):
         '''
         computes the statistic 
         Statistic rules, semicolon separated
@@ -217,7 +217,11 @@ class SpatialOps(object):
 
             tblevalue = arcpy.Statistics_analysis(spOverlay,os.path.join(self._TempLocation, "ftmp"),map)
             mappedFeilds = [x[1]+"_"+x[0] for x in map]
-            cursor = arcpy.da.SearchCursor(tblevalue, mappedFeilds )
+            if SelectionYear > 0:
+                whereClause = "{} <= {}".format(SelectionField, SelectionYear)
+            else:
+                whereClause = ""
+            cursor = arcpy.da.SearchCursor(tblevalue, mappedFeilds, whereClause)
             for row in cursor:
                 i=0
                 for m in map:
@@ -577,13 +581,6 @@ class SpatialOps(object):
             self._sm("Error computing Raster Percent Area " +tb,"ERROR",289)
             return True
     #endregion
-
-    def getCalculateEval(self, equation):
-        """
-            Uses eval() running on an equation to calculate a resultant. Created by JWX
-        """
-        python_obj = json.loads(config.json) #Ref: https://pythonspot.com/en/json-encoding-and-decoding-with-python/
-        
 
     #region helper methods
     def _LicenseManager(self, extension, checkout=True):
