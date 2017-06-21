@@ -1096,6 +1096,55 @@
       "MapLayers": [ "wildfire2011" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5669a834e4b08895842a1d49"
+    },
+    "TOT_HDENS00": {
+      "Procedure": "TO BE DETERMINED",
+      "Description": "SILVIS lab housing density for 2000",
+      "MapLayers": [ "hdens00" ],
+      "UnitID": "persons per square kilometer",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
+    },
+    "TOT_HDENS10": {
+      "Procedure": "TO BE DETERMINED",
+      "Description": "SILVIS lab housing density for 2010",
+      "MapLayers": [ "hdens10" ],
+      "UnitID": "persons per square kilometer",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
+    },
+    "TOT_HDENS40": {
+      "Procedure": "TO BE DETERMINED",
+      "Description": "SILVIS lab housing density for 1940",
+      "MapLayers": [ "hdens40" ],
+      "UnitID": "persons per square kilometer",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
+    },
+    "TOT_HDENS50": {
+      "Procedure": "TO BE DETERMINED",
+      "Description": "SILVIS lab housing density for 1950",
+      "MapLayers": [ "hdens50" ],
+      "UnitID": "persons per square kilometer",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
+    },
+    "TOT_HDENS60": {
+      "Procedure": "TO BE DETERMINED",
+      "Description": "SILVIS lab housing density for 1960",
+      "MapLayers": [ "hdens60" ],
+      "UnitID": "persons per square kilometer",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
+    },
+    "TOT_HDENS70": {
+      "Procedure": "TO BE DETERMINED",
+      "Description": "SILVIS lab housing density for 1970",
+      "MapLayers": [ "hdens70" ],
+      "UnitID": "persons per square kilometer",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
+    },
+    "TOT_HDENS80": {
+      "Procedure": "TO BE DETERMINED",
+      "Description": "SILVIS lab housing density for 1980",
+      "MapLayers": [ "hdens80" ],
+      "UnitID": "persons per square kilometer",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
     }
   },
   "maplayers": {
@@ -2027,6 +2076,62 @@
       "Description": "Wildfire 2012",
       "isTiled": false,
       "path": "Nationwide/LANDSCAPE/WILDFIRE/2012",
+      "DatasetType": "ESRI_GRID"
+    },
+    "hdens00": {
+      "ID": 77001,
+      "Name": "hden_pbg_2000",
+      "Description": "SILVIS Housing Density 2000",
+      "isTiled": false,
+      "path": "Nationwide/POPULATION_INFRASTRUCTURE/SILVIS/huden-1940-2010/huden-1940-2010",
+      "DatasetType": "ESRI_GRID"
+    },
+    "hdens10": {
+      "ID": 77001,
+      "Name": "hden_pbg_2010",
+      "Description": "SILVIS Housing Density 2010",
+      "isTiled": false,
+      "path": "Nationwide/POPULATION_INFRASTRUCTURE/SILVIS/huden-1940-2010/huden-1940-2010",
+      "DatasetType": "ESRI_GRID"
+    },
+    "hdens40": {
+      "ID": 77001,
+      "Name": "hden_pbg_1940",
+      "Description": "SILVIS Housing Density 1940",
+      "isTiled": false,
+      "path": "Nationwide/POPULATION_INFRASTRUCTURE/SILVIS/huden-1940-2010/huden-1940-2010",
+      "DatasetType": "ESRI_GRID"
+    },
+    "hdens50": {
+      "ID": 77001,
+      "Name": "hden_pbg_1950",
+      "Description": "SILVIS Housing Density 1950",
+      "isTiled": false,
+      "path": "Nationwide/POPULATION_INFRASTRUCTURE/SILVIS/huden-1940-2010/huden-1940-2010",
+      "DatasetType": "ESRI_GRID"
+    },
+    "hdens60": {
+      "ID": 77001,
+      "Name": "hden_pbg_1960",
+      "Description": "SILVIS Housing Density 1960",
+      "isTiled": false,
+      "path": "Nationwide/POPULATION_INFRASTRUCTURE/SILVIS/huden-1940-2010/huden-1940-2010",
+      "DatasetType": "ESRI_GRID"
+    },
+    "hdens70": {
+      "ID": 77001,
+      "Name": "hden_pbg_1970",
+      "Description": "SILVIS Housing Density 1970",
+      "isTiled": false,
+      "path": "Nationwide/POPULATION_INFRASTRUCTURE/SILVIS/huden-1940-2010/huden-1940-2010",
+      "DatasetType": "ESRI_GRID"
+    },
+    "hdens80": {
+      "ID": 77001,
+      "Name": "hden_pbg_1980",
+      "Description": "SILVIS Housing Density 1980",
+      "isTiled": false,
+      "path": "Nationwide/POPULATION_INFRASTRUCTURE/SILVIS/huden-1940-2010/huden-1940-2010",
       "DatasetType": "ESRI_GRID"
     }
   }
