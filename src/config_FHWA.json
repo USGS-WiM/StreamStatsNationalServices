@@ -1274,6 +1274,62 @@
       "MapLayers": [ "hdens90" ],
       "UnitID": "persons per square kilometer",
       "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
+    },
+    "TOT_BEDPERM_1": {
+      "Procedure": "getRasterPercent",
+      "Description": "Not a principal aquifer",
+      "MapLayers": [ "hdens90" ],
+      "ClassCodes": "1",
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5703c816e4b0328dcb82295a"
+    },
+    "TOT_BEDPERM_2": {
+      "Procedure": "getRasterPercent",
+      "Description": "Sandstone",
+      "MapLayers": [ "hdens90" ],
+      "ClassCodes": "2",
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5703c816e4b0328dcb82295a"
+    },
+    "TOT_BEDPERM_3": {
+      "Procedure": "getRasterPercent",
+      "Description": "Semi consolidated sand",
+      "MapLayers": [ "hdens90" ],
+      "ClassCodes": "3",
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5703c816e4b0328dcb82295a"
+    },
+    "TOT_BEDPERM_4": {
+      "Procedure": "getRasterPercent",
+      "Description": "Basalt and other volcanic rocks",
+      "MapLayers": [ "hdens90" ],
+      "ClassCodes": "4",
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5703c816e4b0328dcb82295a"
+    },
+    "TOT_BEDPERM_5": {
+      "Procedure": "getRasterPercent",
+      "Description": "Sandstone and carbonate rocks",
+      "MapLayers": [ "hdens90" ],
+      "ClassCodes": "5",
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5703c816e4b0328dcb82295a"
+    },
+    "TOT_BEDPERM_6": {
+      "Procedure": "getRasterPercent",
+      "Description": "Unconsolidated sand and gravel",
+      "MapLayers": [ "hdens90" ],
+      "ClassCodes": "6",
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5703c816e4b0328dcb82295a"
+    },
+    "TOT_BEDPERM_7": {
+      "Procedure": "getRasterPercent",
+      "Description": "Carbonate rock",
+      "MapLayers": [ "hdens90" ],
+      "ClassCodes": "7",
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/5703c816e4b0328dcb82295a"
     }
   },
   "maplayers": {
