@@ -176,7 +176,7 @@ class SpatialOps(object):
             mask = None 
             #do not release
             out_projected_fc = None      
-    def getFeatureStatistic(self, inFeature, maskFeature, statisticRules, fieldStr, matchOption = "COMPLETELY_CONTAINS", SelectionField, SelectionYear):
+    def getFeatureStatistic(self, inFeature, maskFeature, statisticRules, fieldStr, SelectionField, SelectionYear, matchOption = "COMPLETELY_CONTAINS"):
         '''
         computes the statistic 
         Statistic rules, semicolon separated
