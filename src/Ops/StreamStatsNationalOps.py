@@ -83,7 +83,8 @@ class StreamStatsNationalOps(SpatialOps):
         result = {Characteristic.Name:None}
         try:
             self._sm("Computing " + Characteristic.Name)
-            ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))            
+#            ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))
+            ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]), "", self.mask)
             if not ML.Activated:
                 raise Exception("Map Layer could not be activated.")
 
@@ -139,6 +140,7 @@ class StreamStatsNationalOps(SpatialOps):
         try:
             self._sm("Computing " + Characteristic.Name)
             ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))
+            ML_sr = arcpy.Describe(ML.Dataset).spatialReference
 
             arcpy.env.workspace = self._TempLocation
             if not ML.Activated:
@@ -149,7 +151,7 @@ class StreamStatsNationalOps(SpatialOps):
             totArea = self.getAreaSqMeter(self.mask)*Shared.CF_SQMETERS2SQKILOMETER #Put ConversionFactor here?
             #spatial overlay
             #cursor and sum
-            with arcpy.da.SearchCursor(self.spatialOverlay(ML.Dataset, self.mask), Characteristic.QueryField, spatial_reference=ML.spatialreference) as source_curs:
+            with arcpy.da.SearchCursor(self.spatialOverlay(ML.Dataset, self.mask), Characteristic.QueryField, spatial_reference=ML_sr) as source_curs:
                 for row in source_curs:
                     val = WiMLib.Shared.try_parse(row[0], None)
                     result[Characteristic.Name] += float(val)*Shared.CF_ACR2SQKILOMETER/totArea #Put ConversionFactor here?

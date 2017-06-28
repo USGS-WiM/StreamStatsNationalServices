@@ -47,4 +47,6 @@ class Characteristic(object):
         self.Equation = CharObj["Equation"]if ("Equation" in CharObj) else None
         self.EquationVariables = CharObj["EquationVariables"]if ("EquationVariables" in CharObj) else None
         self.SubProcedure = CharObj["SubProcedure"]if ("SubProcedure" in CharObj) else None
+        self.SelectionYear = CharObj["SelectionYear"]if ("SelectionYear" in CharObj) else None
+        self.SelectionField = CharObj["SelectionField"]if ("SelectionField" in CharObj) else None
     #endregion
