@@ -85,7 +85,7 @@ class MapLayer(object):
                 raise Exception(datasetPath +" doesn't exist")
 
             self.Dataset = datasetPath
-            self.spatialreference = arcpy.Describe(datasetPath).spatialReference
+            #self.spatialreference = arcpy.Describe(datasetPath).spatialReference
             self.Activated = True;
         except:
             tb = traceback.format_exc()
