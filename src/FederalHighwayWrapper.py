@@ -151,27 +151,27 @@ class DelineationWrapper(object):
 
             mask = arcpy.CreateFeatureclass_management("in_memory", "maskFC"+gage.comid, "POLYGON", spatial_reference=gage.sr) 
             if (maskjson["type"].lower() =="feature"):
-                if maskjson["geometry"]["type"].lower() !="polygon":
+                if not maskjson["geometry"]["type"].lower() in ["polygon","multipolygon"]:
                     raise Exception('Mask Geometry is not polygon output will be erroneous!')
                 GeoJsonHandler.read_feature(maskjson,mask,gage.sr)
             else:
                 for feature in maskjson["features"]:
-                    if feature["geometry"]["type"].lower() != "polygon":
+                    if not feature["geometry"]["type"].lower() in ["polygon","multipolygon"]:
                         raise Exception('Mask Geometry within the Feature Collection is not polygon output will be erroneous!')
                 GeoJsonHandler.read_feature_collection(maskjson,mask,gage.sr) 
-            
-            basinjson = sa.getBasin(gage.comid,False)
+            fileSA = NLDIFileServiceAgent()
+            basinjson = fileSA.getBasin(gage.comid,False)
 
             if(not basinjson): return None
 
             basin = arcpy.CreateFeatureclass_management("in_memory", "globalBasin"+gage.comid, "POLYGON", spatial_reference=gage.sr) 
             if (basinjson["type"].lower() =="feature"):
-                if basinjson["geometry"]["type"].lower() !="polygon":
+                if not basinjson["geometry"]["type"].lower() in ["polygon","multipolygon"]:
                     raise Exception('Basin Geometry is not polygon output will be erroneous!')
                 GeoJsonHandler.read_feature(basinjson,basin,gage.sr)
             else:
                 for feature in basinjson["features"]:
-                    if feature["geometry"]["type"].lower() != "polygon":
+                    if not feature["geometry"]["type"].lower() in ["polygon","multipolygon"]:
                         raise Exception('Basin Geometry within the Feature Collection is not polygon output will be erroneous!')
                 GeoJsonHandler.read_feature_collection(basinjson,basin,gage.sr)         
                     

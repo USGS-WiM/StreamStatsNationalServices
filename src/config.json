@@ -7,7 +7,7 @@
     "nldiWFS": "/nwc/geoserver/nhdplus/ows?service=wfs&version=1.0.0&request=GetFeature&typeName=nhdplus:catchmentsp&srsName=EPSG:{0}&outputFormat=json&filter=<Filter xmlns=\"http://www.opengis.net/ogc\" xmlns:gml=\"http://www.opengis.net/gml\"><Contains><PropertyName>the_geom</PropertyName><gml:Point srsName=\"EPSG:{0}\"><gml:coordinates>{1},{2}</gml:coordinates></gml:Point></Contains></Filter>",
     "nldiChars": "/nldi/comid/{0}/tot"
   },
-  "UseNLDIServices": false,
+  "UseNLDIServices": true,
   "workingdirectory": "C:/gis/usgs/ss/Applications/output/gage_iii",
   "parentdirectory": "C:/gis/usgs/ss/ss_data/FHWA",
   "outputFile": "splitCatchment.csv",
