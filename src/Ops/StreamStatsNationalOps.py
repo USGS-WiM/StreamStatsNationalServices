@@ -115,7 +115,7 @@ class StreamStatsNationalOps(SpatialOps):
             if not ML.Activated:
                 raise Exception("Map Layer could not be activated.")
 
-            tot = super(StreamStatsNationalOps,self).getFeatureStatistic(ML.Dataset, self.mask, Characteristic.Method, Characteristic.QueryField)
+            tot = super(StreamStatsNationalOps,self).getFeatureStatistic(ML.Dataset, self.mask, Characteristic.Method, Characteristic.QueryField, Characteristic.WhereClause)
 
             result[Characteristic.Name] = tot[Characteristic.QueryField][Characteristic.Method]
 

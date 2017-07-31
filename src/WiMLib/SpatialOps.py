@@ -176,7 +176,7 @@ class SpatialOps(object):
             mask = None 
             #do not release
             out_projected_fc = None      
-    def getFeatureStatistic(self, inFeature, maskFeature, statisticRules, fieldStr, SelectionField, SelectionYear, matchOption = "COMPLETELY_CONTAINS"):
+    def getFeatureStatistic(self, inFeature, maskFeature, statisticRules, fieldStr, WhereClause = "", matchOption = "COMPLETELY_CONTAINS"):
         '''
         computes the statistic 
         Statistic rules, semicolon separated
@@ -217,10 +217,7 @@ class SpatialOps(object):
 
             tblevalue = arcpy.Statistics_analysis(spOverlay,os.path.join(self._TempLocation, "ftmp"),map)
             mappedFeilds = [x[1]+"_"+x[0] for x in map]
-            if SelectionYear > 0:
-                whereClause = "{} <= {}".format(SelectionField, SelectionYear)
-            else:
-                whereClause = ""
+            whereClause = WhereClause
             cursor = arcpy.da.SearchCursor(tblevalue, mappedFeilds, whereClause)
             for row in cursor:
                 i=0

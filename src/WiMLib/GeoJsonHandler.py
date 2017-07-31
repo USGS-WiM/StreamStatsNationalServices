@@ -247,7 +247,7 @@ def read_feature(geojson_feat, target_fc, sr=None):
         varshape = read_geometry(geojson_feat["geometry"], sr)
         row.SHAPE = varshape[0]
 
-
+        #We should be able to ignore the error coming from here not pulling the attribute
         logger.debug("Adding attributes")
         for k in geojson_feat:
             if isinstance(geojson_feat[k], dict):

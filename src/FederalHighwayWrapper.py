@@ -204,7 +204,7 @@ class DelineationWrapper(object):
                     if (method): 
                         result = method(parameter) 
                         #todo:merge with request from NLDI
-                        if(parameter.Name in globalValue): 
+                        if(globalValue != None and parameter.Name in globalValue): 
                             print "The Name is: " + parameter.Name
                             try:
                                 if globalValue[parameter.Name] == "":
