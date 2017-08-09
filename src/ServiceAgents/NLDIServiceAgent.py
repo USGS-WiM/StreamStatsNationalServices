@@ -66,7 +66,7 @@ class NLDIServiceAgent(ServiceAgentBase.ServiceAgentBase):
         try:
             resource = Config()['queryParams']['nldiChars'].format(comID)
             
-            results = json.loads(self.Execute(resource))
+            results = self.Execute(resource) #Removed json.load from results
             
             for x in results['characteristics']:
                 results[str(x['characteristic_id'])] = x['characteristic_value']

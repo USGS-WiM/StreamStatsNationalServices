@@ -182,7 +182,7 @@ class DelineationWrapper(object):
             return ssdel.WorkspaceID
         except:
             tb = traceback.format_exc()
-            WiMLogging.sm("Error writing computing Characteristics "+tb)
+            WiMLogging.sm("Error delineating basin "+tb)
             return None
     def _computeCharacteristics(self,gage,workspace,workspaceID):
         method = None

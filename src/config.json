@@ -633,35 +633,35 @@
     "TOT_HGA": {
       "Procedure": "getRasterPercent",
       "Description": "Percentage of soils in hydrologic group A. Hydrologic group A soils have high infiltration rates. Soils are deep and well drained and, typically, have high sand and gravel content.",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "hga" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5728d93be4b0b13d3918a99f"
     },
     "TOT_HGB": {
       "Procedure": "getRasterPercent",
       "Description": "Percentage of soils in hydrologic group B. Hydrologic group B soils have moderate infiltration rates. Soils are moderately deep, moderately well drained, and moderately coarse in texture.",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "hgb" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5728d93be4b0b13d3918a99f"
     },
     "TOT_HGC": {
       "Procedure": "getRasterPercent",
       "Description": "Percentage of soils in hydrologic group C. Hydrologic group C soils have slow soil inflitration rates. The soil profiles include layers impeding downward movement of water and, typically, have moderately fine or fine texture.",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "hgc" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5728d93be4b0b13d3918a99f"
     },
     "TOT_HGD": {
       "Procedure": "getRasterPercent",
       "Description": "Percentage of soils in hydrologic group D. Hydrologic group D soils have very slow infiltration rates. Soils are clayey, have a high water table, or have a shallow impervious layer.",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "hgd" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5728d93be4b0b13d3918a99f"
     },
     "TOT_HGCD": {
       "Procedure": "getRasterPercent",
       "Description": "Percentage of soils in hydrologic group C/D. Hydrologic group C/D soils have group C characteristics (slow infiltration rates) when artificially drained and have group D characteristics (very slow infiltration rates) when not drained.",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "hgcd" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5728d93be4b0b13d3918a99f"
     },
@@ -669,7 +669,7 @@
       "Procedure": "getRasterStatistic",
       "Description": "Average value for the range of available water capacity for the soil layer or horizon",
       "Method": "Mean",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "awcave" ],
       "UnitID": "inches of water per inches of soil depth",
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
@@ -677,7 +677,7 @@
       "Procedure": "getRasterStatistic",
       "Description": "Average K-factor value for the uppermost soil horizon in each soil component. K-factor is an erodibility factor which quantifies the susceptibility of soil particles to detachment and movement by water. The K-factor is used in the Universal Soil Loss Equation (USLE) to estimate soil loss by water. Higher values of K-factor indicate greater potential for erosion.",
       "Method": "Mean",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "kfact_up" ],
       "UnitID": "unitless",
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9a"
     },
@@ -685,7 +685,7 @@
       "Procedure": "getRasterStatistic",
       "Description": "Average value of percent by weight of soil material less than 3 inches in size and passing a No. 10 sieve (2 mm)",
       "Method": "Mean",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "no10ave" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
@@ -693,7 +693,7 @@
       "Procedure": "getRasterStatistic",
       "Description": "Average value of percent by weight of soil material less than 3 inches in size and passing a No. 200 sieve (.074 mm)",
       "Method": "Mean",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "no200ave" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
@@ -701,7 +701,7 @@
       "Procedure": "getRasterStatistic",
       "Description": "Average value of percent by weight of soil material less than 3 inches in size and passing a No. 4 sieve (5 mm)",
       "Method": "Mean",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "no4ave" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
@@ -709,7 +709,7 @@
       "Procedure": "getRasterStatistic",
       "Description": "Average value of organic matter content (percent by weight)",
       "Method": "Mean",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "om" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
@@ -717,7 +717,7 @@
       "Procedure": "getRasterStatistic",
       "Description": "Average permeability",
       "Method": "Mean",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "permave" ],
       "UnitID": "inches/hour",
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
@@ -725,7 +725,7 @@
       "Procedure": "getRasterStatistic",
       "Description": "Rainfall and Runoff factor (\"R factor\" of Universal Soil Loss Equation); average annual value for period 1971-2000",
       "Method": "Mean",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "rfact" ],
       "UnitID": "100s ft-tonf in/h/ac/yr",
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
@@ -733,7 +733,7 @@
       "Procedure": "getRasterStatistic",
       "Description": "Average value of total soil thickness examined",
       "Method": "Mean",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "rockdep" ],
       "UnitID": "inches",
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
@@ -741,7 +741,7 @@
       "Procedure": "getRasterStatistic",
       "Description": "Average value of clay content",
       "Method": "Mean",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "clayave" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5728dd46e4b0b13d3918a9a7"
     },
@@ -749,7 +749,7 @@
       "Procedure": "getRasterStatistic",
       "Description": "Average value of sand content",
       "Method": "Mean",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "sandave" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5728dd46e4b0b13d3918a9a7"
     },
@@ -757,7 +757,7 @@
       "Procedure": "getRasterStatistic",
       "Description": "Average value of silt ave",
       "Method": "Mean",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "siltave" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5728dd46e4b0b13d3918a9a7"
     },
@@ -876,14 +876,14 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/57716be5e4b07657d1a6baab"
     },
     "TOT_MIRAD_2007": {
-      "Procedure": "getFeatureCount",
+      "Procedure": "getRasterPercent",
       "Description": "Percent of watershed in irrigated agriculture, from USGS 2007 250-m MODIS data",
       "MapLayers": [ "mirad2007" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/573b7850e4b0dae0d5e3aeb0"
     },
     "TOT_MIRAD_2002": {
-      "Procedure": "getFeatureCount",
+      "Procedure": "getRasterPercent",
       "Description": "Percent of watershed in irrigated agriculture, from USGS 2002 250-m MODIS data",
       "MapLayers": [ "mirad2002" ],
       "UnitID": "percent",
@@ -1811,7 +1811,7 @@
     },
     "nlcd_2006": {
       "ID": 26001,
-      "Name": "nlcd_2006_landcover_2011_edition_2014_10_10.img",
+      "Name": "nlcd_2006_landcover_2011_edition_2014_10_10",
       "Description": "National Land Cover Database (NLCD) 2006",
       "isTiled": false,
       "path": "Nationwide/LANDSCAPE/NLCD/2006/nlcd_2006_landcover_2011_edition_2014_10_10",
@@ -1823,7 +1823,10 @@
       "Description": "Basin Characteristics",
       "isTiled": true,
       "path": "Tiled/NHDPlus_v2",
-      "DatasetType": "ESRI_RASTER"
+      "DatasetType": "ESRI_RASTER",
+      "queryFeaturePath": "RPU.shp",
+      "queryField": "ElevPath",
+      "UnitID": "sq-m"
     },
     "statsgo": {
       "ID": 28001,
@@ -1833,9 +1836,145 @@
       "path": "Nationwide/SOILS/STATSGO/muid",
       "DatasetType": "ESRI_RASTER"
     },
+    "hga": {
+      "ID": 28002,
+      "Name": "hga",
+      "Description": "STATSGO Soil Characteristics, Hydrologic Groups",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "hgb": {
+      "ID": 28003,
+      "Name": "hgb",
+      "Description": "STATSGO Soil Characteristics, Hydrologic Groups",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "hgc": {
+      "ID": 28004,
+      "Name": "hgc",
+      "Description": "STATSGO Soil Characteristics, Hydrologic Groups",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "hgd": {
+      "ID": 28005,
+      "Name": "hgd",
+      "Description": "STATSGO Soil Characteristics, Hydrologic Groups",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "hgcd": {
+      "ID": 28006,
+      "Name": "hgcd",
+      "Description": "STATSGO Soil Characteristics, Hydrologic Groups",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "awcave": {
+      "ID": 28007,
+      "Name": "awcave",
+      "Description": "STATSGO Soil Characteristics, Hydrologic Groups",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "kfact_up": {
+      "ID": 28008,
+      "Name": "kfact_up",
+      "Description": "STATSGO Soil Characteristics, Layer Attributes",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "no10ave": {
+      "ID": 28009,
+      "Name": "no10ave",
+      "Description": "STATSGO Soil Characteristics, Layer Attributes",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "no200ave": {
+      "ID": 28010,
+      "Name": "no200ave",
+      "Description": "STATSGO Soil Characteristics, Layer Attributes",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "no4ave": {
+      "ID": 28011,
+      "Name": "no4ave",
+      "Description": "STATSGO Soil Characteristics, Layer Attributes",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "om": {
+      "ID": 28012,
+      "Name": "om",
+      "Description": "STATSGO Soil Characteristics, Layer Attributes",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "permave": {
+      "ID": 28013,
+      "Name": "permave",
+      "Description": "STATSGO Soil Characteristics, Layer Attributes",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "rfact": {
+      "ID": 28014,
+      "Name": "rfact",
+      "Description": "STATSGO Soil Characteristics, Layer Attributes",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "rockdep": {
+      "ID": 28015,
+      "Name": "rockdep",
+      "Description": "STATSGO Soil Characteristics, Layer Attributes",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "clayave": {
+      "ID": 28016,
+      "Name": "clayave",
+      "Description": "STATSGO Soil Characteristics, Layer Attributes",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "sandave": {
+      "ID": 28017,
+      "Name": "sandave",
+      "Description": "STATSGO Soil Characteristics, Layer Attributes",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "siltave": {
+      "ID": 28018,
+      "Name": "siltave",
+      "Description": "STATSGO Soil Characteristics, Layer Attributes",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
     "impv01": {
       "ID": 29001,
-      "Name": "nlcd_2001_impervious_2011_edition_2014_10_10.img",
+      "Name": "nlcd_2001_impervious_2011_edition_2014_10_10",
       "Description": "Impervious surface from NLCD 2001",
       "isTiled": false,
       "path": "Nationwide/LANDSCAPE/NLCD/2001/nlcd_2001_impervious_2011_edition_2014_10_10",
@@ -1843,7 +1982,7 @@
     },
     "impv06": {
       "ID": 30001,
-      "Name": "nlcd_2006_impervious_2011_edition_2014_10_10.img",
+      "Name": "nlcd_2006_impervious_2011_edition_2014_10_10",
       "Description": "Impervious surface from NLCD 2006",
       "isTiled": false,
       "path": "Nationwide/LANDSCAPE/NLCD/2006/nlcd_2006_impervious_2011_edition_2014_10_10",
@@ -2282,7 +2421,7 @@
       "Name": "us_dist2010",
       "Description": "Wildfire 2010",
       "isTiled": false,
-      "path": "Nationwide/LANDSCAPE/WILDFIRE/2010",
+      "path": "Nationwide/LANDSCAPE/WILDFIRE/WildFire_g/fire2010g",
       "DatasetType": "ESRI_GRID"
     },
     "wildfire2011": {
@@ -2290,7 +2429,7 @@
       "Name": "us_dist2011",
       "Description": "Wildfire 2011",
       "isTiled": false,
-      "path": "Nationwide/LANDSCAPE/WILDFIRE/2011",
+      "path": "Nationwide/LANDSCAPE/WILDFIRE/WildFire_g/fire2011g",
       "DatasetType": "ESRI_GRID"
     },
     "wildfire2012": {
@@ -2298,7 +2437,7 @@
       "Name": "us_dist2012",
       "Description": "Wildfire 2012",
       "isTiled": false,
-      "path": "Nationwide/LANDSCAPE/WILDFIRE/2012",
+      "path": "Nationwide/LANDSCAPE/WILDFIRE/WildFire_g/fire2012g",
       "DatasetType": "ESRI_GRID"
     },
     "hdens00": {
