@@ -151,6 +151,8 @@ def _dissolve_multipart(geom_list):
     shape_list = []
     for geom in geom_list:
         unique_name = arcpy.CreateUniqueName(os.path.join(folder, "xxx.shp"))
+        unique_nameTbl = arcpy.CreateUniqueName(os.path.join(folder, "cktbl"))
+        arcpy.CheckGeometry_management(geom, unique_nameTbl)
         arcpy.CopyFeatures_management(geom, unique_name)
         shape_list.append(unique_name)
 

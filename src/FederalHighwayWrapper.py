@@ -33,6 +33,7 @@ import string
 import os
 import argparse
 import arcpy
+import gc
 from arcpy import env
 from arcpy.sa import *
 from Ops.HydroOps import  HydroOps
@@ -124,8 +125,10 @@ class DelineationWrapper(object):
                     Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(str(v) for v in [g.comid,workspaceID,'error',g.lat,g.long])) 
                 else:
                     Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(str(v) for v in [g.comid,workspaceID,results.Description,g.lat,g.long]+results.Values.values()))             
+                gc.collect()
             #next station           
             
+
             print 'Finished.  Total time elapsed:', round((time.time()- startTime)/60, 2), 'minutes'
 
         except:
@@ -200,7 +203,9 @@ class DelineationWrapper(object):
                         self._sm(p +"Not available to compute")
                         continue
 
-                    method = getattr(sOps, parameter.Procedure) 
+                    method = getattr(sOps, parameter.Procedure)
+                    #if method != 'getPrismStatistic':
+                    #    continue
                     if (method): 
                         result = method(parameter) 
                         #todo:merge with request from NLDI

@@ -1942,7 +1942,7 @@
     },
     "rockdep": {
       "ID": 28015,
-      "Name": "rockdep",
+      "Name": "rockdepave",
       "Description": "STATSGO Soil Characteristics, Layer Attributes",
       "isTiled": false,
       "path": "Nationwide/SOILS/STATSGO/soils/soils",
@@ -2418,26 +2418,26 @@
     },
     "wildfire2010": {
       "ID": 75001,
-      "Name": "us_dist2010",
+      "Name": "fire2010g",
       "Description": "Wildfire 2010",
       "isTiled": false,
-      "path": "Nationwide/LANDSCAPE/WILDFIRE/WildFire_g/fire2010g",
+      "path": "Nationwide/LANDSCAPE/WILDFIRE/WildFire_g",
       "DatasetType": "ESRI_GRID"
     },
     "wildfire2011": {
       "ID": 76001,
-      "Name": "us_dist2011",
+      "Name": "fire2011g",
       "Description": "Wildfire 2011",
       "isTiled": false,
-      "path": "Nationwide/LANDSCAPE/WILDFIRE/WildFire_g/fire2011g",
+      "path": "Nationwide/LANDSCAPE/WILDFIRE/WildFire_g",
       "DatasetType": "ESRI_GRID"
     },
     "wildfire2012": {
       "ID": 77001,
-      "Name": "us_dist2012",
+      "Name": "fire2012g",
       "Description": "Wildfire 2012",
       "isTiled": false,
-      "path": "Nationwide/LANDSCAPE/WILDFIRE/WildFire_g/fire2012g",
+      "path": "Nationwide/LANDSCAPE/WILDFIRE/WildFire_g",
       "DatasetType": "ESRI_GRID"
     },
     "hdens00": {

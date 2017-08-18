@@ -30,7 +30,7 @@ class Characteristic(object):
 
         self.ID =  CharObj["ID"]if ("ID" in CharObj) else 0
         self.Name = chardefname
-        self.MapLayers = CharObj["MapLayers"]      
+        self.MapLayers = CharObj["MapLayers"]
         self.Method = CharObj["Method"] if ("Method" in CharObj) else None
         self.UnitID = CharObj["UnitID"]if ("UnitID" in CharObj) else ""
         self.Procedure = CharObj["Procedure"]

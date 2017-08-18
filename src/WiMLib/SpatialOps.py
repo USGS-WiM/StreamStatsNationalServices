@@ -55,7 +55,10 @@ class SpatialOps(object):
         self._sm("initialized spatialOps")
     def __exit__(self, exc_type, exc_value, traceback):
         try:
-            shutil.rmtree(self._TempLocation)
+            shutil.rmtree(self._TempLocation, True)
+
+            arcpy.ResetEnvironments()
+            arcpy.ClearEnvironment("workspace")
         except:
             self._sm("Failed to remove temp space on close","ERROR",50)
     
@@ -538,9 +541,10 @@ class SpatialOps(object):
             constfield = arcpy.da.TableToNumPyArray(os.path.join(self._TempLocation,"const1.img"), rasterValueField, skip_nulls=True)
 
             totalCount = float(constfield[rasterValueField].sum())
-
-            SQLClause = " OR ".join(map(lambda s: uniqueRasterIDfield +"=" + s,ClassificationCodes.strip().split(",")))
-            
+            if ClassificationCodes != None:
+                SQLClause = " OR ".join(map(lambda s: uniqueRasterIDfield +"=" + s,ClassificationCodes.strip().split(",")))
+            else:
+                SQLClause = "VALUE > 0"
 
             # Execute ExtractByAttributes
             #ensure spatial analyst is checked out
