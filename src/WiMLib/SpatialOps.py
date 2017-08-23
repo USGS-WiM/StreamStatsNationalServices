@@ -375,12 +375,14 @@ class SpatialOps(object):
             return float(value.getOutput(0))
         except:
             tb = traceback.format_exc()
-            self._sm("Failed to get raster statistic computing centroid value.","WARNING",229)
+            self._sm("WARNING: Failed to get raster statistic computing centroid value.","WARNING",229)
             cellsize = float(arcpy.GetRasterProperties_management(inRaster, 'CELLSIZEX').getOutput(0))**2
             self._sm("Raster cell size: " + str(cellsize) , "WARNING")
             maskArea = self.getAreaSqMeter(self.mask)
             maskArea = maskArea*0.000001
             centValue = self.getValueAtCentroid(maskFeature,inRaster)            # try getting centroid
+            if centValue in ['NaN', 'none', 0]:
+                self._sm("WARNING: Raster statistic AND get value at centroid failed. Results likely erroneous.","WARNING")
             return (maskArea/cellsize)*centValue
         finally:
             outExtractByMask = None           
@@ -549,11 +551,14 @@ class SpatialOps(object):
             # Execute ExtractByAttributes
             #ensure spatial analyst is checked out
             attExtract = arcpy.sa.ExtractByAttributes(inRaster, SQLClause)  
-            #must save raster 
-            attExtract.save(os.path.join(self._TempLocation,"attExtract.img"))                
+            #must save raster
+            unique_name_img = arcpy.CreateUniqueName(os.path.join(self._TempLocation, "xxx.img"))
+            #ORIGINAL LINE: attExtract.save(os.path.join(self._TempLocation,"attExtract.img"))
+            attExtract.save(unique_name_img)
             if self.isRasterALLNoData(attExtract): return float(0)
             #Does not respect the workspace dir, so need to set it explicitly
-            attField = arcpy.da.TableToNumPyArray(os.path.join(self._TempLocation,"attExtract.img"), rasterValueField, skip_nulls=True)            
+            #ORIGINAL LINE: attField = arcpy.da.TableToNumPyArray(os.path.join(self._TempLocation,"attExtract.img"), rasterValueField, skip_nulls=True)
+            attField = arcpy.da.TableToNumPyArray(unique_name_img, rasterValueField, skip_nulls=True) #I assume I should use the same variable over, but it's unclear to me -- JWX          
             results  = float(attField[rasterValueField].sum())/totalCount
             
         except:
