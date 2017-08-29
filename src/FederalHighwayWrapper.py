@@ -118,16 +118,22 @@ class DelineationWrapper(object):
                 results = self._computeCharacteristics(g,self.workingDir,workspaceID)
 
                 #write results to file
+                #Below should probably be expanded upon
                 if isFirst:
-                    Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(['COMID','WorkspaceID','Description','LAT','LONG']+results.Values.keys()))
+                    complexHeader = []
+                    allValues = []
+                    for k in results.Values.keys():
+                        for subk in ['localvalue','totalvalue','globalvalue']:
+                            complexHeader.append(str(k) + "_" + str(subk))
+                            allValues.append(results.Values[k][subk])
+                    Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(['COMID','WorkspaceID','Description','LAT','LONG']+complexHeader))
                     isFirst = False
                 if results is None: #changed to elif by jwx
                     Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(str(v) for v in [g.comid,workspaceID,'error',g.lat,g.long])) 
                 else:
-                    Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(str(v) for v in [g.comid,workspaceID,results.Description,g.lat,g.long]+results.Values.values()))             
+                    Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(str(v) for v in [g.comid,workspaceID,results.Description,g.lat,g.long]+allValues))                        
                 gc.collect()
             #next station           
-            
 
             print 'Finished.  Total time elapsed:', round((time.time()- startTime)/60, 2), 'minutes'
 
@@ -189,6 +195,7 @@ class DelineationWrapper(object):
             return None
     def _computeCharacteristics(self,gage,workspace,workspaceID):
         method = None
+        reportedValues={}
         try:
             WiMResults = Result.Result(gage.comid,"Characteristics computed for "+gage.name)
             with NLDIServiceAgent() as sa:
@@ -211,14 +218,20 @@ class DelineationWrapper(object):
                         #todo:merge with request from NLDI
                         if(globalValue != None and parameter.Name in globalValue): 
                             print "The Name is: " + parameter.Name
+                            result[parameter.Name] = None
                             try:
                                 if globalValue[parameter.Name] == "":
                                     globalValue[parameter.Name] = 0
-                                result[parameter.Name] = float(globalValue[parameter.Name])-result[parameter.Name]
+                                totalval = float(globalValue[parameter.Name])-float(result[parameter.Name]) if globalValue[parameter.Name] != None and result[parameter.Name] != None else None
+
+                                #Below should be updated to work with Total, Local, and Global values
+                                #If the parameter does not exist in globalValue the name is returned screwing things up for calculations
+                                varbar = {'totalvalue':totalval,'localvalue':result[parameter.Name],'globalvalue':globalValue[parameter.Name]}
+                                reportedResults = {parameter.Name:varbar}
                             except:
                                 "Couldn't convert " + parameter.Name + " to Float"
 
-                        WiMResults.Values.update(result)
+                            WiMResults.Values.update(reportedResults) #Tabbed this over - jwx
                     else:
                         self._sm(p.Proceedure +" Does not exist","Error")
                         continue 
@@ -235,4 +248,5 @@ class DelineationWrapper(object):
             
 if __name__ == '__main__':
     DelineationWrapper()
+
 

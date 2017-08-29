@@ -1162,6 +1162,7 @@
     "TOT_POPDENS90": {
       "Procedure": "getRasterStatistic",
       "Description": "Population density in the watershed, persons per sq km, from 1990 Census block data regridded to 100m.",
+      "Method": "Mean",
       "MapLayers": [ "popdens90" ],
       "UnitID": "persons per square kilometer",
       "Reference": "https://www.sciencebase.gov/catalog/item/5728f609e4b0b13d3918aa0e"

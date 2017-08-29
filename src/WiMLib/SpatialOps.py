@@ -123,7 +123,7 @@ class SpatialOps(object):
             return AreaValue if (AreaValue > 0) else None
         except:
             tb = traceback.format_exc()
-            self.sm("Error computing area "+tb,"ERROR")
+            self._sm("Error computing area "+tb,"ERROR")
             return None 
     def spatialJoin(self, inFeature, maskfeature, fieldStr='',methodStr ='' ):
         mask = None
