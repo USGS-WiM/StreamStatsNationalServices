@@ -1159,7 +1159,7 @@
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/57716be5e4b07657d1a6baab"
     },
-    "TOT_POPDENS90": {
+    "TOT_gagesIII_mw_characteristics_tot90": {
       "Procedure": "getRasterStatistic",
       "Description": "Population density in the watershed, persons per sq km, from 1990 Census block data regridded to 100m.",
       "Method": "Mean",

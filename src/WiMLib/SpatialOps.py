@@ -213,22 +213,33 @@ class SpatialOps(object):
             #next Field
 
             spOverlay = self.spatialOverlay(inFeature,maskFeature,matchOption)
+            
+            #Validate that we have values within the polygon/basin
+            #   If we do not, set all values equal to zero
             if(int(arcpy.GetCount_management(spOverlay).getOutput(0)) < 1):
+                self._sm("Basin contains no features", "WARNING")
                 for m in map: values[m[0]]={m[1]: float(0)}
                 return values
             #endif
 
+            #If we do have values, then carry out spatial statistics
             tblevalue = arcpy.Statistics_analysis(spOverlay,os.path.join(self._TempLocation, "ftmp"),map)
             mappedFeilds = [x[1]+"_"+x[0] for x in map]
             whereClause = WhereClause
+            self._sm("The WhereClause is: " + whereClause)
             cursor = arcpy.da.SearchCursor(tblevalue, mappedFeilds, whereClause)
-            for row in cursor:
-                i=0
-                for m in map:
-                    values[m[0]]={m[1]: float(row[i])}
-                    i+=1
-
-            return values
+            try:
+                for row in cursor:
+                    i=0
+                    for m in map:
+                        values[m[0]]={m[1]: float(row[i])}
+                        i+=1
+                return values
+            #Is an except catch for when row contains nothing
+            except:
+                self._sm("Now rows were found in cursor. Setting values to zero.", "WARNING")
+                for m in map: values[m[0]]={m[1]: float(0)}
+                return values
         except:
             tb = traceback.format_exc()
             self._sm("Failed to get raster statistic " +tb,"ERROR",229)

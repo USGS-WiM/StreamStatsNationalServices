@@ -117,21 +117,25 @@ class DelineationWrapper(object):
                     continue
                 results = self._computeCharacteristics(g,self.workingDir,workspaceID)
 
+                #Put for-for k.subk routine here instead of below
+                complexHeader = []
+                allValues = []
+                for k in results.Values.keys():
+                    for subk in ['localvalue','totalvalue','globalvalue']:
+                        complexHeader.append(str(k) + "_" + str(subk))
+                        allValues.append(results.Values[k][subk])
+
                 #write results to file
                 #Below should probably be expanded upon
                 if isFirst:
-                    complexHeader = []
-                    allValues = []
-                    for k in results.Values.keys():
-                        for subk in ['localvalue','totalvalue','globalvalue']:
-                            complexHeader.append(str(k) + "_" + str(subk))
-                            allValues.append(results.Values[k][subk])
                     Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(['COMID','WorkspaceID','Description','LAT','LONG']+complexHeader))
                     isFirst = False
                 if results is None: #changed to elif by jwx
                     Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(str(v) for v in [g.comid,workspaceID,'error',g.lat,g.long])) 
                 else:
                     Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(str(v) for v in [g.comid,workspaceID,results.Description,g.lat,g.long]+allValues))                        
+                del complexHeader
+                del allValues
                 gc.collect()
             #next station           
 
@@ -207,7 +211,7 @@ class DelineationWrapper(object):
                     method = None
                     parameter = Characteristic.Characteristic(p)
                     if(not parameter): 
-                        self._sm(p +"Not available to compute")
+                        WiMLogging.sm(p +"Not available to compute")
                         continue
 
                     method = getattr(sOps, parameter.Procedure)
@@ -216,14 +220,14 @@ class DelineationWrapper(object):
                     if (method): 
                         result = method(parameter) 
                         #todo:merge with request from NLDI
+                        WiMLogging.sm("The local result value for " + str(parameter.Name) + " : " + str(result[parameter.Name]))
                         if(globalValue != None and parameter.Name in globalValue): 
                             print "The Name is: " + parameter.Name
-                            result[parameter.Name] = None
                             try:
                                 if globalValue[parameter.Name] == "":
                                     globalValue[parameter.Name] = 0
                                 totalval = float(globalValue[parameter.Name])-float(result[parameter.Name]) if globalValue[parameter.Name] != None and result[parameter.Name] != None else None
-
+                                WiMLogging.sm("The global value for " + str(parameter.Name) + " : " + str(globalValue[parameter.Name]))
                                 #Below should be updated to work with Total, Local, and Global values
                                 #If the parameter does not exist in globalValue the name is returned screwing things up for calculations
                                 varbar = {'totalvalue':totalval,'localvalue':result[parameter.Name],'globalvalue':globalValue[parameter.Name]}
@@ -232,8 +236,23 @@ class DelineationWrapper(object):
                                 "Couldn't convert " + parameter.Name + " to Float"
 
                             WiMResults.Values.update(reportedResults) #Tabbed this over - jwx
+                        #The following section was put in place by me, John Wall, to help with issues of Global Value = None or where the Parameter is not within a list.
+                        #   This was an observed issue after placing the Total, Local, and Global Value component above.
+                        #   Looking over the results of including this, we should be able to properly validate our results.
+                        #   It should be noted that in at least one instance the WD6190 is not obtained for the Global Value where it is within the CSV.
+                        #   Why is this not properly pulled? It's unclear at the current time (8 SEPT 2017)
+                        if(globalValue is None or parameter.Name not in globalValue):
+                            WiMLogging.sm("WARNING: Global Value was 'None' or the Parameter was not in the Global Value list!")
+                            WiMLogging.sm("WARNING: Because of the above, Total and Global Values will be 'Not Calculated'.")
+                            WiMLogging.sm("WARNING: Local value should be equal to 'None'!")
+                            varbar = {'totalvalue':'Not Calculated','localvalue':result[parameter.Name],'globalvalue':'Not Calculated'}
+
+                            reportedResults = {parameter.Name:varbar}
+
+                            WiMResults.Values.update(reportedResults) #Tabbed this over - jwx
+
                     else:
-                        self._sm(p.Proceedure +" Does not exist","Error")
+                        WiMLogging.sm(p.Proceedure +" Does not exist","Error")
                         continue 
 
                 #next p
