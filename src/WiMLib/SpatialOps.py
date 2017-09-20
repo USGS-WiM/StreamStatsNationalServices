@@ -383,7 +383,8 @@ class SpatialOps(object):
             self._LicenseManager("Spatial")
             outExtractByMask = arcpy.sa.ExtractByMask(inRaster, mask)
             value = arcpy.GetRasterProperties_management(outExtractByMask, statisticRule)
-            return float(value.getOutput(0))
+            cellsize = float(arcpy.GetRasterProperties_management(inRaster, 'CELLSIZEX').getOutput(0))**2
+            return float(value.getOutput(0))*cellsize
         except:
             tb = traceback.format_exc()
             self._sm("WARNING: Failed to get raster statistic computing centroid value.","WARNING",229)
@@ -564,13 +565,11 @@ class SpatialOps(object):
             attExtract = arcpy.sa.ExtractByAttributes(inRaster, SQLClause)  
             #must save raster
             unique_name_img = arcpy.CreateUniqueName(os.path.join(self._TempLocation, "xxx.img"))
-            #ORIGINAL LINE: attExtract.save(os.path.join(self._TempLocation,"attExtract.img"))
             attExtract.save(unique_name_img)
             if self.isRasterALLNoData(attExtract): return float(0)
             #Does not respect the workspace dir, so need to set it explicitly
-            #ORIGINAL LINE: attField = arcpy.da.TableToNumPyArray(os.path.join(self._TempLocation,"attExtract.img"), rasterValueField, skip_nulls=True)
             attField = arcpy.da.TableToNumPyArray(unique_name_img, rasterValueField, skip_nulls=True) #I assume I should use the same variable over, but it's unclear to me -- JWX          
-            results  = float(attField[rasterValueField].sum())/totalCount
+            results  = (float(attField[rasterValueField].sum())/totalCount)*100 #For a percentage the result should be multiplied by 100 -- JWX
             
         except:
             tb = traceback.format_exc()

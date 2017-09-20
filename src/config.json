@@ -1827,7 +1827,7 @@
       "DatasetType": "ESRI_RASTER",
       "queryFeaturePath": "RPU.shp",
       "queryField": "ElevPath",
-      "UnitID": "sq-m"
+      "UnitID": "centimeters"
     },
     "statsgo": {
       "ID": 28001,
