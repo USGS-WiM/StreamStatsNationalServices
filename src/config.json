@@ -30,14 +30,16 @@
       "Description": "Freshwater withdrawal megaliters (1000 cubic meters) per year per sqkm, from 1995-2000 county-level estimates",
       "Method": "Mean",
       "MapLayers": [ "freshwater_wd" ],
-      "UnitID": "megaliters/km2"
+      "UnitID": "megaliters/km2",
+      "MultiplicationFactor": 1
     },
     "TOT_IMPV11": {
       "Procedure": "getRasterStatistic",
       "Description": "Impervious surface from NLCD 2011",
       "Method": "Mean",
       "MapLayers": [ "nlcd2011" ],
-      "UnitID": "percent"
+      "UnitID": "percent",
+      "MultiplicationFactor": 1
     },
     "TOT_MIRAD_2012": {
       "Procedure": "getRasterPercent",
@@ -51,7 +53,8 @@
       "Description": "Mining/Extraction - Barren areas due to probable surface mining/mineral extraction. Includes mining, quarries, sand and gravel operations, and energy operations.",
       "MapLayers": [ "nwalt2012" ],
       "ClassCodes": "41",
-      "UnitID": "percent"
+      "UnitID": "percent",
+      "MultiplicationFactor": 1
     },
     "TOT_DITCHES92": {
       "Procedure": "getVectorDensity",
@@ -446,14 +449,16 @@
       "Method": "Mean",
       "MapLayers": [ "wb5100ann" ],
       "UnitID": "millimeters",
+      "MultiplicationFactor": 0.001,
       "Reference": "https://www.sciencebase.gov/catalog/item/56fd5bd0e4b0c07cbfa40473"
     },
     "TOT_TWI": {
-      "Procedure": "getRasterStatistic",
+      "Procedure": "getLogRasterStatistic",
       "Description": "Average Topographic wetness index, ln(a/S); where \"ln\" is the natural log, \"a\" is the upslope area per unit contour length and \"S\" is the slope at that point",
       "Method": "Mean",
       "MapLayers": [ "twix100" ],
       "UnitID": "ln(m)",
+      "MultiplicationFactor": 0.01,
       "Reference": "https://www.sciencebase.gov/catalog/item/56f97be4e4b0a6037df06b70"
     },
     "TOT_SATOF": {
@@ -462,6 +467,7 @@
       "Method": "Mean",
       "MapLayers": [ "satof48" ],
       "UnitID": "percent",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/56f97acbe4b0a6037df06b6a"
     },
     "nlcd06_95": {
@@ -593,41 +599,45 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
     },
     "TOT_BASIN_Area": {
-      "Procedure": "getAreaSqMeter",
+      "Procedure": "NHDPlusV2QueryNoCalc",
       "Description": "NHDPlus Version 2 percent slope",
       "UnitID": "km2",
       "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
     },
     "TOT_BASIN_SLOPE": {
-      "Procedure": "getRasterStatistic",
+      "Procedure": "NHDPlusV2QueryNoCalc",
       "Description": "NHDPlus Version 2 percent slope",
       "Method": "Mean",
       "MapLayers": [ "elev_cm" ],
       "UnitID": "percent",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
     },
     "TOT_ELEV_MAX": {
-      "Procedure": "getRasterStatistic",
+      "Procedure": "NHDPlusV2QueryNoCalc",
       "Description": "NHDPlus Version 2 Maximum elevation",
       "Method": "Max",
       "MapLayers": [ "elev_cm" ],
       "UnitID": "meters",
+      "MultiplicationFactor": 0.01,
       "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
     },
     "TOT_ELEV_MIN": {
-      "Procedure": "getRasterStatistic",
+      "Procedure": "NHDPlusV2QueryNoCalc",
       "Description": "NHDPlus Version 2 Minimum elevation",
       "Method": "Minimum",
       "MapLayers": [ "elev_cm" ],
       "UnitID": "meters",
+      "MultiplicationFactor": 0.01,
       "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
     },
     "TOT_ELEV_MEAN": {
-      "Procedure": "getRasterStatistic",
+      "Procedure": "NHDPlusV2QueryNoCalc",
       "Description": "NHDPlus Version 2 Mean elevation",
       "Method": "Mean",
       "MapLayers": [ "elev_cm" ],
       "UnitID": "meters",
+      "MultiplicationFactor": 0.01,
       "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
     },
     "TOT_HGA": {
@@ -671,6 +681,7 @@
       "Method": "Mean",
       "MapLayers": [ "awcave" ],
       "UnitID": "inches of water per inches of soil depth",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
     "TOT_KFACT_UP": {
@@ -679,6 +690,7 @@
       "Method": "Mean",
       "MapLayers": [ "kfact_up" ],
       "UnitID": "unitless",
+
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9a"
     },
     "TOT_NO10AVE": {
@@ -687,6 +699,7 @@
       "Method": "Mean",
       "MapLayers": [ "no10ave" ],
       "UnitID": "percent",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
     "TOT_NO200AVE": {
@@ -695,6 +708,7 @@
       "Method": "Mean",
       "MapLayers": [ "no200ave" ],
       "UnitID": "percent",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
     "TOT_NO4AVE": {
@@ -703,6 +717,7 @@
       "Method": "Mean",
       "MapLayers": [ "no4ave" ],
       "UnitID": "percent",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
     "TOT_OM": {
@@ -711,6 +726,7 @@
       "Method": "Mean",
       "MapLayers": [ "om" ],
       "UnitID": "percent",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
     "TOT_PERMAVE": {
@@ -719,6 +735,7 @@
       "Method": "Mean",
       "MapLayers": [ "permave" ],
       "UnitID": "inches/hour",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
     "TOT_RFACT": {
@@ -727,6 +744,7 @@
       "Method": "Mean",
       "MapLayers": [ "rfact" ],
       "UnitID": "100s ft-tonf in/h/ac/yr",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
     "TOT_ROCKDEP": {
@@ -735,6 +753,7 @@
       "Method": "Mean",
       "MapLayers": [ "rockdep" ],
       "UnitID": "inches",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
     "TOT_CLAYAVE": {
@@ -743,6 +762,7 @@
       "Method": "Mean",
       "MapLayers": [ "clayave" ],
       "UnitID": "percent",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728dd46e4b0b13d3918a9a7"
     },
     "TOT_SANDAVE": {
@@ -751,6 +771,7 @@
       "Method": "Mean",
       "MapLayers": [ "sandave" ],
       "UnitID": "percent",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728dd46e4b0b13d3918a9a7"
     },
     "TOT_SILTAVE": {
@@ -759,6 +780,7 @@
       "Method": "Mean",
       "MapLayers": [ "siltave" ],
       "UnitID": "percent",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728dd46e4b0b13d3918a9a7"
     },
     "TOT_IMPV01": {
@@ -1165,6 +1187,7 @@
       "Method": "Mean",
       "MapLayers": [ "popdens90" ],
       "UnitID": "persons per square kilometer",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728f609e4b0b13d3918aa0e"
     },
     "TOT_POPDENS10": {
@@ -1173,6 +1196,7 @@
       "Method": "Mean",
       "MapLayers": [ "popdens10" ],
       "UnitID": "persons per square kilometer",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728f746e4b0b13d3918aa1e"
     },
     "TOT_POPDENS00": {
@@ -1181,6 +1205,7 @@
       "Method": "Mean",
       "MapLayers": [ "popdens00" ],
       "UnitID": "persons per square kilometer",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728f532e4b0b13d3918aa0a"
     },
     "TOT_RECHG": {
@@ -1188,7 +1213,8 @@
       "Description": "Mean annual natural ground-water recharge in millimeters per year",
       "Method": "Mean",
       "MapLayers": [ "rechg" ],
-      "UnitID": "meters",
+      "UnitID": "millimeters",
+      "MultiplicationFactor": 0.001,
       "Reference": "https://www.sciencebase.gov/catalog/item/56f97577e4b0a6037df06b5a"
     },
     "TOT_WILDFIRE_2010": {
@@ -1218,6 +1244,7 @@
       "Method": "Mean",
       "MapLayers": [ "hdens00" ],
       "UnitID": "persons per square kilometer",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
     },
     "TOT_HDENS10": {
@@ -1226,6 +1253,7 @@
       "Method": "Mean",
       "MapLayers": [ "hdens10" ],
       "UnitID": "persons per square kilometer",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
     },
     "TOT_HDENS40": {
@@ -1234,6 +1262,7 @@
       "Method": "Mean",
       "MapLayers": [ "hdens40" ],
       "UnitID": "persons per square kilometer",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
     },
     "TOT_HDENS50": {
@@ -1242,6 +1271,7 @@
       "Method": "Mean",
       "MapLayers": [ "hdens50" ],
       "UnitID": "persons per square kilometer",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
     },
     "TOT_HDENS60": {
@@ -1250,6 +1280,7 @@
       "Method": "Mean",
       "MapLayers": [ "hdens60" ],
       "UnitID": "persons per square kilometer",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
     },
     "TOT_HDENS70": {
@@ -1258,6 +1289,7 @@
       "Method": "Mean",
       "MapLayers": [ "hdens70" ],
       "UnitID": "persons per square kilometer",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
     },
     "TOT_HDENS80": {
@@ -1266,6 +1298,7 @@
       "Method": "Mean",
       "MapLayers": [ "hdens80" ],
       "UnitID": "persons per square kilometer",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
     },
     "TOT_HDENS90": {
@@ -1274,6 +1307,7 @@
       "Method": "Mean",
       "MapLayers": [ "hdens90" ],
       "UnitID": "persons per square kilometer",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
     },
     "TOT_BEDPERM_1": {
@@ -1827,7 +1861,7 @@
       "DatasetType": "ESRI_RASTER",
       "queryFeaturePath": "RPU.shp",
       "queryField": "ElevPath",
-      "UnitID": "centimeters"
+      "UnitID": "meters"
     },
     "statsgo": {
       "ID": 28001,

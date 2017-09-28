@@ -48,4 +48,5 @@ class Characteristic(object):
         self.EquationVariables = CharObj["EquationVariables"]if ("EquationVariables" in CharObj) else None
         self.SubProcedure = CharObj["SubProcedure"]if ("SubProcedure" in CharObj) else None
         self.WhereClause = CharObj["WhereClause"]if ("WhereClause" in CharObj) else ""
+        self.MultiplicationFactor = CharObj["MultiplicationFactor"] if ("MultiplicationFactor" in CharObj) else 1 # Added by JWX
     #endregion

@@ -88,7 +88,7 @@ class StreamStatsNationalOps(SpatialOps):
             if not ML.Activated:
                 raise Exception("Map Layer could not be activated.")
 
-            result[Characteristic.Name] = super(StreamStatsNationalOps,self).getRasterStatistic(ML.Dataset, self.mask, Characteristic.Method)
+            result[Characteristic.Name] = super(StreamStatsNationalOps,self).getRasterStatistic(ML.Dataset, self.mask, Characteristic.Method)*Characteristic.MultiplicationFactor
 
         except:
             tb = traceback.format_exc()
@@ -181,7 +181,7 @@ class StreamStatsNationalOps(SpatialOps):
             if not ML.Activated: 
                 raise Exception("Map Layer could not be activated.")
 
-            result[Characteristic.Name] = super(StreamStatsNationalOps,self).getRasterPercent(ML.Dataset, self.mask, Characteristic.ClassCodes)
+            result[Characteristic.Name] = super(StreamStatsNationalOps,self).getRasterPercent(ML.Dataset, self.mask, Characteristic.ClassCodes)*Characteristic.MultiplicationFactor
 
         except:
             tb = traceback.format_exc()
@@ -419,6 +419,65 @@ class StreamStatsNationalOps(SpatialOps):
             tb = traceback.format_exc()
             self._sm(arcpy.GetMessages(), 'GP')
             self._sm("getPrismStatistic error" +tb +" "+Characteristic.Name, "ERROR", 71)
+            result[Characteristic.Name] = None
+
+        finally:
+            #Cleans up workspace
+            ML = None
+
+        return result
+
+    def NHDPlusV2QueryNoCalc(self, Characteristic):
+        '''
+        This method returns a zero value. This is used when NHD Plus version 2 is noted in the metadata for the characteristic.
+            The resulting Total Value is therefore the Global value since the total is calcualted as Global less Local.
+        
+        Original outline for this code was pulled from getRasterPercent.
+        '''
+        ML = None
+        result = {Characteristic.Name:None}
+        try:
+            self._sm("Computing " + Characteristic.Name)
+            ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))
+            if not ML.Activated: 
+                raise Exception("Map Layer could not be activated.")
+
+            result[Characteristic.Name] = 0
+
+        except:
+            tb = traceback.format_exc()
+            self._sm(arcpy.GetMessages(), 'GP')
+            self._sm("Anthops percentImpervious" +tb, "ERROR", 71)
+            result[Characteristic.Name] = None
+
+        finally:
+            #Cleans up workspace
+            ML = None
+
+        return result
+
+    def getLogRasterStatistic(self, Characteristic):
+        '''
+        This method returns a the natural log of values returned from Raster Statistic. This is only used for TWI at the moment.
+        
+        Original outline for this code was pulled from getPointFeatureDensity.
+        '''
+        ML = None
+        result = {Characteristic.Name:None}
+        try:
+            self._sm("Computing " + Characteristic.Name)
+            ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))
+            if not ML.Activated: 
+                raise Exception("Map Layer could not be activated.")
+
+            rastStat = super(StreamStatsNationalOps,self).getRasterStatistic(ML.Dataset, self.mask)
+
+            result[Characteristic.Name] = log(rastStat)
+
+        except:
+            tb = traceback.format_exc()
+            self._sm(arcpy.GetMessages(), 'GP')
+            self._sm("Anthops percentImpervious" +tb, "ERROR", 71)
             result[Characteristic.Name] = None
 
         finally:
