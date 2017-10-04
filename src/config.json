@@ -437,7 +437,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/57054a24e4b0d4e2b756d0e7"
     },
     "TOT_WBM_PET_2012": {
-      "Procedure": "toBeDetermined",
+      "Procedure": "getPrismStatistic",
       "Description": "Average value of potential evapotranspiration (PET) from the water balance model for 2000-2014",
       "MapLayers": [ "xxx -- Refer to Tana" ],
       "UnitID": "millimeters",
@@ -1814,11 +1814,11 @@
     },
     "wbm_pet_2012": {
       "ID": 21001,
-      "Name": "petwyselffilip.txt",
+      "Name": "petwy2012",
       "Description": "Water balance model output 2000-2014, McCabe and Wolock",
       "isTiled": false,
       "path": "Nationwide/CLIMATE/MCCABE_WOLOCK",
-      "DatasetType": "Text file"
+      "DatasetType": "ESRI_RASTER"
     },
     "wb5100ann": {
       "ID": 22001,

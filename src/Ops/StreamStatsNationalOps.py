@@ -470,7 +470,7 @@ class StreamStatsNationalOps(SpatialOps):
             if not ML.Activated: 
                 raise Exception("Map Layer could not be activated.")
 
-            rastStat = super(StreamStatsNationalOps,self).getRasterStatistic(ML.Dataset, self.mask)
+            rastStat = super(StreamStatsNationalOps,self).getRasterStatistic(ML.Dataset, self.mask,"MEAN")
 
             result[Characteristic.Name] = log(rastStat)
 

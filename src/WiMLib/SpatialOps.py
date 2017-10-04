@@ -383,8 +383,8 @@ class SpatialOps(object):
             self._LicenseManager("Spatial")
             outExtractByMask = arcpy.sa.ExtractByMask(inRaster, mask)
             value = arcpy.GetRasterProperties_management(outExtractByMask, statisticRule)
-            cellsize = float(arcpy.GetRasterProperties_management(inRaster, 'CELLSIZEX').getOutput(0))**2
-            return float(value.getOutput(0))*cellsize
+            cellsize = float(arcpy.GetRasterProperties_management(inRaster, 'CELLSIZEX').getOutput(0))**2 # -- Added by JWX from below.
+            return float(value.getOutput(0))
         except:
             tb = traceback.format_exc()
             self._sm("WARNING: Failed to get raster statistic computing centroid value.","WARNING",229)
@@ -395,7 +395,7 @@ class SpatialOps(object):
             centValue = self.getValueAtCentroid(maskFeature,inRaster)            # try getting centroid
             if centValue in ['NaN', 'none', 0]:
                 self._sm("WARNING: Raster statistic AND get value at centroid failed. Results likely erroneous.","WARNING")
-            return (maskArea/cellsize)*centValue
+            return ((maskArea/cellsize)*centValue)*cellsize #Added cellsize multiplier -- JWX
         finally:
             outExtractByMask = None           
             mask = None
