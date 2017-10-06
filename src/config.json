@@ -439,7 +439,7 @@
     "TOT_WBM_PET_2012": {
       "Procedure": "getPrismStatistic",
       "Description": "Average value of potential evapotranspiration (PET) from the water balance model for 2000-2014",
-      "MapLayers": [ "xxx -- Refer to Tana" ],
+      "MapLayers": [ "wbm_pet_2012" ],
       "UnitID": "millimeters",
       "Reference": "https://www.sciencebase.gov/catalog/item/5783e16ae4b0ac0b97f54285"
     },
@@ -690,7 +690,6 @@
       "Method": "Mean",
       "MapLayers": [ "kfact_up" ],
       "UnitID": "unitless",
-
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9a"
     },
     "TOT_NO10AVE": {
@@ -1181,7 +1180,7 @@
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/57716be5e4b07657d1a6baab"
     },
-    "TOT_gagesIII_mw_characteristics_tot90": {
+    "TOT_POPDENS90": {
       "Procedure": "getRasterStatistic",
       "Description": "Population density in the watershed, persons per sq km, from 1990 Census block data regridded to 100m.",
       "Method": "Mean",
@@ -1214,7 +1213,7 @@
       "Method": "Mean",
       "MapLayers": [ "rechg" ],
       "UnitID": "millimeters",
-      "MultiplicationFactor": 0.001,
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/56f97577e4b0a6037df06b5a"
     },
     "TOT_WILDFIRE_2010": {

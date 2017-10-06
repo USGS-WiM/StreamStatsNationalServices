@@ -215,6 +215,7 @@ class DelineationWrapper(object):
                         continue
 
                     method = getattr(sOps, parameter.Procedure)
+                    print "The parameter name is: " + parameter.Name
                     #if method != 'getPrismStatistic':
                     #    continue
                     if (method): 

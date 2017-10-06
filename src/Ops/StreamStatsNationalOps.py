@@ -48,6 +48,7 @@ import tempfile
 import os
 import arcpy
 import json
+import math
 
 from arcpy import env
 from arcpy.sa import *
