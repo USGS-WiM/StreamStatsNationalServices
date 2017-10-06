@@ -208,6 +208,8 @@ class DelineationWrapper(object):
             startTime = time.time()
             with StreamStatsNationalOps(workspace, workspaceID) as sOps: 
                 for p in self.params:
+                    if p == 'TOT_BASIN_AREA':
+                        print "TOT_BASIN_AREA hath been found!"
                     method = None
                     parameter = Characteristic.Characteristic(p)
                     if(not parameter): 
@@ -226,7 +228,7 @@ class DelineationWrapper(object):
                             print "The Name is: " + parameter.Name
                             try:
                                 if globalValue[parameter.Name] == "":
-                                    globalValue[parameter.Name] = 0
+                                    globalValue[parameter.Name] = 0                              
                                 totalval = float(globalValue[parameter.Name])-float(result[parameter.Name]) if globalValue[parameter.Name] != None and result[parameter.Name] != None else None
                                 WiMLogging.sm("The global value for " + str(parameter.Name) + " : " + str(globalValue[parameter.Name]))
                                 #Below should be updated to work with Total, Local, and Global values

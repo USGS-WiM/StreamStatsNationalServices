@@ -598,7 +598,7 @@
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
     },
-    "TOT_BASIN_Area": {
+    "TOT_BASIN_AREA": {
       "Procedure": "NHDPlusV2QueryNoCalc",
       "Description": "NHDPlus Version 2 percent slope",
       "UnitID": "km2",
