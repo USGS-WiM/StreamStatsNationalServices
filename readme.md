@@ -98,7 +98,7 @@ To push tags to remote origin: `git push origin --tags`
 ## Authors
 
 * **[Jeremy Newson](https://www.usgs.gov/staff-profiles/jeremy-k-newson)**  - *Lead Developer* - [USGS Web Informatics & Mapping](https://wim.usgs.gov/)
-* **[Jeremy Newson](https://www.usgs.gov/staff-profiles/john-wall)**  - *Developer* - [USGS South Atlantic Water Science Center](https://www.usgs.gov/centers/sa-water)
+* **[John Wall](https://www.usgs.gov/staff-profiles/john-wall)**  - *Developer* - [USGS South Atlantic Water Science Center](https://www.usgs.gov/centers/sa-water)
 
 See also the list of [contributors](../../graphs/contributors) who participated in this project.
 
