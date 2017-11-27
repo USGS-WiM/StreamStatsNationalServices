@@ -54,7 +54,7 @@ class NLDIServiceAgent(ServiceAgentBase.ServiceAgentBase):
 
             try:
                 results = self.Execute(resource)
-                return json.loads(results)
+                return results #Converted json.load(results) to this implimentation
             except:
                 tb = traceback.format_exc()
                 self._sm("Exception raised for "+ os.path.basename(resource) + ". Moving to next ComID.", "ERROR")
@@ -66,7 +66,7 @@ class NLDIServiceAgent(ServiceAgentBase.ServiceAgentBase):
         try:
             resource = Config()['queryParams']['nldiChars'].format(comID)
             
-            results = json.loads(self.Execute(resource))
+            results = self.Execute(resource) #Removed json.load from results
             
             for x in results['characteristics']:
                 results[str(x['characteristic_id'])] = x['characteristic_value']

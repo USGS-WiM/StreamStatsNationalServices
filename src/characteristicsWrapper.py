@@ -46,7 +46,12 @@ class CharacteristicsWrapper(object):
         WiMResults = None
         try:
             parser = argparse.ArgumentParser()
-            parser.add_argument("-workspaceID", help="specifies the split catchment workspace", type=str, default="FH20170313102909483000") #Change default           
+            #Move CSV to here
+            #Workspace created below for CSV values
+            parser.add_argument("-workspaceID", help="specifies the split catchment workspace", type=str, default="FH20170313102909483000") #Change default
+            #Mask nldiWFS + 
+            #FedHighWay __delineate => Maskjson => mask for everything
+
             parser.add_argument("-parameters", help="specifies the ';' separated list of parameters to be computed", type=str, 
                                       default = "")                 
             args = parser.parse_args()

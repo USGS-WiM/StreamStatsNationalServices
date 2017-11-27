@@ -48,6 +48,7 @@ import tempfile
 import os
 import arcpy
 import json
+import math
 
 from arcpy import env
 from arcpy.sa import *
@@ -88,7 +89,7 @@ class StreamStatsNationalOps(SpatialOps):
             if not ML.Activated:
                 raise Exception("Map Layer could not be activated.")
 
-            result[Characteristic.Name] = super(StreamStatsNationalOps,self).getRasterStatistic(ML.Dataset, self.mask, Characteristic.Method)
+            result[Characteristic.Name] = super(StreamStatsNationalOps,self).getRasterStatistic(ML.Dataset, self.mask, Characteristic.Method)*Characteristic.MultiplicationFactor
 
         except:
             tb = traceback.format_exc()
@@ -115,7 +116,7 @@ class StreamStatsNationalOps(SpatialOps):
             if not ML.Activated:
                 raise Exception("Map Layer could not be activated.")
 
-            tot = super(StreamStatsNationalOps,self).getFeatureStatistic(ML.Dataset, self.mask, Characteristic.Method, Characteristic.QueryField)
+            tot = super(StreamStatsNationalOps,self).getFeatureStatistic(ML.Dataset, self.mask, Characteristic.Method, Characteristic.QueryField, Characteristic.WhereClause)
 
             result[Characteristic.Name] = tot[Characteristic.QueryField][Characteristic.Method]
 
@@ -181,7 +182,7 @@ class StreamStatsNationalOps(SpatialOps):
             if not ML.Activated: 
                 raise Exception("Map Layer could not be activated.")
 
-            result[Characteristic.Name] = super(StreamStatsNationalOps,self).getRasterPercent(ML.Dataset, self.mask, Characteristic.ClassCodes)
+            result[Characteristic.Name] = super(StreamStatsNationalOps,self).getRasterPercent(ML.Dataset, self.mask, Characteristic.ClassCodes)*Characteristic.MultiplicationFactor
 
         except:
             tb = traceback.format_exc()
@@ -343,42 +344,51 @@ class StreamStatsNationalOps(SpatialOps):
 
             N.B.: As of 31 MAY 2017 this method is a rough draft by JWX and should be cleaned up.
         """
-        variableValues = []
-        for p in Characteristic.Variables:                              #For each Variable
-            method = None
-            if len(Characteristic.SubProcedure) == 1:                   #If only one subprocedure exists
-                parameter = Characteristic.SubProcedure                 #Use the defined SubProcedure
-            else:
-                parameter = Characteristic.SubProcedure(p)              #Else use the defined SubProcedures
-            if(not parameter):                                          #Error handling for no parameters
-                self._sm(p + " Not available to compute")
-                continue
-            
-            method = getattr(self, parameter)                           #Return value for self.procedure
-            variableValues.append(method)                               #Update MY array with returned value
-            if (method): WiMResults.Values.update(method(parameter))    #Update array with returned value???
-            else:
-                self._sm(p.Proceedure + " Does not exist", "Error")
-                continue
-        #next p
+        result = {Characteristic.Name:None}
+        try:
+            variableValues = []
+            for p in Characteristic.Variables:                              #For each Variable
+                method = None
+                if len(Characteristic.SubProcedure) == 1:                   #If only one subprocedure exists
+                    parameter = Characteristic.SubProcedure                 #Use the defined SubProcedure
+                else:
+                    parameter = Characteristic.SubProcedure(p)              #Else use the defined SubProcedures
+                if(not parameter):                                          #Error handling for no parameters
+                    self._sm(p + " Not available to compute")
+                    continue
+                
+                method = getattr(self, parameter)                           #Return value for self.procedure
+                variableValues.append(method)                               #Update MY array with returned value
+                if (method): WiMResults.Values.update(method(parameter))    #Update array with returned value???
+                else:
+                    self._sm(p.Proceedure + " Does not exist", "Error")
+                    continue
+            #next p
 
-        equation = Characteristic.Equation                              #Obtain equation from config.json
-        equationVariables = Characteristic.EquationVariables            #Obtain variables from config.json
-        equationResults = [1,3]                                         #Placeholder; needs to pull results from above
+            equation = Characteristic.Equation                              #Obtain equation from config.json
+            equationVariables = Characteristic.EquationVariables            #Obtain variables from config.json
+            equationResults = [1,3]                                         #Placeholder; needs to pull results from above
 
-        equationList = []                                               #There's probably a more elegant way to do this
-        for i, var in enumerate(equation):                              #Find each location where the variables are in the equation
-            equationList.append(str(var))
+            equationList = []                                               #There's probably a more elegant way to do this
+            for i, var in enumerate(equation):                              #Find each location where the variables are in the equation
+                equationList.append(str(var))
 
-        indexList = []                                                  #Create a list of indecies; Can this be merged with above?
-        for item in equationVariables:
-            indexList.append(equationList.index(item))
+            indexList = []                                                  #Create a list of indecies; Can this be merged with above?
+            for item in equationVariables:
+                indexList.append(equationList.index(item))
 
-        for (index, equationResult) in zip(indexList, equationResults): #Replace values in list with equation results
-            equationList[index] = str(equationResult)
-        finalEquation = ''.join(equationList)                           #Join list together into a single string
+            for (index, equationResult) in zip(indexList, equationResults): #Replace values in list with equation results
+                equationList[index] = str(equationResult)
+            finalEquation = ''.join(equationList)                           #Join list together into a single string
 
-        print eval(finalEquation)                                       #Evaluate the results
+            print eval(finalEquation)                                       #Evaluate the results
+        except:
+            tb = traceback.format_exc()
+            self._sm(arcpy.GetMessages(), 'GP')
+            self._sm("To be determined error" +tb +" "+Characteristic.Name, "ERROR", 71)
+            result[Characteristic.Name] = None
+
+        return result
 
     def toBeDetermined(self, Characteristic):
 
@@ -419,6 +429,65 @@ class StreamStatsNationalOps(SpatialOps):
             tb = traceback.format_exc()
             self._sm(arcpy.GetMessages(), 'GP')
             self._sm("getPrismStatistic error" +tb +" "+Characteristic.Name, "ERROR", 71)
+            result[Characteristic.Name] = None
+
+        finally:
+            #Cleans up workspace
+            ML = None
+
+        return result
+
+    def NHDPlusV2QueryNoCalc(self, Characteristic):
+        '''
+        This method returns a zero value. This is used when NHD Plus version 2 is noted in the metadata for the characteristic.
+            The resulting Total Value is therefore the Global value since the total is calcualted as Global less Local.
+        
+        Original outline for this code was pulled from getRasterPercent.
+        '''
+        ML = None
+        result = {Characteristic.Name:None}
+        try:
+            self._sm("Computing " + Characteristic.Name)
+            ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))
+            if not ML.Activated: 
+                raise Exception("Map Layer could not be activated.")
+
+            result[Characteristic.Name] = 0
+
+        except:
+            tb = traceback.format_exc()
+            self._sm(arcpy.GetMessages(), 'GP')
+            self._sm("Anthops percentImpervious" +tb, "ERROR", 71)
+            result[Characteristic.Name] = None
+
+        finally:
+            #Cleans up workspace
+            ML = None
+
+        return result
+
+    def getLogRasterStatistic(self, Characteristic):
+        '''
+        This method returns a the natural log of values returned from Raster Statistic. This is only used for TWI at the moment.
+        
+        Original outline for this code was pulled from getPointFeatureDensity.
+        '''
+        ML = None
+        result = {Characteristic.Name:None}
+        try:
+            self._sm("Computing " + Characteristic.Name)
+            ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))
+            if not ML.Activated: 
+                raise Exception("Map Layer could not be activated.")
+
+            rastStat = super(StreamStatsNationalOps,self).getRasterStatistic(ML.Dataset, self.mask,"MEAN")
+
+            result[Characteristic.Name] = log(rastStat)
+
+        except:
+            tb = traceback.format_exc()
+            self._sm(arcpy.GetMessages(), 'GP')
+            self._sm("Anthops percentImpervious" +tb, "ERROR", 71)
             result[Characteristic.Name] = None
 
         finally:

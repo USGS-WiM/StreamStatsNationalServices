@@ -7,7 +7,7 @@
     "nldiWFS": "/nwc/geoserver/nhdplus/ows?service=wfs&version=1.0.0&request=GetFeature&typeName=nhdplus:catchmentsp&srsName=EPSG:{0}&outputFormat=json&filter=<Filter xmlns=\"http://www.opengis.net/ogc\" xmlns:gml=\"http://www.opengis.net/gml\"><Contains><PropertyName>the_geom</PropertyName><gml:Point srsName=\"EPSG:{0}\"><gml:coordinates>{1},{2}</gml:coordinates></gml:Point></Contains></Filter>",
     "nldiChars": "/nldi/comid/{0}/tot"
   },
-  "UseNLDIServices": false,
+  "UseNLDIServices": true,
   "workingdirectory": "C:/gis/usgs/ss/Applications/output/gage_iii",
   "parentdirectory": "C:/gis/usgs/ss/ss_data/FHWA",
   "outputFile": "splitCatchment.csv",
@@ -30,14 +30,16 @@
       "Description": "Freshwater withdrawal megaliters (1000 cubic meters) per year per sqkm, from 1995-2000 county-level estimates",
       "Method": "Mean",
       "MapLayers": [ "freshwater_wd" ],
-      "UnitID": "megaliters/km2"
+      "UnitID": "megaliters/km2",
+      "MultiplicationFactor": 1
     },
     "TOT_IMPV11": {
       "Procedure": "getRasterStatistic",
       "Description": "Impervious surface from NLCD 2011",
       "Method": "Mean",
       "MapLayers": [ "nlcd2011" ],
-      "UnitID": "percent"
+      "UnitID": "percent",
+      "MultiplicationFactor": 1
     },
     "TOT_MIRAD_2012": {
       "Procedure": "getRasterPercent",
@@ -51,7 +53,8 @@
       "Description": "Mining/Extraction - Barren areas due to probable surface mining/mineral extraction. Includes mining, quarries, sand and gravel operations, and energy operations.",
       "MapLayers": [ "nwalt2012" ],
       "ClassCodes": "41",
-      "UnitID": "percent"
+      "UnitID": "percent",
+      "MultiplicationFactor": 1
     },
     "TOT_DITCHES92": {
       "Procedure": "getVectorDensity",
@@ -434,9 +437,9 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/57054a24e4b0d4e2b756d0e7"
     },
     "TOT_WBM_PET_2012": {
-      "Procedure": "toBeDetermined",
+      "Procedure": "getPrismStatistic",
       "Description": "Average value of potential evapotranspiration (PET) from the water balance model for 2000-2014",
-      "MapLayers": [ "xxx -- Refer to Tana" ],
+      "MapLayers": [ "wbm_pet_2012" ],
       "UnitID": "millimeters",
       "Reference": "https://www.sciencebase.gov/catalog/item/5783e16ae4b0ac0b97f54285"
     },
@@ -446,14 +449,16 @@
       "Method": "Mean",
       "MapLayers": [ "wb5100ann" ],
       "UnitID": "millimeters",
+      "MultiplicationFactor": 0.001,
       "Reference": "https://www.sciencebase.gov/catalog/item/56fd5bd0e4b0c07cbfa40473"
     },
     "TOT_TWI": {
-      "Procedure": "getRasterStatistic",
+      "Procedure": "getLogRasterStatistic",
       "Description": "Average Topographic wetness index, ln(a/S); where \"ln\" is the natural log, \"a\" is the upslope area per unit contour length and \"S\" is the slope at that point",
       "Method": "Mean",
       "MapLayers": [ "twix100" ],
       "UnitID": "ln(m)",
+      "MultiplicationFactor": 0.01,
       "Reference": "https://www.sciencebase.gov/catalog/item/56f97be4e4b0a6037df06b70"
     },
     "TOT_SATOF": {
@@ -462,6 +467,7 @@
       "Method": "Mean",
       "MapLayers": [ "satof48" ],
       "UnitID": "percent",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/56f97acbe4b0a6037df06b6a"
     },
     "nlcd06_95": {
@@ -592,76 +598,80 @@
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
     },
-    "TOT_BASIN_Area": {
-      "Procedure": "getAreaSqMeter",
+    "TOT_BASIN_AREA": {
+      "Procedure": "NHDPlusV2QueryNoCalc",
       "Description": "NHDPlus Version 2 percent slope",
       "UnitID": "km2",
       "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
     },
     "TOT_BASIN_SLOPE": {
-      "Procedure": "getRasterStatistic",
+      "Procedure": "NHDPlusV2QueryNoCalc",
       "Description": "NHDPlus Version 2 percent slope",
       "Method": "Mean",
       "MapLayers": [ "elev_cm" ],
       "UnitID": "percent",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
     },
     "TOT_ELEV_MAX": {
-      "Procedure": "getRasterStatistic",
+      "Procedure": "NHDPlusV2QueryNoCalc",
       "Description": "NHDPlus Version 2 Maximum elevation",
       "Method": "Max",
       "MapLayers": [ "elev_cm" ],
       "UnitID": "meters",
+      "MultiplicationFactor": 0.01,
       "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
     },
     "TOT_ELEV_MIN": {
-      "Procedure": "getRasterStatistic",
+      "Procedure": "NHDPlusV2QueryNoCalc",
       "Description": "NHDPlus Version 2 Minimum elevation",
       "Method": "Minimum",
       "MapLayers": [ "elev_cm" ],
       "UnitID": "meters",
+      "MultiplicationFactor": 0.01,
       "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
     },
     "TOT_ELEV_MEAN": {
-      "Procedure": "getRasterStatistic",
+      "Procedure": "NHDPlusV2QueryNoCalc",
       "Description": "NHDPlus Version 2 Mean elevation",
       "Method": "Mean",
       "MapLayers": [ "elev_cm" ],
       "UnitID": "meters",
+      "MultiplicationFactor": 0.01,
       "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
     },
     "TOT_HGA": {
       "Procedure": "getRasterPercent",
       "Description": "Percentage of soils in hydrologic group A. Hydrologic group A soils have high infiltration rates. Soils are deep and well drained and, typically, have high sand and gravel content.",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "hga" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5728d93be4b0b13d3918a99f"
     },
     "TOT_HGB": {
       "Procedure": "getRasterPercent",
       "Description": "Percentage of soils in hydrologic group B. Hydrologic group B soils have moderate infiltration rates. Soils are moderately deep, moderately well drained, and moderately coarse in texture.",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "hgb" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5728d93be4b0b13d3918a99f"
     },
     "TOT_HGC": {
       "Procedure": "getRasterPercent",
       "Description": "Percentage of soils in hydrologic group C. Hydrologic group C soils have slow soil inflitration rates. The soil profiles include layers impeding downward movement of water and, typically, have moderately fine or fine texture.",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "hgc" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5728d93be4b0b13d3918a99f"
     },
     "TOT_HGD": {
       "Procedure": "getRasterPercent",
       "Description": "Percentage of soils in hydrologic group D. Hydrologic group D soils have very slow infiltration rates. Soils are clayey, have a high water table, or have a shallow impervious layer.",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "hgd" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5728d93be4b0b13d3918a99f"
     },
     "TOT_HGCD": {
       "Procedure": "getRasterPercent",
       "Description": "Percentage of soils in hydrologic group C/D. Hydrologic group C/D soils have group C characteristics (slow infiltration rates) when artificially drained and have group D characteristics (very slow infiltration rates) when not drained.",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "hgcd" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/5728d93be4b0b13d3918a99f"
     },
@@ -669,15 +679,16 @@
       "Procedure": "getRasterStatistic",
       "Description": "Average value for the range of available water capacity for the soil layer or horizon",
       "Method": "Mean",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "awcave" ],
       "UnitID": "inches of water per inches of soil depth",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
     "TOT_KFACT_UP": {
       "Procedure": "getRasterStatistic",
       "Description": "Average K-factor value for the uppermost soil horizon in each soil component. K-factor is an erodibility factor which quantifies the susceptibility of soil particles to detachment and movement by water. The K-factor is used in the Universal Soil Loss Equation (USLE) to estimate soil loss by water. Higher values of K-factor indicate greater potential for erosion.",
       "Method": "Mean",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "kfact_up" ],
       "UnitID": "unitless",
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9a"
     },
@@ -685,80 +696,90 @@
       "Procedure": "getRasterStatistic",
       "Description": "Average value of percent by weight of soil material less than 3 inches in size and passing a No. 10 sieve (2 mm)",
       "Method": "Mean",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "no10ave" ],
       "UnitID": "percent",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
     "TOT_NO200AVE": {
       "Procedure": "getRasterStatistic",
       "Description": "Average value of percent by weight of soil material less than 3 inches in size and passing a No. 200 sieve (.074 mm)",
       "Method": "Mean",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "no200ave" ],
       "UnitID": "percent",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
     "TOT_NO4AVE": {
       "Procedure": "getRasterStatistic",
       "Description": "Average value of percent by weight of soil material less than 3 inches in size and passing a No. 4 sieve (5 mm)",
       "Method": "Mean",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "no4ave" ],
       "UnitID": "percent",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
     "TOT_OM": {
       "Procedure": "getRasterStatistic",
       "Description": "Average value of organic matter content (percent by weight)",
       "Method": "Mean",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "om" ],
       "UnitID": "percent",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
     "TOT_PERMAVE": {
       "Procedure": "getRasterStatistic",
       "Description": "Average permeability",
       "Method": "Mean",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "permave" ],
       "UnitID": "inches/hour",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
     "TOT_RFACT": {
       "Procedure": "getRasterStatistic",
       "Description": "Rainfall and Runoff factor (\"R factor\" of Universal Soil Loss Equation); average annual value for period 1971-2000",
       "Method": "Mean",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "rfact" ],
       "UnitID": "100s ft-tonf in/h/ac/yr",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
     "TOT_ROCKDEP": {
       "Procedure": "getRasterStatistic",
       "Description": "Average value of total soil thickness examined",
       "Method": "Mean",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "rockdep" ],
       "UnitID": "inches",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728decfe4b0b13d3918a9aa"
     },
     "TOT_CLAYAVE": {
       "Procedure": "getRasterStatistic",
       "Description": "Average value of clay content",
       "Method": "Mean",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "clayave" ],
       "UnitID": "percent",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728dd46e4b0b13d3918a9a7"
     },
     "TOT_SANDAVE": {
       "Procedure": "getRasterStatistic",
       "Description": "Average value of sand content",
       "Method": "Mean",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "sandave" ],
       "UnitID": "percent",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728dd46e4b0b13d3918a9a7"
     },
     "TOT_SILTAVE": {
       "Procedure": "getRasterStatistic",
       "Description": "Average value of silt ave",
       "Method": "Mean",
-      "MapLayers": [ "statsgo" ],
+      "MapLayers": [ "siltave" ],
       "UnitID": "percent",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728dd46e4b0b13d3918a9a7"
     },
     "TOT_IMPV01": {
@@ -778,8 +799,8 @@
     "TOT_MAJOR_2013": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "2013",
+      "WhereClause": "YEAR_COMPL > 2013",
+      "QueryField": "FID",
       "Method": "COUNT",
       "MapLayers": [ "major2013" ],
       "UnitID": "count",
@@ -788,8 +809,8 @@
     "TOT_MAJOR_2010": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "2010",
+      "WhereClause": "YEAR_COMPL > 2010",
+      "QueryField": "FID",
       "Method": "COUNT",
       "MapLayers": [ "major2010" ],
       "UnitID": "count",
@@ -798,8 +819,8 @@
     "TOT_MAJOR_2000": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "2000",
+      "WhereClause": "YEAR_COMPL > 2000",
+      "QueryField": "FID",
       "Method": "COUNT",
       "MapLayers": [ "major2000" ],
       "UnitID": "count",
@@ -808,8 +829,8 @@
     "TOT_MAJOR_1990": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "1990",
+      "WhereClause": "YEAR_COMPL > 1990",
+      "QueryField": "FID",
       "Method": "COUNT",
       "MapLayers": [ "major1990" ],
       "UnitID": "count",
@@ -818,8 +839,8 @@
     "TOT_MAJOR_1980": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "1980",
+      "WhereClause": "YEAR_COMPL > 1980",
+      "QueryField": "FID",
       "Method": "COUNT",
       "MapLayers": ["major1980"],
       "UnitID": "count",
@@ -828,8 +849,8 @@
     "TOT_MAJOR_1970": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "1970",
+      "WhereClause": "YEAR_COMPL > 1970",
+      "QueryField": "FID",
       "Method": "COUNT",
       "MapLayers": ["major1970"],
       "UnitID": "count",
@@ -838,8 +859,8 @@
     "TOT_MAJOR_1960": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "1960",
+      "WhereClause": "YEAR_COMPL > 1960",
+      "QueryField": "FID",
       "Method": "COUNT",
       "MapLayers": [ "major1960" ],
       "UnitID": "count",
@@ -848,8 +869,8 @@
     "TOT_MAJOR_1950": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "1950",
+      "WhereClause": "YEAR_COMPL > 1950",
+      "QueryField": "FID",
       "Method": "COUNT",
       "MapLayers": [ "major1950" ],
       "UnitID": "count",
@@ -858,8 +879,8 @@
     "TOT_MAJOR_1940": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "1940",
+      "WhereClause": "YEAR_COMPL > 1940",
+      "QueryField": "FID",
       "Method": "COUNT",
       "MapLayers": [ "major1940" ],
       "UnitID": "count",
@@ -868,22 +889,22 @@
     "TOT_MAJOR_1930": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of major dams in each NHDPlusV2 catchment (CAT) or accumulated upstream ( ACC or TOT)",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "1930",
+      "WhereClause": "YEAR_COMPL > 1930",
+      "QueryField": "FID",
       "Method": "COUNT",
       "MapLayers": [ "major1930" ],
       "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/57716be5e4b07657d1a6baab"
     },
     "TOT_MIRAD_2007": {
-      "Procedure": "getFeatureCount",
+      "Procedure": "getRasterPercent",
       "Description": "Percent of watershed in irrigated agriculture, from USGS 2007 250-m MODIS data",
       "MapLayers": [ "mirad2007" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/573b7850e4b0dae0d5e3aeb0"
     },
     "TOT_MIRAD_2002": {
-      "Procedure": "getFeatureCount",
+      "Procedure": "getRasterPercent",
       "Description": "Percent of watershed in irrigated agriculture, from USGS 2002 250-m MODIS data",
       "MapLayers": [ "mirad2002" ],
       "UnitID": "percent",
@@ -892,8 +913,8 @@
     "TOT_NDAMS_2010": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "2010",
+      "WhereClause": "YEAR_COMPL > 2010",
+      "QueryField": "FID",
       "Method": "COUNT",
       "MapLayers": [ "ndams2010" ],
       "UnitID": "count",
@@ -902,8 +923,8 @@
     "TOT_NDAMS_2000": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "2000",
+      "WhereClause": "YEAR_COMPL > 2000",
+      "QueryField": "FID",
       "Method": "COUNT",
       "MapLayers": [ "ndams2000" ],
       "UnitID": "count",
@@ -912,8 +933,8 @@
     "TOT_NDAMS_1990": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "1990",
+      "WhereClause": "YEAR_COMPL > 1990",
+      "QueryField": "FID",
       "Method": "COUNT",
       "MapLayers": [ "ndams1990" ],
       "UnitID": "count",
@@ -922,8 +943,8 @@
     "TOT_NDAMS_1980": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "1980",
+      "WhereClause": "YEAR_COMPL > 1980",
+      "QueryField": "FID",
       "Method": "COUNT",
       "MapLayers": [ "ndams1980" ],
       "UnitID": "count",
@@ -932,8 +953,8 @@
     "TOT_NDAMS_1970": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "1970",
+      "WhereClause": "YEAR_COMPL > 1970",
+      "QueryField": "FID",
       "Method": "COUNT",
       "MapLayers": [ "ndams1970" ],
       "UnitID": "count",
@@ -942,8 +963,8 @@
     "TOT_NDAMS_1960": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "1960",
+      "WhereClause": "YEAR_COMPL > 1960",
+      "QueryField": "FID",
       "Method": "COUNT",
       "MapLayers": [ "ndams1960" ],
       "UnitID": "count",
@@ -952,8 +973,8 @@
     "TOT_NDAMS_1950": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "1950",
+      "WhereClause": "YEAR_COMPL > 1950",
+      "QueryField": "FID",
       "Method": "COUNT",
       "MapLayers": [ "ndams1950" ],
       "UnitID": "count",
@@ -962,8 +983,8 @@
     "TOT_NDAMS_1940": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "1940",
+      "WhereClause": "YEAR_COMPL > 1940",
+      "QueryField": "FID",
       "Method": "COUNT",
       "MapLayers": [ "ndams1940" ],
       "UnitID": "count",
@@ -972,8 +993,8 @@
     "TOT_NDAMS_1930": {
       "Procedure": "getFeatureStatistic",
       "Description": "Number of dams in each NHDPlusV2 catchment (CAT) or accumulated upstream (ACC or TOT)",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "1930",
+      "WhereClause": "YEAR_COMPL > 1930",
+      "QueryField": "FID",
       "Method": "COUNT",
       "MapLayers": [ "ndams1930" ],
       "UnitID": "count",
@@ -982,8 +1003,8 @@
     "TOT_NID_STORAGE_2010": {
       "Procedure": "getFeatureStatistic",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "2010",
+      "WhereClause": "YEAR_COMPL > 2010",
+      "QueryField": "FID",
       "Method": "SUM",
       "MapLayers": [ "nidstorage2010" ],
       "UnitID": "acre feet",
@@ -992,8 +1013,8 @@
     "TOT_NID_STORAGE_2000": {
       "Procedure": "getFeatureStatistic",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "2000",
+      "WhereClause": "YEAR_COMPL > 2000",
+      "QueryField": "FID",
       "Method": "SUM",
       "MapLayers": [ "nidstorage2000" ],
       "UnitID": "acre feet",
@@ -1002,8 +1023,8 @@
     "TOT_NID_STORAGE_1990": {
       "Procedure": "getFeatureStatistic",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "1990",
+      "WhereClause": "YEAR_COMPL > 1990",
+      "QueryField": "FID",
       "Method": "SUM",
       "MapLayers": [ "nidstorage1990" ],
       "UnitID": "acre feet",
@@ -1012,8 +1033,8 @@
     "TOT_NID_STORAGE_1970": {
       "Procedure": "getFeatureStatistic",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "1970",
+      "WhereClause": "YEAR_COMPL > 1970",
+      "QueryField": "FID",
       "Method": "SUM",
       "MapLayers": [ "nidstorage1970" ],
       "UnitID": "acre feet",
@@ -1022,8 +1043,8 @@
     "TOT_NID_STORAGE_1960": {
       "Procedure": "getFeatureStatistic",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "1960",
+      "WhereClause": "YEAR_COMPL > 1960",
+      "QueryField": "FID",
       "Method": "SUM",
       "MapLayers": [ "nidstorage1960" ],
       "UnitID": "acre feet",
@@ -1032,8 +1053,8 @@
     "TOT_NID_STORAGE_1950": {
       "Procedure": "getFeatureStatistic",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "1950",
+      "WhereClause": "YEAR_COMPL > 1950",
+      "QueryField": "FID",
       "Method": "SUM",
       "MapLayers": [ "nidstorage1950" ],
       "UnitID": "acre feet",
@@ -1042,8 +1063,8 @@
     "TOT_NID_STORAGE_1940": {
       "Procedure": "getFeatureStatistic",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "1940",
+      "WhereClause": "YEAR_COMPL > 1940",
+      "QueryField": "FID",
       "Method": "SUM",
       "MapLayers": [ "nidstorage1940" ],
       "UnitID": "acre feet",
@@ -1052,8 +1073,8 @@
     "TOT_NID_STORAGE_1930": {
       "Procedure": "getFeatureStatistic",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "1930",
+      "WhereClause": "YEAR_COMPL > 1930",
+      "QueryField": "FID",
       "Method": "SUM",
       "MapLayers": [ "nidstorage1930" ],
       "UnitID": "acre feet",
@@ -1062,8 +1083,8 @@
     "TOT_NORM_STORAGE_2013": {
       "Procedure": "getFeatureStatistic",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "2013",
+      "WhereClause": "YEAR_COMPL > 2013",
+      "QueryField": "FID",
       "Method": "SUM",
       "MapLayers": [ "normstorage2013" ],
       "UnitID": "acre feet",
@@ -1072,8 +1093,8 @@
     "TOT_NORM_STORAGE_2010": {
       "Procedure": "getFeatureStatistic",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "2010",
+      "WhereClause": "YEAR_COMPL > 2010",
+      "QueryField": "FID",
       "Method": "SUM",
       "MapLayers": [ "normstorage2010" ],
       "UnitID": "acre feet",
@@ -1082,8 +1103,8 @@
     "TOT_NORM_STORAGE_2000": {
       "Procedure": "getFeatureStatistic",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "2000",
+      "WhereClause": "YEAR_COMPL > 2000",
+      "QueryField": "FID",
       "Method": "SUM",
       "MapLayers": [ "normstorage2000" ],
       "UnitID": "acre feet",
@@ -1092,8 +1113,8 @@
     "TOT_NORM_STORAGE_1990": {
       "Procedure": "getFeatureStatistic",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "1990",
+      "WhereClause": "YEAR_COMPL > 1990",
+      "QueryField": "FID",
       "Method": "SUM",
       "MapLayers": [ "normstorage1990" ],
       "UnitID": "acre feet",
@@ -1102,8 +1123,8 @@
     "TOT_NORM_STORAGE_1980": {
       "Procedure": "getFeatureStatistic",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "1980",
+      "WhereClause": "YEAR_COMPL > 1980",
+      "QueryField": "FID",
       "Method": "SUM",
       "MapLayers": [ "normstorage1980" ],
       "UnitID": "acre feet",
@@ -1112,8 +1133,8 @@
     "TOT_NORM_STORAGE_1970": {
       "Procedure": "getFeatureStatistic",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "1970",
+      "WhereClause": "YEAR_COMPL > 1970",
+      "QueryField": "FID",
       "Method": "SUM",
       "MapLayers": [ "normstorage1970" ],
       "UnitID": "acre feet",
@@ -1122,8 +1143,8 @@
     "TOT_NORM_STORAGE_1960": {
       "Procedure": "getFeatureStatistic",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "1960",
+      "WhereClause": "YEAR_COMPL > 1960",
+      "QueryField": "FID",
       "Method": "SUM",
       "MapLayers": [ "normstorage1960" ],
       "UnitID": "acre feet",
@@ -1132,8 +1153,8 @@
     "TOT_NORM_STORAGE_1950": {
       "Procedure": "getFeatureStatistic",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "1950",
+      "WhereClause": "YEAR_COMPL > 1950",
+      "QueryField": "FID",
       "Method": "SUM",
       "MapLayers": [ "normstorage1950" ],
       "UnitID": "acre feet",
@@ -1142,8 +1163,8 @@
     "TOT_NORM_STORAGE_1940": {
       "Procedure": "getFeatureStatistic",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "1940",
+      "WhereClause": "YEAR_COMPL > 1940",
+      "QueryField": "FID",
       "Method": "SUM",
       "MapLayers": [ "normstorage1940" ],
       "UnitID": "acre feet",
@@ -1152,8 +1173,8 @@
     "TOT_NORM_STORAGE_1930": {
       "Procedure": "getFeatureStatistic",
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
-      "SelectionField": "YEAR_COMPL",
-      "SelectionYear": "1930",
+      "WhereClause": "YEAR_COMPL > 1930",
+      "QueryField": "FID",
       "Method": "SUM",
       "MapLayers": [ "normstorage1930" ],
       "UnitID": "acre feet",
@@ -1162,8 +1183,10 @@
     "TOT_POPDENS90": {
       "Procedure": "getRasterStatistic",
       "Description": "Population density in the watershed, persons per sq km, from 1990 Census block data regridded to 100m.",
+      "Method": "Mean",
       "MapLayers": [ "popdens90" ],
       "UnitID": "persons per square kilometer",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728f609e4b0b13d3918aa0e"
     },
     "TOT_POPDENS10": {
@@ -1172,6 +1195,7 @@
       "Method": "Mean",
       "MapLayers": [ "popdens10" ],
       "UnitID": "persons per square kilometer",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728f746e4b0b13d3918aa1e"
     },
     "TOT_POPDENS00": {
@@ -1180,6 +1204,7 @@
       "Method": "Mean",
       "MapLayers": [ "popdens00" ],
       "UnitID": "persons per square kilometer",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5728f532e4b0b13d3918aa0a"
     },
     "TOT_RECHG": {
@@ -1187,7 +1212,8 @@
       "Description": "Mean annual natural ground-water recharge in millimeters per year",
       "Method": "Mean",
       "MapLayers": [ "rechg" ],
-      "UnitID": "meters",
+      "UnitID": "millimeters",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/56f97577e4b0a6037df06b5a"
     },
     "TOT_WILDFIRE_2010": {
@@ -1217,6 +1243,7 @@
       "Method": "Mean",
       "MapLayers": [ "hdens00" ],
       "UnitID": "persons per square kilometer",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
     },
     "TOT_HDENS10": {
@@ -1225,6 +1252,7 @@
       "Method": "Mean",
       "MapLayers": [ "hdens10" ],
       "UnitID": "persons per square kilometer",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
     },
     "TOT_HDENS40": {
@@ -1233,6 +1261,7 @@
       "Method": "Mean",
       "MapLayers": [ "hdens40" ],
       "UnitID": "persons per square kilometer",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
     },
     "TOT_HDENS50": {
@@ -1241,6 +1270,7 @@
       "Method": "Mean",
       "MapLayers": [ "hdens50" ],
       "UnitID": "persons per square kilometer",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
     },
     "TOT_HDENS60": {
@@ -1249,6 +1279,7 @@
       "Method": "Mean",
       "MapLayers": [ "hdens60" ],
       "UnitID": "persons per square kilometer",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
     },
     "TOT_HDENS70": {
@@ -1257,6 +1288,7 @@
       "Method": "Mean",
       "MapLayers": [ "hdens70" ],
       "UnitID": "persons per square kilometer",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
     },
     "TOT_HDENS80": {
@@ -1265,6 +1297,7 @@
       "Method": "Mean",
       "MapLayers": [ "hdens80" ],
       "UnitID": "persons per square kilometer",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
     },
     "TOT_HDENS90": {
@@ -1273,6 +1306,7 @@
       "Method": "Mean",
       "MapLayers": [ "hdens90" ],
       "UnitID": "persons per square kilometer",
+      "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/57067106e4b03f95a075aacf"
     },
     "TOT_BEDPERM_1": {
@@ -1779,11 +1813,11 @@
     },
     "wbm_pet_2012": {
       "ID": 21001,
-      "Name": "petwyselffilip.txt",
+      "Name": "petwy2012",
       "Description": "Water balance model output 2000-2014, McCabe and Wolock",
       "isTiled": false,
       "path": "Nationwide/CLIMATE/MCCABE_WOLOCK",
-      "DatasetType": "Text file"
+      "DatasetType": "ESRI_RASTER"
     },
     "wb5100ann": {
       "ID": 22001,
@@ -1811,7 +1845,7 @@
     },
     "nlcd_2006": {
       "ID": 26001,
-      "Name": "nlcd_2006_landcover_2011_edition_2014_10_10.img",
+      "Name": "nlcd_2006_landcover_2011_edition_2014_10_10",
       "Description": "National Land Cover Database (NLCD) 2006",
       "isTiled": false,
       "path": "Nationwide/LANDSCAPE/NLCD/2006/nlcd_2006_landcover_2011_edition_2014_10_10",
@@ -1823,7 +1857,10 @@
       "Description": "Basin Characteristics",
       "isTiled": true,
       "path": "Tiled/NHDPlus_v2",
-      "DatasetType": "ESRI_RASTER"
+      "DatasetType": "ESRI_RASTER",
+      "queryFeaturePath": "RPU.shp",
+      "queryField": "ElevPath",
+      "UnitID": "meters"
     },
     "statsgo": {
       "ID": 28001,
@@ -1833,9 +1870,145 @@
       "path": "Nationwide/SOILS/STATSGO/muid",
       "DatasetType": "ESRI_RASTER"
     },
+    "hga": {
+      "ID": 28002,
+      "Name": "hga",
+      "Description": "STATSGO Soil Characteristics, Hydrologic Groups",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "hgb": {
+      "ID": 28003,
+      "Name": "hgb",
+      "Description": "STATSGO Soil Characteristics, Hydrologic Groups",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "hgc": {
+      "ID": 28004,
+      "Name": "hgc",
+      "Description": "STATSGO Soil Characteristics, Hydrologic Groups",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "hgd": {
+      "ID": 28005,
+      "Name": "hgd",
+      "Description": "STATSGO Soil Characteristics, Hydrologic Groups",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "hgcd": {
+      "ID": 28006,
+      "Name": "hgcd",
+      "Description": "STATSGO Soil Characteristics, Hydrologic Groups",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "awcave": {
+      "ID": 28007,
+      "Name": "awcave",
+      "Description": "STATSGO Soil Characteristics, Hydrologic Groups",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "kfact_up": {
+      "ID": 28008,
+      "Name": "kfact_up",
+      "Description": "STATSGO Soil Characteristics, Layer Attributes",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "no10ave": {
+      "ID": 28009,
+      "Name": "no10ave",
+      "Description": "STATSGO Soil Characteristics, Layer Attributes",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "no200ave": {
+      "ID": 28010,
+      "Name": "no200ave",
+      "Description": "STATSGO Soil Characteristics, Layer Attributes",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "no4ave": {
+      "ID": 28011,
+      "Name": "no4ave",
+      "Description": "STATSGO Soil Characteristics, Layer Attributes",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "om": {
+      "ID": 28012,
+      "Name": "om",
+      "Description": "STATSGO Soil Characteristics, Layer Attributes",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "permave": {
+      "ID": 28013,
+      "Name": "permave",
+      "Description": "STATSGO Soil Characteristics, Layer Attributes",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "rfact": {
+      "ID": 28014,
+      "Name": "rfact",
+      "Description": "STATSGO Soil Characteristics, Layer Attributes",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "rockdep": {
+      "ID": 28015,
+      "Name": "rockdepave",
+      "Description": "STATSGO Soil Characteristics, Layer Attributes",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "clayave": {
+      "ID": 28016,
+      "Name": "clayave",
+      "Description": "STATSGO Soil Characteristics, Layer Attributes",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "sandave": {
+      "ID": 28017,
+      "Name": "sandave",
+      "Description": "STATSGO Soil Characteristics, Layer Attributes",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
+    "siltave": {
+      "ID": 28018,
+      "Name": "siltave",
+      "Description": "STATSGO Soil Characteristics, Layer Attributes",
+      "isTiled": false,
+      "path": "Nationwide/SOILS/STATSGO/soils/soils",
+      "DatasetType": "ESRI_RASTER"
+    },
     "impv01": {
       "ID": 29001,
-      "Name": "nlcd_2001_impervious_2011_edition_2014_10_10.img",
+      "Name": "nlcd_2001_impervious_2011_edition_2014_10_10",
       "Description": "Impervious surface from NLCD 2001",
       "isTiled": false,
       "path": "Nationwide/LANDSCAPE/NLCD/2001/nlcd_2001_impervious_2011_edition_2014_10_10",
@@ -1843,7 +2016,7 @@
     },
     "impv06": {
       "ID": 30001,
-      "Name": "nlcd_2006_impervious_2011_edition_2014_10_10.img",
+      "Name": "nlcd_2006_impervious_2011_edition_2014_10_10",
       "Description": "Impervious surface from NLCD 2006",
       "isTiled": false,
       "path": "Nationwide/LANDSCAPE/NLCD/2006/nlcd_2006_impervious_2011_edition_2014_10_10",
@@ -2279,26 +2452,26 @@
     },
     "wildfire2010": {
       "ID": 75001,
-      "Name": "us_dist2010",
+      "Name": "fire2010g",
       "Description": "Wildfire 2010",
       "isTiled": false,
-      "path": "Nationwide/LANDSCAPE/WILDFIRE/2010",
+      "path": "Nationwide/LANDSCAPE/WILDFIRE/WildFire_g",
       "DatasetType": "ESRI_GRID"
     },
     "wildfire2011": {
       "ID": 76001,
-      "Name": "us_dist2011",
+      "Name": "fire2011g",
       "Description": "Wildfire 2011",
       "isTiled": false,
-      "path": "Nationwide/LANDSCAPE/WILDFIRE/2011",
+      "path": "Nationwide/LANDSCAPE/WILDFIRE/WildFire_g",
       "DatasetType": "ESRI_GRID"
     },
     "wildfire2012": {
       "ID": 77001,
-      "Name": "us_dist2012",
+      "Name": "fire2012g",
       "Description": "Wildfire 2012",
       "isTiled": false,
-      "path": "Nationwide/LANDSCAPE/WILDFIRE/2012",
+      "path": "Nationwide/LANDSCAPE/WILDFIRE/WildFire_g",
       "DatasetType": "ESRI_GRID"
     },
     "hdens00": {
