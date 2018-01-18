@@ -9,8 +9,8 @@ from datetime import datetime
 
 
 #input parameters
-in_file_name = '..\\pptint.txt'
-output_file_name = '..\\pptint.nc'
+in_file_name = r'C:\Users\gpetrochenkov\Downloads\Wolock_prism-20171206T165217Z-001\Wolock_prism\pptint\pptint.txt'
+output_file_name = r'C:\Users\gpetrochenkov\Downloads\Wolock_prism-20171206T165217Z-001\Wolock_prism\pptint\pptint.nc'
 month = 1
 year = 1945
 #I am going to consult some coworkers regarding naming and attribute conventions
