@@ -36,6 +36,7 @@ import json
 from  WiMLib import WiMLogging
 from contextlib import contextmanager
 import PrismOps
+import numpy as np
 #endregion
 
 ##-------1---------2---------3---------4---------5---------6---------7---------8
@@ -402,7 +403,7 @@ class SpatialOps(object):
             if sr != None: del sr; sr = None
             self._LicenseManager("Spatial",False)       
             
-    def getPrismStatistic(self,inRaster, maskFeature, statisticRule, dataPath):
+    def getPrismStatistic(self,inRaster, maskFeature, statisticRules, timeRange, timeMethod, dataPath):
         '''
         computes the statistic 
         Statistic rules:    MINIMUM —Smallest value of all cells in the input raster.
@@ -459,11 +460,16 @@ class SpatialOps(object):
             
             outExtractByMask = arcpy.sa.ExtractByMask(inRaster, mask)
             
-            if statisticRule.upper() in ['MINIMUM', 'MAXIMUM','MEAN','STD','UNIQUEVALUECOUNT']:
+            rules = ['MINIMUM', 'MAXIMUM','MEAN','STD','UNIQUEVALUECOUNT', 'SUM']
+            statisticRules = [x.upper() for x in statisticRules.split(';')]
+            computation = np.all([x in rules for x in statisticRules])
+            
+            if computation == True:
                 rasterCellIdx = arcpy.RasterToNumPyArray(outExtractByMask, nodata_to_value = -9999.00)
-                return float(PrismOps.get_statistic(rasterCellIdx, dataPath, statisticRule.upper()))
+                return float(PrismOps.get_statistic(rasterCellIdx, dataPath, statisticRules,
+                                                    timeRange, timeMethod))
             else:
-                value = arcpy.GetRasterProperties_management(outExtractByMask, statisticRule)
+                value = arcpy.GetRasterProperties_management(outExtractByMask, statisticRules[0])
                 return float(value.getOutput(0))
           
         except:
@@ -487,7 +493,7 @@ class SpatialOps(object):
         try:
             arcpy.env.cellSize = "MINOF"
             arcpy.env.overwriteOutput = True
-             #define land use key value dictionary with all possible values
+            #define land use key value dictionary with all possible values
             for row in arcpy.da.SearchCursor(inRaster, uniqueRasterIDfield):
                 results[str(row[0])] = 0
             #next row

@@ -49,6 +49,7 @@ import os
 import arcpy
 import json
 import math
+from datetime import datetime as dt
 
 from arcpy import env
 from arcpy.sa import *
@@ -59,6 +60,8 @@ from WiMLib.SpatialOps import SpatialOps
 from WiMLib.Resources import *
 from WiMLib import Shared
 from WiMLib.MapLayer import *
+from Assets.Calculator import calculate
+from Resources import Characteristic as configChar
 #End Region
 
 class StreamStatsNationalOps(SpatialOps):
@@ -349,39 +352,18 @@ class StreamStatsNationalOps(SpatialOps):
             variableValues = []
             for p in Characteristic.Variables:                              #For each Variable
                 method = None
-                if len(Characteristic.SubProcedure) == 1:                   #If only one subprocedure exists
-                    parameter = Characteristic.SubProcedure                 #Use the defined SubProcedure
-                else:
-                    parameter = Characteristic.SubProcedure(p)              #Else use the defined SubProcedures
-                if(not parameter):                                          #Error handling for no parameters
-                    self._sm(p + " Not available to compute")
-                    continue
+                parameter = Characteristic.SubProcedure                 #Use the defined SubProcedure
+                method = getattr(self, parameter) 
+                characteristic = configChar.Characteristic(p)
+                val = method(characteristic)                          #Return value for self.procedure
+                variableValues.append(val)                               #Update MY array with returned value
                 
-                method = getattr(self, parameter)                           #Return value for self.procedure
-                variableValues.append(method)                               #Update MY array with returned value
-                if (method): WiMResults.Values.update(method(parameter))    #Update array with returned value???
-                else:
-                    self._sm(p.Proceedure + " Does not exist", "Error")
-                    continue
-            #next p
-
-            equation = Characteristic.Equation                              #Obtain equation from config.json
-            equationVariables = Characteristic.EquationVariables            #Obtain variables from config.json
-            equationResults = [1,3]                                         #Placeholder; needs to pull results from above
-
-            equationList = []                                               #There's probably a more elegant way to do this
-            for i, var in enumerate(equation):                              #Find each location where the variables are in the equation
-                equationList.append(str(var))
-
-            indexList = []                                                  #Create a list of indecies; Can this be merged with above?
-            for item in equationVariables:
-                indexList.append(equationList.index(item))
-
-            for (index, equationResult) in zip(indexList, equationResults): #Replace values in list with equation results
-                equationList[index] = str(equationResult)
-            finalEquation = ''.join(equationList)                           #Join list together into a single string
-
-            print eval(finalEquation)                                       #Evaluate the results
+            vals = []
+            for x in variableValues:
+                vals.append(float(x.values()[0]))
+                
+                
+            result[Characteristic.Name] = calculate(str(Characteristic.Equation).format(*vals))                           #Obtain equation from config.json                             #Evaluate the results
         except:
             tb = traceback.format_exc()
             self._sm(arcpy.GetMessages(), 'GP')
@@ -423,7 +405,12 @@ class StreamStatsNationalOps(SpatialOps):
             if not ML.Activated:
                 raise Exception("Map Layer could not be activated.")
            
-            result[Characteristic.Name] = super(StreamStatsNationalOps,self).getPrismStatistic(ML.Dataset,self.mask, Characteristic.Method, Characteristic.Data)
+            
+            timeRange = [dt.strptime(str(x), '%m-%d-%Y') for x in Characteristic.TimeRange.split(';')] 
+            
+            result[Characteristic.Name] = super(StreamStatsNationalOps,self).getPrismStatistic(
+                ML.Dataset,self.mask, Characteristic.Method, timeRange, 
+                Characteristic.TimeMethod, Characteristic.Data)
 
         except:
             tb = traceback.format_exc()

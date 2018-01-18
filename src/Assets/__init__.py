@@ -1,0 +1,1 @@
+print ['test','test2'] in ['test', 'test2', 'test3']
