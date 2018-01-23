@@ -10,6 +10,7 @@
   "UseNLDIServices": true,
   "workingdirectory": "C:/gis/usgs/ss/Applications/output/gage_iii",
   "parentdirectory": "C:/gis/usgs/ss/ss_data/FHWA",
+  "netCDFdirectory": "C:/Users/gpetrochenkov/Downloads/Wolock_prism-20171206T165217Z-001/Wolock_prism/pptint",
   "outputFile": "splitCatchment.csv",
   "catchment": {
     "upstream": "upstreamcatchment",
@@ -75,34 +76,38 @@
       "UnitID": "cnt/sqkm"
     },
     "TOT_PPT7100_ANN": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "Mean annual precipitation (mm) from 800m PRISM data. 30 year period of record 1971-2000.",
       "Method": "Mean",
       "MapLayers": [ "ppt7100_800a" ],
+      "MultiplicationFactor": 0.01,
       "UnitID": "millimeters",
-      "Reference": "https://www.sciencebase.gov/catalog/item/573b70a7e4b0dae0d5e3ae85"
+      "Reference": "https://www.sciencebase.gov/catalog/item/573b70a7e4b0dae0d5e3ae85",
+      "TimeRange": "1-1-1971;1-1-2001",
+      "TimeMethod": "MeanYear",
+      "Data": "pptint.nc"
     },
     "TOT_TAV7100_ANN": {
       "Procedure": "getCalculateEval",
       "Description": "Mean annual air temperature (degrees Celsius) from 800m PRISM data. 30 year period of record 1971-2000.",
       "Variables": ["TOT_TMIN7100", "TOT_TMAX7100"],
-      "Equation": "(a + b)/2",
+      "Equation": "( {} + {} ) / 2",
       "EquationVariables": ["a", "b"],
       "MapLayers": ["tmin7100_800a", "tmax7100_800a" ],
-      "SubProcedure": "getPrismStatistic",
+      "SubProcedure": "getRasterStatistic",
       "UnitID": "degrees Celsius",
       "Reference": "https://www.sciencebase.gov/catalog/item/57054bf2e4b0d4e2b756d364"
     },
     "TOT_MINWD6190": {
-      "Procedure": "getPrismStatistic",
-      "Description": "Minimum number of wet days (days) from 800m PRISM data. 30 year period or record from 1961-1990.",
+      "Procedure": "getRasterStatistic",
+      "Description": "Minimum Monthly number of wet days (days) from 800m PRISM data. 30 year period or record from 1961-1990.",
       "Method": "Mean",
       "MapLayers": [ "minwd_alb" ],
       "UnitID": "days",
       "Reference": "https://www.sciencebase.gov/catalog/item/57040be3e4b0328dcb82850a"
     },
     "TOT_TMAX7100": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) minimum mean annual temperature (Celsius)  from 800m PRISM data",
       "Method": "MAXIMUM",
       "MapLayers": [ "tmax7100_800a" ],
@@ -110,7 +115,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/57054aebe4b0d4e2b756d1fc"
     },
     "TOT_FSTFZ6190": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "Watershed average of mean day of the year of first freeze, derived from 30 years of record (1961-1990), 2 km PRISM.",
       "Method": "Mean",
       "MapLayers": [ "fst32f_alb" ],
@@ -118,14 +123,14 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/5704052ae4b0328dcb827bc7"
     },
     "lstfz6190": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "Watershed average of mean day of the year of last freeze, derived from 30 years of record (1961-1990), 2 km PRISM",
       "Method": "Mean",
       "MapLayers": [ "lst32f_alb" ],
       "Reference": "https://www.sciencebase.gov/catalog/item/57040a6ce4b0328dcb828378"
     },
     "TOT_PRSNOW": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "Snow percent of total precipitation estimate, mean for period 1901-2000. From McCabe and Wolock (submitted, 2008), 1 km grid.",
       "Method": "Mean",
       "MapLayers": [ "prsnow" ],
@@ -133,7 +138,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/57053dc5e4b0d4e2b756c117"
     },
     "TOT_TMIN7100": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) minimum mean annual temperature (Celsius) from 800m PRISM data",
       "Method": "MINIMUM",
       "MapLayers": [ "tmin7100_800a" ],
@@ -141,20 +146,22 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/57054c9be4b0d4e2b756d465"
     },
     "TOT_PPT7100_SEP": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean September precipitation(mm) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "ppt7100_sepa" ],
       "UnitID": "millimeters",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
+      "MultiplicationFactor": 0.01
     },
     "TOT_PPT7100_OCT": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean October precipitation(mm) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "ppt7100_octa" ],
       "UnitID": "millimeters",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
+      "MultiplicationFactor": 0.01
     },
     "TOT_PPT7100_NOV": {
       "Procedure": "getPrismStatistic",
@@ -162,82 +169,92 @@
       "Method": "Mean",
       "MapLayers": [ "ppt7100_nova" ],
       "UnitID": "millimeters",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
+      "MultiplicationFactor": 0.01
     },
     "TOT_PPT7100_MAY": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean May precipitation(mm) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "ppt7100_maya" ],
       "UnitID": "millimeters",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
+      "MultiplicationFactor": 0.01
     },
     "TOT_PPT7100_MAR": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean March precipitation(mm) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "ppt7100_mara" ],
       "UnitID": "millimeters",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
+      "MultiplicationFactor": 0.01
     },
     "TOT_PPT7100_JUN": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean June precipitation(mm) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "ppt7100_juna" ],
       "UnitID": "millimeters",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
+      "MultiplicationFactor": 0.01
     },
     "TOT_PPT7100_JUL": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean July precipitation(mm) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "ppt7100_jula" ],
       "UnitID": "millimeters",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
+      "MultiplicationFactor": 0.01
     },
     "TOT_PPT7100_JAN": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean January precipitation (mm) from 800m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "ppt7100_jana" ],
       "UnitID": "millimeters",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
+      "MultiplicationFactor": 0.01
     },
     "TOT_PPT7100_FEB": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean February precipitation (mm) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "ppt7100_feba" ],
       "UnitID": "millimeters",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
+      "MultiplicationFactor": 0.01
     },
     "TOT_PPT7100_DEC": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean December precipitation(mm) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "ppt7100_deca" ],
       "UnitID": "millimeters",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
+      "MultiplicationFactor": 0.01
     },
     "TOT_PPT7100_AUG": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean August precipitation(mm) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "ppt7100_auga" ],
       "UnitID": "millimeters",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
+      "MultiplicationFactor": 0.01
     },
     "TOT_PPT7100_APR": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean April precipitation(mm) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "ppt7100_apra" ],
       "UnitID": "millimeters",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
+      "MultiplicationFactor": 0.01
     },
     "TOT_TAV7100_SEP": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean September temperature (deg C) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "tavg7100_sepa" ],
@@ -245,7 +262,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
     },
     "TOT_TAV7100_OCT": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean October temperature (deg C) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "tavg7100_octa" ],
@@ -253,7 +270,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
     },
     "TOT_TAV7100_NOV": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean November temperature (deg C) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "tavg7100_nova" ],
@@ -261,7 +278,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
     },
     "TOT_TAV7100_MAY": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean May temperature (deg C) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "tavg7100_maya" ],
@@ -269,7 +286,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
     },
     "TOT_TAV7100_MAR": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean March temperature (deg C) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "tavg7100_mara" ],
@@ -277,7 +294,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
     },
     "TOT_TAV7100_JUN": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean June temperature (deg C) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "tavg7100_juna" ],
@@ -285,7 +302,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
     },
     "TOT_TAV7100_JUL": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean July temperature (deg C) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "tavg7100_jula" ],
@@ -293,7 +310,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
     },
     "TOT_TAV7100_JAN": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean January temperature (deg C) from 800m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "tavg7100_jana" ],
@@ -301,7 +318,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
     },
     "TOT_TAV7100_FEB": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean February temperature (deg C) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "tavg7100_feba" ],
@@ -309,7 +326,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
     },
     "TOT_TAV7100_DEC": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean December temperature (deg C) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "tavg7100_deca" ],
@@ -317,7 +334,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
     },
     "TOT_TAV7100_AUG": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean August temperature (deg C) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "tavg7100_auga" ],
@@ -325,7 +342,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
     },
     "TOT_TAV7100_APR": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean April temperature (deg C) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "tavg7100_apra" ],
@@ -333,7 +350,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/57225016e4b0b13d39138f4c"
     },
     "TOT_WD6190_SEP": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean September number of days of measurable precipitation (days) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "wetdays09_alb" ],
@@ -341,7 +358,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
     },
     "TOT_WD6190_OCT": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean October number of days of measurable precipitation (days) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "wetdays10_alb" ],
@@ -349,7 +366,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
     },
     "TOT_WD6190_NOV": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean November number of days of measurable precipitation (days) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "wetdays11_alb" ],
@@ -357,7 +374,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
     },
     "TOT_WD6190_MAY": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean May number of days of measurable precipitation (days) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "wetdays05_alb" ],
@@ -365,7 +382,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
     },
     "TOT_WD6190_MAR": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean March number of days of measurable precipitation (days) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "wetdays03_alb" ],
@@ -373,7 +390,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
     },
     "TOT_WD6190_JUN": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean June number of days of measurable precipitation (days) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "wetdays06_alb" ],
@@ -381,7 +398,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
     },
     "TOT_WD6190_JUL": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean July number of days of measurable precipitation (days) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "wetdays07_alb" ],
@@ -389,7 +406,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
     },
     "TOT_WD6190_JAN": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean January number of days of measurable precipitation (days) from 2.3km PRISM data",
       "Method": "Mean",
       "MapLayers": [ "wetdays01_alb" ],
@@ -397,7 +414,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
     },
     "TOT_WD6190_FEB": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean February number of days of measurable precipitation (days) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "wetdays02_alb" ],
@@ -405,7 +422,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
     },
     "TOT_WD6190_DEC": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean December number of days of measurable precipitation (days) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "wetdays12_alb" ],
@@ -413,7 +430,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
     },
     "TOT_WD6190_AUG": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean August number of days of measurable precipitation (days) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "wetdays08_alb" ],
@@ -421,7 +438,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
     },
     "TOT_WD6190_APR": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "30 year (1971 - 2000) mean April number of days of measurable precipitation (days) from 800 m PRISM data",
       "Method": "Mean",
       "MapLayers": [ "wetdays04_alb" ],
@@ -429,7 +446,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/572241c5e4b0b13d39138edd"
     },
     "TOT_RH": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "Watershed average relative humidity (percent), from 2 km PRISM, derived from 30 years of record (1961-1990).",
       "Method": "Mean",
       "MapLayers": [ "rh_alb" ],
@@ -437,7 +454,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/57054a24e4b0d4e2b756d0e7"
     },
     "TOT_WBM_PET_2012": {
-      "Procedure": "getPrismStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "Average value of potential evapotranspiration (PET) from the water balance model for 2000-2014",
       "MapLayers": [ "wbm_pet_2012" ],
       "UnitID": "millimeters",
@@ -1436,7 +1453,7 @@
       "Name": "prismgrid_Resample1",
       "Description": "Prism indices for stored netCDF values",
       "isTiled": false,
-      "path": "National",
+      "path": "Nationwide/CLIMATE/PRISM",
       "DatasetType": "TIF_RASTER"
     },
     "flowlines": {
@@ -1465,7 +1482,7 @@
       "Description": "30 Year (1971 - 2000) Mean Annual Precipitation (cm) from 800m PRISM data",
       "isTiled": false,
       "path": "Nationwide/CLIMATE/PRISM",
-      "DatasetType": "ESRI_RASTER"
+      "DatasetType": "ESRI_GRID"
     },
     "minwd_alb": {
       "ID": 11001,

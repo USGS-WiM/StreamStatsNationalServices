@@ -63,7 +63,7 @@ class DelineationWrapper(object):
             parser = argparse.ArgumentParser()
             parser.add_argument("-projectID", help="specifies the projectID", type=str, default="FH")
             parser.add_argument("-file", help="specifies csv file location including gage lat/long and comid's to estimate", type=str, 
-                                default = 'C:\\gis\\usgs\\ss\\Applications\\input\\gagesiii_lat_lon.csv')
+                                default = 'C:\\gis\\gagesiii_lat_lon3.csv')
             parser.add_argument("-outwkid", help="specifies the esri well known id of pourpoint ", type=int, 
                                 default = '4326')
             parser.add_argument("-parameters", help="specifies the ';' separated list of parameters to be computed", type=str, 
@@ -172,8 +172,8 @@ class DelineationWrapper(object):
                     if not feature["geometry"]["type"].lower() in ["polygon","multipolygon"]:
                         raise Exception('Mask Geometry within the Feature Collection is not polygon output will be erroneous!')
                 GeoJsonHandler.read_feature_collection(maskjson,mask,gage.sr) 
-            fileSA = NLDIFileServiceAgent()
-            basinjson = fileSA.getBasin(gage.comid,False)
+#             fileSA = NLDIFileServiceAgent()
+            basinjson = sa.getBasin(gage.comid,False)
 
             if(not basinjson): return None
 
@@ -264,9 +264,9 @@ class DelineationWrapper(object):
 
             return WiMResults
         except:
-             tb = traceback.format_exc()
-             WiMLogging.sm("Error writing computing Characteristics "+tb)
-             return WiMResults
+            tb = traceback.format_exc()
+            WiMLogging.sm("Error writing computing Characteristics "+tb)
+            return WiMResults
             
 if __name__ == '__main__':
     DelineationWrapper()

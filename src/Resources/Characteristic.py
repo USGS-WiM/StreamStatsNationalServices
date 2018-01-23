@@ -50,6 +50,9 @@ class Characteristic(object):
             self.SubProcedure = CharObj["SubProcedure"]if ("SubProcedure" in CharObj) else None
             self.WhereClause = CharObj["WhereClause"]if ("WhereClause" in CharObj) else ""
             self.MultiplicationFactor = CharObj["MultiplicationFactor"] if ("MultiplicationFactor" in CharObj) else 1 # Added by JWX
+            self.TimeRange = CharObj["TimeRange"] if ("TimeRange" in CharObj) else "" 
+            self.TimeMethod = CharObj["TimeMethod"] if ("TimeMethod" in CharObj) else ""
+        
         except:
             WiMLogging.sm(chardefname + " not available to compute. Returning none value.", "ERROR")
             return None
