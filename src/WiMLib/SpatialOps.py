@@ -115,7 +115,12 @@ class SpatialOps(object):
     def getAreaSqMeter(self, inFeature):
         AreaValue = -999
         try:
+
             sr = arcpy.Describe(inFeature).spatialReference
+            if(sr.type == "Geographic"):
+                inFeature = self.ProjectFeature(inFeature,arcpy.SpatialReference(102039))[0]
+                sr = arcpy.Describe(inFeature).spatialReference
+
             cursor = arcpy.da.SearchCursor(inFeature, "SHAPE@")
             for row in cursor:
                 AreaValue = row[0].area * sr.metersPerUnit * sr.metersPerUnit 

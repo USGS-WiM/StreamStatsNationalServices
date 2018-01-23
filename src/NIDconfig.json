@@ -1,0 +1,42 @@
+{
+  "NLDIServiceFiles": "C:/gis/usgs/ss/Applications/input",
+  "NLDIService": "https://cida.usgs.gov",
+  "queryParams": {
+    "nldiQuery": "/nldi/comid/{0}/basin",
+    "nldiWFS": "/nwc/geoserver/nhdplus/ows?service=wfs&version=1.0.0&request=GetFeature&typeName=nhdplus:catchmentsp&srsName=EPSG:{0}&outputFormat=json&filter=<Filter xmlns=\"http://www.opengis.net/ogc\" xmlns:gml=\"http://www.opengis.net/gml\"><Contains><PropertyName>the_geom</PropertyName><gml:Point srsName=\"EPSG:{0}\"><gml:coordinates>{1},{2}</gml:coordinates></gml:Point></Contains></Filter>",
+    "nldiChars": "/nldi/comid/{0}/tot"
+  },
+  "UseNLDIServices": true,
+  "workingdirectory": "D:/WiM/Projects/KathyGages3",
+  "parentdirectory": "D:/data",
+  "outputFile": "NIDDams",
+  "catchment": {
+    "upstream": "upstreamcatchment",
+    "downstream": "downstreamcatchment",
+    "global": "global"
+  },
+  "maplayers": {
+    "fdr": {
+      "ID": 1001,
+      "Name": "fdr",
+      "Description": "Flow Direction Raster",
+      "isTiled": true,
+      "path": "Tiled/NHDPlus_v2",
+      "DatasetType": "ESRI_RASTER",
+      "queryFeaturePath": "RPU.shp",
+      "queryField": "Path",
+      "UnitID": "sq-m"
+    },
+    "fac": {
+      "ID": 1001,
+      "Name": "fac",
+      "Description": "Flow Accumulation Raster",
+      "isTiled": true,
+      "path": "Tiled/NHDPlus_v2",
+      "DatasetType": "ESRI_RASTER",
+      "queryFeaturePath": "RPU.shp",
+      "queryField": "Path",
+      "UnitID": "sq-m"
+    }
+  }
+}
