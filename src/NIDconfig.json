@@ -7,7 +7,7 @@
     "nldiChars": "/nldi/comid/{0}/tot"
   },
   "UseNLDIServices": true,
-  "workingdirectory": "D:/WiM/Projects/KathyGages3",
+  "workingdirectory": "D:/ClientData/Test",
   "parentdirectory": "D:/data",
   "outputFile": "NIDDams",
   "catchment": {

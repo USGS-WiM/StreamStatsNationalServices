@@ -28,6 +28,7 @@ import datetime
 import time
 import os
 import argparse
+import fnmatch
 import arcpy
 from arcpy import env
 from arcpy.sa import *
@@ -101,12 +102,11 @@ class DelineationWrapper(object):
                             row.setValue('Comments',"something went wrong ..." + tb[-200:])
                         finally:
                             rows.insertRow(row)
-                            del row
-                    #end hOps                   
-                    
-                    
-                    #next cur
-                #end source_curs        
+                            del row                   
+                    #end hOps  
+                    del nldibasin  
+                #next cur
+            #end source_curs        
              
             
             WiMLogging.sm('Finished.  Total time elapsed:', str(round((time.time()- startTime)/60, 2)), 'minutes')
@@ -187,7 +187,103 @@ class DelineationWrapper(object):
             WiMLogging.sm("Error executing delineation wrapper "+tb)
         finally:
             sa = None
+class ReComputeAreaWrapper(object):
+    #region Constructor
+    def __init__(self):
+        niddataset = None
+        try:
+            parser = argparse.ArgumentParser()
+            #Use the following LAT/LON pour point
+            parser.add_argument("-dataset", help="datasetpath", type=str, 
+                                default = 'D:\WiM\Projects\NationalStreamStats\data\NID_Area\NID_Area.dbf')
+                           
+            args = parser.parse_args()
+            if not arcpy.Exists(args.dataset): raise Exception("Regions dataset does not exist")
+            else : niddataset = args.dataset
+            startTime = time.time()
+            
+            config = Config(json.load(open(os.path.join(os.path.dirname(__file__), 'NIDconfig.json'))))  
+            workingDir = Shared.GetWorkspaceDirectory(config["workingdirectory"]) 
+            
+            WiMLogging.init(os.path.join(workingDir,"Temp"),"NIDrecomputeArea.log")
+            WiMLogging.sm("Started NID routine")
+
+            gdbPathlookup = self._getKeyDirectoryLookup(config["workingdirectory"])
+            WiMLogging.sm("keyDirectory"+json.dumps(gdbPathlookup) )
+
+            with arcpy.da.UpdateCursor(niddataset,["Source_Fea", "DA_Acre",'Comments']) as update_curs:
+                for row in update_curs:                     
+                    sfID = row[0]
+                    try:
+                        if not sfID in gdbPathlookup: 
+                            WiMLogging.sm("Could not find sfid "+ sfID)
+                            continue
+                        basinGDB = gdbPathlookup[sfID]
+  
+                        with HydroOps(workingDir,sfID) as hOps: 
+                            Area = hOps.getAreaSqMeter(basinGDB) #GA06020
+                            if Area == None: raise Exception("Area is none")
+                            row[2]="oldvalue"+str(row[1])+row[2]
+                            row[1]=Area*0.000247105 # in acres
+                            update_curs.updateRow(row)
+                    
+                    except:
+                        tb = traceback.format_exc()
+                        row[2] = "something went wrong ..." + tb[-200:]
+                        update_curs.updateRow(row)
+                #next cur
+            #end update_curs        
+             
+            
+            WiMLogging.sm('Finished.  Total time elapsed:', str(round((time.time()- startTime)/60, 2)), 'minutes')
+
+            Results = {
+                       "Workspace": hOps.WorkspaceID,
+                       "Message": ';'.join(WiMLogging.LogMessages).replace('\n',' ')
+                      }
+        except:
+             tb = traceback.format_exc()
+             WiMLogging.sm("Error executing delineation wrapper "+tb)
+             Results = {
+                       "error": {"message": ';'.join(WiMLogging.LogMessages).replace('\n',' ')}
+                       }
+
+        finally:
+            print "Results="+json.dumps(Results)
+
+    def _getFileGDB(self, dir, file):
+        gdbsList = []
+        for dirpath,dirnames,filenames in os.walk(dir):
+            if (file in dirnames): 
+                gdbsList.append(os.path.join(dirpath, file))
+            #remove gdb folders in order to exclude walk
+            [dirnames.remove(d) for d in list(dirnames) if d.endswith(".gdb")]
+        #next
+        return gdbsList 
+    def _getKeyDirectoryLookup(self, dir):
+        keyList = {}
+        for dirpath,dirnames,filenames in os.walk(dir):
+            for d in list(dirnames):
+                if d.endswith(".gdb"):
+                    key = d.replace(".gdb","")
+                    if key in keyList: 
+                        #check if original has global
+                        if arcpy.Exists(os.path.join(os.path.join(keyList[key], "Layers"), Config()["catchment"]["global"])):
+                            WiMLogging.sm("DuplicatedWorkspace sticking with original,"+keyList[key]+" Other, "+ os.path.join(dirpath, d))
+                        else:
+                            WiMLogging.sm("No global removing gdb,"+keyList[key])
+                            shutil.rmtree(keyList[key], ignore_errors=True)
+                            keyList[key] = os.path.join(dirpath, d,"Layers",Config()["catchment"]["global"])
+                    else: 
+                        keyList[key] = os.path.join(dirpath, d,"Layers",Config()["catchment"]["global"])
+
+
+            #remove gdb folders in order to exclude walk
+            [dirnames.remove(d) for d in list(dirnames) if d.endswith(".gdb")]
+        #next
+        return keyList   
 
 if __name__ == '__main__':
-    DelineationWrapper()
+    #DelineationWrapper()
+    ReComputeAreaWrapper()
 

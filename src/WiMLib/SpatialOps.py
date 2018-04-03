@@ -114,18 +114,19 @@ class SpatialOps(object):
     def PersistFeature(self,inFeature, path, name):
         arcpy.FeatureClassToFeatureClass_conversion(inFeature,path,name)
     def getAreaSqMeter(self, inFeature):
-        AreaValue = -999
+        AreaValue = 0
         try:
 
             sr = arcpy.Describe(inFeature).spatialReference
             if(sr.type == "Geographic"):
+                #USA_Contiguous_Albers_Equal_Area_Conic_USGS_version:
                 inFeature = self.ProjectFeature(inFeature,arcpy.SpatialReference(102039))[0]
                 sr = arcpy.Describe(inFeature).spatialReference
 
             cursor = arcpy.da.SearchCursor(inFeature, "SHAPE@")
             for row in cursor:
-                AreaValue = row[0].area * sr.metersPerUnit * sr.metersPerUnit 
-                break
+                AreaValue += row[0].area * sr.metersPerUnit * sr.metersPerUnit 
+                
             return AreaValue if (AreaValue > 0) else None
         except:
             tb = traceback.format_exc()
