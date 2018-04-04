@@ -286,4 +286,3 @@ class ReComputeAreaWrapper(object):
 if __name__ == '__main__':
     #DelineationWrapper()
     ReComputeAreaWrapper()
-
