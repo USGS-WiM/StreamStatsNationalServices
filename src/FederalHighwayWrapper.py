@@ -49,6 +49,7 @@ from ServiceAgents.NLDIFileServiceAgent import NLDIFileServiceAgent
 import ServiceAgents.NLDIServiceAgent
 from Ops.StreamStatsNationalOps import *
 import json
+from WiMLib import ExpressionOps
 
 #endregion
 
@@ -207,6 +208,7 @@ class DelineationWrapper(object):
             #end with
             startTime = time.time()
             with StreamStatsNationalOps(workspace, workspaceID) as sOps: 
+                localBasinArea = sOps.getAreaSqMeter(sOps.mask)
                 for p in self.params:
                     if p == 'TOT_BASIN_AREA':
                         print "TOT_BASIN_AREA hath been found!"
@@ -229,7 +231,7 @@ class DelineationWrapper(object):
                             try:
                                 if globalValue[parameter.Name] == "":
                                     globalValue[parameter.Name] = 0                              
-                                totalval = float(globalValue[parameter.Name])-float(result[parameter.Name]) if globalValue[parameter.Name] != None and result[parameter.Name] != None else None
+                                totalval = ExpressionOps.Evaluate(parameter.AggregateMethod, [float(globalValue[parameter.Name]),float(result[parameter.Name])],[float(globalValue["TOT_BASIN_AREA"]),localBasinArea]) if globalValue[parameter.Name] != None and result[parameter.Name] != None else None
                                 WiMLogging.sm("The global value for " + str(parameter.Name) + " : " + str(globalValue[parameter.Name]))
                                 #Below should be updated to work with Total, Local, and Global values
                                 #If the parameter does not exist in globalValue the name is returned screwing things up for calculations

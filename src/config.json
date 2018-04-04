@@ -619,7 +619,8 @@
       "Procedure": "NHDPlusV2QueryNoCalc",
       "Description": "NHDPlus Version 2 percent slope",
       "UnitID": "km2",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890",
+      "AggregationMethod": "difference"
     },
     "TOT_BASIN_SLOPE": {
       "Procedure": "NHDPlusV2QueryNoCalc",
@@ -1025,7 +1026,8 @@
       "Method": "SUM",
       "MapLayers": [ "nidstorage2010" ],
       "UnitID": "acre feet",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57718550e4b07657d1a6baf1"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57718550e4b07657d1a6baf1",
+      "AggregationMethod": "difference"
     },
     "TOT_NID_STORAGE_2000": {
       "Procedure": "getFeatureStatistic",
@@ -1035,7 +1037,8 @@
       "Method": "SUM",
       "MapLayers": [ "nidstorage2000" ],
       "UnitID": "acre feet",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57717f71e4b07657d1a6bae9"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57717f71e4b07657d1a6bae9",
+      "AggregationMethod": "difference"
     },
     "TOT_NID_STORAGE_1990": {
       "Procedure": "getFeatureStatistic",
@@ -1045,7 +1048,8 @@
       "Method": "SUM",
       "MapLayers": [ "nidstorage1990" ],
       "UnitID": "acre feet",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57717cb2e4b07657d1a6bae5"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57717cb2e4b07657d1a6bae5",
+      "AggregationMethod": "difference"
     },
     "TOT_NID_STORAGE_1970": {
       "Procedure": "getFeatureStatistic",
@@ -1055,7 +1059,8 @@
       "Method": "SUM",
       "MapLayers": [ "nidstorage1970" ],
       "UnitID": "acre feet",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57717888e4b07657d1a6badb"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57717888e4b07657d1a6badb",
+      "AggregationMethod": "difference"
     },
     "TOT_NID_STORAGE_1960": {
       "Procedure": "getFeatureStatistic",
@@ -1065,7 +1070,8 @@
       "Method": "SUM",
       "MapLayers": [ "nidstorage1960" ],
       "UnitID": "acre feet",
-      "Reference": "https://www.sciencebase.gov/catalog/item/577177e0e4b07657d1a6bad8"
+      "Reference": "https://www.sciencebase.gov/catalog/item/577177e0e4b07657d1a6bad8",
+      "AggregationMethod": "difference"
     },
     "TOT_NID_STORAGE_1950": {
       "Procedure": "getFeatureStatistic",
@@ -1075,7 +1081,8 @@
       "Method": "SUM",
       "MapLayers": [ "nidstorage1950" ],
       "UnitID": "acre feet",
-      "Reference": "https://www.sciencebase.gov/catalog/item/5771775de4b07657d1a6bad2"
+      "Reference": "https://www.sciencebase.gov/catalog/item/5771775de4b07657d1a6bad2",
+      "AggregationMethod": "difference"
     },
     "TOT_NID_STORAGE_1940": {
       "Procedure": "getFeatureStatistic",
@@ -1085,7 +1092,8 @@
       "Method": "SUM",
       "MapLayers": [ "nidstorage1940" ],
       "UnitID": "acre feet",
-      "Reference": "https://www.sciencebase.gov/catalog/item/5771766de4b07657d1a6bac8"
+      "Reference": "https://www.sciencebase.gov/catalog/item/5771766de4b07657d1a6bac8",
+      "AggregationMethod": "difference"
     },
     "TOT_NID_STORAGE_1930": {
       "Procedure": "getFeatureStatistic",
@@ -1095,7 +1103,8 @@
       "Method": "SUM",
       "MapLayers": [ "nidstorage1930" ],
       "UnitID": "acre feet",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57716be5e4b07657d1a6baab"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57716be5e4b07657d1a6baab",
+      "AggregationMethod": "difference"
     },
     "TOT_NORM_STORAGE_2013": {
       "Procedure": "getFeatureStatistic",
@@ -1105,7 +1114,8 @@
       "Method": "SUM",
       "MapLayers": [ "normstorage2013" ],
       "UnitID": "acre feet",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1",
+      "AggregationMethod": "difference"
     },
     "TOT_NORM_STORAGE_2010": {
       "Procedure": "getFeatureStatistic",
@@ -1115,7 +1125,8 @@
       "Method": "SUM",
       "MapLayers": [ "normstorage2010" ],
       "UnitID": "acre feet",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57718550e4b07657d1a6baf1"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57718550e4b07657d1a6baf1",
+      "AggregationMethod": "difference"
     },
     "TOT_NORM_STORAGE_2000": {
       "Procedure": "getFeatureStatistic",
@@ -1125,7 +1136,8 @@
       "Method": "SUM",
       "MapLayers": [ "normstorage2000" ],
       "UnitID": "acre feet",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57717f71e4b07657d1a6bae9"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57717f71e4b07657d1a6bae9",
+      "AggregationMethod": "difference"
     },
     "TOT_NORM_STORAGE_1990": {
       "Procedure": "getFeatureStatistic",
@@ -1135,7 +1147,8 @@
       "Method": "SUM",
       "MapLayers": [ "normstorage1990" ],
       "UnitID": "acre feet",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57717cb2e4b07657d1a6bae5"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57717cb2e4b07657d1a6bae5",
+      "AggregationMethod": "difference"
     },
     "TOT_NORM_STORAGE_1980": {
       "Procedure": "getFeatureStatistic",
@@ -1145,7 +1158,8 @@
       "Method": "SUM",
       "MapLayers": [ "normstorage1980" ],
       "UnitID": "acre feet",
-      "Reference": "https://www.sciencebase.gov/catalog/item/577179e4e4b07657d1a6badf"
+      "Reference": "https://www.sciencebase.gov/catalog/item/577179e4e4b07657d1a6badf",
+      "AggregationMethod": "difference"
     },
     "TOT_NORM_STORAGE_1970": {
       "Procedure": "getFeatureStatistic",
@@ -1155,7 +1169,8 @@
       "Method": "SUM",
       "MapLayers": [ "normstorage1970" ],
       "UnitID": "acre feet",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57717888e4b07657d1a6badb"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57717888e4b07657d1a6badb",
+      "AggregationMethod": "difference"
     },
     "TOT_NORM_STORAGE_1960": {
       "Procedure": "getFeatureStatistic",
@@ -1165,7 +1180,8 @@
       "Method": "SUM",
       "MapLayers": [ "normstorage1960" ],
       "UnitID": "acre feet",
-      "Reference": "https://www.sciencebase.gov/catalog/item/577177e0e4b07657d1a6bad8"
+      "Reference": "https://www.sciencebase.gov/catalog/item/577177e0e4b07657d1a6bad8",
+      "AggregationMethod": "difference"
     },
     "TOT_NORM_STORAGE_1950": {
       "Procedure": "getFeatureStatistic",
@@ -1175,7 +1191,8 @@
       "Method": "SUM",
       "MapLayers": [ "normstorage1950" ],
       "UnitID": "acre feet",
-      "Reference": "https://www.sciencebase.gov/catalog/item/5771775de4b07657d1a6bad2"
+      "Reference": "https://www.sciencebase.gov/catalog/item/5771775de4b07657d1a6bad2",
+      "AggregationMethod": "difference"
     },
     "TOT_NORM_STORAGE_1940": {
       "Procedure": "getFeatureStatistic",
@@ -1185,7 +1202,8 @@
       "Method": "SUM",
       "MapLayers": [ "normstorage1940" ],
       "UnitID": "acre feet",
-      "Reference": "https://www.sciencebase.gov/catalog/item/5771766de4b07657d1a6bac8"
+      "Reference": "https://www.sciencebase.gov/catalog/item/5771766de4b07657d1a6bac8",
+      "AggregationMethod": "difference"
     },
     "TOT_NORM_STORAGE_1930": {
       "Procedure": "getFeatureStatistic",
@@ -1195,7 +1213,8 @@
       "Method": "SUM",
       "MapLayers": [ "normstorage1930" ],
       "UnitID": "acre feet",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57716be5e4b07657d1a6baab"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57716be5e4b07657d1a6baab",
+      "AggregationMethod": "difference"
     },
     "TOT_POPDENS90": {
       "Procedure": "getRasterStatistic",

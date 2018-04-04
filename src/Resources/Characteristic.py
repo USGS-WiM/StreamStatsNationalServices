@@ -52,6 +52,7 @@ class Characteristic(object):
             self.MultiplicationFactor = CharObj["MultiplicationFactor"] if ("MultiplicationFactor" in CharObj) else 1 # Added by JWX
             self.TimeRange = CharObj["TimeRange"] if ("TimeRange" in CharObj) else "" 
             self.TimeMethod = CharObj["TimeMethod"] if ("TimeMethod" in CharObj) else ""
+            self.AggregationMethod = CharObj["AggregationMethod"] if ("AggregationMethod" in CharObj) else "weighteddifference" #seeWiMLib.ExpressionOps
         
         except:
             WiMLogging.sm(chardefname + " not available to compute. Returning none value.", "ERROR")
