@@ -50,7 +50,8 @@ import arcpy
 import json
 import math
 from datetime import datetime as dt
-
+import pandas as pd
+import numpy as np
 from arcpy import env
 from arcpy.sa import *
 from arcpy import Describe, Exists,Erase_analysis, FeatureToPolygon_management, GetMessages, EliminatePolygonPart_management
@@ -469,7 +470,7 @@ class StreamStatsNationalOps(SpatialOps):
 
             rastStat = super(StreamStatsNationalOps,self).getRasterStatistic(ML.Dataset, self.mask,"MEAN")
 
-            result[Characteristic.Name] = log(rastStat)
+            result[Characteristic.Name] = np.log(rastStat)
 
         except:
             tb = traceback.format_exc()
@@ -481,5 +482,24 @@ class StreamStatsNationalOps(SpatialOps):
             #Cleans up workspace
             ML = None
 
+        return result
+    
+    def getCSVStatistic(self, Characteristic):
+        '''
+        This method looks in the conus text file and returns the NA statistic
+        '''
+        
+        result = {Characteristic.Name:None}
+        df = pd.read_csv(str(Characteristic.Data), skiprows=1, header=None, sep=',')
+        idx = int(Characteristic.IDX)
+        
+        try:
+            result[Characteristic.Name] = df[df[0] == int(Characteristic.ComID)][idx].values[0]
+        except:
+            result[Characteristic.Name] = None
+
+        del df
+        df = None
+        
         return result
 #End Region
