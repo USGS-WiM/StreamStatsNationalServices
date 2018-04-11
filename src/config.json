@@ -26,13 +26,33 @@
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1"
     },
+    "TOT_NID_STORAGE_2013_NODATA": {
+      "Procedure": "NHDPlusV2QueryNoCalc",
+      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
+      "Data": "NID_2013_CONUS.csv",
+      "QueryField": "NID_STORAG",
+      "UnitID": "acre feet",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1"
+    },
     "TOT_FRESHWATER_WD": {
       "Procedure": "getRasterStatistic",
       "Description": "Freshwater withdrawal megaliters (1000 cubic meters) per year per sqkm, from 1995-2000 county-level estimates",
       "Method": "Mean",
       "MapLayers": [ "freshwater_wd" ],
       "UnitID": "megaliters/km2",
-      "MultiplicationFactor": 1
+      "MultiplicationFactor": 1,
+      "Reference": "https://www.sciencebase.gov/catalog/item/57c9dc05e4b0f2f0cec192f2"
+    },
+     "TOT_FRESHWATER_WD_NODATA": {
+      "Procedure": "getCSVStatistic",
+      "Description": "Freshwater withdrawal megaliters (1000 cubic meters) per year per sqkm, from 1995-2000 county-level estimates",
+      "Method": "Mean",
+      "Data": "FRESHWATER_WD_CONUS.csv",
+	  "IDX": 2,
+	  "TOT_IDX": 3,
+      "UnitID": "megaliters/km2",
+      "MultiplicationFactor": 1,
+      "Reference": "https://www.sciencebase.gov/catalog/item/57c9dc05e4b0f2f0cec192f2"
     },
     "TOT_IMPV11": {
       "Procedure": "getRasterStatistic",
@@ -40,7 +60,19 @@
       "Method": "Mean",
       "MapLayers": [ "nlcd2011" ],
       "UnitID": "percent",
-      "MultiplicationFactor": 1
+      "MultiplicationFactor": 1,
+      "Reference": "https://www.sciencebase.gov/catalog/item/570575fae4b0d4e2b7571bba"
+    },
+    "TOT_IMPV11_NODATA": {
+      "Procedure": "getCSVStatistic",
+      "Description": "Impervious surface from NLCD 2011",
+      "Method": "Mean",
+      "Data": "IMPV11_CONUS.csv",
+      "UnitID": "percent",
+      "MultiplicationFactor": 1,
+	  "IDX": 2,
+	  "TOT_IDX": 3,
+	  "Reference": "https://www.sciencebase.gov/catalog/item/570575fae4b0d4e2b7571bba"
     },
     "TOT_MIRAD_2012": {
       "Procedure": "getRasterPercent",
@@ -49,13 +81,36 @@
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/57f66d66e4b0bc0bec06de3a"
     },
+    "TOT_MIRAD_2012_NODATA": {
+      "Procedure": "getCSVStatistic",
+      "Description": "Percent of watershed in irrigated agriculture, from USGS 2012 250-m MODIS data",
+      "Data": "MIRAD_2012_CONUS.csv",
+      "UnitID": "percent",
+	  "IDX": 2,
+	  "TOT_IDX": 3,
+      "Reference": "https://www.sciencebase.gov/catalog/item/57f66d66e4b0bc0bec06de3a"
+    },
     "TOT_NWALT12_41": {
       "Procedure": "getRasterPercent",
       "Description": "Mining/Extraction - Barren areas due to probable surface mining/mineral extraction. Includes mining, quarries, sand and gravel operations, and energy operations.",
       "MapLayers": [ "nwalt2012" ],
       "ClassCodes": "41",
+      "Data": "NWALT_CONUS.csv",
+      "TOT_IDX": 2,
       "UnitID": "percent",
-      "MultiplicationFactor": 1
+      "MultiplicationFactor": 1,
+      "Reference": "https://www.sciencebase.gov/catalog/item/5669a834e4b08895842a1d49"
+    },
+    "TOT_NWALT12_41_NODATA": {
+      "Procedure": "getCSVStatistic",
+      "Description": "Mining/Extraction - Barren areas due to probable surface mining/mineral extraction. Includes mining, quarries, sand and gravel operations, and energy operations.",
+	  "IDX": 1,
+	  "Data": "NWALT_CONUS.csv",
+      "TOT_IDX": 3,
+      "ClassCodes": "41",
+      "UnitID": "percent",
+      "MultiplicationFactor": 1,
+      "Reference": "https://www.sciencebase.gov/catalog/item/5669a834e4b08895842a1d49"
     },
     "TOT_DITCHES92": {
       "Procedure": "getVectorDensity",
@@ -69,23 +124,57 @@
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/57067257e4b03f95a075ab0c"
     },
+    "TOT_DITCHES92_NODATA": {
+      "Procedure": "getCSVStatistic",
+      "Operator": "LIKE",
+      "Keyword": "Canal",
+      "Method": "SUM",
+      "methodField": "LENGTHKM",
+      "selectorField": "FTYPE",
+      "Description": "Percent of watershed subjected to ditches for the year 1992",
+      "Data": "DITCHES92_CONUS.csv",
+	  "IDX": 2,
+	  "TOT_IDX": 3,
+      "UnitID": "percent",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57067257e4b03f95a075ab0c"
+    },
     "TOT_NPDES_MAJ_DENS": {
       "Procedure": "getPointFeatureDensity",
       "Description": "NPDES Major site density, count/totalArea",
       "MapLayers": [ "npdes" ],
-      "UnitID": "cnt/sqkm"
+      "UnitID": "cnt/sqkm",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57c9d89ce4b0f2f0cec192da"
+    },
+    "TOT_NPDES_MAJ_DENS_NODATA": {
+      "Procedure": "NHDPlusV2QueryNoCalc",
+      "Description": "NPDES Major site density, count/totalArea",
+      "UnitID": "cnt/sqkm",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57c9d89ce4b0f2f0cec192da"
     },
     "TOT_PPT7100_ANN": {
       "Procedure": "getRasterStatistic",
       "Description": "Mean annual precipitation (mm) from 800m PRISM data. 30 year period of record 1971-2000.",
       "Method": "Mean",
       "MapLayers": [ "ppt7100_800a" ],
-      "MultiplicationFactor": 0.01,
+      "MultiplicationFactor": 1,
       "UnitID": "millimeters",
       "Reference": "https://www.sciencebase.gov/catalog/item/573b70a7e4b0dae0d5e3ae85",
       "TimeRange": "1-1-1971;1-1-2001",
-      "TimeMethod": "MeanYear",
-      "Data": "pptint.nc"
+      "TimeMethod": "MeanYear"
+    },
+    "TOT_PPT7100_ANN_NODATA": {
+      "Procedure": "getCSVStatistic",
+      "Description": "Mean annual precipitation (mm) from 800m PRISM data. 30 year period of record 1971-2000.",
+      "Method": "Mean",
+      "MapLayers": [ "ppt7100_800a" ],
+      "MultiplicationFactor": 1,
+      "IDX": 1,
+      "TOT_IDX": 2,
+      "Data": "PPT_ANN_CONUS.csv",
+      "UnitID": "millimeters",
+      "Reference": "https://www.sciencebase.gov/catalog/item/573b70a7e4b0dae0d5e3ae85",
+      "TimeRange": "1-1-1971;1-1-2001",
+      "TimeMethod": "MeanYear"
     },
     "TOT_TAV7100_ANN": {
       "Procedure": "getCalculateEval",
@@ -152,7 +241,7 @@
       "MapLayers": [ "ppt7100_sepa" ],
       "UnitID": "millimeters",
       "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
-      "MultiplicationFactor": 0.01
+      "MultiplicationFactor": 1
     },
     "TOT_PPT7100_OCT": {
       "Procedure": "getRasterStatistic",
@@ -161,7 +250,7 @@
       "MapLayers": [ "ppt7100_octa" ],
       "UnitID": "millimeters",
       "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
-      "MultiplicationFactor": 0.01
+      "MultiplicationFactor": 1
     },
     "TOT_PPT7100_NOV": {
       "Procedure": "getPrismStatistic",
@@ -170,7 +259,7 @@
       "MapLayers": [ "ppt7100_nova" ],
       "UnitID": "millimeters",
       "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
-      "MultiplicationFactor": 0.01
+      "MultiplicationFactor": 1
     },
     "TOT_PPT7100_MAY": {
       "Procedure": "getRasterStatistic",
@@ -179,7 +268,7 @@
       "MapLayers": [ "ppt7100_maya" ],
       "UnitID": "millimeters",
       "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
-      "MultiplicationFactor": 0.01
+      "MultiplicationFactor": 1
     },
     "TOT_PPT7100_MAR": {
       "Procedure": "getRasterStatistic",
@@ -188,7 +277,7 @@
       "MapLayers": [ "ppt7100_mara" ],
       "UnitID": "millimeters",
       "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
-      "MultiplicationFactor": 0.01
+      "MultiplicationFactor": 1
     },
     "TOT_PPT7100_JUN": {
       "Procedure": "getRasterStatistic",
@@ -197,7 +286,7 @@
       "MapLayers": [ "ppt7100_juna" ],
       "UnitID": "millimeters",
       "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
-      "MultiplicationFactor": 0.01
+      "MultiplicationFactor": 1
     },
     "TOT_PPT7100_JUL": {
       "Procedure": "getRasterStatistic",
@@ -206,7 +295,7 @@
       "MapLayers": [ "ppt7100_jula" ],
       "UnitID": "millimeters",
       "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
-      "MultiplicationFactor": 0.01
+      "MultiplicationFactor": 1
     },
     "TOT_PPT7100_JAN": {
       "Procedure": "getRasterStatistic",
@@ -215,7 +304,7 @@
       "MapLayers": [ "ppt7100_jana" ],
       "UnitID": "millimeters",
       "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
-      "MultiplicationFactor": 0.01
+      "MultiplicationFactor": 1
     },
     "TOT_PPT7100_FEB": {
       "Procedure": "getRasterStatistic",
@@ -224,7 +313,7 @@
       "MapLayers": [ "ppt7100_feba" ],
       "UnitID": "millimeters",
       "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
-      "MultiplicationFactor": 0.01
+      "MultiplicationFactor": 1
     },
     "TOT_PPT7100_DEC": {
       "Procedure": "getRasterStatistic",
@@ -233,7 +322,7 @@
       "MapLayers": [ "ppt7100_deca" ],
       "UnitID": "millimeters",
       "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
-      "MultiplicationFactor": 0.01
+      "MultiplicationFactor": 1
     },
     "TOT_PPT7100_AUG": {
       "Procedure": "getRasterStatistic",
@@ -242,7 +331,7 @@
       "MapLayers": [ "ppt7100_auga" ],
       "UnitID": "millimeters",
       "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
-      "MultiplicationFactor": 0.01
+      "MultiplicationFactor": 1
     },
     "TOT_PPT7100_APR": {
       "Procedure": "getRasterStatistic",
@@ -251,7 +340,7 @@
       "MapLayers": [ "ppt7100_apra" ],
       "UnitID": "millimeters",
       "Reference": "https://www.sciencebase.gov/catalog/item/57223dd6e4b0b13d39138ed6",
-      "MultiplicationFactor": 0.01
+      "MultiplicationFactor": 1
     },
     "TOT_TAV7100_SEP": {
       "Procedure": "getRasterStatistic",
@@ -616,42 +705,41 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/5761b90ee4b04f417c2d30bc"
     },
     "TOT_BASIN_AREA": {
-      "Procedure": "NHDPlusV2QueryNoCalc",
+      "Procedure": "getCSVStatistic",
       "Description": "NHDPlus Version 2 percent slope",
+	  "Data": "CAT_BASIN_CONUS.csv",
+	  "IDX": 1,
       "UnitID": "km2",
       "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890",
       "AggregationMethod": "difference"
     },
-    "TOT_BASIN_SLOPE": {
-      "Procedure": "NHDPlusV2QueryNoCalc",
-      "Description": "NHDPlus Version 2 percent slope",
-      "Method": "Mean",
-      "MapLayers": [ "elev_cm" ],
-      "UnitID": "percent",
-      "MultiplicationFactor": 1,
-      "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
-    },
     "TOT_ELEV_MAX": {
-      "Procedure": "NHDPlusV2QueryNoCalc",
+     "Procedure": "getCSVStatistic",
       "Description": "NHDPlus Version 2 Maximum elevation",
+	  "Data": "CAT_BASIN_CONUS.csv",
+	  "IDX": 5,
       "Method": "Max",
       "MapLayers": [ "elev_cm" ],
       "UnitID": "meters",
       "MultiplicationFactor": 0.01,
       "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
     },
-    "TOT_ELEV_MIN": {
-      "Procedure": "NHDPlusV2QueryNoCalc",
+     "TOT_ELEV_MIN": {
+      "Procedure": "getCSVStatistic",
       "Description": "NHDPlus Version 2 Minimum elevation",
+	  "Data": "CAT_BASIN_CONUS.csv",
+	  "IDX": 4,
       "Method": "Minimum",
       "MapLayers": [ "elev_cm" ],
       "UnitID": "meters",
       "MultiplicationFactor": 0.01,
       "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
     },
-    "TOT_ELEV_MEAN": {
-      "Procedure": "NHDPlusV2QueryNoCalc",
+   "TOT_ELEV_MEAN": {
+      "Procedure": "getCSVStatistic",
       "Description": "NHDPlus Version 2 Mean elevation",
+	  "Data": "CAT_BASIN_CONUS.csv",
+	  "IDX": 3,
       "Method": "Mean",
       "MapLayers": [ "elev_cm" ],
       "UnitID": "meters",
@@ -1116,6 +1204,15 @@
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1",
       "AggregationMethod": "difference"
+    },
+    "TOT_NORM_STORAGE_2013_NODATA": {
+      "Procedure": "NHDPlusV2QueryNoCalc",
+      "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
+      "WhereClause": "YEAR_COMPL > 2013",
+      "QueryField": "FID",
+      "Method": "SUM",
+      "UnitID": "acre feet",
+      "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1"
     },
     "TOT_NORM_STORAGE_2010": {
       "Procedure": "getFeatureStatistic",

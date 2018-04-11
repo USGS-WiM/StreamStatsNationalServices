@@ -34,6 +34,7 @@ import json
 from  WiMLib.SpatialOps import SpatialOps
 from WiMLib.MapLayer import *
 from WiMLib.Config import Config
+import shutil
 #endregion
 
 class HydroOps(SpatialOps):
@@ -110,16 +111,18 @@ class HydroOps(SpatialOps):
         finally:
             arcpy.CheckInExtension("Spatial")
             #Local cleanup
-            if fdr != None: del fdr
-            if sr != None: del sr
-            if mask != None: arcpy.Delete_management(mask)
-            if dstemp != None: arcpy.Delete_management(dstemp); dstemp = None
+            if fdr is not None: del fdr
+            if sr is not None: del sr
+            if mask is not None: arcpy.Delete_management(mask)
+            if dstemp is not None: arcpy.Delete_management(dstemp); dstemp = None
             for raster in arcpy.ListRasters("*", "GRID"):
                 arcpy.Delete_management(raster)
-            if datasetPath != None: del datasetPath
-            if featurePath != None: del featurePath
-            if upCatch != None: del upCatch; upCatch = None
-            if downCatch != None: del downCatch; downCatch = None
+                del raster
+                raster = None
+            if datasetPath is not None: del datasetPath
+            if featurePath is not None: del featurePath
+            if upCatch is not None: del upCatch; upCatch = None
+            if downCatch is not None: del downCatch; downCatch = None
             arcpy.env.extent = ""
     def MergeCatchment(self,inbasin):
         dstemp = None

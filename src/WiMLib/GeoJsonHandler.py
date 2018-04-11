@@ -73,7 +73,7 @@ def _get_point(pnt, sr=None):
     Ref: http://geojson.org/geojson-spec.html#id13
     """
     geom = arcpy.Point()
-    print pnt
+#     print pnt
     [geom.X, geom.Y,] = pnt[:2] #will return the entire array if there are only two coordinates
     if len(pnt) > 2:
         ##according to the spec, points must be x, y, [z], [whatever else]

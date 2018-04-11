@@ -34,7 +34,7 @@ def init(logpath, fileName):
 
 def sm(msg, type="INFO", errorID=0):
     LogMessages.append(type +':' + msg.replace('_',' '))
-    print(type +' ' + str(errorID) + ' ' + msg)
+#     print(type +' ' + str(errorID) + ' ' + msg)
     if type in ('ERROR'): logging.error(str(errorID) +' ' + msg)
     else : logging.info(msg)
 

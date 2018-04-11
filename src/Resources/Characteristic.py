@@ -53,6 +53,8 @@ class Characteristic(object):
             self.TimeRange = CharObj["TimeRange"] if ("TimeRange" in CharObj) else "" 
             self.TimeMethod = CharObj["TimeMethod"] if ("TimeMethod" in CharObj) else ""
             self.AggregationMethod = CharObj["AggregationMethod"] if ("AggregationMethod" in CharObj) else "weighteddifference" #seeWiMLib.ExpressionOps
+            self.IDX = CharObj["IDX"] if ("IDX" in CharObj) else ""
+            self.TOT_IDX = CharObj["IDX"] if ("IDX" in CharObj) else ""
         
         except:
             WiMLogging.sm(chardefname + " not available to compute. Returning none value.", "ERROR")
