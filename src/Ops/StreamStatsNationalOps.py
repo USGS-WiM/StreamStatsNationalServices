@@ -77,7 +77,7 @@ class StreamStatsNationalOps(SpatialOps):
     def __enter__(self):
         return self
     def __exit__(self, exc_type, exc_value, traceback):
-        super(StreamStatsNationalOps,self).__exit__(exc_type, exc_value, traceback) 
+          super(StreamStatsNationalOps,self).__exit__(exc_type, exc_value, traceback) 
 #End region
     def getRasterStatistic(self, Characteristic):
         '''

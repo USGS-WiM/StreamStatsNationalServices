@@ -38,16 +38,13 @@ def Evaluate(procedure, funcArgs,weightArgs = None):
         if (weightSum <= 0): raise Exception("Weight sum < 0")
         weightval = [val * wt/weightSum for val, wt in zip(funcArgs, weightArgs)]
 
-        result = abs(weightval[0] - weightval[1])
-        
+        result = weightval[0] - weightval[1];
     elif method == 'difference':
         # Do The Subract
-        result = funcArgs[0] - funcArgs[1]
+        result = funcArgs[0] - funcArgs[1];
 
     else:
-        raise Exception("Procedure not yet implemented ")# + procedureEnum)
-    
-    return result
+        raise Exception("Procedure not yet implemented " + proceedureEnum)
 
 def _getFunctionArgNumber(procedure):
     method = procedure.lower()

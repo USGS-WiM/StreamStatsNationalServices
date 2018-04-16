@@ -62,9 +62,9 @@ class ArgClass(object):
     def __init__(self):
         
         self.projectID = "\\FH"
-        self.file = r'C:\GIS\\gageiii_MTWY2.csv'
+        self.file = r'E:\Applications\input\gageiii_MTWY.csv'
         self.outwkid = 4326
-        self.parameters = "TOT_FRESHWATER_WD;" \
+        self.parameters = "TOT_FRESHWATER_WD;"\
                                         +"TOT_FRESHWATER_WD_NODATA;" \
                                         +"TOT_IMPV11;" \
                                         +"TOT_IMPV11_NODATA;"\
@@ -136,6 +136,7 @@ def delineationWrapper(index1, index2, name, arr):
        
         station_idx = 0
 
+        
         for station in file:
             
             if station_idx >= index1 and station_idx < index2:
@@ -150,6 +151,8 @@ def delineationWrapper(index1, index2, name, arr):
                 if(workspaceID == None): 
                     WiMLogging.sm("Delineation didn't occur for gage "+ g.comid)
                     continue
+                else:
+                    print 'donezo!'
                 results = _computeCharacteristics(g,workingDir,workspaceID, params, arr)
 
                 #Put for-for k.subk routine here instead of below
@@ -255,6 +258,7 @@ def _computeCharacteristics(gage,workspace,workspaceID, params, arr):
         startTime = time.time()
         with StreamStatsNationalOps(workspace, workspaceID) as sOps: 
             localBasinArea = sOps.getAreaSqMeter(sOps.mask)
+            print localBasinArea
             for p in params:
                 
                 method = None
@@ -268,7 +272,7 @@ def _computeCharacteristics(gage,workspace,workspaceID, params, arr):
                     continue
                 
                 
-##                print "The parameter name is: " + parameter.Name
+                print "The parameter name is: " + parameter.Name
                 #if method != 'getPrismStatistic':
                 #    continue
                 if (method):
@@ -284,7 +288,7 @@ def _computeCharacteristics(gage,workspace,workspaceID, params, arr):
 
                     
                     setattr(arr, 'value', arr.value+';'+p)
-                    # print 'set ' + arr.value
+                    print 'set ' + arr.value
                     arr.release()
                     
                     result = method(parameter)
@@ -302,7 +306,7 @@ def _computeCharacteristics(gage,workspace,workspaceID, params, arr):
                                 globalValue[parameter.Name] = getTotChar(gage.comid, parameter)
                             elif globalValue[parameter.Name] == "":
                                 globalValue[parameter.Name] = 0                              
-                            totalval = ExpressionOps.Evaluate(parameter.AggregationMethod, [float(globalValue[parameter.Name]),float(result[parameter.Name])],[float(globalValue["TOT_BASIN_AREA"]),localBasinArea]) if globalValue[parameter.Name] != None and result[parameter.Name] != None else None
+                            totalval = ExpressionOps.Evaluate(parameter.AggregateMethod, [float(globalValue[parameter.Name]),float(result[parameter.Name])],[float(globalValue["TOT_BASIN_AREA"]),localBasinArea]) if globalValue[parameter.Name] != None and result[parameter.Name] != None else None
                             WiMLogging.sm("The global value for " + str(parameter.Name) + " : " + str(globalValue[parameter.Name]))
                             #Below should be updated to work with Total, Local, and Global values
                             #If the parameter does not exist in globalValue the name is returned screwing things up for calculations
