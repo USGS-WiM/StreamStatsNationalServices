@@ -62,9 +62,9 @@ class ArgClass(object):
     def __init__(self):
         
         self.projectID = "\\FH"
-        self.file = r'E:\Applications\input\gagesiii_lat_lon6.csv'
+        self.file = r'C:\GIS\\gageiii_MTWY2.csv'
         self.outwkid = 4326
-        self.parameters = "TOT_FRESHWATER_WD;"\
+        self.parameters = "TOT_FRESHWATER_WD;" \
                                         +"TOT_FRESHWATER_WD_NODATA;" \
                                         +"TOT_IMPV11;" \
                                         +"TOT_IMPV11_NODATA;"\
@@ -80,7 +80,8 @@ class ArgClass(object):
                                         +"TOT_NPDES_MAJ_DENS_NODATA;"\
                                         +"TOT_NWALT12_41;"\
                                         +"TOT_NWALT12_41_NODATA;"\
-                                        +"TOT_PPT7100_ANN;"
+                                        +"TOT_PPT7100_ANN;"\
+                                        +"TOT_PPT7100_ANN_NODATA;"
                                       
 
 
@@ -301,7 +302,7 @@ def _computeCharacteristics(gage,workspace,workspaceID, params, arr):
                                 globalValue[parameter.Name] = getTotChar(gage.comid, parameter)
                             elif globalValue[parameter.Name] == "":
                                 globalValue[parameter.Name] = 0                              
-                            totalval = ExpressionOps.Evaluate(parameter.AggregateMethod, [float(globalValue[parameter.Name]),float(result[parameter.Name])],[float(globalValue["TOT_BASIN_AREA"]),localBasinArea]) if globalValue[parameter.Name] != None and result[parameter.Name] != None else None
+                            totalval = ExpressionOps.Evaluate(parameter.AggregationMethod, [float(globalValue[parameter.Name]),float(result[parameter.Name])],[float(globalValue["TOT_BASIN_AREA"]),localBasinArea]) if globalValue[parameter.Name] != None and result[parameter.Name] != None else None
                             WiMLogging.sm("The global value for " + str(parameter.Name) + " : " + str(globalValue[parameter.Name]))
                             #Below should be updated to work with Total, Local, and Global values
                             #If the parameter does not exist in globalValue the name is returned screwing things up for calculations

@@ -26,7 +26,7 @@ def runFH(conn, arr):
         full_run = False
         import time
         time.sleep(1.1)
-        newTempDir = r"E:\Applications\output\gage_iii\temp\gptmpenvr_" + time.strftime('%Y%m%d%H%M%S') + '2018' + str(x)
+        newTempDir = r"C:\GIS\output\gptmpenvr_" + time.strftime('%Y%m%d%H%M%S') + '2018' + str(x)
         os.mkdir(newTempDir)
         os.environ["TEMP"] = newTempDir
         os.environ["TMP"] = newTempDir
@@ -44,7 +44,7 @@ if __name__ == '__main__':
    
    
     split = 8
-    gage_len = np.arange(14307)
+    gage_len = np.arange(756)
     gage_len_split = np.array_split(gage_len, split)
     processes = []
     pipes = []
@@ -56,9 +56,13 @@ if __name__ == '__main__':
         send, recieve = mp.Pipe()
         pipes.append((send,recieve))
         
+        
         p = mp.Process(target = runFH, args=[send, arr])
        
-        recieve.send(['//FH%d' % x, gage_section[0], gage_section[-1]])
-        processes.append(p)
+        recieve.send(['//FH%d' % x, start, end])
        
+        processes.append(p)
+#        
         p.start()
+#         
+    

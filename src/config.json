@@ -1,6 +1,6 @@
 {
   "characteristiclist": "https://docs.google.com/spreadsheets/d/1_5vxn94GqsQwv3zH3YDO-HaIDGpk_q3ou0jJSWPUZJo/edit#gid=733442906",
-  "NLDIServiceFiles": "C:/gis/usgs/ss/Applications/input",
+  "NLDIServiceFiles": "E:/Applications/input",
   "NLDIService": "https://cida.usgs.gov",
   "queryParams": {
     "nldiQuery": "/nldi/comid/{0}/basin",
@@ -8,8 +8,8 @@
     "nldiChars": "/nldi/comid/{0}/tot"
   },
   "UseNLDIServices": true,
-  "workingdirectory": "C:/gis/usgs/ss/Applications/output/gage_iii",
-  "parentdirectory": "C:/gis/usgs/ss/ss_data/FHWA",
+  "workingdirectory": "E:/Applications/output/gage_iii",
+  "parentdirectory": "E:/ss_data/FHWA",
   "netCDFdirectory": "C:/Users/gpetrochenkov/Downloads/Wolock_prism-20171206T165217Z-001/Wolock_prism/pptint",
   "outputFile": "splitCatchment.csv",
   "catchment": {
@@ -24,7 +24,8 @@
       "MapLayers": ["nid2013"],
       "QueryField": "NID_STORAG",
       "UnitID": "acre feet",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1",
+      "AggregationMethod": "difference"
     },
     "TOT_NID_STORAGE_2013_NODATA": {
       "Procedure": "NHDPlusV2QueryNoCalc",
@@ -32,7 +33,8 @@
       "Data": "NID_2013_CONUS.csv",
       "QueryField": "NID_STORAG",
       "UnitID": "acre feet",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1",
+      "AggregationMethod": "weightedDifference"
     },
     "TOT_FRESHWATER_WD": {
       "Procedure": "getRasterStatistic",
@@ -41,7 +43,8 @@
       "MapLayers": [ "freshwater_wd" ],
       "UnitID": "megaliters/km2",
       "MultiplicationFactor": 1,
-      "Reference": "https://www.sciencebase.gov/catalog/item/57c9dc05e4b0f2f0cec192f2"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57c9dc05e4b0f2f0cec192f2",
+      "AggregationMethod": "weightedDifference"
     },
      "TOT_FRESHWATER_WD_NODATA": {
       "Procedure": "getCSVStatistic",
@@ -52,7 +55,8 @@
 	  "TOT_IDX": 3,
       "UnitID": "megaliters/km2",
       "MultiplicationFactor": 1,
-      "Reference": "https://www.sciencebase.gov/catalog/item/57c9dc05e4b0f2f0cec192f2"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57c9dc05e4b0f2f0cec192f2",
+      "AggregationMethod": "weightedDifference"
     },
     "TOT_IMPV11": {
       "Procedure": "getRasterStatistic",
@@ -61,7 +65,8 @@
       "MapLayers": [ "nlcd2011" ],
       "UnitID": "percent",
       "MultiplicationFactor": 1,
-      "Reference": "https://www.sciencebase.gov/catalog/item/570575fae4b0d4e2b7571bba"
+      "Reference": "https://www.sciencebase.gov/catalog/item/570575fae4b0d4e2b7571bba",
+      "AggregationMethod": "weightedDifference"
     },
     "TOT_IMPV11_NODATA": {
       "Procedure": "getCSVStatistic",
@@ -72,14 +77,16 @@
       "MultiplicationFactor": 1,
 	  "IDX": 2,
 	  "TOT_IDX": 3,
-	  "Reference": "https://www.sciencebase.gov/catalog/item/570575fae4b0d4e2b7571bba"
+	  "Reference": "https://www.sciencebase.gov/catalog/item/570575fae4b0d4e2b7571bba",
+	  "AggregationMethod": "weightedDifference"
     },
     "TOT_MIRAD_2012": {
       "Procedure": "getRasterPercent",
       "Description": "Percent of watershed in irrigated agriculture, from USGS 2012 250-m MODIS data",
       "MapLayers": [ "mirad2012" ],
       "UnitID": "percent",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57f66d66e4b0bc0bec06de3a"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57f66d66e4b0bc0bec06de3a",
+      "AggregationMethod": "weightedDifference"
     },
     "TOT_MIRAD_2012_NODATA": {
       "Procedure": "getCSVStatistic",
@@ -88,7 +95,8 @@
       "UnitID": "percent",
 	  "IDX": 2,
 	  "TOT_IDX": 3,
-      "Reference": "https://www.sciencebase.gov/catalog/item/57f66d66e4b0bc0bec06de3a"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57f66d66e4b0bc0bec06de3a",
+      "AggregationMethod": "weightedDifference"
     },
     "TOT_NWALT12_41": {
       "Procedure": "getRasterPercent",
@@ -99,7 +107,8 @@
       "TOT_IDX": 2,
       "UnitID": "percent",
       "MultiplicationFactor": 1,
-      "Reference": "https://www.sciencebase.gov/catalog/item/5669a834e4b08895842a1d49"
+      "Reference": "https://www.sciencebase.gov/catalog/item/5669a834e4b08895842a1d49",
+      "AggregationMethod": "weightedDifference" 
     },
     "TOT_NWALT12_41_NODATA": {
       "Procedure": "getCSVStatistic",
@@ -110,7 +119,8 @@
       "ClassCodes": "41",
       "UnitID": "percent",
       "MultiplicationFactor": 1,
-      "Reference": "https://www.sciencebase.gov/catalog/item/5669a834e4b08895842a1d49"
+      "Reference": "https://www.sciencebase.gov/catalog/item/5669a834e4b08895842a1d49",
+      "AggregationMethod": "weightedDifference" 
     },
     "TOT_DITCHES92": {
       "Procedure": "getVectorDensity",
@@ -122,7 +132,8 @@
       "Description": "Percent of watershed subjected to ditches for the year 1992",
       "MapLayers": [ "flowlines" ],
       "UnitID": "percent",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57067257e4b03f95a075ab0c"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57067257e4b03f95a075ab0c",
+      "AggregationMethod": "weightedDifference"
     },
     "TOT_DITCHES92_NODATA": {
       "Procedure": "getCSVStatistic",
@@ -136,20 +147,23 @@
 	  "IDX": 2,
 	  "TOT_IDX": 3,
       "UnitID": "percent",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57067257e4b03f95a075ab0c"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57067257e4b03f95a075ab0c",
+      "AggregationMethod": "weightedDifference"
     },
     "TOT_NPDES_MAJ_DENS": {
       "Procedure": "getPointFeatureDensity",
       "Description": "NPDES Major site density, count/totalArea",
       "MapLayers": [ "npdes" ],
       "UnitID": "cnt/sqkm",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57c9d89ce4b0f2f0cec192da"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57c9d89ce4b0f2f0cec192da",
+      "AggregationMethod": "weightedDifference" 
     },
     "TOT_NPDES_MAJ_DENS_NODATA": {
       "Procedure": "NHDPlusV2QueryNoCalc",
       "Description": "NPDES Major site density, count/totalArea",
       "UnitID": "cnt/sqkm",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57c9d89ce4b0f2f0cec192da"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57c9d89ce4b0f2f0cec192da",
+      "AggregationMethod": "weightedDifference" 
     },
     "TOT_PPT7100_ANN": {
       "Procedure": "getRasterStatistic",
@@ -160,7 +174,8 @@
       "UnitID": "millimeters",
       "Reference": "https://www.sciencebase.gov/catalog/item/573b70a7e4b0dae0d5e3ae85",
       "TimeRange": "1-1-1971;1-1-2001",
-      "TimeMethod": "MeanYear"
+      "TimeMethod": "MeanYear",
+      "AggregationMethod": "weightedDifference" 
     },
     "TOT_PPT7100_ANN_NODATA": {
       "Procedure": "getCSVStatistic",
@@ -174,7 +189,8 @@
       "UnitID": "millimeters",
       "Reference": "https://www.sciencebase.gov/catalog/item/573b70a7e4b0dae0d5e3ae85",
       "TimeRange": "1-1-1971;1-1-2001",
-      "TimeMethod": "MeanYear"
+      "TimeMethod": "MeanYear",
+      "AggregationMethod": "weightedDifference" 
     },
     "TOT_TAV7100_ANN": {
       "Procedure": "getCalculateEval",
@@ -1212,7 +1228,8 @@
       "QueryField": "FID",
       "Method": "SUM",
       "UnitID": "acre feet",
-      "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1"
+      "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1",
+      "AggregationMethod": "weightedDifference"
     },
     "TOT_NORM_STORAGE_2010": {
       "Procedure": "getFeatureStatistic",
