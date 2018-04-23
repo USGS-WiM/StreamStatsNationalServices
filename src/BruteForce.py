@@ -44,21 +44,24 @@ if __name__ == '__main__':
    
    
     split = 8
-    gage_len = np.arange(14307)
+    gage_len = np.arange(756)
     gage_len_split = np.array_split(gage_len, split)
     processes = []
     pipes = []
     arr = mp.Array('c', 1000)
     for x in range(split):
         gage_section = gage_len_split[x][::1]
-        start = gage_section[:-1]
-        end = gage_section[1:]
+        
         send, recieve = mp.Pipe()
         pipes.append((send,recieve))
+        
         
         p = mp.Process(target = runFH, args=[send, arr])
        
         recieve.send(['//FH%d' % x, gage_section[0], gage_section[-1]])
-        processes.append(p)
        
+        processes.append(p)
+#        
         p.start()
+#         
+    

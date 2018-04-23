@@ -132,6 +132,26 @@ class SpatialOps(object):
             tb = traceback.format_exc()
             self._sm("Error computing area "+tb,"ERROR")
             return None 
+        
+    def getAreaSqKilometer(self, inFeature):
+        AreaValue = 0
+        try:
+
+            sr = arcpy.Describe(inFeature).spatialReference
+            if(sr.type == "Geographic"):
+                #USA_Contiguous_Albers_Equal_Area_Conic_USGS_version:
+                inFeature = self.ProjectFeature(inFeature,arcpy.SpatialReference(102039))[0]
+                sr = arcpy.Describe(inFeature).spatialReference
+
+            cursor = arcpy.da.SearchCursor(inFeature, "SHAPE@")
+            for row in cursor:
+                AreaValue += row[0].getArea(units='SQUAREKILOMETERS') * sr.metersPerUnit * sr.metersPerUnit 
+                
+            return AreaValue if (AreaValue > 0) else None
+        except:
+            tb = traceback.format_exc()
+            self._sm("Error computing area "+tb,"ERROR")
+            return None 
     def spatialJoin(self, inFeature, maskfeature, fieldStr='',methodStr ='' ):
         mask = None
         fieldmappings = None

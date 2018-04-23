@@ -39,7 +39,7 @@ class Characteristic(object):
             self.QueryField =  CharObj["QueryField"]if ("QueryField" in CharObj) else None
             self.ClassCodes =  CharObj["ClassCodes"]if ("ClassCodes" in CharObj) else None
             self.Count = CharObj["Count"] if ("Count" in CharObj) else None		
-            self.Data = os.path.join(Config()["netCDFdirectory"], CharObj["Data"])if ("Data" in CharObj) else None
+            self.Data = os.path.join(Config()["parentdirectory"], CharObj["Data"])if ("Data" in CharObj) else None
             self.MethField = CharObj["methodField"]if ("methodField" in CharObj) else None
             self.Field = CharObj["selectorField"]if ("selectorField" in CharObj) else None
             self.Operator = CharObj["Operator"]if ("Operator" in CharObj) else None
@@ -54,7 +54,7 @@ class Characteristic(object):
             self.TimeMethod = CharObj["TimeMethod"] if ("TimeMethod" in CharObj) else ""
             self.AggregationMethod = CharObj["AggregationMethod"] if ("AggregationMethod" in CharObj) else "weighteddifference" #seeWiMLib.ExpressionOps
             self.IDX = CharObj["IDX"] if ("IDX" in CharObj) else ""
-            self.TOT_IDX = CharObj["IDX"] if ("IDX" in CharObj) else ""
+            self.TOT_IDX = CharObj["TOT_IDX"] if ("TOT_IDX" in CharObj) else ""
         
         except:
             WiMLogging.sm(chardefname + " not available to compute. Returning none value.", "ERROR")
