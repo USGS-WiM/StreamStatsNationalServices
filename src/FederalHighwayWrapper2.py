@@ -64,7 +64,7 @@ class ArgClass(object):
         self.projectID = "\\FH"
         self.file =  r'E:\Applications\input\gageiii_MTWY.csv'
         self.outwkid = 4326
-        self.parameters = "TOT_FRESHWATER_WD;" \
+        self.parameters =  "TOT_FRESHWATER_WD;" \
                                         +"TOT_FRESHWATER_WD_NODATA;" \
                                         +"TOT_IMPV11;" \
                                         +"TOT_IMPV11_NODATA;"\
@@ -78,6 +78,7 @@ class ArgClass(object):
                                         +"TOT_DITCHES92_NODATA;"\
                                         +"TOT_NPDES_MAJ_DENS;"\
                                         +"TOT_NPDES_MAJ_DENS_NODATA;"\
+                                        +"TOT_PPT7100_ANN;"\
                                         +"TOT_NWALT12_41;"\
                                         +"TOT_NWALT12_41_NODATA;"\
                                         +"TOT_PPT7100_ANN;"\
@@ -146,7 +147,7 @@ def delineationWrapper(index1, index2, name, arr):
                 WiMLogging.sm(' Elapse time:'+ str(round((time.time()- startTime)/60, 2))+ 'minutes')
                 WiMLogging.sm('-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+')
 
-                workspaceID = _delineate(g,workingDir)
+                workspaceID, point = _delineate(g,workingDir)
                 if(workspaceID == None): 
                     WiMLogging.sm("Delineation didn't occur for gage "+ g.comid)
                     continue
@@ -193,7 +194,9 @@ def delineationWrapper(index1, index2, name, arr):
 
 def _delineate(gage, workspace):
     try:
+        
         ppoint = arcpy.CreateFeatureclass_management("in_memory", "ppFC"+gage.id, "POINT", spatial_reference=gage.sr)
+        
         pnt = {"type":"Feature","geometry":{"type":"Point","coordinates":[gage.lat,gage.long]}}
         if (pnt["type"].lower() =="feature"):
             GeoJsonHandler.read_feature(pnt,ppoint,gage.sr)
@@ -238,7 +241,8 @@ def _delineate(gage, workspace):
         ssdel.Delineate(ppoint, mask)
         ssdel.MergeCatchment(basin)
 
-        return ssdel.WorkspaceID
+        return (ssdel.WorkspaceID, ppoint)
+    
     except:
         tb = traceback.format_exc()
         WiMLogging.sm("Error delineating basin "+tb)
@@ -251,14 +255,17 @@ def _computeCharacteristics(gage,workspace,workspaceID, params, arr):
         WiMResults = Result.Result(gage.comid,"Characteristics computed for "+gage.name)
         with NLDIServiceAgent() as sa:
             globalValue = sa.getBasinCharacteristics(gage.comid)
+            globalValue = convertUnits(globalValue)
         #end with
         startTime = time.time()
         
         with StreamStatsNationalOps(workspace, workspaceID) as sOps: 
             
+            
             #Get local basin area and add to results
             localBasinArea = sOps.getAreaSqKilometer(sOps.mask)
-            varbar = {'totalvalue':globalValue['TOT_BASIN_AREA'],'localvalue':localBasinArea,'globalvalue':globalValue['TOT_BASIN_AREA']}
+            totalArea = float(globalValue['TOT_BASIN_AREA']) - localBasinArea
+            varbar = {'totalvalue': totalArea, 'localvalue':localBasinArea,'globalvalue':globalValue['TOT_BASIN_AREA']}
             reportedResults = {'TOT_BASIN_AREA':varbar}
             WiMResults.Values.update(reportedResults)
             
@@ -310,7 +317,7 @@ def _computeCharacteristics(gage,workspace,workspaceID, params, arr):
                                 globalValue[parameter.Name] = getTotChar(gage.comid, parameter)
                             elif globalValue[parameter.Name] == "":
                                 globalValue[parameter.Name] = 0                              
-                            totalval = ExpressionOps.Evaluate(parameter.AggregationMethod, [float(globalValue[parameter.Name]),float(result[parameter.Name])],[float(globalValue["TOT_BASIN_AREA"]),localBasinArea]) if globalValue[parameter.Name] != None and result[parameter.Name] != None else None
+                            totalval = ExpressionOps.Evaluate(parameter.AggregationMethod, [float(globalValue[parameter.Name]),float(result[parameter.Name])],[float(globalValue["TOT_BASIN_AREA"]),localBasinArea], totalArea) if globalValue[parameter.Name] != None and result[parameter.Name] != None else None
                             WiMLogging.sm("The global value for " + str(parameter.Name) + " : " + str(globalValue[parameter.Name]))
                             #Below should be updated to work with Total, Local, and Global values
                             #If the parameter does not exist in globalValue the name is returned screwing things up for calculations
@@ -364,9 +371,15 @@ def getTotChar(comId, parameter):
         df = None
         
         return result 
-       
+    
+def convertUnits(globalValues):
+    #Per discussion with Kathy that there was a discrepancy of units in the char
+    globalValues['TOT_PPT7100_ANN'] = float(globalValues['TOT_PPT7100_ANN']) * 100
+    
+    return globalValues
+
 # if __name__ == '__main__':
-#     
+#      
 #     import multiprocessing as mp
 #     delineationWrapper(0, 1, 'FH', mp.Array('c', 1000))
 

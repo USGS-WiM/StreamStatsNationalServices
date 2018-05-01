@@ -71,6 +71,8 @@ class StreamStatsNationalOps(SpatialOps):
         super(StreamStatsNationalOps,self).__init__(workspacePath) 
         self.WorkspaceID = workspaceID
         self.mask = os.path.join(os.path.join(self._WorkspaceDirectory, self.WorkspaceID +'.gdb', "Layers"), Config()["catchment"]["downstream"])
+        self.mask2 = os.path.join(os.path.join(self._WorkspaceDirectory, self.WorkspaceID +'.gdb', "Layers"), Config()["catchment"]["global"])
+        self.mask3 = os.path.join(os.path.join(self._WorkspaceDirectory, self.WorkspaceID +'.gdb', "Layers"), Config()["catchment"]["upstream"])
         if not arcpy.Exists(self.mask): raise Exception("Mask does not exist: "+self.mask)
         self._sm("initialized StreamStatsNationalOps")
         arcpy.ResetEnvironments()

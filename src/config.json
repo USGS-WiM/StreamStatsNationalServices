@@ -169,7 +169,7 @@
       "Description": "Mean annual precipitation (mm) from 800m PRISM data. 30 year period of record 1971-2000.",
       "Method": "Mean",
       "MapLayers": [ "ppt7100_800a" ],
-      "MultiplicationFactor": 0.01,
+      "MultiplicationFactor": 10,
       "UnitID": "millimeters",
       "Reference": "https://www.sciencebase.gov/catalog/item/573b70a7e4b0dae0d5e3ae85",
       "TimeRange": "1-1-1971;1-1-2001",

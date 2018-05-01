@@ -81,7 +81,7 @@ class HydroOps(SpatialOps):
                 raise Exception("Flow accumulation could not be activated.")
 
             sr = fdr.spatialreference
-            if inmask != None:
+            if inmask is not None:
                 mask = self.ProjectFeature(inmask, sr)
 
             datasetPath = arcpy.CreateFileGDB_management(self._WorkspaceDirectory, self.WorkspaceID +'.gdb')[0]

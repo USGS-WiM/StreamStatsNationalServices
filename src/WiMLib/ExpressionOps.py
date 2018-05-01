@@ -17,7 +17,7 @@
 #
 #------------------------------------------------------------------------------
 
-def Evaluate(procedure, funcArgs,weightArgs = None):
+def Evaluate(procedure, funcArgs,weightArgs = None, totBasinArea=None):
     method = procedure.lower()
     if (len(funcArgs)!= _getFunctionArgNumber(method)): raise Exception("invalid number of arguments passed")
     if (len(weightArgs)!= None and len(funcArgs) != len(weightArgs)): raise Exception("funcArgs must match WeightedArgs")
@@ -34,11 +34,10 @@ def Evaluate(procedure, funcArgs,weightArgs = None):
 
     elif method == 'weighteddifference':
         # Do the WeightedAverage
-        weightSum = sum(weightArgs);
-        if (weightSum <= 0): raise Exception("Weight sum < 0")
-        weightval = [val * wt/weightSum for val, wt in zip(funcArgs, weightArgs)]
+#         if (weightSum <= 0): raise Exception("Weight sum < 0")
+        weightval = [val * wt for val, wt in zip(funcArgs, weightArgs)]
 
-        result = abs(weightval[0] - weightval[1])
+        result = (weightval[0] - weightval[1]) / totBasinArea
         
     elif method == 'difference':
         # Do The Subract
