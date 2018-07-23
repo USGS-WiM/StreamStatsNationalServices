@@ -168,3 +168,6 @@ $RECYCLE.BIN/
 .pydevproject
 *.inn
 *.top
+
+# Pycharm
+.idea/

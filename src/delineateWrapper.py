@@ -1,4 +1,3 @@
-﻿
 #------------------------------------------------------------------------------
 #----- DelineateWrapper.py ----------------------------------------------------
 #------------------------------------------------------------------------------
@@ -53,10 +52,10 @@ class DelineationWrapper(object):
             parser = argparse.ArgumentParser()
             #For project ID
             
-            parser.add_argument("-projectID", help="specifies the projectID", type=str, default="FH")
+            parser.add_argument("-projectID", help="specifies the projectID", type=str, default="ID")
             #Use the following LAT/LON pour point
             parser.add_argument("-pourpoint", help="specifies pourpoint geojson feature ", type=json.loads, 
-                                default = '{"type":"Feature","geometry":{"type":"Point","coordinates":[-84.088548,39.79728106]}}')
+                                default = '{"type":"Feature","geometry":{"type":"Point","coordinates":[-117.5444,47.7751]}}')
             #Within this EPSG code
             parser.add_argument("-outwkid", help="specifies the esri well known id of pourpoint ", type=int, 
                                 default = '4326')
@@ -83,10 +82,11 @@ class DelineationWrapper(object):
 
             sa = NLDIServiceAgent()
             #to be replaced later by service call etc.
-            comid = 4288603                                                              #THIS IS WHERE YOU CAHNGE THE COMID
-            maskjson = sa.getBasin(comid,True) #Bringing in a JSON mask/catchment ID
-
+            coords = args.pourpoint['geometry']['coordinates']                                                          #THIS IS WHERE YOU CAHNGE THE COMID
+            maskjson = sa.getBasin(None,True,coords[0],coords[1],4326) #Bringing in a JSON mask/catchment ID
+            
             if(maskjson):
+                comid =maskjson[u'features'][0][u'properties'][u'featureid']
                 mask = arcpy.CreateFeatureclass_management("in_memory", "maskFC", "POLYGON", spatial_reference=sr) 
                 if (maskjson["type"].lower() =="feature"):
                     GeoJsonHandler.read_feature(maskjson,mask,sr)
@@ -125,4 +125,3 @@ class DelineationWrapper(object):
     
 if __name__ == '__main__':
     DelineationWrapper()
-

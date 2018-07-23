@@ -1,6 +1,6 @@
 {
   "characteristiclist": "https://docs.google.com/spreadsheets/d/1_5vxn94GqsQwv3zH3YDO-HaIDGpk_q3ou0jJSWPUZJo/edit#gid=733442906",
-  "NLDIServiceFiles": "E:/Applications/input",
+  "NLDIServiceFiles": "D:/Applications/input",
   "NLDIService": "https://cida.usgs.gov",
   "queryParams": {
     "nldiQuery": "/nldi/comid/{0}/basin",
@@ -8,13 +8,13 @@
     "nldiChars": "/nldi/comid/{0}/tot"
   },
   "UseNLDIServices": true,
-  "workingdirectory": "E:/Applications/output/gage_iii",
-  "parentdirectory": "E:/ss_data/FHWA",
+  "workingdirectory": "D:/Applications/output/gage_iii",
+  "parentdirectory": "D:/ss_data/FHWA",
   "outputFile": "splitCatchment.csv",
   "catchment": {
     "upstream": "upstreamcatchment",
     "downstream": "downstreamcatchment",
-    "global": "global"
+    "global": "total"
   },
   "characteristics": {
     "TOT_NID_STORAGE_2013": {
@@ -30,6 +30,7 @@
       "Procedure": "NHDPlusV2QueryNoCalc",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
       "Data": "NID_2013_CONUS.csv",
+	  "MapLayers": ["nid2013"],
       "QueryField": "NID_STORAG",
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1",
@@ -58,9 +59,11 @@
       "AggregationMethod": "weightedDifference"
     },
     "TOT_IMPV11": {
-      "Procedure": "getRasterStatistic",
+      "Procedure": "getCSVStatistic",
       "Description": "Impervious surface from NLCD 2011",
       "Method": "Mean",
+	  "IDX": 1,
+      "Data": "IMPV11_CONUS.csv",
       "MapLayers": [ "nlcd2011" ],
       "UnitID": "percent",
       "MultiplicationFactor": 1,
@@ -80,8 +83,10 @@
 	  "AggregationMethod": "weightedDifference"
     },
     "TOT_MIRAD_2012": {
-      "Procedure": "getRasterPercent",
+      "Procedure": "getCSVStatistic",
       "Description": "Percent of watershed in irrigated agriculture, from USGS 2012 250-m MODIS data",
+      "Data": "MIRAD_2012_CONUS.csv",
+      "IDX": 1,
       "MapLayers": [ "mirad2012" ],
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/57f66d66e4b0bc0bec06de3a",
@@ -169,7 +174,7 @@
       "Description": "Mean annual precipitation (mm) from 800m PRISM data. 30 year period of record 1971-2000.",
       "Method": "Mean",
       "MapLayers": [ "ppt7100_800a" ],
-      "MultiplicationFactor": 10,
+      "MultiplicationFactor": 1,
       "UnitID": "millimeters",
       "Reference": "https://www.sciencebase.gov/catalog/item/573b70a7e4b0dae0d5e3ae85",
       "TimeRange": "1-1-1971;1-1-2001",
@@ -1225,6 +1230,7 @@
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
       "WhereClause": "YEAR_COMPL > 2013",
       "QueryField": "FID",
+	  "MapLayers": [ "normstorage2013" ],
       "Method": "SUM",
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1",

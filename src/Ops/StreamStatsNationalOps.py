@@ -96,7 +96,7 @@ class StreamStatsNationalOps(SpatialOps):
                 raise Exception("Map Layer could not be activated.")
 
             result[Characteristic.Name] = super(StreamStatsNationalOps,self).getRasterStatistic(ML.Dataset, self.mask, Characteristic.Method)*Characteristic.MultiplicationFactor
-
+            result[Characteristic.Name + 'up'] = super(StreamStatsNationalOps, self).getRasterStatistic(ML.Dataset, self.mask3,Characteristic.Method) * Characteristic.MultiplicationFactor
         except:
             tb = traceback.format_exc()
             self._sm(arcpy.GetMessages(), 'GP')

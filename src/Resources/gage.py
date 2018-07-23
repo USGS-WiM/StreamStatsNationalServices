@@ -18,7 +18,7 @@
 
 class gage(object):
     """description of class"""
-    def __init__(self,id, comid, lat,long, spatialref, name, descr = ""):
+    def __init__(self,id, comid, lat,long, spatialref, name, descr = "", state=""):
         self.id = id
         self.name = name
         self.comid = comid
@@ -26,4 +26,5 @@ class gage(object):
         self.long = long
         self.sr = spatialref
         self.description = descr
+        self.state = state
 

@@ -62,9 +62,10 @@ class ArgClass(object):
     def __init__(self):
         
         self.projectID = "\\FH"
-        self.file =  r'E:\Applications\input\gageiii_MTWY.csv'
+        # self.file =  r'D:\Applications\input\gageiii_MTWYst.csv'
+        self.file = r'D:\Applications\input\gagesiii_lat_lon.csv'
         self.outwkid = 4326
-        self.parameters =  "TOT_FRESHWATER_WD;" \
+        self.parameters = "TOT_FRESHWATER_WD;" \
                                         +"TOT_FRESHWATER_WD_NODATA;" \
                                         +"TOT_IMPV11;" \
                                         +"TOT_IMPV11_NODATA;"\
@@ -122,6 +123,7 @@ def delineationWrapper(index1, index2, name, arr):
         if "COMID" in headers: comIDindex = headers.index("COMID")
         if "lat" in headers: latindex = headers.index("lat")
         if "lon" in headers: longindex = headers.index("lon")
+        if "state" in headers: stateindex = headers.index("state")
         
 
         #remove header
@@ -140,7 +142,7 @@ def delineationWrapper(index1, index2, name, arr):
         for station in file:
             
             if station_idx >= index1 and station_idx < index2:
-                g = gage.gage(station[idindex],station[comIDindex],station[latindex],station[longindex],sr,station[nmindex])
+                g = gage.gage(station[idindex],station[comIDindex],station[latindex],station[longindex],sr,station[nmindex],'',station[stateindex])
 
                 WiMLogging.sm('-+-+-+-+-+-+-+-+-+ '+ g.comid +' -+-+-+-+-+-+-+-+-+')
                 WiMLogging.sm('-+-+-+-+-+-+-+-+-+ '+ g.lat +','+ g.long+' -+-+-+-+-+-+-+-+-+')
@@ -160,16 +162,18 @@ def delineationWrapper(index1, index2, name, arr):
                     for subk in ['localvalue','totalvalue','globalvalue']:
                         complexHeader.append(str(k) + "_" + str(subk))
                         allValues.append(results.Values[k][subk])
+                    if 'upvalue' in k:
+                        allValues.append(results.Values[k]['upvalue'])
 
                 #write results to file
                 #Below should probably be expanded upon
                 if isFirst:
-                    Shared.appendLineToFile(os.path.join(workingDir,config["outputFile"]),",".join(['STATIONID','COMID','WorkspaceID','Description','LAT','LONG']+complexHeader))
+                    Shared.appendLineToFile(os.path.join(workingDir,config["outputFile"]),",".join(['STATIONID','COMID','WorkspaceID','Description','LAT','LONG','STATE']+complexHeader))
                     isFirst = False
                 if results is None: #changed to elif by jwx
-                    Shared.appendLineToFile(os.path.join(workingDir,config["outputFile"]),",".join(str(v) for v in [g.id, g.comid,workspaceID,'error',g.long,g.lat])) 
+                    Shared.appendLineToFile(os.path.join(workingDir,config["outputFile"]),",".join(str(v) for v in [g.id, g.comid,workspaceID,'error',g.long,g.lat,g.state]))
                 else:
-                    Shared.appendLineToFile(os.path.join(workingDir,config["outputFile"]),",".join(str(v) for v in [g.id, g.comid,workspaceID,results.Description,g.long,g.lat]+allValues))                        
+                    Shared.appendLineToFile(os.path.join(workingDir,config["outputFile"]),",".join(str(v) for v in [g.id, g.comid,workspaceID,results.Description,g.long,g.lat,g.state]+allValues))
                 del complexHeader
                 del allValues
                 
@@ -263,9 +267,12 @@ def _computeCharacteristics(gage,workspace,workspaceID, params, arr):
             
             
             #Get local basin area and add to results
-            localBasinArea = sOps.getAreaSqKilometer(sOps.mask)
+            # globalArea = sOps.getAreaSqKilometer(sOps.mask2)
+            downArea = sOps.getAreaSqKilometer(sOps.mask)
+            upArea = sOps.getAreaSqKilometer(sOps.mask3)
+            localBasinArea = downArea
             totalArea = float(globalValue['TOT_BASIN_AREA']) - localBasinArea
-            varbar = {'totalvalue': totalArea, 'localvalue':localBasinArea,'globalvalue':globalValue['TOT_BASIN_AREA']}
+            varbar = {'totalvalue': totalArea, 'localvalue':localBasinArea,'globalvalue':globalValue['TOT_BASIN_AREA'], 'upvalue': upArea}
             reportedResults = {'TOT_BASIN_AREA':varbar}
             WiMResults.Values.update(reportedResults)
             
@@ -281,37 +288,38 @@ def _computeCharacteristics(gage,workspace,workspaceID, params, arr):
                     WiMLogging.sm(p +"Not available to compute")
                     continue
                 
-                
-##                print "The parameter name is: " + parameter.Name
-                #if method != 'getPrismStatistic':
-                #    continue
                 if (method):
+                    
+                    #Request access to array lock
                     proc_char = False
                     while proc_char == False:
+                        #Get lock, if array has name of characteristic
+                        #continue to check the array until it is no longer
+                        #present, so there are no I/O issues with arc processes
+                        #reading the same data sets
                         arr.acquire()
                         if p in arr.value:
                             arr.release()
                             continue
                         else:
                             proc_char = True
-                        
 
-                    
+
+                    #Set characteristic name to array and release
                     setattr(arr, 'value', arr.value+';'+p)
-                    # print 'set ' + arr.value
                     arr.release()
                     
                     result = method(parameter)
                     
+                    #Wait to get lock for array, delete char name and release after processing
                     arr.acquire()
                     setattr(arr, 'value', arr.value.replace(';'+p,''))
-                    #print 'unset ' + arr.value
                     arr.release()
+                    
                     #todo:merge with request from NLDI
                     WiMLogging.sm("The local result value for " + str(parameter.Name) + " : " + str(result[parameter.Name]))
                     if(globalValue is not None): 
-                        print "The Name is: " + parameter.Name
-                       
+                        
                         try:
                             if parameter.Name not in globalValue:
                                 globalValue[parameter.Name] = getTotChar(gage.comid, parameter)
@@ -322,6 +330,8 @@ def _computeCharacteristics(gage,workspace,workspaceID, params, arr):
                             #Below should be updated to work with Total, Local, and Global values
                             #If the parameter does not exist in globalValue the name is returned screwing things up for calculations
                             varbar = {'totalvalue':totalval,'localvalue':result[parameter.Name],'globalvalue':globalValue[parameter.Name]}
+                            if parameter.Name + 'up' in result:
+                                varbar['upvalue'] = result[parameter.Name + 'up']
                             reportedResults = {parameter.Name:varbar}
                         except:
                             "Couldn't convert " + parameter.Name + " to Float"
@@ -345,11 +355,7 @@ def _computeCharacteristics(gage,workspace,workspaceID, params, arr):
                 else:
                     WiMLogging.sm(p.Proceedure +" Does not exist","Error")
                     continue 
-
-            #next p
-        #end with       
-##        print 'Finished.  Total time elapsed:', str(round((time.time()- startTime)/60, 2)), 'minutes'
-
+                
         return WiMResults
     except:
         tb = traceback.format_exc()
@@ -378,9 +384,9 @@ def convertUnits(globalValues):
     
     return globalValues
 
-# if __name__ == '__main__':
-#      
-#     import multiprocessing as mp
-#     delineationWrapper(0, 1, 'FH', mp.Array('c', 1000))
+
+if __name__ == '__main__':
+    import multiprocessing as mp
+    delineationWrapper(0, 1, 'FH', mp.Array('c', 1000))
 
 
