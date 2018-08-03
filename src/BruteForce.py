@@ -45,7 +45,7 @@ def runFH(conn, arr):
             try:
                 #Run delineation wrapper on this gage
                 #Collect garbage afterwards
-                delineationWrapper(x, y, name, arr)
+                FederalHighwayWrapper(x, y, name, arr)
                 full_run = True
                 gc.collect()
                 

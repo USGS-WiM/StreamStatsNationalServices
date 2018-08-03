@@ -28,10 +28,10 @@ import argparse
 import arcpy
 from arcpy import env
 from Ops.StreamStatsNationalOps import *
-from WiMLib.SpatialOps import *
-from WiMLib import WiMLogging
+from WIMLib.SpatialOps import *
+from WIMLib import WiMLogging
 from Resources import Characteristic
-from WiMLib.Resources import Result
+from WIMLib.Resources import Result
 import json
 
 #endregion

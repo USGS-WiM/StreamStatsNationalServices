@@ -21,11 +21,11 @@
 #region "Imports"
 import traceback
 import json
-from WiMLib.Resources import *
-from WiMLib.ServiceAgents import ServiceAgentBase
-from WiMLib.Config import Config
-from WiMLib import GeoJsonHandler
-from WiMLib import Shared
+from WIMLib.Resources import *
+from WIMLib.ServiceAgents import ServiceAgentBase
+from WIMLib.Config import Config
+from WIMLib import GeoJsonHandler
+from WIMLib import Shared
 import os
 
 #endregion

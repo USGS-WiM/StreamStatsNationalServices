@@ -56,11 +56,11 @@ from arcpy import env
 from arcpy.sa import *
 from arcpy import Describe, Exists,Erase_analysis, FeatureToPolygon_management, GetMessages, EliminatePolygonPart_management
 
-from WiMLib.Config import Config
-from WiMLib.SpatialOps import SpatialOps
-from WiMLib.Resources import *
-from WiMLib import Shared
-from WiMLib.MapLayer import *
+from WIMLib.Config import Config
+from WIMLib.SpatialOps import SpatialOps
+from WIMLib.Resources import *
+from WIMLib import Shared
+from WIMLib.MapLayer import *
 from Assets.Calculator import calculate
 from Resources import Characteristic as configChar
 #End Region
@@ -137,6 +137,59 @@ class StreamStatsNationalOps(SpatialOps):
             ML = None
 
         return result
+    def getNIDDistrubanceIndex(self, Characteristic):
+       #
+       #DI_d,g = sum (Storage_d*DA_d/DA_t)/
+       #                   (P*DA_t) 
+       #Where:  DI_d,g      - Dams Disturbance Index for gage
+       #        Storage_d   - Storage at dam, in acre feet
+       #        DA_d        - Drainage area at dam, in acres
+       #        DA_t        - Total Drainage area at gage, in acres
+       #        P           - Average Annual Precipitation, in feet  
+       #         
+        result = {Characteristic.Name:0}
+        try:
+            self._sm("Computing " + Characteristic.Name)
+            nidML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))#USGS_NID_2018
+            precipML = MapLayer(MapLayerDef(Characteristic.MapLayers[1]))#Precip
+
+            if not nidML.Activated or not precipML.Activated:
+                raise Exception("Map Layer could not be activated.") 
+            P = super(StreamStatsNationalOps,self).getRasterStatistic(precipML.Dataset, self.mask2,None) * 0.003280841666667 #mm2foot
+            DA_t = self.getAreaSqMeter(self.mask2)* 0.000247105 #Sqrmeter2Acre
+
+            nidFeatures = arcpy.MakeFeatureLayer_management(self.spatialOverlay(nidML.Dataset,self.mask2), "nidfeatures")
+
+
+            #join tables
+            for jn in Characteristic.JoinTables[0]:                
+                jnfld = Characteristic.JoinField[:10]#trim 8 char to account for nidFeatures being a shp (fields are limited to 8 char length)
+                arcpy.AddJoin_management(nidFeatures,jnfld,os.path.join(nidML.Path,nidML.DatasetName,jn['table']),jn['key'],'KEEP_COMMON')
+            #next join
+            fields = [fld['table']+"."+fld['QueryField'] for fld in Characteristic.JoinTables[0]]
+
+            sum =0
+            with arcpy.da.SearchCursor(nidFeatures,fields) as source_curs:
+                for row in source_curs:
+                    Storage_d = row[0] #Acre_feet
+                    DA_d = row[1] #Acre
+                    sum += Storage_d*(DA_d/DA_t)                   
+                #next
+            #end with
+      
+            result[Characteristic.Name] = sum/(P*DA_t)
+
+        except:
+            tb = traceback.format_exc()
+            self._sm(arcpy.GetMessages(), 'GP')
+            self._sm("getPointFeatureDensity "+ Characteristic.Name+" " +tb, "ERROR", 71)
+            result[Characteristic.Name] = float('nan')
+
+        finally:
+            #Cleans up workspace
+            ML = None
+
+        return result
     def getStoragePerUnitArea(self, Characteristic):
         '''
         Calculates the Storage per unit area. Is used for computing things
@@ -160,7 +213,7 @@ class StreamStatsNationalOps(SpatialOps):
             #cursor and sum
             with arcpy.da.SearchCursor(self.spatialOverlay(ML.Dataset, self.mask), Characteristic.QueryField, spatial_reference=ML_sr) as source_curs:
                 for row in source_curs:
-                    val = WiMLib.Shared.try_parse(row[0], None)
+                    val = WIMLib.Shared.try_parse(row[0], None)
                     result[Characteristic.Name] += float(val)*Shared.CF_ACR2SQKILOMETER/totArea #Put ConversionFactor here?
                 #next
             #end with

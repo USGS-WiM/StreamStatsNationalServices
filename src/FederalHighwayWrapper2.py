@@ -83,11 +83,12 @@ class ArgClass(object):
                                         +"TOT_NWALT12_41;"\
                                         +"TOT_NWALT12_41_NODATA;"\
                                         +"TOT_PPT7100_ANN;"\
-                                        +"TOT_PPT7100_ANN_NODATA;"
+                                        +"TOT_PPT7100_ANN_NODATA;"\
+                                        +"TOT_NID_DISTURBANCE_INDEX;"
                                       
 
 
-def delineationWrapper(index1, index2, name, arr):
+def FederalHighwayWrapper2(index1, index2, name, arr):
    
     
     try:
@@ -387,6 +388,6 @@ def convertUnits(globalValues):
 
 if __name__ == '__main__':
     import multiprocessing as mp
-    delineationWrapper(0, 1, 'FH', mp.Array('c', 1000))
+    FederalHighwayWrapper2(0, 1, 'FH', mp.Array('c', 1000))
 
 

@@ -31,9 +31,9 @@ from arcpy import Describe, Exists,Erase_analysis,FeatureToPolygon_management,Ge
 from arcpy import env
 from arcpy.sa import *
 import json
-from  WiMLib.SpatialOps import SpatialOps
-from WiMLib.MapLayer import *
-from WiMLib.Config import Config
+from  WIMLib.SpatialOps import SpatialOps
+from WIMLib.MapLayer import *
+from WIMLib.Config import Config
 import shutil
 #endregion
 

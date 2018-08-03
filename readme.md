@@ -9,6 +9,8 @@ StreamStats supporting national REST web services
 These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
 
 ### Installing
+### Dependancies
+[ python WIMLib package](https://pypi.org/project/WIMLib/): `pip install WIMLib`
 
 #### ArcGIS 10.x
 * You will be using ESRI's ArcGIS ArcPy library for geoprocessing. If you have not installed ArcGIS before, you can skip to the next section.
