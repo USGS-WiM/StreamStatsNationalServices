@@ -549,7 +549,7 @@ class StreamStatsNationalOps(SpatialOps):
         idx = int(Characteristic.IDX)
         
         try:
-            result[Characteristic.Name] = df[df[0] == int(Characteristic.ComID)][idx].values[0]
+            result[Characteristic.Name] = df[df[0] == int(self.WorkspaceID)][idx].values[0]
         except:
             result[Characteristic.Name] = None
 

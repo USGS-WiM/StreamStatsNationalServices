@@ -57,14 +57,14 @@ from Ops import ExpressionOps
 ##       Main
 ##-------+---------+---------+---------+---------+---------+---------+---------+
 #http://stackoverflow.com/questions/13653991/passing-quotes-in-process-start-arguments
-class FederalHyghwayWrapper(object):
+class FederalHighwayWrapper(object):
     #region Constructor
     def __init__(self, workingDirectory, projIdentifier):
         try:
             self.workingDir = workingDirectory        
             self.startTime = time.time()
             self.workspaceID = None
-            self._sm("initialized wrapper")
+            self._sm("initialized")
             gc.collect()
         except:
             tb = traceback.format_exc()

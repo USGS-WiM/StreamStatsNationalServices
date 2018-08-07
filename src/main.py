@@ -18,6 +18,7 @@ import json
 import traceback
 import string
 import os
+import gc
 
 from FederalHighwayWrapper import FederalHyghwayWrapper
 from Resources import gage
@@ -74,7 +75,7 @@ class Main(object):
 
             Shared.writeToFile(os.path.join(workingDir,config["outputFile"]),header)
 
-            with FederalHyghwayWrapper(workingDir, projectID) as fh:                
+            with FederalHighwayWrapper(workingDir, projectID) as fh:                
                 for station in file:
                     results={'Values':[{}]}
                     try:
@@ -82,7 +83,7 @@ class Main(object):
                         results = fh.Run(g, params)  
                     
                         if results is None: results={'Values':[{}]}
-                        Shared.appendLineToFile(os.path.join(workingDir,config["outputFile"]),",".join(str(v) for v in [g.comid,fh.workspaceID,results.Description,g.lat,g.long]+self._formatRow(results.Values,True)))
+                        Shared.appendLineToFile(os.path.join(workingDir,config["outputFile"]),",".join(str(v) for v in [g.comid,fh.workspaceID,results.Description,g.lat,g.long]+self._formatRow(results.Values,params)))
                     except:
                         tb = traceback.format_exc()
                         WiMLogging.sm("error computing gage "+g.id+" "+tb)
@@ -96,12 +97,12 @@ class Main(object):
             tb = traceback.format_exc()
             WiMLogging.sm("error running "+tb)
 
-    def _formatRow(self, params, hasKeys =False):        
+    def _formatRow(self, params, definedkeys =None):        
             r = []
-            keys = params if not hasKeys else params.keys()
+            keys = params if not definedkeys else definedkeys
             for k in keys:
                 for p_val in ['localvalue','totalvalue','globalvalue']:
-                    value = str(k) + "_" + str(p_val) if not hasKeys else params[k][p_val]
+                    value = str(k) + "_" + str(p_val) if not definedkeys else params[k][p_val] if k in params and p_val in params[k] else "not reported. see log file"
                     r.append(value)
                 #next p_val
             #next p

@@ -27,18 +27,26 @@ def Evaluate(procedure, funcArgs, weightArgs = None):
         result = sum(funcArgs)
     elif method == 'weightedaverage':
         # Do the WeightedAverage
-            weightSum = sum(weightArgs);
-            if (weightSum <= 0): raise Exception("Weight sum < 0")
-            weightval = [val * wt/weightSum for val, wt in zip(funcArgs, weightArgs)]
-            result = sum(weightval)
+        weightSum = sum(weightArgs);
+        if (weightSum <= 0): raise Exception("Weight sum < 0")
+        weightval = [val * wt/weightSum for val, wt in zip(funcArgs, weightArgs)]
+        result = sum(weightval)
 
     elif method == 'weighteddifference':
         # Do the WeightedAverage
-        weightDiff=weightArgs[0]-sum(weightArgs[1:])
-        weightval = [val * wt/weightDiff for val, wt in zip(funcArgs, weightArgs)]
+        for i in [i for i, val in enumerate(funcArgs) if not val > 0]:
+            del funcArgs[i]
+            del weightArgs[i]
 
-        result = weightval[0] - sum(weightval[1:])
-        
+        if len(funcArgs) < 1:
+            result = 0
+        elif len(funcArgs) == 1:
+            result = funcArgs[0]
+        else:
+            weightDiff = weightArgs[0] - sum(weightArgs[1:])
+            weightval = [val * wt / weightDiff for val, wt in zip(funcArgs, weightArgs)]
+
+            result = weightval[0] - sum(weightval[1:])
     elif method == 'difference':
         # Do The Subract
         result = funcArgs[0] - sum(funcArgs[1:])
@@ -47,7 +55,7 @@ def Evaluate(procedure, funcArgs, weightArgs = None):
         result = funcArgs[1]
 
     else:
-        raise Exception("Procedure not yet implemented ")# + procedureEnum)
+        raise Exception("Procedure not yet implemented: "+ procedure)# + procedureEnum)
     
     return result
 
