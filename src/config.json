@@ -5,11 +5,14 @@
   "queryParams": {
     "nldiQuery": "/nldi/comid/{0}/basin",
     "nldiWFS": "/nwc/geoserver/nhdplus/ows?service=wfs&version=1.0.0&request=GetFeature&typeName=nhdplus:catchmentsp&srsName=EPSG:{0}&outputFormat=json&filter=<Filter xmlns=\"http://www.opengis.net/ogc\" xmlns:gml=\"http://www.opengis.net/gml\"><Contains><PropertyName>the_geom</PropertyName><gml:Point srsName=\"EPSG:{0}\"><gml:coordinates>{1},{2}</gml:coordinates></gml:Point></Contains></Filter>",
-    "nldiChars": "/nldi/comid/{0}/tot"
+    "nldiChars": "/nldi/comid/{0}/tot",
+    "damindex": "/DamIndexes.json"
+
   },
+
   "UseNLDIServices": true,
   "workingdirectory": "D:/Applications/output/gage_iii",
-  "parentdirectory": "D:/ss_data/FHWA",
+  "parentdirectory": "D:/WiM\\Projects/StreamStats/data",
   "outputFile": "splitCatchment.csv",
   "catchment": {
     "upstream": "upstreamcatchment",
@@ -17,10 +20,31 @@
     "global": "total"
   },
   "characteristics": {
+    "TOT_NID_DISTURBANCE_INDEX": {
+      "Procedure": "getNIDDistrubanceIndex",
+      "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
+      "MapLayers": [ "USGS_NID_2018", "ppt7100_800a" ],
+      "JoinTables": [
+        {
+          "table": "NID",
+          "key": "Source_featureID",
+          "QueryField": "NID_STORAGE"
+        },
+        {
+          "table": "NID_Area",
+          "key": "Source_fea",
+          "QueryField": "DA_Acre"
+        }
+      ],
+      "JoinField": "Source_FeatureID",
+      "UnitID": "",
+      "Reference": "",
+      "AggregationMethod": "none"
+    },
     "TOT_NID_STORAGE_2013": {
       "Procedure": "getStoragePerUnitArea",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
-      "MapLayers": ["nid2013"],
+      "MapLayers": [ "nid2013" ],
       "QueryField": "NID_STORAG",
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1",
@@ -30,7 +54,7 @@
       "Procedure": "NHDPlusV2QueryNoCalc",
       "Description": "The maximum dam storage (in acre-feet) defined as the total storage space in a reservoir below the maximum attainable water surface elevation, including any surcharge storage. ",
       "Data": "NID_2013_CONUS.csv",
-	  "MapLayers": ["nid2013"],
+      "MapLayers": [ "nid2013" ],
       "QueryField": "NID_STORAG",
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1",
@@ -46,13 +70,13 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/57c9dc05e4b0f2f0cec192f2",
       "AggregationMethod": "weightedDifference"
     },
-     "TOT_FRESHWATER_WD_NODATA": {
+    "TOT_FRESHWATER_WD_NODATA": {
       "Procedure": "getCSVStatistic",
       "Description": "Freshwater withdrawal megaliters (1000 cubic meters) per year per sqkm, from 1995-2000 county-level estimates",
       "Method": "Mean",
       "Data": "FRESHWATER_WD_CONUS.csv",
-	  "IDX": 2,
-	  "TOT_IDX": 3,
+      "IDX": 2,
+      "TOT_IDX": 3,
       "UnitID": "megaliters/km2",
       "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/57c9dc05e4b0f2f0cec192f2",
@@ -62,7 +86,7 @@
       "Procedure": "getCSVStatistic",
       "Description": "Impervious surface from NLCD 2011",
       "Method": "Mean",
-	  "IDX": 1,
+      "IDX": 1,
       "Data": "IMPV11_CONUS.csv",
       "MapLayers": [ "nlcd2011" ],
       "UnitID": "percent",
@@ -77,10 +101,10 @@
       "Data": "IMPV11_CONUS.csv",
       "UnitID": "percent",
       "MultiplicationFactor": 1,
-	  "IDX": 2,
-	  "TOT_IDX": 3,
-	  "Reference": "https://www.sciencebase.gov/catalog/item/570575fae4b0d4e2b7571bba",
-	  "AggregationMethod": "weightedDifference"
+      "IDX": 2,
+      "TOT_IDX": 3,
+      "Reference": "https://www.sciencebase.gov/catalog/item/570575fae4b0d4e2b7571bba",
+      "AggregationMethod": "weightedDifference"
     },
     "TOT_MIRAD_2012": {
       "Procedure": "getCSVStatistic",
@@ -97,8 +121,8 @@
       "Description": "Percent of watershed in irrigated agriculture, from USGS 2012 250-m MODIS data",
       "Data": "MIRAD_2012_CONUS.csv",
       "UnitID": "percent",
-	  "IDX": 2,
-	  "TOT_IDX": 3,
+      "IDX": 2,
+      "TOT_IDX": 3,
       "Reference": "https://www.sciencebase.gov/catalog/item/57f66d66e4b0bc0bec06de3a",
       "AggregationMethod": "weightedDifference"
     },
@@ -112,19 +136,19 @@
       "UnitID": "percent",
       "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5669a834e4b08895842a1d49",
-      "AggregationMethod": "weightedDifference" 
+      "AggregationMethod": "weightedDifference"
     },
     "TOT_NWALT12_41_NODATA": {
       "Procedure": "getCSVStatistic",
       "Description": "Mining/Extraction - Barren areas due to probable surface mining/mineral extraction. Includes mining, quarries, sand and gravel operations, and energy operations.",
-	  "IDX": 1,
-	  "Data": "NWALT_CONUS.csv",
+      "IDX": 1,
+      "Data": "NWALT_CONUS.csv",
       "TOT_IDX": 3,
       "ClassCodes": "41",
       "UnitID": "percent",
       "MultiplicationFactor": 1,
       "Reference": "https://www.sciencebase.gov/catalog/item/5669a834e4b08895842a1d49",
-      "AggregationMethod": "weightedDifference" 
+      "AggregationMethod": "weightedDifference"
     },
     "TOT_DITCHES92": {
       "Procedure": "getVectorDensity",
@@ -148,8 +172,8 @@
       "selectorField": "FTYPE",
       "Description": "Percent of watershed subjected to ditches for the year 1992",
       "Data": "DITCHES92_CONUS.csv",
-	  "IDX": 2,
-	  "TOT_IDX": 3,
+      "IDX": 2,
+      "TOT_IDX": 3,
       "UnitID": "percent",
       "Reference": "https://www.sciencebase.gov/catalog/item/57067257e4b03f95a075ab0c",
       "AggregationMethod": "weightedDifference"
@@ -160,14 +184,14 @@
       "MapLayers": [ "npdes" ],
       "UnitID": "cnt/sqkm",
       "Reference": "https://www.sciencebase.gov/catalog/item/57c9d89ce4b0f2f0cec192da",
-      "AggregationMethod": "weightedDifference" 
+      "AggregationMethod": "weightedDifference"
     },
     "TOT_NPDES_MAJ_DENS_NODATA": {
       "Procedure": "NHDPlusV2QueryNoCalc",
       "Description": "NPDES Major site density, count/totalArea",
       "UnitID": "cnt/sqkm",
       "Reference": "https://www.sciencebase.gov/catalog/item/57c9d89ce4b0f2f0cec192da",
-      "AggregationMethod": "weightedDifference" 
+      "AggregationMethod": "weightedDifference"
     },
     "TOT_PPT7100_ANN": {
       "Procedure": "getRasterStatistic",
@@ -179,7 +203,7 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/573b70a7e4b0dae0d5e3ae85",
       "TimeRange": "1-1-1971;1-1-2001",
       "TimeMethod": "MeanYear",
-      "AggregationMethod": "weightedDifference" 
+      "AggregationMethod": "weightedDifference"
     },
     "TOT_PPT7100_ANN_NODATA": {
       "Procedure": "getCSVStatistic",
@@ -194,15 +218,15 @@
       "Reference": "https://www.sciencebase.gov/catalog/item/573b70a7e4b0dae0d5e3ae85",
       "TimeRange": "1-1-1971;1-1-2001",
       "TimeMethod": "MeanYear",
-      "AggregationMethod": "weightedDifference" 
+      "AggregationMethod": "weightedDifference"
     },
     "TOT_TAV7100_ANN": {
       "Procedure": "getCalculateEval",
       "Description": "Mean annual air temperature (degrees Celsius) from 800m PRISM data. 30 year period of record 1971-2000.",
-      "Variables": ["TOT_TMIN7100", "TOT_TMAX7100"],
+      "Variables": [ "TOT_TMIN7100", "TOT_TMAX7100" ],
       "Equation": "( {} + {} ) / 2",
-      "EquationVariables": ["a", "b"],
-      "MapLayers": ["tmin7100_800a", "tmax7100_800a" ],
+      "EquationVariables": [ "a", "b" ],
+      "MapLayers": [ "tmin7100_800a", "tmax7100_800a" ],
       "SubProcedure": "getRasterStatistic",
       "UnitID": "degrees Celsius",
       "Reference": "https://www.sciencebase.gov/catalog/item/57054bf2e4b0d4e2b756d364"
@@ -727,39 +751,39 @@
     "TOT_BASIN_AREA": {
       "Procedure": "getCSVStatistic",
       "Description": "NHDPlus Version 2 percent slope",
-	  "Data": "CAT_BASIN_CONUS.csv",
-	  "IDX": 1,
+      "Data": "CAT_BASIN_CONUS.csv",
+      "IDX": 1,
       "UnitID": "km2",
       "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890",
       "AggregationMethod": "difference"
     },
     "TOT_ELEV_MAX": {
-     "Procedure": "getCSVStatistic",
+      "Procedure": "getCSVStatistic",
       "Description": "NHDPlus Version 2 Maximum elevation",
-	  "Data": "CAT_BASIN_CONUS.csv",
-	  "IDX": 5,
+      "Data": "CAT_BASIN_CONUS.csv",
+      "IDX": 5,
       "Method": "Max",
       "MapLayers": [ "elev_cm" ],
       "UnitID": "meters",
       "MultiplicationFactor": 0.01,
       "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
     },
-     "TOT_ELEV_MIN": {
+    "TOT_ELEV_MIN": {
       "Procedure": "getCSVStatistic",
       "Description": "NHDPlus Version 2 Minimum elevation",
-	  "Data": "CAT_BASIN_CONUS.csv",
-	  "IDX": 4,
+      "Data": "CAT_BASIN_CONUS.csv",
+      "IDX": 4,
       "Method": "Minimum",
       "MapLayers": [ "elev_cm" ],
       "UnitID": "meters",
       "MultiplicationFactor": 0.01,
       "Reference": "https://www.sciencebase.gov/catalog/item/57976a0ce4b021cadec97890"
     },
-   "TOT_ELEV_MEAN": {
+    "TOT_ELEV_MEAN": {
       "Procedure": "getCSVStatistic",
       "Description": "NHDPlus Version 2 Mean elevation",
-	  "Data": "CAT_BASIN_CONUS.csv",
-	  "IDX": 3,
+      "Data": "CAT_BASIN_CONUS.csv",
+      "IDX": 3,
       "Method": "Mean",
       "MapLayers": [ "elev_cm" ],
       "UnitID": "meters",
@@ -968,7 +992,7 @@
       "WhereClause": "YEAR_COMPL > 1980",
       "QueryField": "FID",
       "Method": "COUNT",
-      "MapLayers": ["major1980"],
+      "MapLayers": [ "major1980" ],
       "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/577179e4e4b07657d1a6badf"
     },
@@ -978,7 +1002,7 @@
       "WhereClause": "YEAR_COMPL > 1970",
       "QueryField": "FID",
       "Method": "COUNT",
-      "MapLayers": ["major1970"],
+      "MapLayers": [ "major1970" ],
       "UnitID": "count",
       "Reference": "https://www.sciencebase.gov/catalog/item/57717888e4b07657d1a6badb"
     },
@@ -1230,7 +1254,7 @@
       "Description": "The normal dam storage defined as the total storage space in a reservoir below the normal retention level, including dead and inactive storage and excluding any flood control or surcharge storage ",
       "WhereClause": "YEAR_COMPL > 2013",
       "QueryField": "FID",
-	  "MapLayers": [ "normstorage2013" ],
+      "MapLayers": [ "normstorage2013" ],
       "Method": "SUM",
       "UnitID": "acre feet",
       "Reference": "https://www.sciencebase.gov/catalog/item/57bf394ae4b0f2f0ceb759f1",
@@ -1544,6 +1568,32 @@
       "queryField": "Path",
       "UnitID": "sq-m"
     },
+    "USGS_NID_2018": {
+      "ID": 2004,
+      "Name": "NID_Locations",
+      "DataSetName": "Internal_USGS_Use_Only_National_Inventory_of_Dams_on_Medium_Resolution_NHDPlus_V2_for_CONUS.gdb",
+      "Description": "National Inventory of Dams USGS modified 2018",
+      "isTiled": false,
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_POINT"
+    },
+    "USGS_NID_2018_Table": {
+      "ID": 2002,
+      "Name": "NID",
+      "DataSetName": "Internal_USGS_Use_Only_National_Inventory_of_Dams_on_Medium_Resolution_NHDPlus_V2_for_CONUS.gdb",
+      "Description": "National Inventory of Dams USGS modified 2018 Properties",
+      "isTiled": false,
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "ESRI_TABLE"
+    },
+    "USGS_NID_2018_AREATable": {
+      "ID": 2003,
+      "Name": "NID_AREA",
+      "Description": "National Inventory of Dams USGS modified 2018 Upstream Area, computed using NLID/Split catchment routine ",
+      "isTiled": false,
+      "path": "Nationwide/HYDRO_MOD/NID",
+      "DatasetType": "DATABASE_FILE"
+    },
     "nid2013": {
       "ID": 2001,
       "Name": "point",
@@ -1577,7 +1627,7 @@
       "isTiled": false,
       "path": "Nationwide/HYDRO_MOD/MIRAD",
       "DatasetType": "ESRI_RASTER"
-    },    
+    },
     "nwalt2012": {
       "ID": 6001,
       "Name": "lu2012_050815",

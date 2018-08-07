@@ -31,10 +31,10 @@ import arcpy
 from arcpy import env
 from arcpy.sa import *
 from Ops.HydroOps import  HydroOps
-from WiMLib import WiMLogging
-from WiMLib import Shared
-from WiMLib import GeoJsonHandler
-from WiMLib.Config import Config
+from WIMLib import WiMLogging
+from WIMLib import Shared
+from WIMLib import GeoJsonHandler
+from WIMLib.Config import Config
 from ServiceAgents.NLDIServiceAgent import NLDIServiceAgent
 import ServiceAgents.NLDIServiceAgent
 import json

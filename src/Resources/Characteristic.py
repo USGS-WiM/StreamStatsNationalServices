@@ -18,8 +18,8 @@
 
 #region "Imports"
 import json
-from WiMLib import WiMLogging
-from WiMLib.Config import Config
+from WIMLib import WiMLogging
+from WIMLib.Config import Config
 import os
 #endregion
 class Characteristic(object):
@@ -52,9 +52,11 @@ class Characteristic(object):
             self.MultiplicationFactor = CharObj["MultiplicationFactor"] if ("MultiplicationFactor" in CharObj) else 1 # Added by JWX
             self.TimeRange = CharObj["TimeRange"] if ("TimeRange" in CharObj) else "" 
             self.TimeMethod = CharObj["TimeMethod"] if ("TimeMethod" in CharObj) else ""
-            self.AggregationMethod = CharObj["AggregationMethod"] if ("AggregationMethod" in CharObj) else "weighteddifference" #seeWiMLib.ExpressionOps
+            self.AggregationMethod = CharObj["AggregationMethod"] if ("AggregationMethod" in CharObj) else "weighteddifference" #seeWIMLib.ExpressionOps
             self.IDX = CharObj["IDX"] if ("IDX" in CharObj) else ""
-            self.TOT_IDX = CharObj["TOT_IDX"] if ("TOT_IDX" in CharObj) else ""
+            self.TOT_IDX = CharObj["TOT_IDX"] if ("TOT_IDX" in CharObj) else "",
+            self.JoinTables = CharObj["JoinTables"] if ("JoinTables" in CharObj) else None,
+            self.JoinField = CharObj["JoinField"] if ("JoinField" in CharObj) else None
         
         except:
             WiMLogging.sm(chardefname + " not available to compute. Returning none value.", "ERROR")

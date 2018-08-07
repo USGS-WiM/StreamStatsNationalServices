@@ -10,12 +10,12 @@ import os
 from arcpy import SpatialReference
 import numpy as np
 import arcpy
-from WiMLib import WiMLogging
+from WIMLib import WiMLogging
 from Resources.Characteristic import Characteristic
-from WiMLib.Resources import Result
-from WiMLib import Shared
-from WiMLib import GeoJsonHandler
-from WiMLib.Config import Config
+from WIMLib.Resources import Result
+from WIMLib import Shared
+from WIMLib import GeoJsonHandler
+from WIMLib.Config import Config
 from ServiceAgents.NLDIServiceAgent import NLDIServiceAgent
 from Ops.StreamStatsNationalOps import *
 from Ops.HydroOps import HydroOps

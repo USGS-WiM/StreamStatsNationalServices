@@ -1,6 +1,5 @@
 #------------------------------------------------------------------------------
 #----- FederalHighwayWrapper.py -----------------------------------------------
-#----- Formerly known as DelineateWrapper.py ----------------------------------
 #------------------------------------------------------------------------------
 #
 #  copyright:  2016 WiM - USGS
@@ -37,19 +36,20 @@ import gc
 from arcpy import env
 from arcpy.sa import *
 from Ops.HydroOps import  HydroOps
-from WiMLib import WiMLogging
+from WIMLib import WiMLogging
 from Resources import gage
 from Resources import Characteristic
-from WiMLib.Resources import Result
-from WiMLib import Shared
-from WiMLib import GeoJsonHandler
-from WiMLib.Config import Config
+from WIMLib.Resources import Result
+from WIMLib import Shared
+from WIMLib import GeoJsonHandler
+from WIMLib.Config import Config
 from ServiceAgents.NLDIServiceAgent import NLDIServiceAgent
 from ServiceAgents.NLDIFileServiceAgent import NLDIFileServiceAgent
+from ServiceAgents.NIDServiceAgent import NIDServiceAgent
 import ServiceAgents.NLDIServiceAgent
-from Ops.StreamStatsNationalOps import *
+from Ops.StreamStatsNationalOps import StreamStatsNationalOps
 import json
-from WiMLib import ExpressionOps
+from Ops import ExpressionOps
 
 #endregion
 
@@ -57,94 +57,45 @@ from WiMLib import ExpressionOps
 ##       Main
 ##-------+---------+---------+---------+---------+---------+---------+---------+
 #http://stackoverflow.com/questions/13653991/passing-quotes-in-process-start-arguments
-class DelineationWrapper(object):
+class FederalHighwayWrapper(object):
     #region Constructor
-    def __init__(self):
+    def __init__(self, workingDirectory, projIdentifier):
         try:
-            parser = argparse.ArgumentParser()
-            parser.add_argument("-projectID", help="specifies the projectID", type=str, default="FH")
-            parser.add_argument("-file", help="specifies csv file location including gage lat/long and comid's to estimate", type=str, 
-                                default = 'C:\\gis\\gagesiii_lat_lon3.csv')
-            parser.add_argument("-outwkid", help="specifies the esri well known id of pourpoint ", type=int, 
-                                default = '4326')
-            parser.add_argument("-parameters", help="specifies the ';' separated list of parameters to be computed", type=str, 
-                                      default = "")  
-                           
-            args = parser.parse_args()
-            startTime = time.time()
-            projectID = args.projectID
-            if projectID == '#' or not projectID:
-                raise Exception('Input Study Area required')
-
-            config = Config(json.load(open(os.path.join(os.path.dirname(__file__), 'config.json')))) 
-
-            if(args.parameters): self.params =  args.parameters.split(";") 
-            #get all characteristics from config
-            else: self.params =  config["characteristics"].keys() 
-
-            self.workingDir = Shared.GetWorkspaceDirectory(config["workingdirectory"],args.projectID)   
-            header =[]
-            header.append("-+-+-+-+-+-+-+-+-+ NEW RUN -+-+-+-+-+-+-+-+-+")
-            header.append("Execute Date: " + str(datetime.date.today()))
-            header.append("-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
-                 
-            WiMLogging.init(os.path.join(self.workingDir,"Temp"),"gage3.log")
-            WiMLogging.sm("Starting routine")
-            sr = arcpy.SpatialReference(args.outwkid)             
-
-            file = Shared.readCSVFile(args.file)
-            headers = file[0]
-            if "gage_no_1" in headers: idindex = headers.index("gage_no_1")
-            if "gage_name" in headers: nmindex = headers.index("gage_name")
-            if "COMID" in headers: comIDindex = headers.index("COMID")
-            if "lat" in headers: latindex = headers.index("lat")
-            if "lon" in headers: longindex = headers.index("lon")
-
-            #remove header
-            file.pop(0)
-            Shared.writeToFile(os.path.join(self.workingDir,config["outputFile"]),header)
-            isFirst = True
-            for station in file:
-                g = gage.gage(station[idindex],station[comIDindex],station[latindex],station[longindex],sr,station[nmindex])
-
-                WiMLogging.sm('-+-+-+-+-+-+-+-+-+ '+ g.comid +' -+-+-+-+-+-+-+-+-+')
-                WiMLogging.sm('-+-+-+-+-+-+-+-+-+ '+ g.lat +','+ g.long+' -+-+-+-+-+-+-+-+-+')
-                WiMLogging.sm(' Elapse time:'+ str(round((time.time()- startTime)/60, 2))+ 'minutes')
-                WiMLogging.sm('-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+')
-
-                workspaceID = self._delineate(g,self.workingDir)
-                if(workspaceID == None): 
-                    WiMLogging.sm("Delineation didn't occur for gage "+ g.comid)
-                    continue
-                results = self._computeCharacteristics(g,self.workingDir,workspaceID)
-
-                #Put for-for k.subk routine here instead of below
-                complexHeader = []
-                allValues = []
-                for k in results.Values.keys():
-                    for subk in ['localvalue','totalvalue','globalvalue']:
-                        complexHeader.append(str(k) + "_" + str(subk))
-                        allValues.append(results.Values[k][subk])
-
-                #write results to file
-                #Below should probably be expanded upon
-                if isFirst:
-                    Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(['COMID','WorkspaceID','Description','LAT','LONG']+complexHeader))
-                    isFirst = False
-                if results is None: #changed to elif by jwx
-                    Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(str(v) for v in [g.comid,workspaceID,'error',g.lat,g.long])) 
-                else:
-                    Shared.appendLineToFile(os.path.join(self.workingDir,config["outputFile"]),",".join(str(v) for v in [g.comid,workspaceID,results.Description,g.lat,g.long]+allValues))                        
-                del complexHeader
-                del allValues
-                gc.collect()
-            #next station           
-
-            print 'Finished.  Total time elapsed:', round((time.time()- startTime)/60, 2), 'minutes'
-
+            self.workingDir = workingDirectory        
+            self.startTime = time.time()
+            self.workspaceID = None
+            self._sm("initialized")
+            gc.collect()
         except:
             tb = traceback.format_exc()
-            WiMLogging.sm("error running "+tb)
+            self._sm("error running "+tb)
+    def __enter__(self):
+        return self
+    def __exit__(self, exc_type, exc_value, traceback):
+        self.workingDir = None
+        self.startTime= None
+        self.workspaceID =None
+
+    def Run(self, gage, parameters):
+        try:
+            #update gage sr
+            gage.sr = arcpy.SpatialReference(gage.sr) 
+        
+            self._sm('-+-+-+-+-+-+-+-+-+ '+ gage.comid +' -+-+-+-+-+-+-+-+-+')
+            self._sm('-+-+-+-+-+-+-+-+-+ '+ gage.lat +','+ gage.long+' -+-+-+-+-+-+-+-+-+')
+            self._sm(' Elapse time:'+ str(round((time.time()- self.startTime)/60, 2))+ 'minutes')
+            self._sm('-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+')
+
+            self.workspaceID = self._delineate(gage,self.workingDir)
+            if(self.workspaceID == None): 
+                self._sm("Delineation didn't occur for gage "+ gage.comid)
+                
+            basincharacteristics = self._computeCharacteristics(gage,self.workingDir,self.workspaceID,parameters)           
+
+            return basincharacteristics
+        except:
+            tb = traceback.format_exc()
+            self._sm("error running "+tb)
 
     def _delineate(self, gage, workspace):
         try:
@@ -196,26 +147,31 @@ class DelineationWrapper(object):
             return ssdel.WorkspaceID
         except:
             tb = traceback.format_exc()
-            WiMLogging.sm("Error delineating basin "+tb)
+            self._sm("Error delineating basin "+tb)
             return None
-    def _computeCharacteristics(self,gage,workspace,workspaceID):
+    def _computeCharacteristics(self,gage,workspace,workspaceID,parameters):
         method = None
         reportedValues={}
+        globalValue ={}
         try:
             WiMResults = Result.Result(gage.comid,"Characteristics computed for "+gage.name)
             with NLDIServiceAgent() as sa:
                 globalValue = sa.getBasinCharacteristics(gage.comid)
             #end with
+            with NIDServiceAgent() as d_sa:
+                globalValue['TOT_NID_DISTURBANCE_INDEX'] = d_sa.getDisturbanceIndex(gage.comid)
+            #end with
+
             startTime = time.time()
             with StreamStatsNationalOps(workspace, workspaceID) as sOps: 
                 localBasinArea = sOps.getAreaSqMeter(sOps.mask)
-                for p in self.params:
+                for p in parameters:
                     if p == 'TOT_BASIN_AREA':
                         print "TOT_BASIN_AREA hath been found!"
                     method = None
                     parameter = Characteristic.Characteristic(p)
                     if(not parameter): 
-                        WiMLogging.sm(p +"Not available to compute")
+                        self._sm(p +"Not available to compute")
                         continue
 
                     method = getattr(sOps, parameter.Procedure)
@@ -225,20 +181,23 @@ class DelineationWrapper(object):
                     if (method): 
                         result = method(parameter) 
                         #todo:merge with request from NLDI
-                        WiMLogging.sm("The local result value for " + str(parameter.Name) + " : " + str(result[parameter.Name]))
+                        self._sm("The local result value for " + str(parameter.Name) + " : " + str(result[parameter.Name]))
                         if(globalValue != None and parameter.Name in globalValue): 
                             print "The Name is: " + parameter.Name
                             try:
                                 if globalValue[parameter.Name] == "":
                                     globalValue[parameter.Name] = 0                              
-                                totalval = ExpressionOps.Evaluate(parameter.AggregateMethod, [float(globalValue[parameter.Name]),float(result[parameter.Name])],[float(globalValue["TOT_BASIN_AREA"]),localBasinArea]) if globalValue[parameter.Name] != None and result[parameter.Name] != None else None
-                                WiMLogging.sm("The global value for " + str(parameter.Name) + " : " + str(globalValue[parameter.Name]))
+                                totalval = ExpressionOps.Evaluate(parameter.AggregationMethod,
+                                                                 [float(globalValue[parameter.Name]),float(result[parameter.Name])],
+                                                                 [float(globalValue["TOT_BASIN_AREA"]),localBasinArea]) if globalValue[parameter.Name] != None and result[parameter.Name] != None else None
+                                self._sm("The global value for " + str(parameter.Name) + " : " + str(globalValue[parameter.Name]))
                                 #Below should be updated to work with Total, Local, and Global values
                                 #If the parameter does not exist in globalValue the name is returned screwing things up for calculations
                                 varbar = {'totalvalue':totalval,'localvalue':result[parameter.Name],'globalvalue':globalValue[parameter.Name]}
                                 reportedResults = {parameter.Name:varbar}
                             except:
-                                "Couldn't convert " + parameter.Name + " to Float"
+                                tb = traceback.format_exc()
+                                print "Couldn't convert " + parameter.Name + " to Float"
 
                             WiMResults.Values.update(reportedResults) #Tabbed this over - jwx
                         #The following section was put in place by me, John Wall, to help with issues of Global Value = None or where the Parameter is not within a list.
@@ -247,9 +206,9 @@ class DelineationWrapper(object):
                         #   It should be noted that in at least one instance the WD6190 is not obtained for the Global Value where it is within the CSV.
                         #   Why is this not properly pulled? It's unclear at the current time (8 SEPT 2017)
                         if(globalValue is None or parameter.Name not in globalValue):
-                            WiMLogging.sm("WARNING: Global Value was 'None' or the Parameter was not in the Global Value list!")
-                            WiMLogging.sm("WARNING: Because of the above, Total and Global Values will be 'Not Calculated'.")
-                            WiMLogging.sm("WARNING: Local value should be equal to 'None'!")
+                            self._sm("WARNING: Global Value was 'None' or the Parameter was not in the Global Value list!")
+                            self._sm("WARNING: Because of the above, Total and Global Values will be 'Not Calculated'.")
+                            self._sm("WARNING: Local value should be equal to 'None'!")
                             varbar = {'totalvalue':'Not Calculated','localvalue':result[parameter.Name],'globalvalue':'Not Calculated'}
 
                             reportedResults = {parameter.Name:varbar}
@@ -257,7 +216,7 @@ class DelineationWrapper(object):
                             WiMResults.Values.update(reportedResults) #Tabbed this over - jwx
 
                     else:
-                        WiMLogging.sm(p.Proceedure +" Does not exist","Error")
+                        self._sm(p.Proceedure +" Does not exist","Error")
                         continue 
 
                 #next p
@@ -267,10 +226,11 @@ class DelineationWrapper(object):
             return WiMResults
         except:
             tb = traceback.format_exc()
-            WiMLogging.sm("Error writing computing Characteristics "+tb)
+            self._sm("Error writing computing Characteristics "+tb)
             return WiMResults
+
+    def _sm(self,msg,type="INFO", errorID=0):        
+        WiMLogging.sm(msg,type="INFO", errorID=0)
             
-if __name__ == '__main__':
-    DelineationWrapper()
 
 

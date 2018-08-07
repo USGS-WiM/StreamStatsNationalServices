@@ -30,12 +30,12 @@ import os
 
 #endregion
 
-class NLDIFileServiceAgent(ServiceAgentBase.ServiceAgentBase):
+class NIDServiceAgent(ServiceAgentBase.ServiceAgentBase):
     #region Constructor
     def __init__(self):
         ServiceAgentBase.ServiceAgentBase.__init__(self, Config()["NLDIServiceFiles"])
 
-        self._sm("initialized NLDIFileServiceAgent")
+        self._sm("initialized DamIndexServiceAgent")
     def __enter__(self):
         return self
 
@@ -43,32 +43,19 @@ class NLDIFileServiceAgent(ServiceAgentBase.ServiceAgentBase):
         ServiceAgentBase.ServiceAgentBase.__exit__(self, exc_type, exc_value, traceback) 
     #endregion
     #region Methods
-    def getBasin(self, comID, isCatchmentLevel=False, xpoint = None, ypoint = None, crs = 4326):
-        try:
-            distance = "gages_iii_catchments" if isCatchmentLevel else "gages_iii_basins"
-            resource = "/{1}/{0}.json".format(comID, distance)
-
-            try:
-                url = self.BaseUrl + resource
-                results = json.dumps(json.load(open(url)))
-                return json.loads(results)
-            except:
-                tb = traceback.format_exc()
-                self._sm("Exception raised for "+ os.path.basename(resource) + ". Moving to next ComID.", "ERROR")
-        except:
-            tb = traceback.format_exc()
-            self._sm("NLDIService getBasin Error "+tb, "ERROR")
-    def getBasinCharacteristics(self,comID):
+    def getDisturbanceIndex(self,comID):
         results={}
+        key = comID+'.0'
         try:
-            resource = Config()['queryParams']['nldiChars'].format(comID)
+            resource = Config()['queryParams']['damindex']
+            url = self.BaseUrl + resource
+            results = json.load(open(url))
+
+            if(key in results):
+                return results[key]
+            else:
+              return 0
             
-            results = json.loads(self.Execute(resource))
-            
-            for x in results['characteristics']:
-                results[str(x['characteristic_id'])] = x['characteristic_value']
-            
-            return results
         except:
             tb = traceback.format_exc()
             self._sm("NLDIService getBasinCharacteristics Error "+tb, "ERROR")
