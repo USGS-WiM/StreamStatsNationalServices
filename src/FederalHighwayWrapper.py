@@ -31,6 +31,7 @@ import time
 import string
 import os
 import argparse
+import pandas as pd
 import arcpy
 import gc
 from arcpy import env
@@ -76,7 +77,7 @@ class FederalHighwayWrapper(object):
         self.startTime= None
         self.workspaceID =None
 
-    def Run(self, gage, parameters):
+    def Run(self, gage, parameters, arr=None):
         try:
             #update gage sr
             gage.sr = arcpy.SpatialReference(gage.sr) 
@@ -90,7 +91,7 @@ class FederalHighwayWrapper(object):
             if(self.workspaceID == None): 
                 self._sm("Delineation didn't occur for gage "+ gage.comid)
                 
-            basincharacteristics = self._computeCharacteristics(gage,self.workingDir,self.workspaceID,parameters)           
+            basincharacteristics = self._computeCharacteristics(gage,self.workingDir,self.workspaceID,parameters,arr)
 
             return basincharacteristics
         except:
@@ -100,17 +101,17 @@ class FederalHighwayWrapper(object):
     def _delineate(self, gage, workspace):
         try:
             ppoint = arcpy.CreateFeatureclass_management("in_memory", "ppFC"+gage.comid, "POINT", spatial_reference=gage.sr)
-            pnt = {"type":"Feature","geometry":{"type":"Point","coordinates":[gage.lat,gage.long]}}
+            pnt = {"type":"Feature","geometry":{"type":"Point","coordinates":[gage.long,gage.lat]}}
             if (pnt["type"].lower() =="feature"):
                 GeoJsonHandler.read_feature(pnt,ppoint,gage.sr)
             else:
-                GeoJsonHandler.read_feature_collection(pnt,ppoint,gage.sr)  
+                GeoJsonHandler.read_feature_collection(pnt,ppoint,gage.sr)
 
             if Config()["UseNLDIServices"] == False: #Toggler
                 sa = NLDIFileServiceAgent()
             else:
                 sa = NLDIServiceAgent()
-            maskjson = sa.getBasin(gage.comid, True, gage.lat, gage.long, gage.sr.factoryCode)
+            maskjson = sa.getBasin(gage.comid, True, gage.long, gage.lat, gage.sr.factoryCode)
 
             if(not maskjson): return None
 
@@ -140,7 +141,7 @@ class FederalHighwayWrapper(object):
                         raise Exception('Basin Geometry within the Feature Collection is not polygon output will be erroneous!')
                 GeoJsonHandler.read_feature_collection(basinjson,basin,gage.sr)         
                     
-            ssdel = HydroOps(workspace,gage.comid)
+            ssdel = HydroOps(workspace,gage.id)
             ssdel.Delineate(ppoint, mask)
             ssdel.MergeCatchment(basin)
 
@@ -149,85 +150,150 @@ class FederalHighwayWrapper(object):
             tb = traceback.format_exc()
             self._sm("Error delineating basin "+tb)
             return None
-    def _computeCharacteristics(self,gage,workspace,workspaceID,parameters):
+
+    def _computeCharacteristics(self,gage,workspace,workspaceID,parameters,arr):
         method = None
         reportedValues={}
         globalValue ={}
+
         try:
             WiMResults = Result.Result(gage.comid,"Characteristics computed for "+gage.name)
             with NLDIServiceAgent() as sa:
                 globalValue = sa.getBasinCharacteristics(gage.comid)
+                globalValue = self.convertUnits(globalValue)
             #end with
             with NIDServiceAgent() as d_sa:
                 globalValue['TOT_NID_DISTURBANCE_INDEX'] = d_sa.getDisturbanceIndex(gage.comid)
             #end with
 
             startTime = time.time()
-            with StreamStatsNationalOps(workspace, workspaceID) as sOps: 
+            with StreamStatsNationalOps(workspace, workspaceID) as sOps:
+
+                #Get basin areas to compute statistics
                 localBasinArea = sOps.getAreaSqMeter(sOps.mask)
+                globalBasinArea = sOps.getAreaSqMeter(sOps.mask2)
+
                 for p in parameters:
+
                     if p == 'TOT_BASIN_AREA':
-                        print "TOT_BASIN_AREA hath been found!"
-                    method = None
-                    parameter = Characteristic.Characteristic(p)
-                    if(not parameter): 
-                        self._sm(p +"Not available to compute")
-                        continue
-
-                    method = getattr(sOps, parameter.Procedure)
-                    print "The parameter name is: " + parameter.Name
-                    #if method != 'getPrismStatistic':
-                    #    continue
-                    if (method): 
-                        result = method(parameter) 
-                        #todo:merge with request from NLDI
-                        self._sm("The local result value for " + str(parameter.Name) + " : " + str(result[parameter.Name]))
-                        if(globalValue != None and parameter.Name in globalValue): 
-                            print "The Name is: " + parameter.Name
-                            try:
-                                if globalValue[parameter.Name] == "":
-                                    globalValue[parameter.Name] = 0                              
-                                totalval = ExpressionOps.Evaluate(parameter.AggregationMethod,
-                                                                 [float(globalValue[parameter.Name]),float(result[parameter.Name])],
-                                                                 [float(globalValue["TOT_BASIN_AREA"]),localBasinArea]) if globalValue[parameter.Name] != None and result[parameter.Name] != None else None
-                                self._sm("The global value for " + str(parameter.Name) + " : " + str(globalValue[parameter.Name]))
-                                #Below should be updated to work with Total, Local, and Global values
-                                #If the parameter does not exist in globalValue the name is returned screwing things up for calculations
-                                varbar = {'totalvalue':totalval,'localvalue':result[parameter.Name],'globalvalue':globalValue[parameter.Name]}
-                                reportedResults = {parameter.Name:varbar}
-                            except:
-                                tb = traceback.format_exc()
-                                print "Couldn't convert " + parameter.Name + " to Float"
-
-                            WiMResults.Values.update(reportedResults) #Tabbed this over - jwx
-                        #The following section was put in place by me, John Wall, to help with issues of Global Value = None or where the Parameter is not within a list.
-                        #   This was an observed issue after placing the Total, Local, and Global Value component above.
-                        #   Looking over the results of including this, we should be able to properly validate our results.
-                        #   It should be noted that in at least one instance the WD6190 is not obtained for the Global Value where it is within the CSV.
-                        #   Why is this not properly pulled? It's unclear at the current time (8 SEPT 2017)
-                        if(globalValue is None or parameter.Name not in globalValue):
-                            self._sm("WARNING: Global Value was 'None' or the Parameter was not in the Global Value list!")
-                            self._sm("WARNING: Because of the above, Total and Global Values will be 'Not Calculated'.")
-                            self._sm("WARNING: Local value should be equal to 'None'!")
-                            varbar = {'totalvalue':'Not Calculated','localvalue':result[parameter.Name],'globalvalue':'Not Calculated'}
-
-                            reportedResults = {parameter.Name:varbar}
-
-                            WiMResults.Values.update(reportedResults) #Tabbed this over - jwx
-
+                        # Get local, global, and total area of basin------------------
+                        totalArea = float(globalBasinArea - localBasinArea)
+                        varbar = {'totalvalue': totalArea, 'localvalue': localBasinArea,
+                                  'globalvalue': globalBasinArea}
+                        reportedResults = {'TOT_BASIN_AREA': varbar}
+                        WiMResults.Values.update(reportedResults)
+                        # ----------------------------------------------------------------
                     else:
-                        self._sm(p.Proceedure +" Does not exist","Error")
-                        continue 
+                        method = None
+                        parameter = Characteristic.Characteristic(p)
+                        if(not parameter):
+                            self._sm(p +"Not available to compute")
+                            continue
 
-                #next p
+                        method = getattr(sOps, parameter.Procedure)
+
+                        if (method):
+                            #Initialize result
+                            result = None
+
+                            #If multiprocessing array "arr" is not none apply concurrency mechanism
+                            #Otherwise process result as normal
+                            if arr is not None:
+                                proc_char = False
+                                while proc_char == False:
+                                    arr.acquire()
+                                    if p in arr.value:
+                                        arr.release()
+                                        continue
+                                    else:
+                                        proc_char = True
+
+                                setattr(arr, 'value', arr.value + ';' + p)
+
+                                arr.release()
+
+                                if parameter.Procedure == 'getCSVStatistic':
+                                    result = method(parameter, gage.comid)
+                                else:
+                                    result = method(parameter)
+
+                                arr.acquire()
+                                setattr(arr, 'value', arr.value.replace(';' + p, ''))
+                                arr.release()
+                            else:
+                                if parameter.Procedure == 'getCSVStatistic':
+                                    result = method(parameter, gage.comid)
+                                else:
+                                    result = method(parameter)
+
+                            #todo:merge with request from NLDI
+                            self._sm("The local result value for " + str(parameter.Name) + " : " + str(result[parameter.Name]))
+                            if(globalValue != None):
+
+                                try:
+                                    if parameter.Name not in globalValue:
+                                        globalValue[parameter.Name] = self.getTotChar(gage.comid, parameter)
+                                    elif globalValue[parameter.Name] == "":
+                                        globalValue[parameter.Name] = 0
+                                    totalval = ExpressionOps.Evaluate(parameter.AggregationMethod,
+                                                                     [float(globalValue[parameter.Name]),float(result[parameter.Name])],
+                                                                     [globalBasinArea,localBasinArea]) if globalValue[parameter.Name] != None and result[parameter.Name] != None else None
+                                    self._sm("The global value for " + str(parameter.Name) + " : " + str(globalValue[parameter.Name]))
+                                    #Below should be updated to work with Total, Local, and Global values
+                                    #If the parameter does not exist in globalValue the name is returned screwing things up for calculations
+                                    varbar = {'totalvalue':totalval,'localvalue':result[parameter.Name],'globalvalue':globalValue[parameter.Name]}
+                                    reportedResults = {parameter.Name:varbar}
+                                except:
+                                    tb = traceback.format_exc()
+
+                                WiMResults.Values.update(reportedResults) #Tabbed this over - jwx
+                            #The following section was put in place by me, John Wall, to help with issues of Global Value = None or where the Parameter is not within a list.
+                            #   This was an observed issue after placing the Total, Local, and Global Value component above.
+                            #   Looking over the results of including this, we should be able to properly validate our results.
+                            #   It should be noted that in at least one instance the WD6190 is not obtained for the Global Value where it is within the CSV.
+                            #   Why is this not properly pulled? It's unclear at the current time (8 SEPT 2017)
+                            if(globalValue is None or parameter.Name not in globalValue):
+                                self._sm("WARNING: Global Value was 'None' or the Parameter was not in the Global Value list!")
+                                self._sm("WARNING: Because of the above, Total and Global Values will be 'Not Calculated'.")
+                                self._sm("WARNING: Local value should be equal to 'None'!")
+                                varbar = {'totalvalue':'Not Calculated','localvalue':result[parameter.Name],'globalvalue':'Not Calculated'}
+
+                                reportedResults = {parameter.Name:varbar}
+
+                                WiMResults.Values.update(reportedResults) #Tabbed this over - jwx
+
+                        else:
+                            self._sm(p.Proceedure +" Does not exist","Error")
+                            continue
+
+                    #next p
             #end with       
-            print 'Finished.  Total time elapsed:', str(round((time.time()- startTime)/60, 2)), 'minutes'
+            # print 'Finished.  Total time elapsed:', str(round((time.time()- startTime)/60, 2)), 'minutes'
 
             return WiMResults
         except:
             tb = traceback.format_exc()
             self._sm("Error writing computing Characteristics "+tb)
             return WiMResults
+
+    def getTotChar(self, comId, parameter):
+
+        try:
+            idx = int(parameter.TOT_IDX[0])
+            df = pd.read_csv(str(parameter.Data), skiprows=1, header=None, sep=',')
+            result = df[df[0] == int(comId)][idx].values[0]
+            del df
+            df = None
+        except:
+            result = 0
+
+        return result
+
+    def convertUnits(self, globalValues):
+        # Per discussion with Kathy that there was a discrepancy of units in the char
+        globalValues['TOT_PPT7100_ANN'] = float(globalValues['TOT_PPT7100_ANN']) * 100
+
+        return globalValues
 
     def _sm(self,msg,type="INFO", errorID=0):        
         WiMLogging.sm(msg,type="INFO", errorID=0)

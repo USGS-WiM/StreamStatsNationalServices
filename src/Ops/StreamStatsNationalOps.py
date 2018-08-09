@@ -487,25 +487,9 @@ class StreamStatsNationalOps(SpatialOps):
         
         Original outline for this code was pulled from getRasterPercent.
         '''
-        ML = None
+
         result = {Characteristic.Name:None}
-        try:
-            self._sm("Computing " + Characteristic.Name)
-            ML = MapLayer(MapLayerDef(Characteristic.MapLayers[0]))
-            if not ML.Activated: 
-                raise Exception("Map Layer could not be activated.")
-
-            result[Characteristic.Name] = 0
-
-        except:
-            tb = traceback.format_exc()
-            self._sm(arcpy.GetMessages(), 'GP')
-            self._sm("Anthops percentImpervious" +tb, "ERROR", 71)
-            result[Characteristic.Name] = None
-
-        finally:
-            #Cleans up workspace
-            ML = None
+        result[Characteristic.Name] = 0
 
         return result
 
@@ -539,7 +523,7 @@ class StreamStatsNationalOps(SpatialOps):
 
         return result
     
-    def getCSVStatistic(self, Characteristic):
+    def getCSVStatistic(self, Characteristic, comid):
         '''
         This method looks in the conus text file and returns the NA statistic
         '''
@@ -549,7 +533,7 @@ class StreamStatsNationalOps(SpatialOps):
         idx = int(Characteristic.IDX)
         
         try:
-            result[Characteristic.Name] = df[df[0] == int(self.WorkspaceID)][idx].values[0]
+            result[Characteristic.Name] = df[df[0] == int(comid)][idx].values[0]
         except:
             result[Characteristic.Name] = None
 

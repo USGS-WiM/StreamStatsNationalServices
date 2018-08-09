@@ -42,8 +42,7 @@ from WIMLib.Config import Config
 ##       Main mulitprocess
 ##-------+---------+---------+---------+---------+---------+---------+---------+
 
-def _run(projectID, infile, outwkid, parameters, arr, start_idx, end_idx):
-
+def _run(projectID, in_file, outwkid, parameters, arr, start_idx, end_idx):
 
         config = Config(json.load(open(os.path.join(os.path.dirname(__file__), 'config.json'))))
 
@@ -55,10 +54,9 @@ def _run(projectID, infile, outwkid, parameters, arr, start_idx, end_idx):
         WiMLogging.init(os.path.join(workingDir, "Temp"), "gage.log")
         WiMLogging.sm("Starting routine")
         params = parameters.split(";") if (parameters) else config["characteristics"].keys()
+        gage_file = Shared.readCSVFile(in_file)
 
-
-        file = Shared.readCSVFile(infile)
-        headers = file[0]
+        headers = gage_file[0]
         if "gage_no_1" in headers: idindex = headers.index("gage_no_1")
         if "gage_name" in headers: nmindex = headers.index("gage_name")
         if "COMID" in headers: comIDindex = headers.index("COMID")
@@ -66,27 +64,29 @@ def _run(projectID, infile, outwkid, parameters, arr, start_idx, end_idx):
         if "lon" in headers: longindex = headers.index("lon")
         if "state" in headers: stateindex = headers.index("state")
         # strip the header line
-        file.pop(0)
+        gage_file.pop(0)
         header = []
         header.append("-+-+-+-+-+-+-+-+-+ NEW RUN -+-+-+-+-+-+-+-+-+")
         header.append("Execute Date: " + str(datetime.date.today()))
         header.append("-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+")
 
         header.append(
-            ",".join(['COMID', 'WorkspaceID', 'Description', 'LAT', 'LONG', 'STATE'] + _formatRow(params)))
+            ",".join(['GAGEID', 'COMID', 'WorkspaceID', 'Description', 'LAT', 'LONG', 'STATE'] + _formatRow(params)))
 
         Shared.writeToFile(os.path.join(workingDir, config["outputFile"]), header)
 
-        gagelist = file[start_idx:end_idx]
+        gagelist = gage_file[start_idx:end_idx]
 
         with FederalHighwayWrapper(workingDir, projectID) as fh:
 
-            x = start_idx
+            #For use in temp directory name (see line #86)
+            idx = start_idx
+
             for station in gagelist:
                 # Create temp directory so ARC does not run out of internal memory
                 newTempDir = r"D:\Applications\output\gage_iii\temp\gptmpenvr_" + time.strftime(
                     '%Y%m%d%H%M%S') + '2018' + str(
-                    x)
+                    idx)
                 os.mkdir(newTempDir)
                 os.environ["TEMP"] = newTempDir
                 os.environ["TMP"] = newTempDir
@@ -94,14 +94,13 @@ def _run(projectID, infile, outwkid, parameters, arr, start_idx, end_idx):
 
                 g = gage.gage(station[idindex], station[comIDindex], station[latindex], station[longindex],
                               outwkid, station[nmindex], '', station[stateindex])
-                station[idindex], station[comIDindex], station[latindex], station[longindex], sr, station[nmindex], '', \
-                station[stateindex]
-                results = fh.Run(g, params)
-                print results
+
+                results = fh.Run(g, params, arr)
 
                 if results is None: results = {'Values': [{}]}
                 Shared.appendLineToFile(os.path.join(workingDir, config["outputFile"]), ",".join(str(v) for v in
-                                                                                                 [g.comid,
+                                                                                                 [g.id,
+                                                                                                  g.comid,
                                                                                                   fh.workspaceID,
                                                                                                   results.Description,
                                                                                                   g.lat,
@@ -111,13 +110,11 @@ def _run(projectID, infile, outwkid, parameters, arr, start_idx, end_idx):
                                                                                                      params)))
 
                 gc.collect()
-                x += 1
+                idx += 1
             # next station
         # endwith
 
-
-
-def _formatRow(self, params, definedkeys =None):        
+def _formatRow(params, definedkeys =None):
         r = []
         keys = params if not definedkeys else definedkeys
         for k in keys:
@@ -141,39 +138,59 @@ if __name__ == '__main__':
                         default='4326')
     parser.add_argument("-parameters", help="specifies the ';' separated list of parameters to be computed",
                         type=str,
-                        default="TOT_NID_DISTURBANCE_INDEX")
+                        default="TOT_BASIN_AREA;" \
+                                        +"TOT_FRESHWATER_WD;" \
+                                        +"TOT_FRESHWATER_WD_NODATA;" \
+                                        +"TOT_IMPV11;" \
+                                        +"TOT_IMPV11_NODATA;"\
+                                        +"TOT_MIRAD_2012;"\
+                                        +"TOT_MIRAD_2012_NODATA;"\
+                                        +"TOT_NID_STORAGE_2013;"\
+                                        +"TOT_NID_STORAGE_2013_NODATA;"\
+                                        +"TOT_NORM_STORAGE_2013;"\
+                                        +"TOT_NORM_STORAGE_2013_NODATA;"\
+                                        +"TOT_DITCHES92;"\
+                                        +"TOT_DITCHES92_NODATA;"\
+                                        +"TOT_NPDES_MAJ_DENS;"\
+                                        +"TOT_NPDES_MAJ_DENS_NODATA;"\
+                                        +"TOT_PPT7100_ANN;"\
+                                        +"TOT_NWALT12_41;"\
+                                        +"TOT_NWALT12_41_NODATA;"\
+                                        +"TOT_PPT7100_ANN;"\
+                                        +"TOT_PPT7100_ANN_NODATA;"\
+                                        +"TOT_NID_DISTURBANCE_INDEX")
     args = parser.parse_args()
 
     processing_objects = []
-    split = 1
-    gage_no = range(17000)
+    split = 10
+    gage_no = range(14307)
     # Array used for concurrency locks
     arr = mp.Array('c', 1000)
     split_idxs = np.array_split(gage_no, split)
     processes = []
 
     #ACTUAL MULTIPROCESSING PART --------------------------------------
-    # for x in range(len(split_idxs)):
-    #
-    #     p = mp.Process(target=_run, args=[args.projectID+str(x),
-    #                                                 args.file,
-    #                                                 args.outwkid,
-    #                                                 args.parameters,
-    #                                                 arr,
-    #                                                 split_idxs[x][0],
-    #                                                 split_idxs[x][-1]])
-    #     # Add process to list
-    #     processes.append(p)
-    #     p.start()
+    for x in range(len(split_idxs)):
+
+        p = mp.Process(target=_run, args=[args.projectID+'-'+str(x),
+                                                    args.file,
+                                                    args.outwkid,
+                                                    args.parameters,
+                                                    arr,
+                                                    split_idxs[x][0],
+                                                    split_idxs[x][-1]])
+        # Add process to list
+        processes.append(p)
+        p.start()
     #---------------------------------------------------------------------
 
     # DEBUG in SERIAL, to remove ------------------------------------------
-    x = 0
-    _run(args.projectID+str(x),
-        args.file,
-        args.outwkid,
-        args.parameters,
-        arr,
-        split_idxs[x][0],
-        split_idxs[x][-1])
+    # x = 0
+    # _run(args.projectID+str(x),
+    #     args.file,
+    #     args.outwkid,
+    #     args.parameters,
+    #     arr,
+    #     split_idxs[x][0],
+    #     split_idxs[x][-1])
     #--------------------------------------------------------------------------
