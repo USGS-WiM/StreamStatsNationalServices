@@ -290,8 +290,12 @@ class FederalHighwayWrapper(object):
         return result
 
     def convertUnits(self, globalValues):
-        # Per discussion with Kathy that there was a discrepancy of units in the char
-        globalValues['TOT_PPT7100_ANN'] = float(globalValues['TOT_PPT7100_ANN']) * 100
+
+        try:
+            # Per discussion with Kathy that there was a discrepancy of units in the char
+            globalValues['TOT_PPT7100_ANN'] = float(globalValues['TOT_PPT7100_ANN']) * 100
+        except:
+            print 'Could not convert global value'
 
         return globalValues
 

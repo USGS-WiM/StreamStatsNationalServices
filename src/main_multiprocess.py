@@ -77,19 +77,20 @@ def _run(projectID, in_file, outwkid, parameters, arr, start_idx, end_idx):
 
         gagelist = gage_file[start_idx:end_idx]
 
-        with FederalHighwayWrapper(workingDir, projectID) as fh:
+        for station in gagelist:
 
             #For use in temp directory name (see line #86)
             idx = start_idx
 
-            for station in gagelist:
-                # Create temp directory so ARC does not run out of internal memory
-                newTempDir = r"D:\Applications\output\gage_iii\temp\gptmpenvr_" + time.strftime(
-                    '%Y%m%d%H%M%S') + '2018' + str(
-                    idx)
-                os.mkdir(newTempDir)
-                os.environ["TEMP"] = newTempDir
-                os.environ["TMP"] = newTempDir
+            # Create temp directory so ARC does not run out of internal memory
+            newTempDir = r"D:\Applications\output\gage_iii\temp\gptmpenvr_" + time.strftime(
+                '%Y%m%d%H%M%S') + '2018' + str(idx)
+            os.mkdir(newTempDir)
+            os.environ["TEMP"] = newTempDir
+            os.environ["TMP"] = newTempDir
+
+            with FederalHighwayWrapper(workingDir, projectID) as fh:
+
                 results = {'Values': [{}]}
 
                 g = gage.gage(station[idindex], station[comIDindex], station[latindex], station[longindex],
@@ -111,6 +112,11 @@ def _run(projectID, in_file, outwkid, parameters, arr, start_idx, end_idx):
 
                 gc.collect()
                 idx += 1
+
+            #The with statement should automatically take care of gc operations
+            #but just in case
+            fh = None
+            gc.collect()
             # next station
         # endwith
 
