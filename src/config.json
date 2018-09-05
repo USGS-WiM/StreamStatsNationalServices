@@ -12,7 +12,7 @@
 
   "UseNLDIServices": true,
   "workingdirectory": "D:/Applications/output/gage_iii",
-  "parentdirectory": "D:/WiM\\Projects/StreamStats/data",
+  "parentdirectory": "D:/ss_data/FHWA",
   "outputFile": "splitCatchment.csv",
   "catchment": {
     "upstream": "upstreamcatchment",

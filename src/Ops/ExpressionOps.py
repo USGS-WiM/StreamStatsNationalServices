@@ -33,20 +33,26 @@ def Evaluate(procedure, funcArgs, weightArgs = None):
         result = sum(weightval)
 
     elif method == 'weighteddifference':
-        # Do the WeightedAverage
-        for i in [i for i, val in enumerate(funcArgs) if not val > 0]:
-            del funcArgs[i]
-            del weightArgs[i]
 
-        if len(funcArgs) < 1:
+        try:
+            # Do the WeightedAverage
+            for i in [i for i, val in enumerate(funcArgs) if not val > 0]:
+                del funcArgs[i]
+                del weightArgs[i]
+
+            if len(funcArgs) < 1:
+                result = 0
+            elif len(funcArgs) == 1:
+                result = funcArgs[0]
+            else:
+                weightDiff = weightArgs[0] - sum(weightArgs[1:])
+                weightval = [val * wt / weightDiff for val, wt in zip(funcArgs, weightArgs)]
+
+                result = weightval[0] - sum(weightval[1:])
+        except:
             result = 0
-        elif len(funcArgs) == 1:
-            result = funcArgs[0]
-        else:
-            weightDiff = weightArgs[0] - sum(weightArgs[1:])
-            weightval = [val * wt / weightDiff for val, wt in zip(funcArgs, weightArgs)]
 
-            result = weightval[0] - sum(weightval[1:])
+
     elif method == 'difference':
         # Do The Subract
         result = funcArgs[0] - sum(funcArgs[1:])
