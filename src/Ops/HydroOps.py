@@ -35,14 +35,18 @@ from  WIMLib.SpatialOps import SpatialOps
 from WIMLib.MapLayer import *
 from WIMLib.Config import Config
 import shutil
+import operator
+
 #endregion
 
 class HydroOps(SpatialOps):
     #region Constructor and Dispose
     def __init__(self, workspacePath, id):     
         SpatialOps.__init__(self, workspacePath) 
+        assert not Config is None, "WIMLib.Config is required to implement hydroOps"
+        
         self.WorkspaceID = id
-
+        
         self._sm("initialized hydroops")
 
         arcpy.ResetEnvironments()
@@ -142,7 +146,14 @@ class HydroOps(SpatialOps):
             #remove any weird verticies associated with Erase
             globalbasin = os.path.join(resultworkspace, catchments["global"])
             FeatureToPolygon_management(dstemp, globalbasin, cluster_tolerance="50 Meters", attributes="ATTRIBUTES", label_features="")
-
+            #Delete multipolys created by Featuretopolygon
+            maxOid=max({key:value for (key, value) in arcpy.da.SearchCursor(globalbasin,['OID@','Shape_Area'])}
+                       .iteritems(),key=operator.itemgetter(1))[0]
+            with arcpy.da.UpdateCursor(globalbasin, 'OID@') as cursor:
+                for row in cursor:
+                    if row[0] != maxOid:
+                        cursor.deleteRow()
+            #https://gis.stackexchange.com/questions/152481/how-to-delete-selected-rows-using-arcpy
             if not Exists(globalbasin): raise Exception("Failed to create basin " + GetMessages())
             return True
         except:

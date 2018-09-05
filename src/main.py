@@ -20,7 +20,7 @@ import string
 import os
 import gc
 
-from FederalHighwayWrapper import FederalHyghwayWrapper
+from FederalHighwayWrapper import FederalHighwayWrapper
 from Resources import gage
 
 from WIMLib import Shared
@@ -39,7 +39,7 @@ class Main(object):
             parser = argparse.ArgumentParser()
             parser.add_argument("-projectID", help="specifies the projectID", type=str, default="FH")
             parser.add_argument("-file", help="specifies csv file location including gage lat/long and comid's to estimate", type=str, 
-                                default = 'D:\\WiM\\Projects\\NationalStreamStats\\gagesiii_lat_lon.csv')
+                                default = 'C:\Users\jknewson\Downloads\\CATCHMENT_gageloc_v1.csv')
             parser.add_argument("-outwkid", help="specifies the esri well known id of pourpoint ", type=int, 
                                 default = '4326')
             parser.add_argument("-parameters", help="specifies the ';' separated list of parameters to be computed", type=str, 
@@ -60,11 +60,11 @@ class Main(object):
 
             file = Shared.readCSVFile(args.file)
             headers = file[0]
-            if "gage_no_1" in headers: idindex = headers.index("gage_no_1")
-            if "gage_name" in headers: nmindex = headers.index("gage_name")
+            if "Gage_no" in headers: idindex = headers.index("Gage_no")
+            if "Gage_name" in headers: nmindex = headers.index("Gage_name")
             if "COMID" in headers: comIDindex = headers.index("COMID")
-            if "lat" in headers: latindex = headers.index("lat")
-            if "lon" in headers: longindex = headers.index("lon")
+            if "Lat_snap" in headers: latindex = headers.index("Lat_snap")
+            if "Long_snap" in headers: longindex = headers.index("Long_snap")
             #strip the header line
             file.pop(0)
             header =[]

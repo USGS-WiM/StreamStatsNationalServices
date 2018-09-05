@@ -81,7 +81,7 @@ class FederalHighwayWrapper(object):
             #update gage sr
             gage.sr = arcpy.SpatialReference(gage.sr) 
         
-            self._sm('-+-+-+-+-+-+-+-+-+ '+ gage.comid +' -+-+-+-+-+-+-+-+-+')
+            self._sm('-+-+-+-+-+-+-+-+-+ '+ gage.id +' -+-+-+-+-+-+-+-+-+')
             self._sm('-+-+-+-+-+-+-+-+-+ '+ gage.lat +','+ gage.long+' -+-+-+-+-+-+-+-+-+')
             self._sm(' Elapse time:'+ str(round((time.time()- self.startTime)/60, 2))+ 'minutes')
             self._sm('-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+-+')

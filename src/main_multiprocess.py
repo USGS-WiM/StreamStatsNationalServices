@@ -28,7 +28,7 @@ import json
 import traceback
 import string
 import time
-from FederalHighwayWrapper import FederalHighwayWrapper
+from FederalHighwayWrapper.FederalHighwayWrapper import FederalHighwayWrapper
 from Resources import gage
 
 from WIMLib import Shared
@@ -59,12 +59,11 @@ def _run(projectID, infile, outwkid, parameters, arr, start_idx, end_idx):
 
         file = Shared.readCSVFile(infile)
         headers = file[0]
-        if "gage_no_1" in headers: idindex = headers.index("gage_no_1")
-        if "gage_name" in headers: nmindex = headers.index("gage_name")
+        if "Gage_no" in headers: idindex = headers.index("Gage_no")
+        if "Gage_name" in headers: nmindex = headers.index("Gage_name")
         if "COMID" in headers: comIDindex = headers.index("COMID")
-        if "lat" in headers: latindex = headers.index("lat")
-        if "lon" in headers: longindex = headers.index("lon")
-        if "state" in headers: stateindex = headers.index("state")
+        if "Lat_snap" in headers: latindex = headers.index("Lat_snap")
+        if "Long_snap" in headers: longindex = headers.index("Long_snap")
         # strip the header line
         file.pop(0)
         header = []
