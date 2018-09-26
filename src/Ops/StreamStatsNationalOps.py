@@ -359,14 +359,14 @@ class StreamStatsNationalOps(SpatialOps):
             #methods = [x.strip() for x in statisticRules.split(';')]                                #Could be used to scale the method section
             #Fields = [x.strip() for x in fieldStr.split(';')]                                       #Could be used to scale the fields section
             map.append([Fields,statisticRules])                                                      #Build statistics statement
+            resultCalculation = []                                                                   #AN ARRAY TO CAPTURE VALUES***
 
             for feaure in analysisFeatures:                                                          #NEEDED CALCULATE EVERYTHING***
-                resultCalculation = []                                                               #AN ARRAY TO CAPTURE VALUES***
                 tblevalue = arcpy.Statistics_analysis(feaure,os.path.join(self._TempLocation, "aftmp"),map)
                 mappedFeilds = [x[1]+"_"+x[0] for x in map]
                 cursor = arcpy.da.SearchCursor(tblevalue, mappedFeilds)
                 for row in cursor:
-                    resultCalculation.append(row)
+                    resultCalculation.append(row[0])
 
             #Generate values for results
             if len(analysisFeatures) == 1:                                                            #Catch streams only instances

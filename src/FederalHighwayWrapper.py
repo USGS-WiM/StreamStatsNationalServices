@@ -66,6 +66,7 @@ class FederalHighwayWrapper(object):
             self.startTime = time.time()
             self.workspaceID = None
             self._sm("initialized")
+            self.globalCatchment = None
             gc.collect()
         except:
             tb = traceback.format_exc()
@@ -89,7 +90,7 @@ class FederalHighwayWrapper(object):
 
             self.workspaceID = self._delineate(gage,self.workingDir)
             if(self.workspaceID == None): 
-                self._sm("Delineation didn't occur for gage "+ gage.comid)
+                self._sm("Delineation didn't occur for gage "+ gage.id)
                 
             basincharacteristics = self._computeCharacteristics(gage,self.workingDir,self.workspaceID,parameters,arr)
 
@@ -130,20 +131,20 @@ class FederalHighwayWrapper(object):
 
             if(not basinjson): return None
 
-            basin = arcpy.CreateFeatureclass_management("in_memory", "globalBasin"+gage.comid, "POLYGON", spatial_reference=gage.sr) 
+            self.globalCatchment = arcpy.CreateFeatureclass_management("in_memory", "globalBasin"+gage.comid, "POLYGON", spatial_reference=gage.sr)
             if (basinjson["type"].lower() =="feature"):
                 if not basinjson["geometry"]["type"].lower() in ["polygon","multipolygon"]:
                     raise Exception('Basin Geometry is not polygon output will be erroneous!')
-                GeoJsonHandler.read_feature(basinjson,basin,gage.sr)
+                GeoJsonHandler.read_feature(basinjson,self.globalCatchment,gage.sr)
             else:
                 for feature in basinjson["features"]:
                     if not feature["geometry"]["type"].lower() in ["polygon","multipolygon"]:
                         raise Exception('Basin Geometry within the Feature Collection is not polygon output will be erroneous!')
-                GeoJsonHandler.read_feature_collection(basinjson,basin,gage.sr)         
+                GeoJsonHandler.read_feature_collection(basinjson,self.globalCatchment,gage.sr)
                     
             ssdel = HydroOps(workspace,gage.id)
             ssdel.Delineate(ppoint, mask)
-            ssdel.MergeCatchment(basin)
+            ssdel.MergeCatchment(self.globalCatchment)
 
             return ssdel.WorkspaceID
         except:
@@ -171,7 +172,7 @@ class FederalHighwayWrapper(object):
 
                 #Get basin areas to compute statistics
                 localBasinArea = sOps.getAreaSqMeter(sOps.mask)
-                globalBasinArea = sOps.getAreaSqMeter(sOps.mask2)
+                globalBasinArea = sOps.getAreaSqMeter(self.globalCatchment)
 
                 for p in parameters:
 

@@ -16,7 +16,6 @@
 # ------------------------------------------------------------------------------
 
 # region "Imports"
-import sys
 import numpy as np
 import gc
 import arcpy  # Left in so that arcpy does not have to be loaded more than once for child processes
@@ -25,10 +24,9 @@ import os
 import datetime
 import argparse
 import json
-import traceback
-import string
 import time
-from FederalHighwayWrapper.FederalHighwayWrapper import FederalHighwayWrapper
+from FederalHighwayWrapper import FederalHighwayWrapper
+from Stitch import Stitch
 from Resources import gage
 
 from WIMLib import Shared
@@ -42,27 +40,29 @@ from WIMLib.Config import Config
 ##       Main mulitprocess
 ##-------+---------+---------+---------+---------+---------+---------+---------+
 
-def _run(projectID, in_file, outwkid, parameters, arr, start_idx, end_idx):
+def _run(projectID, in_file, outwkid, parameters, today_date, arr, start_idx, end_idx):
 
         config = Config(json.load(open(os.path.join(os.path.dirname(__file__), 'config.json'))))
 
         if projectID == '#' or not projectID:
             raise Exception('Input Study Area required')
 
-        workingDir = Shared.GetWorkspaceDirectory(config["workingdirectory"], projectID)
+        workingDir = os.path.join(config["workingdirectory"], projectID + " " + today_date)
+        if not os.path.exists(workingDir):
+            os.makedirs(workingDir)
 
         WiMLogging.init(os.path.join(workingDir, "Temp"), "gage.log")
         WiMLogging.sm("Starting routine")
         params = parameters.split(";") if (parameters) else config["characteristics"].keys()
         gage_file = Shared.readCSVFile(in_file)
 
-
-        headers = file[0]
+        headers = gage_file[0]
         if "Gage_no" in headers: idindex = headers.index("Gage_no")
         if "Gage_name" in headers: nmindex = headers.index("Gage_name")
         if "COMID" in headers: comIDindex = headers.index("COMID")
         if "Lat_snap" in headers: latindex = headers.index("Lat_snap")
         if "Long_snap" in headers: longindex = headers.index("Long_snap")
+        if "State" in headers: stateindex = headers.index("State")
         # strip the header line
         gage_file.pop(0)
         header = []
@@ -76,6 +76,9 @@ def _run(projectID, in_file, outwkid, parameters, arr, start_idx, end_idx):
         Shared.writeToFile(os.path.join(workingDir, config["outputFile"]), header)
 
         gagelist = gage_file[start_idx:end_idx]
+
+        if not arcpy.Exists(r"D:\Applications\output\gage_iii\temp"):
+            os.mkdir(r"D:\Applications\output\gage_iii\temp")
 
         for station in gagelist:
 
@@ -94,7 +97,7 @@ def _run(projectID, in_file, outwkid, parameters, arr, start_idx, end_idx):
                 results = {'Values': [{}]}
 
                 g = gage.gage(station[idindex], station[comIDindex], station[latindex], station[longindex],
-                              outwkid, station[nmindex], '', station[stateindex])
+                              outwkid, station[nmindex].replace(",", " "), '', station[stateindex])
 
                 results = fh.Run(g, params, arr)
 
@@ -139,7 +142,7 @@ if __name__ == '__main__':
     parser.add_argument("-file",
                         help="specifies csv file location including gage lat/long and comid's to estimate",
                         type=str,
-                        default=r'D:\Applications\input\gagesiii_lat_lon.csv')
+                        default=r'D:\Applications\input\CATCHMENT_gageloc_v1.csv')
     parser.add_argument("-outwkid", help="specifies the esri well known id of pourpoint ", type=int,
                         default='4326')
     parser.add_argument("-parameters", help="specifies the ';' separated list of parameters to be computed",
@@ -173,6 +176,7 @@ if __name__ == '__main__':
     # Array used for concurrency locks
     arr = mp.Array('c', 1000)
     split_idxs = np.array_split(gage_no, split)
+    date = datetime.datetime.today().strftime('%m%d%Y')
     processes = []
 
     #ACTUAL MULTIPROCESSING PART --------------------------------------
@@ -182,12 +186,20 @@ if __name__ == '__main__':
                                                     args.file,
                                                     args.outwkid,
                                                     args.parameters,
+                                                    date,
                                                     arr,
                                                     split_idxs[x][0],
                                                     split_idxs[x][-1]])
         # Add process to list
         processes.append(p)
         p.start()
+
+    for p in processes:
+        p.join()
+        if not(p.is_alive):
+            print('not alive')
+    Stitch(date)
+
     #---------------------------------------------------------------------
 
     # DEBUG in SERIAL, to remove ------------------------------------------
