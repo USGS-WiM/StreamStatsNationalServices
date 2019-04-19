@@ -17,7 +17,7 @@
       ]
     },
 
-    "homepageURL": "https://wim.usgs.gov",
+    "homepageURL": "https://streamstats.usgs.gov",
     "downloadURL": "https://github.com/USGS-WiM/StreamStatsNationalServices/archive/master.zip",
     "disclaimerURL": "https://github.com/USGS-WiM/StreamStatsNationalServices/blob/master/LICENSE.md",
     "repositoryUrl": "https://github.com/USGS-WiM/StreamStatsNationalServices",
@@ -26,10 +26,11 @@
     "laborHours": null,
 
     "tags": [
-      "Streamstats",
+      "streamstats",
       "Services",
       "Gages 3",
-	  "REST"
+	  "REST",
+	    "arcpy"
     ],
 
     "languages": [
@@ -42,7 +43,7 @@
     },
 
     "date": {
-      "metadataLastUpdated": "2018-08-07"
+      "metadataLastUpdated": "2019-04-19"
     }
   }
 ]
