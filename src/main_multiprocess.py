@@ -47,11 +47,11 @@ def _run(projectID, in_file, outwkid, parameters, today_date, arr, start_idx, en
         if projectID == '#' or not projectID:
             raise Exception('Input Study Area required')
 
-        workingDir = os.path.join(config["workingdirectory"], projectID + " " + today_date)
+        workingDir = os.path.join(config["workingdirectory"], "temp", projectID + "_" + today_date)
         if not os.path.exists(workingDir):
             os.makedirs(workingDir)
 
-        WiMLogging.init(os.path.join(workingDir, "Temp"), "gage.log")
+        WiMLogging.init(os.path.join(workingDir, "temp"), "gage.log")
         WiMLogging.sm("Starting routine")
         params = parameters.split(";") if (parameters) else config["characteristics"].keys()
         gage_file = Shared.readCSVFile(in_file)
@@ -74,6 +74,17 @@ def _run(projectID, in_file, outwkid, parameters, today_date, arr, start_idx, en
             ",".join(['GAGEID', 'COMID', 'WorkspaceID', 'Description', 'LAT', 'LONG', 'STATE'] + _formatRow(params)))
 
         Shared.writeToFile(os.path.join(workingDir, config["outputFile"]), header)
+
+        ##not working yet, need to refresh rerun file
+        #if not projectID == 'FH-10':
+        #    rerunFile = "D:\Applications\output\gage_iii\RerunGageFiles\%s.csv" % today_date
+        #else:
+        #    rerunFile = "D:\Applications\output\gage_iii\RerunGageFiles\%s_Final.csv" % today_date
+        rerunFile = "D:\Applications\output\gage_iii\RerunGageFiles\%s.csv" % today_date
+        if not arcpy.Exists(rerunFile):
+            rerunFileHeader = []
+            rerunFileHeader.append(",".join(headers))
+            Shared.writeToFile(rerunFile, rerunFileHeader)
 
         gagelist = gage_file[start_idx:end_idx]
 
@@ -103,16 +114,21 @@ def _run(projectID, in_file, outwkid, parameters, today_date, arr, start_idx, en
 
                 if results is None: results = {'Values': [{}]}
                 Shared.appendLineToFile(os.path.join(workingDir, config["outputFile"]), ",".join(str(v) for v in
-                                                                                                 [g.id,
-                                                                                                  g.comid,
-                                                                                                  fh.workspaceID,
-                                                                                                  results.Description,
-                                                                                                  g.lat,
-                                                                                                  g.long,
-                                                                                                  g.state] + _formatRow(
+                                                                                             [g.id,
+                                                                                              g.comid,
+                                                                                              fh.workspaceID,
+                                                                                              results.Description,
+                                                                                              g.lat,
+                                                                                              g.long,
+                                                                                              g.state] + _formatRow(
                                                                                                      results.Values,
                                                                                                      params)))
-
+                
+                formatresults = _formatRow(results.Values, params)
+                if (fh.workspaceID is None or "not reported. see log file" in formatresults) and not g.comid == "-9999":
+                    f = open(rerunFile, "a")
+                    f.writelines('\n' + ",".join(station))
+                    f.close()
                 gc.collect()
                 idx += 1
 
@@ -162,7 +178,6 @@ if __name__ == '__main__':
                                         +"TOT_DITCHES92_NODATA;"\
                                         +"TOT_NPDES_MAJ_DENS;"\
                                         +"TOT_NPDES_MAJ_DENS_NODATA;"\
-                                        +"TOT_PPT7100_ANN;"\
                                         +"TOT_NWALT12_41;"\
                                         +"TOT_NWALT12_41_NODATA;"\
                                         +"TOT_PPT7100_ANN;"\
@@ -189,7 +204,7 @@ if __name__ == '__main__':
                                                     date,
                                                     arr,
                                                     split_idxs[x][0],
-                                                    split_idxs[x][-1]])
+                                                    split_idxs[x][-1] + 1])
         # Add process to list
         processes.append(p)
         p.start()
@@ -198,6 +213,22 @@ if __name__ == '__main__':
         p.join()
         if not(p.is_alive):
             print('not alive')
+
+    ##not working yet, need to refresh rerun file
+    #np = mp.Process(target=_run, args=['FH-10',
+    #                                   "D:\Applications\output\gage_iii\RerunGageFiles\\" + date + ".csv",
+    #                                   args.outwkid,
+    #                                   args.parameters,
+    #                                   date,
+    #                                   arr,
+    #                                   0,
+    #                                   -1])
+    #np.start()
+
+    #np.join()
+    #if not (np.is_alive):
+    #    print('not alive')
+
     Stitch(date)
 
     #---------------------------------------------------------------------

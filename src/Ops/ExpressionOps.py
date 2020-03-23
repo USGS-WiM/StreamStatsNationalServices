@@ -36,7 +36,7 @@ def Evaluate(procedure, funcArgs, weightArgs = None):
 
         try:
             # Do the WeightedAverage
-            for i in [i for i, val in enumerate(funcArgs) if not val > 0]:
+            for i in [i for i, val in enumerate(funcArgs) if val is None]:
                 del funcArgs[i]
                 del weightArgs[i]
 
@@ -45,8 +45,8 @@ def Evaluate(procedure, funcArgs, weightArgs = None):
             elif len(funcArgs) == 1:
                 result = funcArgs[0]
             else:
-                weightDiff = weightArgs[0] - sum(weightArgs[1:])
-                weightval = [val * wt / weightDiff for val, wt in zip(funcArgs, weightArgs)]
+                weightTot = weightArgs[0] - sum(weightArgs[1:])
+                weightval = [val * wt / weightTot for val, wt in zip(funcArgs, weightArgs)]
 
                 result = weightval[0] - sum(weightval[1:])
         except:

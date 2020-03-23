@@ -158,7 +158,7 @@ class FederalHighwayWrapper(object):
         globalValue ={}
 
         try:
-            WiMResults = Result.Result(gage.comid,"Characteristics computed for "+gage.name)
+            WiMResults = Result.Result(gage.comid, "Characteristics computed for "+gage.name)
             with NLDIServiceAgent() as sa:
                 globalValue = sa.getBasinCharacteristics(gage.comid)
                 globalValue = self.convertUnits(globalValue)
@@ -270,7 +270,6 @@ class FederalHighwayWrapper(object):
                     #next p
             #end with       
             # print 'Finished.  Total time elapsed:', str(round((time.time()- startTime)/60, 2)), 'minutes'
-
             return WiMResults
         except:
             tb = traceback.format_exc()

@@ -83,7 +83,7 @@
       "AggregationMethod": "weightedDifference"
     },
     "TOT_IMPV11": {
-      "Procedure": "getCSVStatistic",
+      "Procedure": "getRasterStatistic",
       "Description": "Impervious surface from NLCD 2011",
       "Method": "Mean",
       "IDX": 1,
@@ -1617,7 +1617,7 @@
       "Name": "nlcd_2011_impervious_2011_edition_2014_10_10",
       "Description": "National Land Cover Database",
       "isTiled": false,
-      "path": "Nationwide/LANDSCAPE/NLCD",
+      "path": "Nationwide/LANDSCAPE/NLCD/2011/nlcd_2011_impervious_2011_edition_2014_10_10",
       "DatasetType": "IMAGE_RASTER"
     },
     "mirad2012": {

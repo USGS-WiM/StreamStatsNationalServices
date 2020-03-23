@@ -44,28 +44,12 @@ class Main(object):
                                 default = '4326')
             parser.add_argument("-parameters", help="specifies the ';' separated list of parameters to be computed", type=str, 
                                       default = "TOT_BASIN_AREA;" \
-												+"TOT_FRESHWATER_WD;" \
-												+"TOT_FRESHWATER_WD_NODATA;" \
-												+"TOT_IMPV11;" \
-												+"TOT_IMPV11_NODATA;"\
-												+"TOT_MIRAD_2012;"\
-												+"TOT_MIRAD_2012_NODATA;"\
-												+"TOT_NID_STORAGE_2013;"\
-												+"TOT_NID_STORAGE_2013_NODATA;"\
-												+"TOT_NORM_STORAGE_2013;"\
-												+"TOT_NORM_STORAGE_2013_NODATA;"\
-												+"TOT_DITCHES92;"\
-												+"TOT_DITCHES92_NODATA;"\
-												+"TOT_NPDES_MAJ_DENS;"\
-												+"TOT_NPDES_MAJ_DENS_NODATA;"\
-												+"TOT_PPT7100_ANN;"\
-												+"TOT_NWALT12_41;"\
-												+"TOT_NWALT12_41_NODATA;"\
-												+"TOT_PPT7100_ANN;"\
-												+"TOT_PPT7100_ANN_NODATA;"\
-												+"TOT_NID_DISTURBANCE_INDEX") 
+                                        +"TOT_IMPV11;" \
+                                        +"TOT_IMPV11_NODATA;"\
+                                        +"TOT_MIRAD_2012;"\
+                                        +"TOT_MIRAD_2012_NODATA;")
                            
-            args = parser.parse_args()            
+            args = parser.parse_args()
             projectID = args.projectID
             if projectID == '#' or not projectID:
                 raise Exception('Input Study Area required')
