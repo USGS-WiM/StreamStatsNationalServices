@@ -116,7 +116,7 @@ In the spirit of open source, please cite any re-use of the source code stored i
 
 ## Acknowledgments
 
-* [Network-Linked Data Index](https://cida.usgs.gov/nldi/about)
+* [Network-Linked Data Index](https://labs.waterdata.usgs.gov/about-nldi/)
 * [GeoJson.Net](https://github.com/GeoJSON-Net/GeoJSON.Net)
 
 ## About WIM

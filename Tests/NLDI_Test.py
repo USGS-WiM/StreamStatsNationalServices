@@ -13,7 +13,7 @@ class NLDI_Test(unittest.TestCase):
         try:
             Config({"NLDIService": "https://cida.usgs.gov",
                               "queryParams": {
-                                "nldiQuery": "/nldi/comid/{0}/basin",
+                                "nldiQuery": "https://labs.waterdata.usgs.gov/api/nldi/linked-data/comid/{0}/basin",
                                 "nldiWFS": "/nwc/geoserver/nhdplus/ows?service=wfs&version=1.0.0&request=GetFeature&typeName=nhdplus:catchmentsp&srsName=EPSG:{0}&outputFormat=json&filter=<Filter xmlns=\"http://www.opengis.net/ogc\" xmlns:gml=\"http://www.opengis.net/gml\"><Contains><PropertyName>the_geom</PropertyName><gml:Point srsName=\"EPSG:{0}\"><gml:coordinates>{1},{2}</gml:coordinates></gml:Point></Contains></Filter>"
                               }}) 
             with NLDIServiceAgent() as sa:
@@ -30,7 +30,7 @@ class NLDI_Test(unittest.TestCase):
         try:
             Config({"NLDIService": "https://cida.usgs.gov",
                     "queryParams": {
-                    "nldiQuery": "/nldi/comid/{0}/basin",
+                    "nldiQuery": "https://labs.waterdata.usgs.gov/api/nldi/linked-data/comid/{0}/basin",
                     "nldiWFS": "/nwc/geoserver/nhdplus/ows?service=wfs&version=1.0.0&request=GetFeature&typeName=nhdplus:catchmentsp&srsName=EPSG:{0}&outputFormat=json&filter=<Filter xmlns=\"http://www.opengis.net/ogc\" xmlns:gml=\"http://www.opengis.net/gml\"><Contains><PropertyName>the_geom</PropertyName><gml:Point srsName=\"EPSG:{0}\"><gml:coordinates>{1},{2}</gml:coordinates></gml:Point></Contains></Filter>"
                     }}) 
             with NLDIServiceAgent() as sa:
