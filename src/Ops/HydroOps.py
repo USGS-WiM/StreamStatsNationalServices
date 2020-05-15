@@ -1,26 +1,28 @@
-
 #------------------------------------------------------------------------------
-#----- Delineate.py ----------------------------------------------------
+#----- HydroOps.py -----------------------------------------------
+#----- Formerly known as Delineate.py ----------------------------------
 #------------------------------------------------------------------------------
-
-#-------1---------2---------3---------4---------5---------6---------7---------8
-#       01234567890123456789012345678901234567890123456789012345678901234567890
-#-------+---------+---------+---------+---------+---------+---------+---------+
-
-# copyright:   2016 WiM - USGS
-
-#    authors:  Jeremy K. Newson USGS Web Informatics and Mapping
-# 
-#   purpose:  Delineate using mask using arcpy
-#          
-#discussion:  https://github.com/GeoJSON-Net/GeoJSON.Net/blob/master/src/GeoJSON.Net/Feature/Feature.cs
-#             http://pro.arcgis.com/en/pro-app/tool-reference/spatial-analyst/watershed.htm
-#             geojsonToShape: http://desktop.arcgis.com/en/arcmap/10.3/analyze/arcpy-functions/asshape.htm
-#       
-
-#region "Comments"
-#08.19.2015 jkn - Created
-#endregion
+#
+#  copyright:  2016 WiM - USGS
+#
+#    authors:  Jeremy K. Newson - USGS Web Informatics and Mapping (WiM)
+#              
+#    purpose:  Delineate using mask using ArcGIS's Python library (arcpy)
+#
+#      usage:  THIS SECTION NEEDS TO BE UPDATED
+#
+# discussion:  Intial code was created by Jeremy K. Newson. Some minor edits were done
+#                   by John Wall (NC State University).
+#
+#              See:
+#                   https://github.com/GeoJSON-Net/GeoJSON.Net/blob/master/src/GeoJSON.Net/Feature/Feature.cs
+#                   http://pro.arcgis.com/en/pro-app/tool-reference/spatial-analyst/watershed.htm
+#                   geojsonToShape: http://desktop.arcgis.com/en/arcmap/10.3/analyze/arcpy-functions/asshape.htm
+#
+#      dates:   19 AUG 2016 jkn - Created / Date notation edited by jw
+#               03 APR 2017 jw - Modified
+#
+#------------------------------------------------------------------------------
 
 #region "Imports"
 import traceback
@@ -29,17 +31,22 @@ from arcpy import Describe, Exists,Erase_analysis,FeatureToPolygon_management,Ge
 from arcpy import env
 from arcpy.sa import *
 import json
-from  WiMLib.SpatialOps import SpatialOps
-from WiMLib.MapLayer import *
-from WiMLib.Config import Config
+from  WIMLib.SpatialOps import SpatialOps
+from WIMLib.MapLayer import *
+from WIMLib.Config import Config
+import shutil
+import operator
+
 #endregion
 
 class HydroOps(SpatialOps):
     #region Constructor and Dispose
     def __init__(self, workspacePath, id):     
         SpatialOps.__init__(self, workspacePath) 
+        assert not Config is None, "WIMLib.Config is required to implement hydroOps"
+        
         self.WorkspaceID = id
-
+        
         self._sm("initialized hydroops")
 
         arcpy.ResetEnvironments()
@@ -78,7 +85,7 @@ class HydroOps(SpatialOps):
                 raise Exception("Flow accumulation could not be activated.")
 
             sr = fdr.spatialreference
-            if inmask != None:
+            if inmask is not None:
                 mask = self.ProjectFeature(inmask, sr)
 
             datasetPath = arcpy.CreateFileGDB_management(self._WorkspaceDirectory, self.WorkspaceID +'.gdb')[0]
@@ -89,12 +96,10 @@ class HydroOps(SpatialOps):
             self._sm("Starting Delineation")
             arcpy.env.extent = arcpy.Describe(mask).extent
 
+            #Build snap pour point then use it for watershed.
+            #   Pour point search distance of 60 m is equal to two cells.
             outSnapPour = SnapPourPoint(PourPoint, fac.Dataset, 60)
-
-            #arcpy.env.extent = arcpy.Describe(mask).extent
-
             outWatershedRaster = Watershed(fdr.Dataset, outSnapPour)
-            #arcpy.env.extent = "MAXOF"
 
             upCatch = os.path.join(featurePath, catchments["upstream"])
             arcpy.RasterToPolygon_conversion(outWatershedRaster, upCatch, "NO_SIMPLIFY")
@@ -110,16 +115,18 @@ class HydroOps(SpatialOps):
         finally:
             arcpy.CheckInExtension("Spatial")
             #Local cleanup
-            if fdr != None: del fdr
-            if sr != None: del sr
-            if mask != None: arcpy.Delete_management(mask)
-            if dstemp != None: arcpy.Delete_management(dstemp); dstemp = None
+            if fdr is not None: del fdr
+            if sr is not None: del sr
+            if mask is not None: arcpy.Delete_management(mask)
+            if dstemp is not None: arcpy.Delete_management(dstemp); dstemp = None
             for raster in arcpy.ListRasters("*", "GRID"):
                 arcpy.Delete_management(raster)
-            if datasetPath != None: del datasetPath
-            if featurePath != None: del featurePath
-            if upCatch != None: del upCatch; upCatch = None
-            if downCatch != None: del downCatch; downCatch = None
+                del raster
+                raster = None
+            if datasetPath is not None: del datasetPath
+            if featurePath is not None: del featurePath
+            if upCatch is not None: del upCatch; upCatch = None
+            if downCatch is not None: del downCatch; downCatch = None
             arcpy.env.extent = ""
     def MergeCatchment(self,inbasin):
         dstemp = None
@@ -139,7 +146,14 @@ class HydroOps(SpatialOps):
             #remove any weird verticies associated with Erase
             globalbasin = os.path.join(resultworkspace, catchments["global"])
             FeatureToPolygon_management(dstemp, globalbasin, cluster_tolerance="50 Meters", attributes="ATTRIBUTES", label_features="")
-
+            #Delete multipolys created by Featuretopolygon
+            maxOid=max({key:value for (key, value) in arcpy.da.SearchCursor(globalbasin,['OID@','Shape_Area'])}
+                       .iteritems(),key=operator.itemgetter(1))[0]
+            with arcpy.da.UpdateCursor(globalbasin, 'OID@') as cursor:
+                for row in cursor:
+                    if row[0] != maxOid:
+                        cursor.deleteRow()
+            #https://gis.stackexchange.com/questions/152481/how-to-delete-selected-rows-using-arcpy
             if not Exists(globalbasin): raise Exception("Failed to create basin " + GetMessages())
             return True
         except:

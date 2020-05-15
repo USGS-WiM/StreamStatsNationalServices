@@ -30,12 +30,12 @@ import os
 
 #endregion
 
-class NLDIServiceAgent(ServiceAgentBase.ServiceAgentBase):
+class NLDIFileServiceAgent(ServiceAgentBase.ServiceAgentBase):
     #region Constructor
     def __init__(self):
-        ServiceAgentBase.ServiceAgentBase.__init__(self, Config()["NLDIService"])
+        ServiceAgentBase.ServiceAgentBase.__init__(self, Config()["NLDIServiceFiles"])
 
-        self._sm("initialized NLDIServiceAgent")
+        self._sm("initialized NLDIFileServiceAgent")
     def __enter__(self):
         return self
 
@@ -45,16 +45,13 @@ class NLDIServiceAgent(ServiceAgentBase.ServiceAgentBase):
     #region Methods
     def getBasin(self, comID, isCatchmentLevel=False, xpoint = None, ypoint = None, crs = 4326):
         try:
-            
-            if isCatchmentLevel == True:
-                resource = Config()['queryParams']['nldiWFS'].format(crs, xpoint, ypoint)
-#             
-            else:
-                resource = Config()['queryParams']['nldiQuery'].format(comID)
+            distance = "gages_iii_catchments" if isCatchmentLevel else "gages_iii_basins"
+            resource = "/{1}/{0}.json".format(comID, distance)
 
             try:
-                results = self.Execute(resource)
-                return results #Converted json.load(results) to this implimentation
+                url = self.BaseUrl + resource
+                results = json.dumps(json.load(open(url)))
+                return json.loads(results)
             except:
                 tb = traceback.format_exc()
                 self._sm("Exception raised for "+ os.path.basename(resource) + ". Moving to next ComID.", "ERROR")
@@ -66,7 +63,7 @@ class NLDIServiceAgent(ServiceAgentBase.ServiceAgentBase):
         try:
             resource = Config()['queryParams']['nldiChars'].format(comID)
             
-            results = self.Execute(resource) #Removed json.load from results
+            results = json.loads(self.Execute(resource))
             
             for x in results['characteristics']:
                 results[str(x['characteristic_id'])] = x['characteristic_value']
